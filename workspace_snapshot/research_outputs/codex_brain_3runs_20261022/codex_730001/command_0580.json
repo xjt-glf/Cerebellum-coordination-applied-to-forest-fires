@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 580, "plan": {"uavs": [{"task": "explore", "target": [95, 10]}, {"task": "relay", "target": [65, 58], "handover": false}, {"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 9}]}, "reason": "保持三个已验证的覆盖位置，唯一感知机完成东南航程；无提前停止或额外参数调整。"}

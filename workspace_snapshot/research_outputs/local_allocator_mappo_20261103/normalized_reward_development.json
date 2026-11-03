@@ -1,0 +1,584 @@
+{
+  "report": {
+    "3": {
+      "episodes": 8,
+      "provisional": true,
+      "burn_reduction": 0.03206329377472413,
+      "engineering_thresholds_passed": false,
+      "metrics": {
+        "burned_cells": {
+          "model_mean": 581.125,
+          "h3_mean": 600.375,
+          "paired_mean": -19.25,
+          "paired_median": -23.5,
+          "paired_95ci": [
+            -112.8875,
+            70.25937499999995
+          ]
+        },
+        "depleted": {
+          "model_mean": 0.0,
+          "h3_mean": 0.0,
+          "paired_mean": 0.0,
+          "paired_median": 0.0,
+          "paired_95ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "cov_mean": {
+          "model_mean": 0.5286666666666666,
+          "h3_mean": 0.333625,
+          "paired_mean": 0.1950416666666666,
+          "paired_median": 0.2600833333333333,
+          "paired_95ci": [
+            0.05329010416666666,
+            0.30221093749999994
+          ]
+        },
+        "uav_cov_mean": {
+          "model_mean": 0.4041666666666667,
+          "h3_mean": 0.11472916666666666,
+          "paired_mean": 0.2894375,
+          "paired_median": 0.34525000000000006,
+          "paired_95ci": [
+            0.21026302083333334,
+            0.36102864583333333
+          ]
+        },
+        "aoi_p95": {
+          "model_mean": 50.75625000000002,
+          "h3_mean": 207.50625000000002,
+          "paired_mean": -156.75,
+          "paired_median": -142.0,
+          "paired_95ci": [
+            -197.50015625,
+            -116.87468750000001
+          ]
+        },
+        "longest_disconnect": {
+          "model_mean": 106.5,
+          "h3_mean": 312.125,
+          "paired_mean": -205.625,
+          "paired_median": -180.5,
+          "paired_95ci": [
+            -268.0,
+            -149.125
+          ]
+        },
+        "explored": {
+          "model_mean": 0.59125,
+          "h3_mean": 0.8140375,
+          "paired_mean": -0.2227875,
+          "paired_median": -0.13440000000000002,
+          "paired_95ci": [
+            -0.34694,
+            -0.10281937500000006
+          ]
+        },
+        "burning_cells": {
+          "model_mean": 184.125,
+          "h3_mean": 168.875,
+          "paired_mean": 15.25,
+          "paired_median": -37.0,
+          "paired_95ci": [
+            -145.921875,
+            163.78124999999983
+          ]
+        },
+        "burned_out_cells": {
+          "model_mean": 209.625,
+          "h3_mean": 218.375,
+          "paired_mean": -8.75,
+          "paired_median": -5.5,
+          "paired_95ci": [
+            -27.375,
+            7.378124999999983
+          ]
+        },
+        "extinguished_cells": {
+          "model_mean": 187.375,
+          "h3_mean": 213.125,
+          "paired_mean": -25.75,
+          "paired_median": 18.5,
+          "paired_95ci": [
+            -109.75625,
+            61.787499999999795
+          ]
+        },
+        "uncontained_exposure": {
+          "model_mean": 140070.125,
+          "h3_mean": 156544.0,
+          "paired_mean": -16473.875,
+          "paired_median": -14736.5,
+          "paired_95ci": [
+            -67839.921875,
+            30522.237499999977
+          ]
+        },
+        "override_per_100_uav_steps": {
+          "model_mean": 0.5416666666666667,
+          "h3_mean": 0.034722222222222224,
+          "paired_mean": 0.5069444444444444,
+          "paired_median": 0.5833333333333334,
+          "paired_95ci": [
+            0.3819444444444444,
+            0.6180555555555556
+          ]
+        }
+      },
+      "failures": [
+        {
+          "seed": 986000,
+          "burned_delta": 102
+        },
+        {
+          "seed": 986002,
+          "burned_delta": 29
+        },
+        {
+          "seed": 986003,
+          "burned_delta": 65
+        },
+        {
+          "seed": 986005,
+          "burned_delta": 176
+        }
+      ]
+    },
+    "4": {
+      "episodes": 8,
+      "provisional": true,
+      "burn_reduction": 0.1049423035053342,
+      "engineering_thresholds_passed": false,
+      "metrics": {
+        "burned_cells": {
+          "model_mean": 513.875,
+          "h3_mean": 574.125,
+          "paired_mean": -60.25,
+          "paired_median": -49.5,
+          "paired_95ci": [
+            -103.503125,
+            -17.618750000000034
+          ]
+        },
+        "depleted": {
+          "model_mean": 0.125,
+          "h3_mean": 0.0,
+          "paired_mean": 0.125,
+          "paired_median": 0.0,
+          "paired_95ci": [
+            0.0,
+            0.375
+          ]
+        },
+        "cov_mean": {
+          "model_mean": 0.6307916666666668,
+          "h3_mean": 0.29493749999999996,
+          "paired_mean": 0.3358541666666667,
+          "paired_median": 0.33766666666666667,
+          "paired_95ci": [
+            0.24183906250000003,
+            0.4248145833333334
+          ]
+        },
+        "uav_cov_mean": {
+          "model_mean": 0.5749791666666667,
+          "h3_mean": 0.1725833333333333,
+          "paired_mean": 0.40239583333333334,
+          "paired_median": 0.43483333333333335,
+          "paired_95ci": [
+            0.31847916666666676,
+            0.4771401041666666
+          ]
+        },
+        "aoi_p95": {
+          "model_mean": 29.125,
+          "h3_mean": 186.38125000000002,
+          "paired_mean": -157.25625000000002,
+          "paired_median": -148.0,
+          "paired_95ci": [
+            -209.64375000000007,
+            -112.74687500000002
+          ]
+        },
+        "longest_disconnect": {
+          "model_mean": 80.875,
+          "h3_mean": 291.375,
+          "paired_mean": -210.5,
+          "paired_median": -174.0,
+          "paired_95ci": [
+            -275.50625,
+            -151.24687500000002
+          ]
+        },
+        "explored": {
+          "model_mean": 0.6420375,
+          "h3_mean": 0.8318125000000001,
+          "paired_mean": -0.18977500000000003,
+          "paired_median": -0.18775000000000003,
+          "paired_95ci": [
+            -0.24426375000000006,
+            -0.1356959375000001
+          ]
+        },
+        "burning_cells": {
+          "model_mean": 112.5,
+          "h3_mean": 143.0,
+          "paired_mean": -30.5,
+          "paired_median": -29.0,
+          "paired_95ci": [
+            -89.125,
+            29.25
+          ]
+        },
+        "burned_out_cells": {
+          "model_mean": 203.375,
+          "h3_mean": 215.625,
+          "paired_mean": -12.25,
+          "paired_median": -10.5,
+          "paired_95ci": [
+            -18.875,
+            -6.125
+          ]
+        },
+        "extinguished_cells": {
+          "model_mean": 198.0,
+          "h3_mean": 215.5,
+          "paired_mean": -17.5,
+          "paired_median": -13.5,
+          "paired_95ci": [
+            -48.125,
+            11.375
+          ]
+        },
+        "uncontained_exposure": {
+          "model_mean": 105311.75,
+          "h3_mean": 135180.625,
+          "paired_mean": -29868.875,
+          "paired_median": -27183.5,
+          "paired_95ci": [
+            -49402.24375,
+            -10515.565625000001
+          ]
+        },
+        "override_per_100_uav_steps": {
+          "model_mean": 0.6041666666666667,
+          "h3_mean": 0.041666666666666664,
+          "paired_mean": 0.5625,
+          "paired_median": 0.5625,
+          "paired_95ci": [
+            0.515625,
+            0.609375
+          ]
+        }
+      },
+      "failures": [
+        {
+          "seed": 986040,
+          "burned_delta": 24
+        },
+        {
+          "seed": 986043,
+          "burned_delta": 2
+        }
+      ]
+    },
+    "5": {
+      "episodes": 8,
+      "provisional": true,
+      "burn_reduction": 0.007076010043369094,
+      "engineering_thresholds_passed": false,
+      "metrics": {
+        "burned_cells": {
+          "model_mean": 543.75,
+          "h3_mean": 547.625,
+          "paired_mean": -3.875,
+          "paired_median": 19.0,
+          "paired_95ci": [
+            -90.89375,
+            63.5
+          ]
+        },
+        "depleted": {
+          "model_mean": 0.125,
+          "h3_mean": 0.125,
+          "paired_mean": 0.0,
+          "paired_median": 0.0,
+          "paired_95ci": [
+            -0.375,
+            0.375
+          ]
+        },
+        "cov_mean": {
+          "model_mean": 0.6111875000000001,
+          "h3_mean": 0.3116875,
+          "paired_mean": 0.29950000000000004,
+          "paired_median": 0.3354166666666667,
+          "paired_95ci": [
+            0.1557682291666667,
+            0.3996114583333333
+          ]
+        },
+        "uav_cov_mean": {
+          "model_mean": 0.5505833333333334,
+          "h3_mean": 0.17760416666666667,
+          "paired_mean": 0.3729791666666667,
+          "paired_median": 0.3794166666666666,
+          "paired_95ci": [
+            0.29603854166666665,
+            0.45058802083333344
+          ]
+        },
+        "aoi_p95": {
+          "model_mean": 34.125,
+          "h3_mean": 207.625,
+          "paired_mean": -173.5,
+          "paired_median": -198.5,
+          "paired_95ci": [
+            -220.525,
+            -114.625
+          ]
+        },
+        "longest_disconnect": {
+          "model_mean": 87.875,
+          "h3_mean": 286.75,
+          "paired_mean": -198.875,
+          "paired_median": -243.5,
+          "paired_95ci": [
+            -264.128125,
+            -110.86875000000003
+          ]
+        },
+        "explored": {
+          "model_mean": 0.6524,
+          "h3_mean": 0.8505625,
+          "paired_mean": -0.1981625,
+          "paired_median": -0.18255,
+          "paired_95ci": [
+            -0.25593875000000005,
+            -0.1399578125000001
+          ]
+        },
+        "burning_cells": {
+          "model_mean": 162.375,
+          "h3_mean": 86.625,
+          "paired_mean": 75.75,
+          "paired_median": 119.0,
+          "paired_95ci": [
+            -29.778125,
+            158.375
+          ]
+        },
+        "burned_out_cells": {
+          "model_mean": 203.75,
+          "h3_mean": 208.5,
+          "paired_mean": -4.75,
+          "paired_median": -6.5,
+          "paired_95ci": [
+            -14.5,
+            5.0
+          ]
+        },
+        "extinguished_cells": {
+          "model_mean": 177.625,
+          "h3_mean": 252.5,
+          "paired_mean": -74.875,
+          "paired_median": -96.5,
+          "paired_95ci": [
+            -117.634375,
+            -26.871875000000017
+          ]
+        },
+        "uncontained_exposure": {
+          "model_mean": 124601.5,
+          "h3_mean": 123338.625,
+          "paired_mean": 1262.875,
+          "paired_median": 15669.0,
+          "paired_95ci": [
+            -40426.7375,
+            33869.084375
+          ]
+        },
+        "override_per_100_uav_steps": {
+          "model_mean": 0.6333333333333333,
+          "h3_mean": 0.029166666666666667,
+          "paired_mean": 0.6041666666666667,
+          "paired_median": 0.55,
+          "paired_95ci": [
+            0.5125,
+            0.7041666666666666
+          ]
+        }
+      },
+      "failures": [
+        {
+          "seed": 986080,
+          "burned_delta": 101
+        },
+        {
+          "seed": 986085,
+          "burned_delta": 24
+        },
+        {
+          "seed": 986084,
+          "burned_delta": 121
+        },
+        {
+          "seed": 986082,
+          "burned_delta": 38
+        },
+        {
+          "seed": 986087,
+          "burned_delta": 12
+        },
+        {
+          "seed": 986083,
+          "burned_delta": 14
+        }
+      ]
+    },
+    "6": {
+      "episodes": 8,
+      "provisional": true,
+      "burn_reduction": 0.07316435850535667,
+      "engineering_thresholds_passed": false,
+      "metrics": {
+        "burned_cells": {
+          "model_mean": 443.375,
+          "h3_mean": 478.375,
+          "paired_mean": -35.0,
+          "paired_median": -27.5,
+          "paired_95ci": [
+            -66.875,
+            -7.125
+          ]
+        },
+        "depleted": {
+          "model_mean": 0.5,
+          "h3_mean": 0.0,
+          "paired_mean": 0.5,
+          "paired_median": 0.0,
+          "paired_95ci": [
+            0.0,
+            1.0
+          ]
+        },
+        "cov_mean": {
+          "model_mean": 0.6720833333333334,
+          "h3_mean": 0.37543750000000004,
+          "paired_mean": 0.2966458333333333,
+          "paired_median": 0.29499999999999993,
+          "paired_95ci": [
+            0.1836666666666667,
+            0.41605416666666656
+          ]
+        },
+        "uav_cov_mean": {
+          "model_mean": 0.624625,
+          "h3_mean": 0.27545833333333336,
+          "paired_mean": 0.3491666666666667,
+          "paired_median": 0.3511666666666666,
+          "paired_95ci": [
+            0.21728750000000002,
+            0.46713125
+          ]
+        },
+        "aoi_p95": {
+          "model_mean": 29.375,
+          "h3_mean": 230.00625000000002,
+          "paired_mean": -200.63125000000002,
+          "paired_median": -242.5250000000001,
+          "paired_95ci": [
+            -271.88140625,
+            -128.125
+          ]
+        },
+        "longest_disconnect": {
+          "model_mean": 69.25,
+          "h3_mean": 316.75,
+          "paired_mean": -247.5,
+          "paired_median": -309.0,
+          "paired_95ci": [
+            -333.13125,
+            -156.37187500000002
+          ]
+        },
+        "explored": {
+          "model_mean": 0.7496125,
+          "h3_mean": 0.846025,
+          "paired_mean": -0.09641250000000001,
+          "paired_median": -0.09490000000000004,
+          "paired_95ci": [
+            -0.12601468750000003,
+            -0.07017312500000004
+          ]
+        },
+        "burning_cells": {
+          "model_mean": 12.0,
+          "h3_mean": 33.375,
+          "paired_mean": -21.375,
+          "paired_median": -9.5,
+          "paired_95ci": [
+            -38.5,
+            -5.240625000000051
+          ]
+        },
+        "burned_out_cells": {
+          "model_mean": 194.0,
+          "h3_mean": 198.5,
+          "paired_mean": -4.5,
+          "paired_median": 2.0,
+          "paired_95ci": [
+            -16.253125,
+            4.625
+          ]
+        },
+        "extinguished_cells": {
+          "model_mean": 237.375,
+          "h3_mean": 246.5,
+          "paired_mean": -9.125,
+          "paired_median": -5.0,
+          "paired_95ci": [
+            -18.875,
+            -1.75
+          ]
+        },
+        "uncontained_exposure": {
+          "model_mean": 70276.875,
+          "h3_mean": 87801.625,
+          "paired_mean": -17524.75,
+          "paired_median": -11825.5,
+          "paired_95ci": [
+            -34032.121875,
+            -3302.75
+          ]
+        },
+        "override_per_100_uav_steps": {
+          "model_mean": 0.625,
+          "h3_mean": 0.03819444444444445,
+          "paired_mean": 0.5868055555555556,
+          "paired_median": 0.5694444444444444,
+          "paired_95ci": [
+            0.5347222222222222,
+            0.642361111111111
+          ]
+        }
+      },
+      "failures": [
+        {
+          "seed": 986122,
+          "burned_delta": 4
+        },
+        {
+          "seed": 986125,
+          "burned_delta": 13
+        }
+      ]
+    }
+  },
+  "v1_checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_00128.pt",
+  "v2_checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v2_normalized_s2103/checkpoint_00128.pt",
+  "note": "Development only. Different optimizer/initialization seeds 1103 vs2103 confound causal reward comparison; same 128 scene seeds and episode counts. No heldout used. Count version remains predeclared main experiment.",
+  "v2_sha256": "5d0f2a41218bf66d6949f54670b1c22f5e7f488c521d92a381bd2cf5280215ae"
+}

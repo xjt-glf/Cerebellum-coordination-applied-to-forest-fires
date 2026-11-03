@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 60, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [55, 48]}, {"task": "explore", "route": [[92, 24], [85, 23], [79, 27]]}, {"task": "explore", "route": [[34, 43], [36, 50], [31, 56]]}]}, "reason": "西火和东火补侧面，中央机向人员前方探索。"}

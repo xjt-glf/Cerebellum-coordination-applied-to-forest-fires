@@ -1,0 +1,60 @@
+{
+  "main": [
+    {
+      "seed": "1103",
+      "episodes": 1616,
+      "fleet_counts": {
+        "3": 404,
+        "4": 404,
+        "5": 404,
+        "6": 404
+      },
+      "updates": 101,
+      "pid": 1732,
+      "running": false,
+      "latest": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_01616.pt",
+      "latest_sha256": "c511f657b112f3665ab2cfc33d992596d549f28716a18421c826c9530642ef4f",
+      "selected": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_01088.pt",
+      "selected_sha256": "2c02af9fb93ebd99ff2277f690e0465617095ee59a90f4e126a2ec6258e0c8af",
+      "deployment_actor_sha256": "ca831ae50ef667a1fee0085369a5481cb6ed396e3fe734c06afe15f2c222dba2"
+    },
+    {
+      "seed": "1104",
+      "episodes": 1536,
+      "fleet_counts": {
+        "3": 384,
+        "4": 384,
+        "5": 384,
+        "6": 384
+      },
+      "updates": 96,
+      "pid": 1733,
+      "running": false,
+      "latest": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/checkpoint_01536.pt",
+      "latest_sha256": "b2cb05543572e75d43964958f284daec25bc24376192baeca463dbf9d1416d9e",
+      "selected": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/checkpoint_01008.pt",
+      "selected_sha256": "f03fbb2ec76a31c3560a5b84705e5223dc27a520943ee1e3e9155dc8b8eb6587",
+      "deployment_actor_sha256": "f60243da8dc0beb190e57804a74a4de246df370362264f48473db46da9b5c021"
+    },
+    {
+      "seed": "1105",
+      "episodes": 1376,
+      "fleet_counts": {
+        "3": 344,
+        "4": 344,
+        "5": 344,
+        "6": 344
+      },
+      "updates": 86,
+      "pid": 1734,
+      "running": false,
+      "latest": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/checkpoint_01376.pt",
+      "latest_sha256": "08e400a8cb2a87a4f6b6b0d5fbd24062ddc4eb9d8b03c493c57cd87480ee0058",
+      "selected": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/checkpoint_00896.pt",
+      "selected_sha256": "c84ad6cff08ec0db7dce20ac60cee2cc58b00c563af3fd34a0ce64769e45f294",
+      "deployment_actor_sha256": "3f49caa7c6630b0b1e8ca9168c5c3732646a017aa0624ea5d6a54bf03b46d2cc"
+    }
+  ],
+  "lowlevel_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "source_archive_sha256": "2c8ac80adf768b6fcc4822006ae675d8d89fb6838b3a32ff482c31949909487c"
+}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 0, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [62, 50]}, {"task": "explore", "target": [38, 81]}, {"task": "explore", "target": [56, 15]}]}, "reason": "按航程把三架感知机分到不同火场，先获取火情而非均匀铺图；UAV0接近西侧人员维持回传。"}

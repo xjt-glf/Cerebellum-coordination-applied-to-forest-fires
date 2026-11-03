@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/hrl_dqn_improve/experiments/local_allocator/train.py", line 84, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/hrl_dqn_improve/experiments/local_allocator/train.py", line 63, in main
+    torch.cuda.set_rng_state_all(ck['cuda_rng'])
+  File "/opt/sglang/lib/python3.12/site-packages/torch/cuda/random.py", line 86, in set_rng_state_all
+    set_rng_state(state, i)
+  File "/opt/sglang/lib/python3.12/site-packages/torch/cuda/random.py", line 76, in set_rng_state
+    _lazy_call(cb)
+  File "/opt/sglang/lib/python3.12/site-packages/torch/cuda/__init__.py", line 460, in _lazy_call
+    callable()
+  File "/opt/sglang/lib/python3.12/site-packages/torch/cuda/random.py", line 74, in cb
+    default_generator.set_state(new_state)
+TypeError: RNG state must be a torch.ByteTensor

@@ -1,0 +1,68 @@
+{
+  "expected_tick": 260,
+  "source": "codex_joint",
+  "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 3
+    },
+    {
+      "task": "explore",
+      "target": [
+        75,
+        85
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "task": "retreat",
+      "target": [
+        12,
+        46
+      ],
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        5,
+        6,
+        7
+      ],
+      "task": "retreat",
+      "target": [
+        12,
+        50
+      ],
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        8,
+        9,
+        10
+      ],
+      "task": "retreat",
+      "target": [
+        12,
+        54
+      ],
+      "valid_for_ticks": 1200
+    }
+  ]
+}

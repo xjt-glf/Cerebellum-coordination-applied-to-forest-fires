@@ -1,0 +1,117 @@
+{
+  "expected_tick": 0,
+  "source": "codex",
+  "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。",
+  "orders": [
+    {
+      "person_ids": [
+        1
+      ],
+      "task": "move",
+      "target": [
+        12,
+        40
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        2
+      ],
+      "task": "move",
+      "target": [
+        14,
+        42
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        3
+      ],
+      "task": "move",
+      "target": [
+        16,
+        44
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        4
+      ],
+      "task": "move",
+      "target": [
+        12,
+        48
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        5
+      ],
+      "task": "move",
+      "target": [
+        14,
+        50
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        6
+      ],
+      "task": "move",
+      "target": [
+        16,
+        52
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        7
+      ],
+      "task": "move",
+      "target": [
+        12,
+        56
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        8
+      ],
+      "task": "move",
+      "target": [
+        14,
+        58
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        9
+      ],
+      "task": "move",
+      "target": [
+        16,
+        60
+      ],
+      "valid_for_ticks": 200
+    },
+    {
+      "person_ids": [
+        10
+      ],
+      "task": "move",
+      "target": [
+        12,
+        62
+      ],
+      "valid_for_ticks": 200
+    }
+  ]
+}

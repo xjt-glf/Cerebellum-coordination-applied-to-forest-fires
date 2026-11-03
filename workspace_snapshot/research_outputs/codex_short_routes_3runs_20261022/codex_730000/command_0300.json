@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 300, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "explore", "target": [45, 65]}, {"task": "explore", "target": [90, 70]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "双中继固定保障，探索机分别向中央北部和东北部直线扩图。"}

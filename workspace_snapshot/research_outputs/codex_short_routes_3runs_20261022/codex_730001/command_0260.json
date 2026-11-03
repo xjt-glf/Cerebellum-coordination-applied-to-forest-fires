@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 260, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "charge", "target": [50, 90]}, {"task": "relay", "rescuer_id": 10}, {"task": "relay", "rescuer_id": 9}]}, "reason": "东组人员长期处于覆盖边缘，改直接中继；北站机完成充电后再交班。"}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 360, "plan": {"uavs": [{"task": "explore", "target": [40, 40]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [72, 87]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "西侧满电机向中央推进准备轮换，北机直线扫东北未知带。"}

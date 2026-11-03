@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 500, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [95, 95]}, {"task": "explore", "target": [90, 28]}, {"task": "explore", "target": [3, 95]}]}, "reason": "东部替补略偏北漏掉南侧一人，先给精确已知航点90,28校准位置，刚满电旧中继临时协助；角落补图继续。"}

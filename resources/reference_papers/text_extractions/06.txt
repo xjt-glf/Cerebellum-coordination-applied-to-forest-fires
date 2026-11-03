@@ -1,0 +1,2086 @@
+
+=== PAGE 1 ===
+IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026 11173
+Scalable UA V Multi-Hop Networking via
+Multi-Agent Reinforcement Learning
+With Large Language Models
+Y anggang Xu , Jirong Zha , Weijie Hong, Xiangmin Yi , Geng Chen, Jianfeng Zheng, Chen-Chun Hsia ,
+and Xinlei Chen , Member , IEEE
+Abstract—In disaster scenarios, establishing robust emergency
+communication networks is critical, and uncrewed aerial vehicles
+(UA Vs) offer a promising solution to rapidly restore connectivity.
+However, organizing UA Vs to form multi-hop networks in large-
+scale dynamic environments presents signiﬁcant challenges, includ-
+ing limitations in algorithmic scalability and the vast exploration
+space required for coordinated decision-making. To address these
+issues, we propose MRLMN, a novel framework that integrates
+multi-agent reinforcement learning (MARL) and large language
+models (LLMs) to jointly optimize UA V agents toward achieving
+optimal networking performance. The framework incorporates a
+grouping strategy with reward decomposition to enhance algo-
+rithmic scalability and balance decision-making across UA Vs. In
+addition, behavioral constraints are applied to selected key UA Vs
+to improve the robustness of the network. Furthermore, the frame-
+work integrates LLM agents, leveraging knowledge distillation to
+transfer their high-level decision-making capabilities to MARL
+agents. This enhances both the efﬁciency of exploration and the
+overall training process. In the distillation module, a Hungarian
+algorithm-based matching scheme is applied to align the decision
+outputs of the LLM and MARL agents and deﬁne the distilla-
+tion loss. Extensive simulation results validate the effectiveness of
+our approach, demonstrating signiﬁcant improvements in network
+performance over the MAPPO baseline and other comparison
+methods, including enhanced coverage and communication quality.
+Index Terms —Multi-agent reinforcement learning, large
+language model, knowledge distillation, multi-hop UA V network.
+Received 3 May 2025; revised 12 December 2025; accepted 10 February
+2026. Date of publication 2 March 2026; date of current version 5 June 2026.
+This work was supported in part by the Natural Science Foundation of China
+under Grant 62371269, in part by Shenzhen Low-Altitude Airspace Strategic
+Program Portfolio under Grant Z25306110, in part by Shenzhen Science and
+Technology Program under Grant ZDCYKCX20250901094203005 and Grant
+ZDCY202517014, and in part by the Meituan Academy of Robotics Shenzhen.
+Recommended for acceptance by D. W. K. Ng. (Yanggang Xu and Jirong Zha
+contributed equally to this work.) (Corresponding author: Xinlei Chen.)
+Y anggang Xu, Jirong Zha, Xiangmin Yi, Chen-Chun Hsia, and Xinlei Chen
+are with the Shenzhen International Graduate School, Tsinghua University,
+Shenzhen 518055, China (e-mail: yanggangxu18@gmail.com; zhajirong23@
+mails.tsinghua.edu.cn; yxm25@mails.tsinghua.edu.cn; hsiachenchun@gmail.
+com; chen.xinlei@sz.tsinghua.edu.cn).
+Weijie Hong and Jianfeng Zheng are with Shenzhen Smart City Com-
+munications Company, Ltd., Shenzhen 518055, China (e-mail: hongweijie@
+smartcitysz.com; zhengjianfeng@smartcitysz.com).
+Geng Chen is with the College of Software, Jilin University, Changchun
+130012, China (e-mail: cg1043148036@outlook.com).
+Digital Object Identiﬁer 10.1109/TMC.2026.3669346
+I. I NTRODUCTION
+N
+ATURAL disasters worldwide have devastating impacts,
+not only causing loss of life and infrastructure damage
+but also disrupting social and economic systems. In 2024, the
+United States experienced 27 climate disasters that caused over
+$1 billion in damage each, with total losses reaching $184.8
+billion and 568 fatalities reported [1]. Communication infras-
+tructure, including base stations (BSs) and ﬁber-optic cables, is
+highly vulnerable to disasters such as ﬂoods and earthquakes.
+Communication failures hinder the delivery of humanitarian
+aid and disrupt life-saving rescue efforts. These breakdowns
+intensify the challenges faced by disaster-stricken communities.
+They highlight the urgent need for resilient, rapidly deployable
+communication systems to support emergency response and
+recovery.
+Uncrewed Aerial V ehicles (UA Vs) have emerged as a promis-
+ing solution to address the communication challenges posed by
+disasters, owing to their exceptional mobility and agility [2].
+UA Vs can serve as mobile relay stations, forming multi-hop net-
+works to provide communication services to distant user equip-
+ments (UEs). Furthermore, UA Vs, operating in air-to-ground and
+air-to-air channels with minimal obstructions, are more likely to
+establish reliable line-of-sight propagation paths, thus ensuring
+robust communication [3]. By strategically optimizing UA V
+ﬂight trajectories and positions, the quality of communication
+channels can be signiﬁcantly enhanced, thereby improving the
+overall performance of UA V -assisted network systems.
+This paper leverages UA V swarms to establish expansive
+multi-hop networks by connecting distant, operational ﬁxed BSs
+in disaster-stricken regions, shown in Fig. 1. In situations where
+disasters create communication dead zones, multiple UA Vs are
+strategically deployed to serve ground UEs. They form a relay
+network that bridges isolated areas with available BSs, thereby
+connecting the local network to the core infrastructure. This
+conﬁguration not only extends coverage to remote areas where
+conventional communication is infeasible, but also enhances
+network reliability through the creation of multiple routing
+paths. In particular, UA V mobility and multi-hop pathways pro-
+vide the ﬂexibility needed to adapt to the dynamic movement of
+ground UEs, enabling adaptive routing. In a multi-hop network,
+precise coordination among multiple UA Vs is essential. This
+necessitates sophisticated trajectory planning and deployment
+1536-1233 © 2026 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and similar technologi es.
+Personal use is permitted, but republication/redistribution requires IEEE permission. See https://www.ieee.org/publications/rights/index. html for more information.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 2 ===
+11174 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+Fig. 1. In disaster scenarios, UA Vs can rapidly establish temporary multi-hop
+wireless networks in communication dead zone, thereby restoring connectivity
+for UEs.
+strategies to ensure that each UA V maintains optimal positioning
+for uninterrupted connectivity.
+With the rapid advancement of UA V and Internet of Things
+technologies, extensive research has been devoted to UA V -based
+communication and networking tasks. Numerous studies have
+sought to optimize the association and coordination between
+UA Vs and UEs through reﬁned transmission strategies [4],
+efﬁcient resource management [5], and strategic UA V deploy-
+ment [6]. Several studies have further explored the applications
+of UA Vs in wireless sensor networks [7], data ofﬂoading, and
+edge computing [8]. Reinforcement learning (RL) techniques,
+owing to their exceptional decision-making and planning ca-
+pabilities, have been applied to optimize UA V trajectory plan-
+ning in dynamic and uncertain environments [8], [9]. These
+methods aim to improve overall communication performance
+while addressing the challenges imposed by various operational
+constraints and environmental uncertainties. However, existing
+studies primarily focus on the planning of a limited number
+of UA Vs, without addressing the complex coordination required
+for large-scale multi-UA V systems. In large-scale environments,
+communication constraints often require the use of multi-hop
+networks, where connectivity is highly dynamic and unstable.
+Coordinating UA V swarm within such networks remains a sig-
+niﬁcant challenge.
+Optimizing dynamic multi-hop networks formed by UA Vs
+presents several key challenges:
+1) One major difﬁculty lies in the joint optimization and
+balancing of UA V -speciﬁc strategies, which demands a scalable
+algorithm capable of managing complex coordination. Within
+the swarm, UA Vs must coordinate their roles to collectively
+establish and maintain a stable network topology. Each UA V’s
+decision-making not only dictates its own relay selection and
+communication scheduling, but also inﬂuences the strategies of
+other UA Vs within the network. An imbalance in these roles
+may lead to coverage gaps or network disconnections, trig-
+gering cascading effects that undermine network stability and
+efﬁciency. The interdependence of these strategic decisions fur-
+ther ampliﬁes the complexity of coordination, requiring UA Vs
+to continuously adjust their behaviors to achieve a globally
+balanced and optimized network structure.
+2) The second challenge arises from the spatial complexity
+and dynamic nature of multi-hop UA V networks, which signiﬁ-
+cantly expand the exploration space and complicate the training
+process. In large-scale disaster scenarios, the considerable dis-
+tances between available BSs and scattered UEs result in an
+overwhelming number of possible UA V deployment strategies,
+making it difﬁcult to determine an optimal conﬁguration. This
+challenge is further exacerbated by the continuously changing
+network topology and ﬂuctuating channel conditions. Further-
+more, the stochastic distribution and unpredictable mobility
+of UEs introduce further uncertainty into network planning.
+These spatial and temporal complexities not only increase the
+difﬁculty of optimizing UA V placement and routing, but also
+require continuous adaptation to maintain stable and efﬁcient
+communication.
+These challenges highlight the need for scalable algorithms
+that enable joint optimization of multi-agent strategies to main-
+tain equilibrium while effectively managing the extensive ex-
+ploration space. Developing such algorithms is essential for
+achieving efﬁcient coordination and adaptive decision-making
+in complex, dynamic multi-hop network environments.
+To address the aforementioned challenges, this paper investi-
+gates the application of UA V swarms in multi-hop networking
+for disaster emergency scenarios, focusing on optimizing UA V
+trajectories to maximize both communication coverage and
+quality under connectivity constraints. To tackle this problem,
+we propose a novel multi-agent reinforcement learning (MARL)
+framework, referred to as MRLMN (Multi-agent Reinforcement
+learning with Large language model in Multi-hop Networking).
+The key contributions of this paper are summarized as follows:
+r This paper formulates the UA V -enabled multi-hop net-
+working task as a multi-objective optimization problem
+aimed at maximizing network coverage and communica-
+tion quality while satisfying connectivity constraints. This
+problem is modeled as a stochastic game to capture the
+dynamic interactions among UA Vs and between UA Vs
+and the environment, explicitly considering collaboration
+and coordination challenges in large-scale, multi-UA V , and
+multi-hop network scenarios.
+r This paper proposes a task-oriented agent grouping strat-
+egy and an information aggregation mechanism within
+a MARL framework. A reward decomposition model is
+designed based on the grouping strategy to facilitate co-
+ordinated decision-making, mitigate non-stationarity, and
+enhance scalability for large UA V swarms. Behavioral
+constraints are further applied to critical UA V groups to
+improve network robustness and prevent detrimental topol-
+ogy disruptions.
+r This paper designs a knowledge distillation framework that
+combines Large Language Models (LLMs) with MARL for
+UA V networking. In our framework, the LLM serves as an
+ofﬂine advisor that provides high-level strategic insights,
+which are distilled into the MARL agents to guide policy
+learning, without being deployed for real-time UA V con-
+trol. LLM outputs are aligned with MARL actions through
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 3 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11175
+a per-agent decision matching scheme. The knowledge is
+then transferred via a tailored distillation loss, facilitating
+more efﬁcient policy exploration, addressing the cold-
+start problem, and enhancing the convergence of MARL
+training.
+r Extensive simulations are conducted to evaluate the pro-
+posed approach across different environment scales, UA V
+swarm sizes, and baseline comparisons. The results demon-
+strate that MRLMN consistently outperforms existing
+methods in terms of network coverage, communication
+quality, and robustness, validating the effectiveness of the
+proposed mechanisms.
+The remainder of this paper is structured as follows. SectionII
+reviews related work on UA V -based networking. Section III
+formulates the problem and introduces the system model.
+Section IV presents the proposed MRLMN framework. Sec-
+tion V describes the simulation setup and evaluates performance
+by comparing the proposed method with other approaches.
+Finally, Section VI concludes the paper and outlines potential
+directions for future research.
+II. R
+ELA TEDWORK
+This section reviews existing research relevant to UA V -
+assisted networking, covering optimization-based, RL-based,
+and LLM-assisted methods. The discussion summarizes key
+developments in each category, identiﬁes their limitations, and
+emphasizes the advantages of the proposed approach relative to
+prior work.
+A. Optimization-Based Methods
+In the problem of employing UA Vs to provide communication
+networks for UEs, designing trajectory and resource planning
+algorithms is complex due to the coupling of various factors.
+Several studies propose algorithms based on optimization theory
+to tackle this intricate problem [10], [11]. The majority of these
+works model the trajectory optimization problem for UA Vs
+within the context of combinatorial optimization problems such
+as the Traveling Salesman Problem (TSP) and V ehicle Routing
+Problem (VRP). Building on these well-established frameworks,
+researchers have developed specialized algorithms to effectively
+address the optimization challenges present in different UA V -
+assisted networking scenarios. In [12], block coordinate descent
+and successive convex optimization techniques are applied to op-
+timize UE communication scheduling and UA V trajectory plan-
+ning. The work in [13] decomposes the optimization problem
+into different sub-problems and employs fast global K-means
+along with an interior-point method to optimize the locations of
+UA Vs. In the context of UA V networking problems, some studies
+focus on optimizing the uplink and downlink communication
+rates [12], UA V energy consumption [14], [15], quality of ser-
+vice [16] and the number of UEs covered [17]. Under controlled
+conditions, optimization-based approaches for UA V deploy-
+ment and planning have demonstrated strong performance and
+robustness.
+However, these methods are signiﬁcantly hindered by
+high execution complexity in practical applications [7].I n
+large-scale dynamic environments, the inherent non-convexity
+of the optimization problems impedes the attainment of global
+optimality, thus limiting their overall effectiveness. Further-
+more, these algorithms struggle to handle the vast state and
+action spaces in such networking scenarios, where the high
+dimensionality complicates accurate modeling and further in-
+creases computational complexity. Collectively, these factors
+constrain the ability of optimization-based methods to rapidly
+generate effective decisions in rapidly changing and unpre-
+dictable large-scale environments.
+To address these limitations, the proposed approach leverages
+MARL to efﬁciently explore high-dimensional state and action
+spaces, reducing reliance on precise modeling of the networking
+task. Task-oriented grouping and reward decomposition simplify
+the coordination among multiple UA Vs, mitigating the com-
+putational complexity associated with large-scale deployments.
+These combined mechanisms allow the framework to generate
+effective and robust UA V deployment decisions in dynamic,
+large-scale multi-hop networking scenarios.
+B. RL-Based Methods
+In recent years, reinforcement learning (RL) has emerged
+as a prominent approach for addressing complex optimization
+challenges in UA V -assisted networks [18], [19], demonstrat-
+ing remarkable capabilities in sequential decision-making and
+scheduling tasks. In [20], the authors introduce a constrained
+deep Q-network to maximize downlink capacity while ensuring
+comprehensive coverage for all UEs. [21] proposes a dual-
+attention RL technique to address the time-varying UE traf-
+ﬁc and mobility challenges in the environment. Additionally,
+several studies integrate UA V -assisted networking with data
+ofﬂoading and edge computing. These works employ RL al-
+gorithms to achieve fair throughput among UA Vs [18], [22] or
+to minimize the content acquisition delay for UEs [8]. Song et
+al. [23] propose an improved evolutionary multi-objective RL
+algorithm to address both trajectory control and task ofﬂoading
+problems of the UA Vs.
+In this context, MARL[24], [25] algorithms enable each UA V
+to act as an individual decision-maker while leveraging interac-
+tions with other UA Vs, making them well-suited for multi-hop
+wireless networks. [26] utilizes a multi-agent deep determin-
+istic policy gradient (MADDPG) approach to optimize task
+ofﬂoading strategies between UEs and UA Vs. Similarly, [27]
+proposes a decentralized multi-agent soft actor-critic algorithm
+to optimize spectral efﬁciency among UA Vs. To capture the
+complex relationships between UA Vs and UEs, [9] introduces
+a heterogeneous graph-based formulation that is integrated into
+MARL frameworks to facilitate the learning of distributed poli-
+cies for UA Vs. And[28] develops an attention-based heteroge-
+neous graph neural network combined with model-based RL to
+optimize the UA Vs’ resource allocation.
+Despite signiﬁcant advancements in MARL, some issues
+still persist. Many studies assume that the backhaul network
+interfacing with the core network is fully conﬁgured, thereby
+neglecting the optimization of relay nodes. In large-scale dy-
+namic environments, such assumptions overlook the scalability
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 4 ===
+11176 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+challenges of coordinating dozens of UA Vs for multi-hop relay-
+ing. As the number of UA Vs increases, RL techniques encounter
+convergence issues due to the exponential growth of state and
+action spaces. The intrinsic randomness of RL further compli-
+cates long-term link maintenance in UA V networks. Another
+critical challenge in MARL is the credit assignment, which
+complicates the evaluation of each UA V’s contribution when
+only a global reward signal is available. For instance, the sub-
+optimal performance of a single relay UA V can trigger network
+disconnections and a rapid decline in the global reward, po-
+tentially misleading other agents regarding the efﬁcacy of their
+policies. Similarly, when overall performance gains are driven
+by a few critical UA Vs, the remaining agents may overestimate
+their contributions. Moreover, the wide range of environmental
+states in large-scale scenarios results in a vast exploration space,
+thereby reducing algorithmic robustness. In the early stages of
+RL training, random initialization of model parameters leads to
+counterintuitive decisions that prompt unproductive exploration,
+ultimately impeding the training process.
+In response to these challenges, in the proposed framework,
+UA Vs are coordinated through a task-oriented grouping strategy
+that assigns speciﬁc roles, ensuring that relay responsibilities
+are explicitly considered. To mitigate the scalability and con-
+vergence issues arising from high-dimensional state and action
+spaces, a reward decomposition scheme is applied, which dis-
+tributes global feedback into more localized signals, thereby
+improving credit assignment for individual UA Vs and stabilizing
+learning. Behavioral constraints are enforced on critical UA Vs to
+prevent disruptive topology changes, ensuring network robust-
+ness despite the intrinsic randomness of RL. Finally, to reduce
+the burden of exploration in vast and complex environments,
+large language models are employed during ofﬂine training to
+provide high-level strategic guidance, which is distilled into
+MARL policies to accelerate learning, guide effective UA V de-
+ployment, and maintain decentralized decision-making suitable
+for real-time operation.
+C. LLM-Based Methods
+The development of LLMs has facilitated their application
+in robotic planning, where they exhibit strong reasoning and
+decision-making capabilities [29], [30], [31]. Building on this
+progress, recent studies have extended the use of LLM agents to
+UA V planning[32], [33], enhancing the efﬁciency of the plan-
+ning process in complex environments. Furthermore, integrating
+LLMs with RL has emerged as a promising research direction.
+LLMs have been utilized to shape reward functions [34], en-
+abling more nuanced and context-aware feedback for RL agents.
+They have also been applied to improve state representation[35]
+by capturing intricate relationships within the environment,
+which enhances the agent’s understanding of the environmental
+states. Additionally, LLMs have been employed to reﬁne action
+selection [36], providing guidance that allows RL agents to make
+more informed and strategically aligned decisions, ultimately
+improving the performance of the system. Despite their poten-
+tial, the application of LLMs in robotics and UA V planning faces
+notable challenges. In particular, LLMs’ sensitivity to input
+prompts can lead to inconsistent decision-making, especially in
+complex and dynamic tasks that require precise control. More-
+over, the gap between the generalized knowledge of LLMs and
+speciﬁc domain requirements further complicates their practical
+integration, with the issue being more pronounced in problems
+with complex constraints. Existing methods that integrate LLMs
+with RL often assume low-dimensional or structured action and
+state spaces and rely on direct translation of LLM outputs into
+agent actions or hierarchical abstractions. These assumptions are
+unsuitable for multi-UA V multi-hop networking, where action
+and state spaces are high-dimensional, strongly coupled, and
+constrained by connectivity and communication requirements.
+In the proposed approach, the semantic-level reasoning of
+the LLM is combined with the robustness and coordination
+capability of MARL to address these challenges. During MARL
+training, the LLM provides high-level strategic guidance for
+UA V deployment and networking. MRLMN then aligns these
+strategies with decentralized agent behaviors by assigning LLM-
+suggested roles via the Hungarian algorithm and distilling the
+resulting priors into the MARL policies. At deployment, MARL
+agents execute decisions independently, ensuring scalable and
+distributed control without requiring online interaction with the
+LLM.
+III. S
+YSTEM MODEL
+In this section, the system components of the UA V -enabled
+emergency network and their spatial dynamics within the disas-
+ter environment are deﬁned. The communication model is then
+introduced together with the connectivity constraints required to
+maintain a feasible multi-hop backhaul link to the core network.
+Building on these elements, the networking task is formulated
+as a joint trajectory optimization problem that aims to maxi-
+mize user coverage and communication quality under practical
+operational constraints.
+A. Problem F ormulation
+In the networking system, we consider a setup with U relay
+UAVs,M mobile UEs, and G BSs, represented by the sets U =
+{1,2,...,U }, M = {1,2,...,M }, and G = {1,2,...,G },
+respectively. The system operates in time slots, indexed as
+t ∈T , where T = {1,2,...,T }. Treating each entity from the
+UA V , UE, and BS groups as a node, the overall node set is
+expressed as N = U ∪M∪G. The interaction between these
+nodes facilitates the establishment of a multi-hop communica-
+tion network, enabling UEs to maintain consistent connections
+with BSs. The position of each node n ∈N at a speciﬁc
+time slot t is described in three-dimensional space by l
+n(t)=
+(xn(t),yn(t),zn(t)). The Euclidean distance between any two
+nodesi,j ∈N at time t is given by di,j(t)= ||li(t)−lj(t)||2.
+Prior studies on UA V -enabled communication have established
+modeling principles for node interactions and relay-assisted
+communication, offering validated abstractions for UA V mod-
+eling [37], link quality characterization and connectivity con-
+straints [38], [39]. Complementary work on UA V -supported
+UE connection and communication adaptation [40], [41] fur-
+ther provides mechanisms for describing how UA Vs maintain
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 5 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11177
+stable communication connectivity while serving UEs [42],
+[43]. Building on these foundations, the communication model,
+connectivity constraints, and optimization objective in this study
+can be formally established, thereby constructing a complete and
+consistent formulation of the UA V multi-hop networking task.
+B. Communication Model
+In the proposed networking scenario, the communication
+dynamics are modeled across three types of links: UA V -UE links
+that facilitate data transmission between UA Vs and UEs, UA V -
+UA V links that enable communication and coordination among
+UA Vs, and BS-UA V links that support connectivity between BSs
+and UA Vs.
+r UA V-UE links:For the UA V -UE links, a probabilistic path
+loss framework is employed to model the distinct character-
+istics and occurrence probabilities of Line-of-Sight (LoS)
+and Non-Line-of-Sight (NLoS) conditions. This approach
+captures the additional path loss caused by environmen-
+tal factors such as shadowing and scattering, which sig-
+niﬁcantly affect air-to-ground communication in realistic
+propagation environments. The LoS and NLoS path loss
+model for UA Vu ∈U and UE m ∈M is deﬁned as
+PL
+LoS
+u,m(t)=20log
+( 4πfc
+c
+)
++20log(du,m(t))+ηLoS,
+(1)
+PL NLoS
+u,m (t)=20log
+( 4πfc
+c
+)
++20log(du,m(t))+ηNLoS,
+(2)
+where fc is the carrier frequency of the channel, c is
+the speed of light, ηLoS and ηNLoS are constant values
+representing the excessive path loss for LoS and NLoS
+links, respectively. The occurrence probability of the LoS
+channel follows
+P
+LoS
+u,m(t)= 1
+1+ aexp
+[
+−b
+(
+180
+π arcsin
+(
+zu (t)
+du,m (t)
+)
+−a
+)] ,
+(3)
+where zu(t) is the height of the UA V ,a andb are environ-
+mental constants. The occurrence probability of the NLoS
+channel is given by P NLoS
+u,m (t)=1 −P LoS
+u,m(t). Therefore,
+the path loss of the UA V -UE links is modeled as
+PL UA V-UE
+u,m (t)=P LoS
+u,m(t)PL LoS
+u,m(t)+P NLoS
+u,m (t)PL NLoS
+u,m (t).
+(4)
+r UAV-UAV links:For UA V -UA V links, where signal propa-
+gation occurs in unobstructed airspace with minimal inter-
+ference from environmental obstacles and LoS link is the
+dominant mode of communication, the free-space path loss
+(FSPL) model is adopted. Thus, the path loss for UA V -UA V
+links between u,v ∈U is given by
+PL
+UA V-UA V
+u,v (t)=20log
+( 4πfc
+c
+)
++20log(du,v(t))+ηLoS.
+(5)
+r BS-UA V links:In this paper, the BS antennas are assumed to
+be mounted at a high elevation, consistent with real-world
+deployments. This positioning ensures a largely unob-
+structed communication environment with UA Vs, allowing
+the channel to be approximated as free space. Under this
+assumption, the path loss for the link between UA Vu ∈U
+and BS g ∈G is modeled using the FSPL framework,
+PL BS-UA V
+g,u (t)=20log
+( 4πfc
+c
+)
++20log(dg,u(t))+ηLoS.
+(6)
+Therefore, the received signal power from node i ∈N to
+j ∈N is given by
+P RX
+i,j (t)= P TX
+i GTX
+i
+GRX
+j
+10−PLi,j (t)/10, (7)
+where P TX
+i and P RX
+i,j are the transmitted signal power and re-
+ceived signal power,GTX
+i andGRX
+j are the gains of the transmitter
+and receiver antennas, respectively. Accordingly, the signal-to-
+noise ratio (SNR) from node i toj is denoted as
+ρi,j(t)= P RX
+i,j (t)
+10NA/10, (8)
+where NA represents the noise power in dB form. In the envi-
+ronment, the noise power is computed according to
+NA = −174+10log B +NF, (9)
+where -174 dBm/Hz represents the thermal noise power spectral
+density at room temperature,B represents the system bandwidth
+in Hz and NF denotes the noise ﬁgure. The available data rate
+from node i to j is determined based on the Shannon capacity
+formula as
+ri,j(t)= Bi,j log2(1+ ρi,j), (10)
+whereBi,j denotes the bandwidth.
+C. Connectivity Constraint
+In multi-hop networks, the connectivity between nodes is
+crucial in determining whether a UE can successfully connect to
+the core network. In this paper, binary variablescUE
+m andcUA V
+u are
+denoted to indicate whether UEm or UA Vu can establish a con-
+nection to an available BS through the multi-hop network. The
+connectivity of each link is determined based on a predeﬁned
+SNR threshold ρ
+th, where a link is considered disconnected if
+its SNR falls below the threshold. Moreover, UA Vs can serve
+as relay nodes for UEs or other UA Vs, constituting integral
+components of the multi-hop network that connects to the BS.
+A UA V can connect to the BS either directly or through multiple
+hops, while a UE accesses the core network via UA Vs linked to
+the BS. Consequently, we have
+c
+UA V
+u (t)=
+⎧
+⎨
+⎩
+1, if∃g ∈G,ρg,u(t) ≥ρth,
+or ∃v ∈U\{u},c UA V
+v (t)=1 ,ρu,v(t) ≥ρth
+0, otherwise
+(11)
+and
+cUE
+m (t)=
+{1, if∃u ∈U,c UA V
+u (t)=1 ,ρu,m(t) ≥ρth
+0, otherwise. (12)
+Within the network, UA Vs select the backhaul path with the
+fewest relay hops, whereas UEs establish only the connection
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 6 ===
+11178 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+that yields the maximum data rate. Accordingly, the data rate
+available to UE m is deﬁned as
+rUE
+m (t)=m a x{ru,m(t)|cUA V
+u (t)=1 ,ρu,m(t) ≥ρth,u ∈U}.
+(13)
+D. Objective Model
+In this paper, the objective is to maximize the number of con-
+nected UEs and the accessible data rate under a set of constraints
+by optimizing UA V trajectories. To formulate the networking
+task, we deﬁne all UA Vs’ trajectories asτ= {lu(t)|u ∈U,t ∈
+T }, which records the coordinates of each UA V over time. The
+corresponding optimization problem is then deﬁned as
+τ∗=a r g m a x
+τ
+(
+1
+T
+T∑
+t=1
+(
+1
+M
+M∑
+m=1
+cUE
+m (t)+ κ
+M
+M∑
+m=1
+rUE
+m (t)
+))
+(P1)
+s.t. ||lu(t+1) −lu(t)||2 ≤Δlu,∀u ∈U (C1)
+lu(t) ∈LE,∀u ∈U (C2)
+(11) and (12) (C3)
+whereκserves as a weighting factor that balances the objective
+function. The objective function, as shown in equation (P1),
+aims to maximize the coverage and data rate of all UEs over
+the optimization period. The ﬁrst term represents the number
+of connected UEs, while the second term captures the data rate
+achieved by UEs. Constraint (C1) limits the movement of each
+UA V such that the distance it can travel in a single time slot is
+Δl
+u = ωΔt, whereωdenotes the UA V speed andΔt represents
+the duration of one time slot. Constraint (C2) restricts UA V
+trajectories to the spatial conﬁnes of the environment, denoted
+byLE . Moreover, the optimization problem is further bounded
+by communication and connectivity constraints, as delineated in
+equations (11) and (12).
+IV . METHODOLOGY
+To address the scalability challenges and extensive explo-
+ration space in large-scale UA V networking, this section in-
+troduces the MRLMN framework. The networking objective is
+reformulated as a stochastic game, and a decentralized learning
+architecture based on the IPPO is adopted. Coordination is
+facilitated through an information aggregation mechanism and
+a role-based grouping strategy with decomposed rewards, while
+behavioral constraints ensure feasible motion and communica-
+tion. A knowledge distillation module is employed to integrate
+LLM guidance, signiﬁcantly improving exploration efﬁciency
+and guiding the learning of agent policies in complex decision
+scenarios.
+A. Stochastic Game F ormulation
+To capture the dynamic and uncertain nature of the oper-
+ational environment and the interdependent decision-making
+processes of individual UA Vs, the multi-UA V networking prob-
+lem is modeled as a stochastic game deﬁned by the tuple
+(U, S,{A
+u}u∈U,P, {Ru}u∈U,γ).
+1) State Space S: The state space of the networking environ-
+ment is deﬁned to encompass a) the spatial coordinates of all
+nodes within the network, b) the status of communication links,
+including SNR and data rate, c) the connectivity status of each
+UA V to the available BS via the multi-hop network, denoted by
+{c
+UA V
+u (t)}u∈U .
+2) Action Space A = {Au}u∈U : The action space speciﬁes
+the set of movement decisions available to each UA V . In this
+paper, the UA Vs move at a ﬁxed cruise speedω, which is treated
+as a constant system parameter. Accordingly, the action space
+includes only the selection of movement direction within the
+planar domain, modeled as eight discrete directional options
+together with a hovering action. This formulation captures the es-
+sential trajectory control while simplifying the decision-making
+complexity for MARL agents.
+3) State Transition ProbabilityP : The state transition deﬁnes
+how the system evolves based on UA V actions and environmen-
+tal dynamics. Given the current state s
+t, each UA V u selects
+an action au
+t , leading to a new state st+1 with probability
+P(st+1|st,{au
+t }u∈U).
+4) Reward Model R = {Ru}u∈U : The reward model R
+quantiﬁes UA V actions by evaluating network connectivity and
+data rate. Accordingly, the team reward, representing the envi-
+ronmental feedback on the effectiveness of UA V networking, is
+deﬁned as
+R
+t = 1
+M
+M∑
+m=1
+cUE
+m (t)+ κ
+M
+M∑
+m=1
+rUE
+m (t). (14)
+Guided by this formulation, a novel reward model is proposed
+to support UA V decision-making, with detailed formulation
+provided in Section IV -D. The discount factor γis incorporated
+to balance immediate and future rewards.
+B. MARL Framework and Algorithm Overview
+In this paper, the proposed model is designed based on
+the MARL algorithm, where multiple agents interact within a
+shared environment and iteratively reﬁne their behaviors through
+trial-and-error. Within the model, each UA V u operates based
+on its own policy πu(au
+t |ou
+t ;θu), which dictates the action it
+should take given its observation ou
+t and learnable parame-
+ters of the policy network θu. The objective is to ﬁnd a set
+of UA V policies that maximizes the joint discounted cumula-
+tive reward ∑T−t
+k=0 γkRt+k under the joint policy π(at|st)=∏
+u∈U πu(au
+t |ou
+t ), where at represents the joint action of all
+UA Vs at timet. To train each UA V with a decentralized policy
+πu, the training approach is designed based on the Proximal
+Policy Optimization (PPO) algorithm [44]. The policy objective
+for each UA Vu is initially deﬁned as
+LPPO
+u (t,θu)= Eou
+t ,au
+t
+[min(ζθu
+t Au
+t , clip(ζθu
+t ,1−ϵ,1+ϵ)Au
+t )],
+(15)
+where ζθu
+t = πu(au
+t |ou
+t ;θu)/πu(au
+t |ou
+t ;θu
+old) is the probability
+ratio between the updated and old policies, Au
+t is the advantage
+estimation,ϵ is a hyperparameter that controls the clipping range,
+restricting policy updates to ensure stable training. The PPO
+entropy loss and critic loss [44] are also incorporated into the
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 7 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11179
+training process. The entropy loss encourages exploration by pe-
+nalizing deterministic behavior and promoting action diversity.
+The critic loss is designed to improve value estimation accu-
+racy, providing a more reliable baseline for policy updates and
+enhancing training stability. In this work, PPO is adopted due to
+its stable training behavior, where the clipped policy-update con-
+straint prevents abrupt policy shifts that could otherwise induce
+disruptive topology changes or unexpected UE disconnections.
+Building upon PPO, the Independent PPO (IPPO) [45] formula-
+tion is adopted as the base framework because its decentralized
+policy and critic design allow each UA V to make decisions
+independently from local observations. This structure reduces
+the coordination complexity that arises when controlling large
+UA V swarms, mitigates the curse of dimensionality associated
+with multi-agent state and action spaces, and supports efﬁcient
+parallel learning. As a result, IPPO offers natural scalability
+and robustness in dynamic multi-UA V multi-hop networking
+environments, making it well-suited for the proposed MRLMN
+architecture.
+To address the challenges associated with UA V networking,
+several key modules are proposed based on the IPPO framework.
+To enhance inter-agent cooperation and improve algorithm scal-
+ability, an information aggregation module (see Section IV -C)
+and a grouping strategy (see SectionIV -D) are introduced as core
+components. Meanwhile, the reward mechanism is adjusted to
+deliver clearer feedback tailored to each agent’s training process
+(see Section IV -D). During MARL training, the loss function
+is further augmented with a behavioral constraint term L
+BC to
+encourage the maintenance of robust multi-hop connectivity (see
+Section IV -E). Additionally, a knowledge distillation loss LKD
+based on LLMs is designed to promote structured exploration
+within the MARL paradigm (see Section IV -F). Consequently,
+the overall objective for each agent u is expressed as
+max
+πu LPPO
+u (t)−β1LKD
+u (t)−β2LBC
+u (t), (16)
+where β1 and β2 are weighting coefﬁcients that balance the
+relative importance of the primary objective with other terms.
+Through the integration of these components, the proposed
+framework effectively balances the optimization of network
+performance, the enforcement of connectivity constraints, and
+the incorporation of task-speciﬁc insights.
+C. Information Aggregation for Coordination
+To enhance inter-agent cooperation, an information aggrega-
+tion module is designed for each agent, and its output, together
+with the agent’s local observation, serves as the input to both the
+policy and critic networks. Effective cooperation among UA Vs
+in a multi-agent networking environment relies on the exchange
+of local observations, enabling more informed decision-making
+and improved coordination. In the networking problem, UA Vs
+are assumed to be able to share their local observations through
+the established communication network, enabling each UA V to
+acquire a more comprehensive view of the environment. The
+shared information at time t is considered as
+ξ(t)=
+{{
+l
+n(t)
+}
+n∈N,
+{
+ρi,j(t)
+}
+i,j∈N,
+{
+rUE
+m (t)
+}
+m∈M,
+{
+cUA V
+u (t)
+}
+u∈U
+}
+. (17)
+Fig. 2. UA Vs are grouped by role, with each UA V deploying an independent
+PPO-based policy and critic network. Local observations are shared among
+agents, and each UA V receives individualized reward components.
+ξ(t) comprises four components: (i) the spatial coordinates l
+of UA Vs, (ii) the quality of multi-hop links, measured by SNR
+ρ, (iii) the communication quality rUE received by UEs, and
+(iv) the link status cUA V of UA Vs. The local observations are
+concatenated intoξ(t) based on the four distinct categories rather
+than simply aggregating individual agents’ local observations,
+making the aggregation more structured and organized. To es-
+tablish information sharing among agents, the total observation
+for each UA V is deﬁned as the concatenation ofξ(t) and a subset
+of the UA V’s local observation,
+o
+u
+t = concat(ξ(t),lu(t),{ρu,i(t)}i∈N), (18)
+where concat(·) denotes the concatenation operation, with all
+vectors ﬂattened before being combined. The local observation
+of UA Vu includes its positionlu and the link qualitiesρu,i of all
+links associated with it. The inclusion of the local observation is
+essential to ensure that each observation is uniquely associated
+with a speciﬁc UA V , enabling the policy network to map outputs
+unambiguously to the corresponding decentralized agent. This
+structure supports stable policy learning and enables agents to
+have a more comprehensive understanding of the environment,
+promoting better coordination and decision-making. In practical
+deployments, this design is feasible as UA Vs exchange only
+compact coordination messages over the multi-hop network.
+The information aggregation module can be physically separated
+from the UE service module, thereby reducing interference and
+improving system reliability.
+D. Task-Based Agent Grouping and Reward Decomposition
+To ensure efﬁcient policy training and model scalability,
+UA Vs are grouped according to their speciﬁc roles in the net-
+w o r k i n gt a s k ,s h o w ni nF i g .2. Within the networking environ-
+ment, some UA Vs are initially positioned closer to the BSs,
+making them well-suited for data relay functions. Conversely,
+some UA Vs are located nearer to the UEs yet remain relatively
+distant from available BSs in emergency conditions, thereby ne-
+cessitating robust communication links with users. Additionally,
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 8 ===
+11180 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+certain UA Vs may be required to balance both responsibilities.
+Consequently, the responsibilities and training objectives of dif-
+ferent UA V agents vary. To address this heterogeneity, the UA Vs
+are partitioned into different groups Gi,i ∈{1,2,...,N G}.
+Speciﬁcally, each UA V u is assigned to a group based on its
+distance to the nearest BS at time step 0, deﬁned as
+dG
+u = min{du,g(t =0 )|g ∈G}. (19)
+To enable efﬁcient group partitioning, a quantile-based segmen-
+tation strategy is applied to divide them into multiple groups.
+In this strategy, the UA Vs are sorted based on dG
+u and then
+partitioned into groups by dividing the ordered list into quantiles.
+The number of groups and the size of each group are jointly
+determined by the total number of UA Vs and the spatial scale
+of the environment. UA Vs with smaller d
+G
+u , typically located
+closer to BSs, are assigned to smaller groups, with group sizes
+approximately matching the number of BSs. In contrast, UA Vs
+with largerdG
+u values are grouped into larger subsets to improve
+communication coverage for UEs. Thus, this grouping strat-
+egy ensures that UA Vs within the same group exhibit similar
+proximities to the BSs, while UA Vs in different groups display
+distinct distance ranges. By aligning the training objectives with
+the distinct roles and responsibilities of UA Vs in network tasks,
+this approach enables the development of customized training
+strategies.
+Considering the distinct UA V groupsG
+i, a reward decomposi-
+tion module is developed to assign differentiated rewards to each
+agent, thereby ensuring tailored feedback. In the networking
+task, the overall team reward is formulated to capture both the
+connectivity and quality of communication service, as deﬁned
+in (14). To ensure that each UA V receives targeted feedback,
+the networking task is subdivided into distinct components that
+delineate different agent responsibilities. The reward decompo-
+sition is formulated based on the following metrics:
+1) UA V-UE Connection: This component evaluates the num-
+ber of UEs connected directly to a given UA V u. Initially, a
+criterion for determining whether UEm is directly connected to
+UAVu is deﬁned as
+I
+u,m(t)= 1(u =a r gm a x
+v∈U
+{rv,m(t)|
+cUA V
+v (t)=1 ,ρv,m(t) ≥ρth}). (20)
+where 1(·) is the indicator function that returns 1 if UA V u
+can provide the highest communication quality to UE m among
+all UA Vs that m can directly connect to, and UA V u itself
+maintains a connection to the BSs. Therefore, to encourage
+UA Vs to maintain high-quality communication links, the total
+data rate provided by UA Vu to its connected UEs is measured
+by
+R
+Conn
+u (t)=
+M∑
+m=1
+Iu,m(t)rm,u(t). (21)
+The reward RConn
+u incentivizes UA Vs based on their direct con-
+nections with UEs, promoting efﬁcient connectivity manage-
+ment within the network.
+2) Relay Responsibility: In a multi-hop network, without
+adequate and direct incentives, UA Vs may not optimally perform
+their relay duties, potentially disrupting network robustness,
+stability and overall performance. To quantify the contribution
+of UA Vu in relaying data for other UA Vs and UEs, R
+RE
+u is
+deﬁned to measure the total number of UEs that relay through
+UAVu when u serves as a relay among other UA Vs. Primarily,
+the communication path through which a UA V connects to the
+BSs via a multi-hop network is deﬁned as
+pathu(t)=
+⎧
+⎨
+⎩
+(u → g), if∃g ∈G,ρg,u(t) ≥ρth
+(u → pathv(t)), if condition (22.1)
+∅, otherwise,
+(22)
+where → indicates the backhaul data transmission between
+network nodes. And condition (22.1) states
+∄g ∈G,ρg,u(t) ≥ρth andv =a r gm i n
+v∈V
+len(pathv(t)),
+(22.1)
+where len (·) calculates the number of communication
+hops in a path. Additionally, V = {v|v ∈U\{u},ρu,v(t) ≥
+ρth, pathv(t) ̸= ∅}represents the set of UA Vs that UA V u can
+directly connect to, where each UA V in this set can establish a
+multi-hop backhaul link to the BSs. Formula (22) ensures that
+UA Vs select the link with the fewest hops for data relaying.
+Based on all communication paths in the multi-hop network,
+the set of UA Vs relayed through UA Vv can be deﬁned by
+U
+RE
+u (t)= {v|v ∈U\{u},u ∈pathv(t)}. (23)
+Therefore, the relay reward for UA Vu is designed as
+RRE
+u (t)=
+∑
+v∈U REu (t)
+( M∑
+m=1
+Iv,m(t)rm,v(t)
+)
+. (24)
+Based on the two reward components, the rewards for UA Vs
+are composed of the overall team reward and individual con-
+tributions related to connecting with UEs and relaying data.
+These components are aggregated according to speciﬁc weights
+αassigned based on the group G that each UA V belongs to.
+The aggregated result serves as the UA V’s individual reward
+throughout the training process,
+R
+u
+t = Rt +αu
+1RConn
+u (t)+ αu
+2RRE
+u (t). (25)
+As UA Vs are categorized by role, the weights αare assigned
+based on group afﬁliation. For UA Vs in groups that prioritize
+relaying, αu
+2 is relatively larger, emphasizing the relay reward
+RRE
+u (t). Conversely, UA Vs in groups that focus on UE connec-
+tivity have a higher αu
+1 , reinforcing the importance of RConn
+u (t).
+Based on this method, UA V agents prioritize tasks aligned with
+their designated roles during training, thereby enhancing the
+efﬁciency of policy learning.
+E. Behavioral Constraint for Robustness
+In this paper, behavioral constraints are introduced to regu-
+late the actions of UA Vs directly connected to the BS within
+multi-hop networks. Notably, disconnections within this group,
+denoted as G
+BS, present a signiﬁcant risk, as they can trigger
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 9 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11181
+cascading failures along subsequent relay paths and ultimately
+lead to widespread network disruption. Thus, the UA Vs in group
+GBS serve as vital intermediaries, facilitating communication
+among nodes located beyond the BS’s direct transmission range,
+thereby sustaining overall connectivity and optimizing objec-
+tives. To address this issue, if the SNR of the links between
+UAVu ∈G
+BS and all BSs falls below ρth, the UA V should be
+guided toward the BS with the highest SNR, deﬁned as
+g∗=a r gm a x
+g∈G
+ρu,g. (26)
+The expected directional guidance for the UA V is subsequently
+computed as
+zBC
+u (t)= lg∗(t)−lu(t)
+||lg∗(t)−lu(t)||2
+. (27)
+To maintain consistency between the computed guidance direc-
+tion and the MARL action space, each actionai ∈A is mapped
+to a direction vector as zi = map(ai). For an agent u with
+action space Au, the corresponding set of directional vectors
+is formulated as
+Zu = {map(ai)}ai∈Au (28)
+To ensure alignment between the derived guidance and the
+predeﬁned discrete action space, the desired movement direction
+towardg∗is mapped to the closest available action in the action
+space A, as deﬁned by
+z∗
+u(t) = argmax
+zi∈Zu
+cos
+(
+zBC
+u (t),zi
+)
+. (29)
+To mitigate the risk of large-scale disconnection, a supplemen-
+tary loss term is introduced for each UA V u ∈GBS at time t,
+deﬁned as
+LBC
+u (t)= −1((max
+g∈G
+ρu,g(t)) <ρth,u ∈GBS)
+wBC logπu(map−1(z∗
+u(t))|ou
+t ), (30)
+where map−1(·) represents the inverse of the mapping function
+map(·), and wBC = ||lg∗(t)−lu(t)||2 scales the loss according
+to the UA V -BS distance. The imposed constraint on UA V be-
+havior ensures stable connections with BSs, preventing erratic
+movements that may lead to large-scale network disconnections.
+This regulation is necessary for UA Vs directly connected to BSs,
+as their movement patterns are more deterministic. In contrast,
+other UA V groups place greater emphasis on non-myopic plan-
+ning, requiring increased ﬂexibility to adapt to dynamic network
+conditions, making strict constraints unnecessary.
+F . LLM Agent and Knowledge Distillation
+Given that LLMs possess knowledge and capabilities that
+are aligned with human preferences, they can be leveraged to
+guide and enhance the RL training process, thereby reducing
+unproductive exploration. LLMs do not aim to achieve globally
+optimal UA V networking solutions, but instead provide high-
+level strategic guidance that narrows the MARL exploration
+space. This guidance effectively mitigates the cold-start problem
+during the initial stages of MARL training, improving learning
+Fig. 3. A knowledge distillation mechanism is proposed to transfer the LLM’s
+decision-making capabilities to MARL agents. This design incorporates a bipar-
+tite matching strategy and a distillation loss function to align the decisions of the
+LLM and MARL agents, while simultaneously utilizing LLM’s chain-of-thought
+reasoning.
+efﬁciency and stability. Pretrained LLMs, although primarily
+trained on natural language data, can understand high-level
+semantic information about tasks and scenarios. By embedding
+chain-of-thought (CoT) reasoning into the inference process,
+LLM-based agents can interpret tasks, extract key features of
+networking tasks and environmental states, and make informed
+decisions. Additionally, random initialization in MARL often
+leads to inefﬁcient exploration in the early stages, heightening
+the risk of converging to a local optimum. Given the scarcity of
+feasible network conﬁgurations within the vast search space, we
+propose utilizing LLM-driven decision-making to enhance the
+MARL training process. Therefore, an LLM agent is designed to
+offer an initial attempt at tackling the UA V multi-hop networking
+task, as shown in Fig. 3. To ensure that the LLM fully compre-
+hends the networking task and the environmental state for better
+reasoning, the networking scenario is simpliﬁed to preclude
+the analysis of thousands of precise numerical values, such as
+location coordinates. And LLM agents generally do not perform
+at the level of models that have undergone domain-speciﬁc
+training. In this paper, the LLM module is designed primarily
+to supply RL agents with decisions that align with common
+sense, thereby aiding their exploration and training processes.
+Thus, the adoption of an appropriately simpliﬁed environment
+is considered both acceptable and beneﬁcial. Notably, a single
+UA V can provide communication services over a contiguous
+region. In line with this regional characteristic of network service
+delivery, the entire environment is partitioned into grid cells. The
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 10 ===
+11182 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+grid width is conﬁgured to ensure that the UA V positioned at the
+center of each grid cell can communicate with the UA Vs in the
+adjacent cells and establish connections with the majority of UEs
+within the grid, i.e. meeting the SNR requirements. Thus, the
+grid side length is given by d
+grid = 1√
+2(max{du,v|ρu,v ≥ρth}),
+whereu,v ∈U and the SNR ρu,v is determined by the distance
+du,v between UA Vs. Consequently, the distribution of UEs is
+quantiﬁed by counting the number of UEs in each grid cell.
+Moreover, the UA V positions generated by the LLM are con-
+strained to the centers of these grid cells, reducing the complexity
+of considering connectivity constraints.
+To effectively harness the LLM’s capabilities, a structured
+prompt is designed to encapsulate the key aspects of the task,
+enabling the LLM to generate precise, structured outputs. The
+input prompt to the LLM consists of several components:
+r Scenario description: Detail the UA V networking tasks,
+communication constraints, and emphasize relaying in
+multi-hop network organization.
+r Model behavior and objective:Clarify that the LLM should
+analyze UE distribution to determine optimal UA V de-
+ployment, ensure relay connections, and maximize the
+objective function.
+r Output constraints: Specify the desired output for-
+mat, e.g. “ ... using the following for-
+mat: \”[(UAV 3D coordinates), (UAV 3D
+coordinates),...]\”...”
+r Few-shot examples: Include representative input-output
+examples to guide the LLM in generating structured and
+accurate responses.
+r Current states: Provide key environmental information,
+including locations of BSs and UE distribution.
+Directly mapping current states to UA V positions poses a
+challenge for the LLM agent [46], as it requires accounting
+for UE distribution, organization of multi-hop networks and
+ensuring UA V connectivity constraints for networking. Inspired
+by the CoT approach [46], the LLM reasoning process for the
+problem is partitioned into three sequential steps: a) Analyze
+UE distribution. Identify densely populated areas and determine
+candidate UA V deployment locations. b) Address connectivity
+gaps. Evaluate potential UA V connectivity gaps and reorga-
+nize UA V placements to ensure robust network connectivity.
+c) Determine the ﬁnal UA V deployment based on the analysis
+of connectivity constraints and UE distribution. This stepwise
+approach enables the LLM to use more intermediate tokens
+to sequentially analyze the scenario and requirements, thereby
+enhancing the overall quality of the response.
+To ensure reliable integration of LLM-generated guidance
+into MARL training, a rule-based veriﬁer is used to validate
+UA V deployment plans and ﬁlter out infeasible outputs. CoT
+reasoning by the LLM can produce incorrect or inconsistent
+intermediate steps when generating high-level strategic plans for
+complex multi-UA V multi-hop networking tasks. The veriﬁer
+checks that UA V positions are within operational boundaries
+and physically reachable. It veriﬁes network connectivity by
+conﬁrming that multi-hop paths remain connected, only a small
+number of UA Vs are isolated, and sufﬁcient UE coverage is
+maintained according to predeﬁned thresholds. Deployment
+plans that fail these checks are discarded, preventing infeasible
+guidance from inﬂuencing MARL policy learning. Other meth-
+ods, such as Retrieval-Augmented Generation [47], Reasoning
+and Acting [48], or Supervised Fine-Tuning [49], can also im-
+prove the reliability of LLM outputs. However, they introduce
+substantial computational overhead during training. Discarding
+invalid outputs using a lightweight, rule-based veriﬁer ensures
+the quality and reliability of LLM-generated guidance while
+providing an efﬁcient and practical solution for the task.
+Building on the designed LLM agent, a knowledge distillation
+mechanism is proposed to further enhance MARL performance
+and guide its training. Within this framework, the LLM is
+designated as the teacher and the MARL agents as the students.
+A distillation loss is designed to transfer the LLM’s decision-
+making capabilities to the MARL agents by quantifying the
+similarity in network outputs between the LLM and the MARL
+policies. To enable the current UA Vs to efﬁciently approach the
+positions provided by the LLM, an optimal bipartite matching
+is computed, establishing a one-to-one correspondence between
+the LLM-inferred positions {l
+LLM
+u (t)}u∈U and the current UA V
+positions {lu(t)}u∈U . Thus, a permutation function σ∈SU
+is introduced, where SU denotes the symmetric group of all
+permutations over U elements. The goal is to determine σthat
+minimizes the pairwise cost
+LMA TCH
+(
+lu,lLLM
+σ(u)
+)
+=
+lu −lLLM
+σ(u)
+
+2
+, (31)
+deﬁned as the Euclidean distance between the UA V indexed by
+u in the environment and its matched counterpart indexed by
+σ(u) given by the LLM. To obtain the optimal permutation, the
+objective is formulated as
+σ∗=a r gm i n
+σ∈SU
+∑
+u∈U
+LMA TCH
+(
+lu,lLLM
+σ(u)
+)
+. (32)
+In this paper, the optimization of the permutation is achieved
+using the Hungarian algorithm [50]. Under the optimal permu-
+tation, the LLM-expected action for each UA V u in the current
+state is derived as
+zLLM
+u (t)= lLLM
+σ∗(u)(t)−lu(t). (33)
+To align the LLM-inferred action with the MARL agent’s dis-
+crete action space, a soft target distribution is constructed based
+on the cosine similarity between the inferred action and each
+candidate action in the predeﬁned action space. Speciﬁcally, for
+each discrete action in the MARL action space, the soft target
+probability is formulated as
+˜p
+u(zi,t)= exp(cos(zLLM
+u (t),zi)/Ω)∑
+zj∈Zu exp(cos(zLLMu (t),zj)/Ω),zi ∈Zu
+(34)
+where cos(·) ensures that actions more aligned with the LLM-
+inferred direction receive higher probabilities,Zu represents the
+set of directional vectors corresponding to the action space, as
+deﬁned in (28) and Ωis a temperature parameter that controls
+the smoothness of the probability distribution. The soft target
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 11 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11183
+distribution encapsulates information from LLM, offering nu-
+anced guidance during training [51]. The distillation loss is then
+deﬁned as the cross-entropy between the MARL agent’s policy
+and the soft target distribution
+LKD
+u (t)= −
+∑
+zi∈Zu
+˜pu(zi,t)log πu(map−1(zi)|ou
+t ). (35)
+This formulation enables MARL agents to effectively leverage
+the LLM’s inferred actions as supervisory signals, allowing them
+to learn the LLM’s decision-making capabilities. In the proposed
+framework, the LLM participates exclusively during the ofﬂine
+training phase, providing high-level strategic guidance for UA V
+deployment and multi-hop network coordination. Its outputs are
+incorporated into MARL policies through a soft target-based
+distillation loss, ensuring that strategic priors guide the learning
+process. This ofﬂine integration prevents the LLM from partic-
+ipating in real-time UA V control, avoiding additional latency
+and computational overhead, and making the method feasible
+for practical network deployments. During online deployment,
+each UA V executes its MARL policy independently, without
+LLM inference, ensuring that real-time control is decentralized,
+incurs no extra computational burden, and remains practical
+and reproducible in large-scale multi-hop UA V networks. This
+technique promotes structured exploration and enhances both
+the training and inference processes of MARL.
+G. Overall Algorithm and Complexity Analysis
+The complete training procedure of MRLMN is summarized
+in Algorithm 1. The framework operates in a hybrid manner.
+UA Vs continuously execute decentralized control using MLP-
+based policy networks π
+θunder the IPPO paradigm, while the
+LLM is queried only once every QLLM steps to provide high-
+level deployment guidance. At each step, UA Vs ﬁrst aggregate
+observations from other UA Vs, take actions through the learned
+policies, and collect transitions into the replay buffer D. When
+LLM guidance is triggered, the suggested deployment topology
+is cached using T
+LLM
+cached and aligned with the UA Vs’ current con-
+ﬁguration through bipartite matching, enabling knowledge dis-
+tillation to shape subsequent policy updates. IPPO optimization
+is then performed at the end of each episode, incorporating both
+the distillation objective and the behavioral constraint. From a
+computational perspective, each UA V is equipped with an MLP
+consisting of L hidden layers of width H.T h u s ,w i t hU UAVs
+executing their policies in parallel, the per-step inference cost
+scales asO(U ·L·H
+2). During training, the same order applies
+to forward and backward passes of both the policy and critic
+networks. LLM reasoning is executed once every QLLM steps,
+with a single inference cost CLLM contributing an amortized
+CLLM/QLLM per step. The bipartite matching needed for distil-
+lation incurs O(U 3) complexity, which is lower than the neural
+network computations and is invoked once per step. Addition-
+ally, the overhead from information aggregation, reward decom-
+position, and behavioral constraints is minimal. Consequently,
+MLP-based networks dominate inference complexity, whereas
+during training, both the neural networks and the amortized LLM
+guidance jointly determine the overall computational cost.
+Algorithm 1: Training Procedure of MRLMN.
+Initialize: Policy networks πθ, PPO replay buffer D
+Parameters:Nep (episodes), T (episode horizon), K
+(training epochs), QLLM (LLM guidance interval)
+Cache: T LLM
+cached ←∅ ⊿Cached LLM-suggested UA V
+deployment
+for episode k =1 ...N ep do
+s0 ∼pinit(s) ⊿Reset environment
+Initialize agent grouping for the episode
+for step t =1 ...T do
+oind
+t ← GetEnvironmentObservation(st)
+ot ← AggregateInfo(oind
+t , grouping)
+⊿Information aggregation
+ift mod QLLM == 0then
+T LLM
+cached ← LLM_Inference(ot)
+⊿Update and cache LLM guidance
+end if
+at ∼πθ(·| ot)
+st+1, rt ← Env.Step(at) ⊿Environment transition
+σ∗=a r gm i nσ∈SU
+∑
+u∈U LMA TCH(lu,lLLM
+cached,σ(u))
+⊿Bipartite matching
+Rt ← Reward_Decomp(rt, grouping)
+⊿Reward Decomposition
+D←D∪{ (ot, at, Rt, ot+1,σ∗)}
+end for
+for epoch1...K do
+maxπθ LPPO −β1LKD −β2LBC
+⊿MARL Optimization with knowledge distillation
+and behavioral constraints
+end for
+end for
+V. P ERFORMANCE EVA L U AT I O N
+This section evaluates the proposed MRLMN framework
+in multi-UA V multi-hop networking scenarios under diverse
+conditions, including varying environment scales, UA V swarm
+sizes, baseline comparisons, training dynamics, and ablation
+studies. The experiments demonstrate the framework’s stability,
+scalability, adaptability, and coordination effectiveness, while
+also examining the impact of parameter sharing within agent
+groups on training efﬁciency and policy quality. The results
+highlight the overall superior performance of MRLMN across
+these settings.
+A. Experimental Setup
+1) Environment Setup: To assess the performance of our
+proposed method, we employ a simulation environment that
+spans an area of approximately 3.5 km × 3.5km, within which
+around 150 UEs and 18 UA Vs are deployed. The distribution
+of UEs follows either a uniform pattern or a two-dimensional
+Gaussian mixture with multiple centers, and their motion fol-
+lows a Brownian process at a constant velocity. The BSs are
+strategically positioned at three of the four corners of the area
+to preclude direct connections with the UEs, thereby simulat-
+ing communication conditions typically encountered in disaster
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 12 ===
+11184 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+scenarios. The UA V speedωis limited to a displacement of 30
+meters within each time slot.
+2) Training Conﬁguration: For the training process, a total
+of 25,000 episodes are conducted, with each episode consisting
+of 400 time slots. The PPO policy and critic networks are
+implemented as multi-layer perceptrons with ﬁve hidden layers,
+each employing the tanh activation function. And the learning
+rate is initially set to 3×10
+−4 and is progressively lowered
+to 1×10−4 toward the end of the training process. The LLM
+guidance is provided using the GPT-4o model[52], which gener-
+ates high-level strategic deployment suggestions during MARL
+ofﬂine training. In the networking task, we assume identical
+transmitter and receiver antenna gains, with UA V , UE, and BS
+antenna gains set to 0, 0, and 5 dBi, respectively. In equation
+(P1), the weighting factor κis deﬁned as 0.025 when the data
+rater
+UE is measured in Mbps. The coefﬁcientβ1, which controls
+the weight of the knowledge distillation component, is initially
+set to 0.5 and is gradually reduced to 0.1 during the ﬁnal phase
+of training. It is designed to help improve the effectiveness of
+MARL by gradually shifting the focus from distillation to the
+training objective. In MARL training, the UA Vs are divided into
+four groups based solely on the distance relationship between
+each UA V and the set of BS nodes G, as deﬁned by equation
+(19). The network parameters of each agent remain independent
+and are not inﬂuenced by the grouping strategy. Furthermore,
+a detailed discussion on the relationship between parameter
+sharing in groups and training performance can be found in
+Section V- D. Due to the substantial inference latency of the
+LLM, which adversely affects the training efﬁciency of the
+MARL agents, LLM inference is performed only at selected
+time slots within each episode, speciﬁcally once every Q
+LLM
+steps to obtain the required guidance output. For subsequent time
+slots, the validated LLM outputs are cached and subsequently
+reused in the computation of the knowledge distillation loss,
+LKD. Since the UE distribution typically experiences only minor
+changes over short time intervals, the retained outputs perform
+well during these periods. Additionally, given that the LLM
+agent is primarily tasked with guiding MARL agent training
+and managing an extensive exploration space, even suboptimal
+network decisions from the LLM are acceptable, ensuring that
+this intermittent LLM reasoning strategy does not lead to a sig-
+niﬁcant negative impact on knowledge distillation. Additional
+critical parameter settings are summarized in TableI. To focus on
+evaluating MARL coordination and policy performance rather
+than detailed physical-layer optimization, the bandwidth alloca-
+tion across BS-UA V , UA V -UA V , and UA V -UE links is assumed
+to be ﬁxed, which serves to mitigate cross-link interference.
+3) Performance Metrics: The performance of the algo-
+rithm is assessed using two primary metrics: the quality
+of service, deﬁned as the average data rate per UE, calcu-
+lated as (1/M) ∑
+M
+m=1 rUE
+m and the connected UE proportion
+(1/M) ∑M
+m=1 cUE
+m , i.e. the proportion of UEs that are success-
+fully connected to the core network relative to the total number of
+UEs. To evaluate the robustness of each model in the networking
+task, the number of available UA Vs is introduced as another
+metric. This metric quantiﬁes the number of UA Vs that success-
+fully establish and maintain connectivity with the BSs and core
+TABLE I
+PARAMETER SETTINGS
+network through the multi-hop UA V network. A higher value
+indicates fewer disconnections, reﬂecting a more resilient and
+stable network. Formally, it is measured as (1/U) ∑
+u∈U cUA V
+u ,
+where cUA V
+u denotes the connectivity status of UA V u, deﬁned
+in (11). This metric serves as a key indicator of the stability and
+effectiveness of each algorithm.
+B. Comparative Experiments
+In this section, we present a comprehensive performance eval-
+uation of the proposed MRLMN framework by benchmarking it
+against ﬁve representative baselines that include both indepen-
+dently trained agents and cooperative MARL approaches:
+r GVis: A MARL framework [9] based on heterogeneous
+graphs, designed to enhance cooperation among UA Vs.
+This method optimizes local observation management and
+enables cooperation through explicit information exchange
+among nodes in the network. Slight modiﬁcations are
+made to adapt this framework for application in the UA V
+networking scenario.
+r GA2C: A RL framework [53] that integrates graph neural
+network (GNN) to guide action training within an Ad-
+vantage Actor-Critic (A2C) architecture. By leveraging
+hidden representations from network feature correlations,
+this method captures intricate environmental relationships,
+thereby enhancing the efﬁciency of policy training.
+r MAPPO: A MARL algorithm [25] introduced for coor-
+dinating agents by utilizing a centralized value function
+during training, while allowing each agent to act indepen-
+dently during execution. This strategy has demonstrated
+competitive performance on a range of cooperative bench-
+mark tasks.
+r IA2C: An independent RL method based on the A2C
+architecture [54]. In this approach, each UA V agent learns
+its policy independently without explicitly considering the
+joint state or actions of other agents, serving as a baseline
+for non-cooperative learning.
+r MAA2C: A multi-agent variant of A2C that employs a
+centralized training and decentralized execution paradigm
+similar to MAPPO but relies on the A2C optimization
+objective.
+Fig. 4 shows the training curves over 10 million steps, de-
+picting the performance trends of different methods in terms of
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 13 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11185
+Fig. 4. Training curves of different models over training steps, with the team
+reward computed according to (14). Shaded regions represent the standard
+deviation.
+the objective function deﬁned in equation (P1). The experiments
+are set in a 3.5 km × 3.5 km environment with 18 UA Vs, eval-
+uating the proposed framework under large-scale networking
+conditions. The results show that the proposed MRLMN method
+signiﬁcantly outperforms the baseline methods throughout the
+training process. MRLMN exhibits a rapid increase in training
+performance, stabilizing above 0.8, while the competing meth-
+ods plateau at much lower values. In detail, GVis performs rela-
+tively better among the baselines but still falls short of MRLMN.
+MAPPO and GA2C stabilize between 0.4 and 0.6, whereas
+the A2C-based methods converge more slowly and achieve
+lower overall performance, ﬂuctuating around 0.4. The curves
+indicate that the proposed algorithm, by integrating multiple
+modules, achieves superior networking performance. Speciﬁ-
+cally, the knowledge distillation module enables reinforcement
+learning agents to rapidly acquire generalized decision-making
+capabilities, accelerating the overall training process. In parallel,
+the reward decomposition and behavioral constraints allow for
+ﬁne-tuning of agent behaviors, ensuring a better adaptation to
+the unique challenges of UA V multi-hop networking.
+Furthermore, to provide a comprehensive view of scalability
+and network robustness, we conduct a detailed comparison
+against the key baselines (GVis, GA2C, and MAPPO) across
+several metrics under varying network conditions, including
+changes in geographical area size and the number of deployed
+UAVs.
+1) Impact of Environment Size: Fig. 5(a), (c), (e) examine
+the inﬂuence of expanding the square environment area from
+6.76 km
+2 to 14.44 km 2, with the number of UA Vs ﬁxed at
+18. The shaded regions indicate the standard deviation of each
+method, providing insight into algorithmic stability. In Fig.5(a),
+the number of connected UEs for all approaches declines as the
+area expands, reﬂecting the increased difﬁculty of maintaining
+reliable connections over larger regions populated with numer-
+ous UEs. Nevertheless, compared to GVis, GA2C, and MAPPO,
+MRLMN achieves an average UE coverage improvement of
+approximately 27% and maintains greater performance stability
+across the entire range of area sizes. A similar trend is observed
+in Fig. 5(c), which reports the average data rate in Mbps under
+the same conditions. MRLMN not only sustains better coverage
+but also delivers higher throughput across various environment
+Fig. 5. Comparison of model performance across three key metrics: connected
+UE proportion, average data rate, and available UA V ratio under varying envi-
+ronment areas and numbers of UA Vs. (a) Connected UE proportion versus area
+size. (b) Connected UE proportion versus number of UA Vs. (c) Average data rate
+versus area size. (d) Average data rate versus number of UA Vs. (e) Available
+UA V ratio versus area size. (f) Available UA V ratio versus number of UA Vs.
+Shaded regions represent the standard deviation.
+sizes. For these two metrics, GVis and GA2C exhibit similar
+performance, both relying on GNN-based strategies for UA V
+coordination. However, MRLMN incorporates scenario-speciﬁc
+grouping and reward mechanisms, allowing for more adap-
+tive decision-making. Additionally, its knowledge distillation
+method is designed for large-scale environments, further en-
+hancing overall performance. Moreover, it is observed that the
+objectives of connectivity coverage and communication data rate
+are correlated. Adjustments in UA V networking that improve
+network connectivity also tend to increase communication rates,
+reﬂecting the overall performance gains achieved through coor-
+dinated multi-hop networking. In Fig. 5(e), all methods exhibit
+a reduction in the number of available UA Vs, highlighting the
+increasing challenge of sustaining multi-hop connectivity over
+larger regions. Nonetheless, MRLMN maintains a higher num-
+ber of available UA Vs and lower variance compared to other
+methods, demonstrating its enhanced stability and robustness
+in large-scale networking scenarios. In smaller environments,
+MRLMN achieves nearly 100% availability of UA Vs, while
+in larger environments, it outperforms the best alternative by
+approximately 17%. This advantage stems from MRLMN’s
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 14 ===
+11186 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+relay-oriented reward design and connectivity-preserving be-
+havioral constraints, which enable more effective multi-hop link
+management.
+2) Impact of the Number of UA Vs: Fig. 5(b), (d), (f) illustrate
+the performance of different methods as the number of UA Vs
+increases from 12 to 24, maintaining a 3.5 km × 3.5 km en-
+vironment. As the number of UA Vs increases, the performance
+of all methods improves, as a large-scale environment requires
+more UA Vs to establish a stable network. Considering these
+three metrics, MRLMN consistently outperforms all baseline
+methods, demonstrating superior networking performance even
+under limited UA V deployment. Speciﬁcally, MRLMN achieves
+an average of 23% higher UE coverage, 52% higher data rate, and
+a 19% higher UA V availability ratio compared to other methods
+across all three metrics. As the number of UA Vs increases,
+MRLMN consistently maintains its advantage over other meth-
+ods, highlighting its scalability. This is largely attributed to the
+proposed grouping strategy and the design of the group-based
+reward and behavioral constraint mechanisms, which provide
+more precise environmental feedback and offer clearer guidance
+for agent training. Meanwhile, the knowledge distillation mod-
+ule utilizes the matching mechanism to decompose the LLM’s
+decisions and deliver them to individual agents, providing clear
+supervisory signals to guide their policy learning.
+C. Ablation Study
+To investigate the contribution of each key component in our
+proposed framework, we conduct an ablation study by testing
+the system under three different conﬁgurations where speciﬁc
+modules are removed:
+r Without Agent Grouping and Reward Decomposition (NR):
+In this conﬁguration, the grouping and reward decom-
+position mechanism is omitted. As a result, agents are
+trained solely with a global reward signal, which obscures
+the evaluation of individual contributions. This lack of
+localized feedback makes it more challenging for agents
+to adjust their own policies effectively, thereby impeding
+coordinated behavior.
+r Without Knowledge Distillation and LLM Agent (NL): In
+this conﬁguration, the knowledge distillation module that
+leverages the LLM agents is omitted. Consequently, agents
+rely solely on random initialization for their policy param-
+eters during the early stages of training, which leads to
+extensive unproductive exploration and difﬁculties in han-
+dling the large exploration space. This negatively impacts
+training efﬁciency and convergence, ultimately degrading
+overall performance.
+r Without Behavioral Constraint (NC): This conﬁguration
+removes the behavioral constraint module designed to
+ensure the connectivity stability of relay UA Vs. As a re-
+sult, relay UA Vs are more prone to disconnections from
+BSs, increasing the risk of network disconnections. This
+disruption destabilizes the overall algorithm, leading to
+greater performance ﬂuctuations and reduced reliability in
+dynamic environments.
+Fig. 6. Ablation study on model performance across different area sizes and
+numbers of UA Vs in terms of connected UE proportion, average data rate,
+and available UA V ratio. (a) Connected UE proportion versus area size. (b)
+Connected UE proportion versus number of UA Vs (c) Average data rate versus
+area size (d) Average data rate versus number of UA Vs. (e) Available UA V ratio
+versus area size. (f) Available UA V ratio versus number of UA Vs. “Ours”, “NC”,
+“NL”, and “NR” denote different ablation variants Shaded regions represent the
+standard deviation.
+Each conﬁguration is evaluated in the same simulation envi-
+ronment to quantify the individual impact of these components
+on performance metrics, i.e. network coverage, quality of net-
+work service, and algorithm stability.
+Fig. 6(a), (c) and (e) illustrate the experimental results as
+the environmental size increases with a ﬁxed deployment of
+18 UA Vs. The proposed method outperforms the methods NC,
+NL, and NR across all environmental conﬁgurations. As the
+environment size expands to 14.44 km
+2, the proposed method
+continues to deliver superior performance, achieving a con-
+nected UE proportion of 46%, an available UA V ratio of 88%,
+and a data rate of 5.2 Mbps. In contrast, the MRLMN shows a
+performance decline when speciﬁc modules are removed. For
+instance, the results of NR are notably lower, with a connected
+UE proportion of 40%, an available UA V ratio of 82%, and a data
+rate of 4.5 Mbps. Moreover, Fig. 6(b), (d) and (f) demonstrate
+the performance of the four methods across key metrics as the
+number of UA Vs increases from 12 to 24 in a ﬁxed square
+environment with a 3.5 km side length. The proposed algo-
+rithm exhibits noticeable performance degradation when any
+of the key modules is removed, indicating the importance of
+each component in addressing the challenges of multi-hop UA V
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 15 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11187
+networking. Speciﬁcally, removing any single module results in
+an average decline of at least 6% in UE coverage and 10% in data
+rate. In terms of the proportion of UA Vs connected to the BS,
+removing any module also leads to a noticeable performance
+drop, particularly in large-scale environments with a limited
+number of deployable UA Vs.
+These results indicate that the removal of certain modules
+negatively impacts the networking performance of the proposed
+algorithm. The performance of NL suggests that the absence
+of the knowledge distillation module lowers MRLMN perfor-
+mance, emphasizing its critical role. By constraining the explo-
+ration space, the distillation loss from LLM agents mitigates
+inherent exploration challenges in MARL. This facilitates faster
+convergence and enhances training effectiveness. Additionally,
+the reduced available UA V ratio observed in NC underscores
+the role of behavioral constraints in stabilizing the model and
+preserving network connectivity. The poorer performance of NR
+in terms of UE coverage and communication rate also highlights
+the importance of agent grouping and reward decomposition in
+improving the algorithm’s overall performance. The integration
+of both methods facilitates efﬁcient training by providing clear
+and structured environmental feedback, thereby improving per-
+formance.
+Collectively, these designed components establish a well-
+integrated framework that surpasses conventional approaches
+in maintaining connectivity, ensuring UA V availability, and op-
+timizing data transmission rates. The results indicate that the
+proposed method offers a highly effective solution for UA V -
+assisted communication systems, particularly in dynamic and
+large-scale networking scenarios.
+D. Discussion: Parameter Sharing Within Agent Groups
+In this section, the impact of incorporating intra-group strat-
+egy sharing within the agent grouping scheme on training
+performance and training time is discussed. As discussed in
+Section IV -D, UA V agent grouping is established based on the
+responsibilities assigned to each UA V , which forms the founda-
+tion for parameter sharing. It is evident that agents within the
+same group share similar responsibilities, which makes network
+parameter sharing within these groups feasible. By reducing
+the number of parameters that need to be individually trained,
+parameter sharing can signiﬁcantly enhance the efﬁciency of the
+training process. This approach leads to a decrease in the total
+number of trainable parameters, resulting in faster convergence
+and reduced training time under a ﬁxed number of training steps.
+Speciﬁcally, in the experiment, a different number of agents
+within the UA V group are randomly selected to share their
+network parameters. This sharing results in varying numbers
+of networks being trained.
+As shown in Fig. 7, the experimental outcomes under dif-
+ferent sharing conﬁgurations are presented. The experiments
+are conducted in a 3.5 km by 3.5 km environment with 18
+UA Vs deployed. In the experiments, agents are divided into
+four groups, with partial policy sharing applied within each
+group. As a result, the number of policies to be trained in the
+MARL framework gradually decreases from 18 (no sharing) to 4
+(full sharing within each group). To ensure statistical reliability,
+Fig. 7. Experimental analysis of the impact of policy sharing on algorithm
+training performance. (a) Connected UE proportion versus training time. (b)
+Average data rate versus training time. (c) Available UA V ratio versus training
+time. Each dot represents an individual experimental result, where the color
+indicates the number of trained policies and the circle size reﬂects the relative
+magnitude of the standard deviation.
+each sharing conﬁguration is evaluated through three indepen-
+dent experimental runs. The results clearly demonstrate that an
+increase in the number of policies leads to a longer training
+duration, yet yields a marked improvement in overall system
+performance. As the number of trained policies increases from
+4 to 18, the system exhibits consistent performance gains. UE
+coverage improves from 45% to 65%, while the average data rate
+rises from 5.1 Mbps to 7.4 Mbps. The proportion of available
+UA Vs also grows steadily, reaching approximately 98% with 18
+policies. However, as the number of networks rises from 4 to 18,
+the increasing volume of trainable network parameters leads to
+a longer training duration, extending from 20 hours to 40 hours.
+Overall, the experimental results reveal a consistent trend
+across the three metrics: as the number of training strategies
+increases, both the training duration and performance improve
+signiﬁcantly. This indicates that policy sharing within groups
+leads to a reduction in the diversity of UA V strategies. In
+scenarios involving large exploration spaces and dynamic UA V
+roles, maintaining strategy diversity proves crucial for enhancing
+the networking performance of the algorithm. It is clear that a
+balance between training efﬁciency and algorithm performance
+needs to be considered during the learning process.
+E. Simulation Results
+This section presents the experimental results of the proposed
+MRLMN algorithm within a simulated environment. In Fig. 8,
+a total of 18 UA Vs are deployed. Fig. 8(a) illustrates the initial
+conﬁguration at the start of the simulation. As the simulation
+progresses, UA V trajectories are dynamically planned by the
+MARL-trained policies, while UEs move randomly within the
+environment. Gradually, a multi-hop UA V network emerges
+and evolves, exhibiting enhanced connectivity over time. By
+the ﬁnal stage, shown in Fig. 8(d), the network establishes
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 16 ===
+11188 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+Fig. 8. Simulation results of the proposed algorithm within a single episode.
+Each ﬁgure shows the states of the nodes and the UA V network topology, with the
+evaluation metrics at the current time step displayed below. Three representative
+UA Vs are highlighted using a darker shade, and their trajectories over 100 time
+steps are depicted by pink paths.
+robust communication links with the majority of UEs. These
+results demonstrate the MRLMN algorithm’s strong capability
+for multi-hop networking, ensuring both high connectivity and
+stability in dynamic UA V networking scenarios.
+VI. C ONCLUSION
+This paper introduces the MRLMN framework, which in-
+tegrates MARL and LLMs to optimize UA V networking in
+disaster response scenarios. To address the scalability of the
+networking problem and enhance coordination among UA Vs,
+the framework incorporates agent grouping and reward decom-
+position modules. Behavioral constraints based on the grouping
+mechanism are further applied to ensure robust and stable net-
+work formation. Additionally, a knowledge distillation approach
+enables the transfer of high-level decision-making capabilities
+from LLMs to MARL agents, accelerating training and im-
+proving exploration efﬁciency. Simulation results demonstrate
+substantial performance gains in large-scale dynamic environ-
+ments, conﬁrming the adaptability and effectiveness of the pro-
+posed framework across diverse conﬁgurations. Future research
+directions include incorporating practical constraints such as
+UA V energy consumption, network load balancing, and UA V
+replacement mechanisms to ensure continuous and reliable op-
+erations in large-scale deployments. Enhancing communication
+reliability through interference management and physical-layer
+optimization can further support the efﬁcient implementation of
+multi-hop aerial networks. At the same time, deeper integration
+of LLMs with MARL, for example, by replacing conventional
+MARL policies with more expressive decision models, has the
+potential to improve scalability and adaptability in complex
+environments. Complementing these developments with valida-
+tion in real-world deployments would provide valuable insights
+into the operational feasibility and robustness of the proposed
+framework.
+REFERENCES
+[1] NOAA National Centers for Environmental Information (NCEI), “U.S.
+billion-dollar weather and climate disasters,” 2025. [Online]. Available:
+https://www.ncei.noaa.gov/access/billions/
+[2] L. Gupta, R. Jain, and G. V aszkun, “Survey of important issues in UA V
+communication networks,” IEEE Commun. Surveys Tuts. , vol. 18, no. 2,
+pp. 1123–1152, Secondquarter 2016.
+[3] B. Li, Z. Fei, and Y . Zhang, “UA V communications for 5G and beyond:
+Recent advances and future trends,” IEEE Internet Things J., vol. 6, no. 2,
+pp. 2241–2263, Apr. 2019.
+[4] C. Dai, K. Zhu, and E. Hossain, “Multi-agent deep reinforcement learning
+for joint decoupled user association and trajectory design in full-duplex
+multi-UA V networks,” IEEE Trans. Mobile Comput. , vol. 22, no. 10,
+pp. 6056–6070, Oct. 2023.
+[5] S. Khairy, P . Balaprakash, L. X. Cai, and Y . Cheng, “Constrained deep
+reinforcement learning for energy sustainable multi-UA V based random
+access iot networks with NOMA,” IEEE J. Sel. Areas Commun. , vol. 39,
+no. 4, pp. 1101–1115, Apr. 2021.
+[6] S. Cheng, X. Lin, X. Li, and J. Wang, “Joint UA V trajectory and radcom
+task schedule for IVNs: A game-embedding multi-agent deep reinforce-
+ment learning approach,” IEEE Trans. Wireless Commun., vol. 24, no. 1,
+pp. 181–196, Jan. 2025.
+[7] C. H. Liu, Z. Chen, and Y . Zhan, “Energy-efﬁcient distributed mobile
+crowd sensing: A deep learning approach,” IEEE J. Sel. Areas Commun. ,
+vol. 37, no. 6, pp. 1262–1276, Jun. 2019.
+[8] J. Ji, K. Zhu, and L. Cai, “Trajectory and communication design for
+cache- enabled UA Vs in cellular networks: A deep reinforcement learning
+approach,” IEEE Trans. Mobile Comput., vol. 22, no. 10, pp. 6190–6204,
+Oct. 2023.
+[9] X. Zhang, H. Zhao, J. Wei, C. Y an, J. Xiong, and X. Liu, “Coopera-
+tive trajectory design of multiple UA V base stations with heterogeneous
+graph neural networks,” IEEE Trans. Wireless Commun. , vol. 22, no. 3,
+pp. 1495–1509, Mar. 2023.
+[10] D.-H. Tran, T. X. Vu, S. Chatzinotas, S. ShahbazPanahi, and B. Ottersten,
+“Coarse trajectory design for energy minimization in UA V -enabled,”IEEE
+Trans. V eh. Technol., vol. 69, no. 9, pp. 9483–9496, Sep. 2020.
+[11] C. Deng, W. Xu, C.-H. Lee, H. Gao, W. Xu, and Z. Feng, “Energy
+efﬁcient UA V -enabled multicast systems: Joint grouping and trajec-
+tory optimization,” in Proc. 2019 IEEE Glob. Commun. Conf. , 2019,
+pp. 1–7.
+[12] Q. Wu, Y . Zeng, and R. Zhang, “Joint trajectory and communication
+design for multi-UA V enabled wireless networks,” IEEE Trans. Wireless
+Commun., vol. 17, no. 3, pp. 2109–2121, Mar. 2018.
+[13] F. Fazel, J. Abouei, M. Jaseemuddin, A. Anpalagan, and K. N. Pla-
+taniotis, “Secure throughput optimization for cache-enabled multi-UA Vs
+networks,” IEEE Internet Things J. , vol. 9, no. 10, pp. 7783–7801,
+May 2022.
+[14] C. Wang, D. Zhai, R. Zhang, G. Kaddoum, and S. Singh, “Energy con-
+sumption minimization in dynamic UA V -assisted mobile edge computing
+networks,” in Proc. IEEE Int. Conf. Commun. , 2023, pp. 4671–4676.
+[15] Y . A. Sambo, P . V . Klaine, J. P . B. Nadas, and M. A. Imran, “Energy
+minimization UA V trajectory design for delay-tolerant emergency com-
+munication,” in Proc. 2019 IEEE Int. Conf. Commun. Workshops , 2019,
+pp. 1–6.
+[16] J. Y ao and N. Ansari, “QoS-Aware power control in Internet of Drones
+for data collection service,” IEEE Trans. V eh. Technol., vol. 68, no. 7,
+pp. 6649–6656, Jul. 2019.
+[17] M. Samir, S. Sharafeddine, C. M. Assi, T. M. Nguyen, and A. Ghrayeb,
+“UA V trajectory planning for data collection from time-constrained IoT
+devices,” IEEE Trans. Wireless Commun. , vol. 19, no. 1, pp. 34–46,
+Jan. 2020.
+[18] L. Wang, K. Wang, C. Pan, W. Xu, N. Aslam, and L. Hanzo, “Multi-agent
+deep reinforcement learning-based trajectory planning for multi-UA V
+assisted mobile edge computing,” IEEE Trans. Cogn. Commun. Netw. ,
+vol. 7, no. 1, pp. 73–84, Mar. 2021.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 17 ===
+XU et al.: SCALABLE UA V MULTI-HOP NETWORKING VIA MULTI-AGENT REINFORCEMENT LEARNING WITH LARGE LANGUAGE MODELS 11189
+[19] O. Vinyals et al., “Grandmaster level in Starcraft II using multi-agent
+reinforcement learning,” Nature, vol. 575, no. 7782, pp. 350–354, 2019.
+[20] W. Zhang, Q. Wang, X. Liu, Y . Liu, and Y . Chen, “Three-dimension
+trajectory design for multi-UA V wireless network with deep reinforce-
+ment learning,” IEEE Trans. V eh. Technol., vol. 70, no. 1, pp. 600–612,
+Jan. 2021.
+[21] E. Catté, M. Sana, and M. Maman, “Dual-attention deep reinforcement
+learning for multi-map 3D trajectory optimization in dynamic 5G net-
+works,” in Proc. IEEE Int. Conf. Commun. , 2023, pp. 6417–6422.
+[22] R. Ding, F. Gao, and X. S. Shen, “3D UA V trajectory design and frequency
+band allocation for energy-efﬁcient and fair communication: A deep
+reinforcement learning approach,”IEEE Trans. Wireless Commun., vol. 19,
+no. 12, pp. 7796–7809, Dec. 2020.
+[23] F. Song et al., “Evolutionary multi-objective reinforcement learning based
+trajectory control and task ofﬂoading in UA V -assisted mobile edge com-
+puting,” IEEE Trans. Mobile Comput. , vol. 22, no. 12, pp. 7387–7405,
+Dec. 2023.
+[24] F. Christianos, G. Papoudakis, M. A. Rahman, and S. V . Albrecht, “Scaling
+multi-agent reinforcement learning with selective parameter sharing,” in
+Proc. 38th Int. Conf. Mach. Learn., M. Meila and T. Zhang, Eds., Jul. 2021,
+vol. 139, pp. 1989–1998. [Online]. Available: https://proceedings.mlr.
+press/v139/christianos21a.html
+[25] C. Y u, A. V elu, E. Vinitsky, Y . Wang, A. M. Bayen, and Y . Wu, “The
+surprising effectiveness of PPO in cooperative multi-agent games,” inProc.
+Adv. Neural Inf. Process. Syst., vol. 35, 2022, pp. 24611–24624. [Online].
+Available: https://api.semanticscholar.org/CorpusID:232092445
+[26] Y . He, Y . Gan, H. Cui, and M. Guizani, “Fairness-based 3-D multi-UA V
+trajectory optimization in multi-UA V -assisted MEC system,”IEEE Inter-
+net Things J., vol. 10, no. 13, pp. 11383–11395, Jul. 2023.
+[27] Y . Qin, Z. Zhang, X. Li, W. Huangfu, and H. Zhang, “Deep re-
+inforcement learning based resource allocation and trajectory plan-
+ning in integrated sensing and communications UA V network,”
+IEEE Trans. Wireless Commun. , vol. 22, no. 11, pp. 8158–8169,
+Nov. 2023.
+[28] J. Ren, Y . Xu, Z. Li, C. Hong, X.-P . Zhang, and X. Chen, “Schedul-
+ing UA V swarm with attention-based graph reinforcement learning for
+ground-to-air heterogeneous data communication,” in Proc. Adjunct Proc.
+ACM Int. Joint Conf. Pervasive Ubiquitous Comput. 2023 ACM Int.
+Symp. Wearable Comput., New Y ork, NY , USA, 2023, pp. 670–675, doi:
+10.1145/3594739.3612905.
+[29] B. Y u, H. Kasaei, and M. Cao, “Co-NA VGPT: Multi-robot coopera-
+tive visual semantic navigation using large language models,” 2023,
+arXiv:2310.07937.
+[30] G. Wang et al., “V oyager: An open-ended embodied agent with large
+language models,” Trans. Mach. Learn. Res., 2024.
+[31] Z. Zhou, B. Hu, C. Zhao, P . Zhang, and B. Liu, “Large language model as
+a policy teacher for training reinforcement learning agents,” in Proc. 33rd
+Int. Joint Conf. Artif. Intell. , 2024, pp. 5671–5679.
+[32] X. Xiang, J. Xue, L. Zhao, Y . Lei, C. Y ue, and K. Lu, “Real-time integration
+of ﬁne-tuned large language model for improved decision-making in
+reinforcement learning,” inProc. 2024 Int. Joint Conf. Neural Netw., 2024,
+pp. 1–8.
+[33] Y . Xu, Z. Jian, J. Zha, and X. Chen, “Emergency networking using
+UA Vs: A reinforcement learning approach with large language model,”
+in Proc. 23rd ACM/IEEE Int. Conf. Inf. Process. Sens. Netw. , 2024,
+pp. 281–282.
+[34] Y . Du et al., “Guiding pretraining in reinforcement learning with large
+language models,” in Proc. 40th Int. Conf. Mach. Learn. Proc. Mach.
+Learn. Res., A. Krause, E. Brunskill, K. Cho, B. Engelhardt, S. Sabato, and
+J. Scarlett, Eds., Jul. 2023, vol. 202, pp. 8657–8677. [Online]. Available:
+https://proceedings.mlr.press/v202/du23f.html
+[35] B. Wang et al., “LLM-empowered state representation for reinforce-
+ment learning,” in Proc. 41st Int. Conf. Mach. Learn., Ser . Proc. Mach.
+Learn. Res. , R. Salakhutdinov, Z. Kolter, K. Heller, A. Weller, N.
+Oliver, J. Scarlett, and F. Berkenkamp, Eds., vol. 235. PMLR, 21–27
+Jul. 2024, pp. 51348–51375. [Online]. Available: https://proceedings.mlr.
+press/v235/wang24bh.html
+[36] W. Wang, I. Obi, and B.-C. Min, “SRLM: Human-in-loop interactive
+social robot navigation with large language model and deep reinforcement
+learning,” 2024, arXiv:2403.15648.
+[37] C. Zhao et al., “Flight dynamics to sensing modalities: Exploiting drone
+ground effect for accurate edge detection,” 2025, arXiv:2509.21085.
+[38] A. Hussain, S. Li, T. Hussain, X. Lin, F. Ali, and A. A. AlZubi, “Computing
+challenges of UA V networks: A comprehensive survey.,”Comput., Mater .
+Continua, vol. 81, no. 2, pp. 1999–2051, 2024.
+[39] M. B. Bezziane, Y . Sahraoui, B. Brik, L. Mekkas, S. Bougeurra, and A.
+Khaldi, “On the performance evaluation of mobility model-based GPSR
+routing protocol in ﬂying ad hoc networks,” in Proc. 6th Int. Conf. Pattern
+Anal. Intell. Syst., 2024, pp. 1–7.
+[40] Y . Xu, J. Zha, J. Ren, X. Jiang, H. Zhang, and X. Chen, “Scalable
+multi-agent reinforcement learning for effective UA V scheduling in
+multi-hop emergency networks,” in Proc. 30th Annu. Int. Conf. Mo-
+bile Comput. Netw. , New Y ork, NY , USA, 2024, pp. 2028–2033, doi:
+10.1145/3636534.3694730.
+[41] J.-H. Kim, M.-C. Lee, and T.-S. Lee, “Generalized UA V deployment for
+UA V -assisted cellular networks,”IEEE Trans. Wireless Commun., vol. 23,
+no. 7, pp. 7894–7910, Jul. 2024.
+[42] H. Chen, Y . Lin, M. Fu, L. Y ao, and M. Sheng, “A survey on reinforcement
+learning methods for UA V systems,” ACM Comput. Surv., vol. 58, no. 4,
+pp. 1–37, 2025.
+[43] J. Zha, N. Zhou, Z. Liu, T. Sun, and X. Chen, “Diffusion-based ﬁlter for fast
+and accurate collaborative tracking with low data transmission,” Authorea
+Preprints, 2024.
+[44] J. Schulman, F. Wolski, P . Dhariwal, A. Radford, and O. Klimov, “Proximal
+policy optimization algorithms,” 2017, arXiv:1707.06347.
+[45] C. S. de Witt et al., “Is independent learning all you need in the Starcraft
+multi-agent challenge?,” 2020, arXiv:2011.09533.
+[46] J. Wei et al., “Chain of thought prompting elicits reasoning in large
+language models,” Adv. Neural Inform. Process. Syst., vol. 35, pp. 24824–
+24837, 2022.
+[47] Y . Sun, J. Hu, W. Cheng, and H. Chen, “DFA-RAG: Conversational
+semantic router for large language model with deﬁnite ﬁnite automa-
+ton,” in Proc. 41st Int. Conf. Mach. Learn. Proc. Mach. Learn. Res. ,R .
+Salakhutdinov, Z. Kolter, K. Heller, A. Weller, N. Oliver, J. Scarlett, and
+F. Berkenkamp, Eds., Jul. 2024, vol. 235, pp. 47033–47055. [Online].
+Available: https://proceedings.mlr.press/v235/sun24e.html
+[48] S. Y ao et al., “React: Synergizing reasoning and acting in language
+models,” in Proc. 11th Int. Conf. Learn. Representations. , 2023.
+[49] W. Song, Z. Li, L. Zhang, H. Zhao, and B. Du, “Sparse is enough in
+ﬁne-tuning pre-trained large language models,” in Proc. 41st Int. Conf.
+Mach. Learn., 2024, pp. 46121–46135.
+[50] N. Carion, F. Massa, G. Synnaeve, N. Usunier, A. Kirillov, and S.
+Zagoruyko, “End-to-end object detection with transformers,” inProc. Eur .
+Conf. Comput. Vis., 2020, pp. 213–229.
+[51] G. Hinton, O. Vinyals, and J. Dean, “Distilling the knowledge in a neural
+network,” in Proc. NIPS Deep Learn. Representation Learn. Workshop ,
+2015.
+[52] O. (2024), “GPT-4O system card,” 2024, Accessed: Dec. 06, 2025.
+[Online]. Available: https://openai.com/research/gpt-4o-system-card
+[53] K. Li, W. Ni, X. Y uan, A. Noor, and A. Jamalipour, “Deep-graph-based
+reinforcement learning for joint cruise control and task ofﬂoading for aerial
+edge Internet of Things (EdgeIoT),”IEEE Internet Things J., vol. 9, no. 21,
+pp. 21676–21686, Nov. 2022.
+[54] V . Mnih et al., “Asynchronous methods for deep reinforcement learning,”
+in Proc. Int. Conf. Mach. Learn. , 2016, pp. 1928–1937.
+Yanggang Xu was born in Sichuan, China, in 1999.
+He received the BEng degree in communication en-
+gineering from the University of Electronic Science
+and Technology of China (UESTC), Chengdu, China,
+the BEng degree in electronics and electrical engi-
+neering from the University of Glasgow, Glasgow,
+U.K., in 2022, and the MS degree in data science
+and information technology from Tsinghua Univer-
+sity, Shenzhen, China, in 2025. He is currently with
+Tencent, Shenzhen, China. His research interests in-
+clude reinforcement learning, large language models,
+multi-agent systems, robotics, and artiﬁcial intelligence.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 18 ===
+11190 IEEE TRANSACTIONS ON MOBILE COMPUTING, VOL. 25, NO. 7, JUL Y 2026
+Jirong Zha received the BS and MS degrees from
+Beihang University, China, in 2020 and 2023, re-
+spectively. She is currently working toward the PhD
+degree in data science and information technology
+from Tsinghua University, China. Her research inter-
+ests include collaborative perception, large language
+models, multi-agent systems, and distributed state
+estimation.
+Weijie Hong received the BS degree in informa-
+tion and computing science from the South China
+University of Technology, in 2009. He is currently
+working toward the master’s degree with Tsinghua
+University. He is also Ltd., and the director with
+the Guangdong Engineering Technology Research
+Center for Multimodal Fusion Communication and
+IoT Sensing. His research interests include AI-IoT,
+computing power networks, Optical networks, and
+Low-Altitude Communications.
+Xiangmin Yi received the BE degree from the School
+of Artiﬁcial Intelligence, Beijing University of Posts
+and Telecommunications, Beijing, China, in 2025. He
+is currently working toward the MS degree with the
+Tsinghua Shenzhen International Graduate School,
+Tsinghua University, Shenzhen, China. His research
+interests include artiﬁcial intelligence, large language
+models, and reinforcement learning.
+Geng Chen has been working toward the Undergrad-
+uate degree majoring in software engineering with
+Jilin University, since 2022. His research interests
+include reinforcement learning and multimodal large
+language models.
+Jianfeng Zheng received the BE degree in art and
+design from Guangxi Minzu University, China, in
+2015. He is currently a project manager with Shen-
+zhen Smart City Communication Company, Ltd.,
+Shenzhen, China. His research interests include smart
+city systems, intelligent transportation, IoT-based
+sensing, and large-scale system integration.
+Chen-Chun Hsia received the BE degree from the
+National Cheng Kung University, Tainan, Taiwan, in
+2021, and the MS degree from the Shenzhen Interna-
+tional Graduate School, Tsinghua University, Shen-
+zhen, China, in 2024. He is currently an ML engineer
+with Ant Group (Alipay), working on large-scale
+recommendation retrieval and merchant intelligence
+systems for payment growth. His interests include
+representation learning, multimodal real-time gener-
+ative systems, and end-to-end ML deployment.
+Xinlei Chen (Member, IEEE) is currently an asso-
+ciate professor with Shenzhen International Graduate
+School, Tsinghua University. His research interests
+include mobile sensing and embodied AI. Dr. Chen
+was the recipient of the several awards from top-tier
+conference and been selected in Elsevier’s Global Top
+2% Scientists List in the past three years.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 09:23:31 UTC from IEEE Xplore.  Restrictions apply. 

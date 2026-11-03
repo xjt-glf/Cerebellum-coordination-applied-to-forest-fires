@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 100, "plan": {"uavs": [{"task": "explore", "target": [92, 86]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 8}]}, "reason": "人员三组分流，优先通信避免旧火图滞后，远机刷新东火。"}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 480, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 1}]}, "reason": "西站低电机完成最后8格补给航程，随后覆盖西侧三人；中央接班机继续接近，两处南侧中继保持，避免结束前耗尽。"}

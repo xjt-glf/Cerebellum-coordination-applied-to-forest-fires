@@ -1,0 +1,8 @@
+{
+  "arm": "llm",
+  "seed": 730001,
+  "exact_600_transitions_match_original": true,
+  "new_api_calls": 0,
+  "new_independent_trials": 0,
+  "source": "/Users/xiangjutao/Desktop/hrl_dqn_improve/research_outputs/brain_comparison_20261022_recovered/llm_730001"
+}

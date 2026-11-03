@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 220, "plan": {"uavs": [{"task": "explore", "target": [30, 40]}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 4}]}, "reason": "满电UAV3提前接替即将补给的西南中继；UAV0到中央偏西补图，并用实地位置覆盖中间两名失联人员。"}

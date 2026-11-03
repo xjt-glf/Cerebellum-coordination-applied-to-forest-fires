@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 240, "plan": {"uavs": [{"task": "explore", "route": [[74, 73], [80, 77], [85, 82]]}, {"task": "charge", "target": [50, 90]}, {"task": "explore", "target": [58, 58]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "东火邻域短折线兼顾人员接触；中央机直飞补通信缺口。"}

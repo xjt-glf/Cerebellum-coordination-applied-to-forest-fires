@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 80, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [75, 55]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [62, 7]}]}, "reason": "北侧两名人员已断链且AoI上升，UAV2就近转中继；中部UAV1局部观测停滞后向东扩图，南机补火场南缘。"}

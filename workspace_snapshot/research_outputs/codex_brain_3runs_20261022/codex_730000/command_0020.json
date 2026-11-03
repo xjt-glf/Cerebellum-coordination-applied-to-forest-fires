@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 20, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [49, 22]}, {"task": "explore", "target": [85, 37]}, {"task": "explore", "target": [30, 55]}]}, "reason": "UAV1已完成北侧观测，移至同火场南侧补齐信息；其余保持未完成航程，中继继续接近人员。"}

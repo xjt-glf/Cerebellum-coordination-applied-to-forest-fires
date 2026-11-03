@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 420, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "charge", "target": [50, 10]}, {"task": "explore", "route": [[94, 61], [94, 54], [88, 48]]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "右边缘短折线扫遗漏地图，南站机继续充至可用电量。"}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 180, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "charge", "target": [90, 50]}, {"task": "charge", "target": [50, 90]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "两架低电机分别去不同近站，满电机接替南组与中央组通信。"}

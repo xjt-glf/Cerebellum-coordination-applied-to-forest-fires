@@ -1,0 +1,13 @@
+{
+  "unit_tests_passed": 13,
+  "frontend_continue_from": 100,
+  "frontend_continue_to": 120,
+  "invalid_id_status": 422,
+  "stale_command_status": 409,
+  "actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "external_api_calls": 0,
+  "gpu_used": false,
+  "trained": false,
+  "demo_steps": 120,
+  "known_limitation": "Retains existing shared-map and BFS perception assumptions; new channel/queue model not implemented."
+}

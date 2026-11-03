@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 260, "plan": {"uavs": [{"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [30, 10]}, {"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [11, 13]}]}, "reason": "中部断链人员由UAV0居中接管；西南火场长期未刷新，UAV3直接补看真实火线，UAV1拓展下边界并接近西南支援。"}

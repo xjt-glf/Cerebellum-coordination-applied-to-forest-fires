@@ -1,0 +1,53 @@
+{
+  "description": "Recorded A plans applied to both arms, not an on-policy B planner; action schedule is fixed even when B state diverges.",
+  "same_seed": 975002,
+  "delay_steps": 5,
+  "verified_A_replay": true,
+  "verified_B_replay": false,
+  "results": {
+    "A": {
+      "t": 600,
+      "explored": 0.7396,
+      "burned_cells": 604,
+      "burning_cells": 179,
+      "extinguished_cells": 224,
+      "contained": 2,
+      "active_clusters": 2,
+      "discovery": 0.36312849162011174,
+      "rknown": 0.36312849162011174,
+      "coverage": 0.9,
+      "mean_aoi": 0.8,
+      "max_aoi": 8,
+      "depleted": 1,
+      "min_energy": 0.0,
+      "n_true_burning": 179.0,
+      "n_delivered": 0,
+      "cov_mean": 0.7616666666666667,
+      "aoi_mean": 4.619666666666667,
+      "steps_run": 600,
+      "charge_rewrites": 18
+    },
+    "B": {
+      "t": 600,
+      "explored": 0.7348,
+      "burned_cells": 625,
+      "burning_cells": 274,
+      "extinguished_cells": 149,
+      "contained": 3,
+      "active_clusters": 2,
+      "discovery": 0.5036496350364964,
+      "rknown": 0.5036496350364964,
+      "coverage": 0.7,
+      "mean_aoi": 10.1,
+      "max_aoi": 35,
+      "depleted": 0,
+      "min_energy": 162.5,
+      "n_true_burning": 274.0,
+      "n_delivered": 0,
+      "cov_mean": 0.9036666666666667,
+      "aoi_mean": 0.5826666666666667,
+      "steps_run": 600,
+      "charge_rewrites": 20
+    }
+  }
+}

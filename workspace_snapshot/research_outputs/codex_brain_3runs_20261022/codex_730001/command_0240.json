@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 240, "plan": {"uavs": [{"task": "explore", "target": [20, 35]}, {"task": "charge"}, {"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 5}]}, "reason": "低电西南中继补给，已赶到的新中继改追最靠西南的人员5以兼顾两组；UAV0覆盖中央落后人员并向西扩图。"}

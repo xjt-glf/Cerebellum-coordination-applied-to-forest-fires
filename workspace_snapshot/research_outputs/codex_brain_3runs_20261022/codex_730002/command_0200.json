@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 200, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 3}]}, "reason": "中央UAV0电量185且返航较远，立即补给；北站已恢复的UAV2南下覆盖AoI增长人员6并接替中央链路。"}

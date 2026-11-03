@@ -1,0 +1,21 @@
+{
+ "explored": 0.82656,
+ "burned_cells": 504.1,
+ "extinguished_cells": 242.1,
+ "contained": 3.35,
+ "discovery": 0.9310205902997575,
+ "rknown": 0.9310205902997575,
+ "depleted": 0.0,
+ "mean_aoi": 4.066428571428571,
+ "normal.n": 10,
+ "normal.burned": 474.0,
+ "normal.ext": 246.1,
+ "normal.depleted": 0.0,
+ "scarce.n": 10,
+ "scarce.burned": 534.2,
+ "scarce.ext": 238.1,
+ "scarce.depleted": 0.0,
+ "_actor": "deliverable/model/actor_best.pt",
+ "_sha256": "e70e3f6169704b7b4027974049d3505a9113e2d6cfd38ceef93e46b460271168",
+ "_protocol": "goal_update"
+}

@@ -1,0 +1,60 @@
+status:   completed
+cwd: /ssd3/xiangjutao
+command description: Launch second independent MAPPO seed on GPU one
+started_at: 2026-11-03 20:23:54
+---
+{"policy_loss": -0.007161727563167612, "entropy": 1.0942300922340817, "actor_grad_norm": 0.09374427660885784, "clip_fraction": 0.0023271276408599485, "value_loss": 5.195201396942139, "team_transitions": 480, "agent_samples": 2142, "episodes": 16, "updates": 1, "seconds": 57.20996025198838, "mean_burned": 545.875}
+{"policy_loss": -0.010509661657528745, "entropy": 1.087284654378891, "actor_grad_norm": 0.13187515570057762, "clip_fraction": 0.020771329730956092, "value_loss": 2.6820766925811768, "team_transitions": 480, "agent_samples": 2160, "episodes": 32, "updates": 2, "seconds": 123.60018572298577, "mean_burned": 541.5625}
+{"policy_loss": -0.012213600644220909, "entropy": 1.0569511651992798, "actor_grad_norm": 0.17062382151683173, "clip_fraction": 0.03275725993120836, "value_loss": 2.8336269855499268, "team_transitions": 480, "agent_samples": 2158, "episodes": 48, "updates": 3, "seconds": 186.3469138359651, "mean_burned": 593.375}
+{"policy_loss": -0.009822991288577517, "entropy": 1.0519333018196955, "actor_grad_norm": 0.18948653785304892, "clip_fraction": 0.02987294822620849, "value_loss": 2.3175904750823975, "team_transitions": 480, "agent_samples": 2158, "episodes": 64, "updates": 4, "seconds": 250.76933825196465, "mean_burned": 577.1875}
+{"policy_loss": -0.011802940577682521, "entropy": 1.0319929818312328, "actor_grad_norm": 0.1953144408762455, "clip_fraction": 0.07347470245117114, "value_loss": 2.2076797485351562, "team_transitions": 480, "agent_samples": 2160, "episodes": 80, "updates": 5, "seconds": 305.93422914500115, "mean_burned": 581.8125}
+{"policy_loss": -0.012203430213655034, "entropy": 1.0065729651186202, "actor_grad_norm": 0.16808072249922487, "clip_fraction": 0.017748636090093188, "value_loss": 2.002248525619507, "team_transitions": 480, "agent_samples": 2160, "episodes": 96, "updates": 6, "seconds": 379.1279358979664, "mean_burned": 568.375}
+{"policy_loss": -0.015541766718443897, "entropy": 0.9900064567724863, "actor_grad_norm": 0.19293200545426872, "clip_fraction": 0.0645487399564849, "value_loss": 1.8162901401519775, "team_transitions": 480, "agent_samples": 2149, "episodes": 112, "updates": 7, "seconds": 455.3289832159644, "mean_burned": 526.25}
+{"policy_loss": -0.01259769064684709, "entropy": 0.9968410846259859, "actor_grad_norm": 0.20165776958068213, "clip_fraction": 0.0839271621985568, "value_loss": 1.784001350402832, "team_transitions": 480, "agent_samples": 2158, "episodes": 128, "updates": 8, "seconds": 532.8463418969768, "mean_burned": 595.375}
+{"policy_loss": -0.014705150414051281, "entropy": 1.0321711897850037, "actor_grad_norm": 0.17405746721973023, "clip_fraction": 0.05119977694832616, "value_loss": 1.2323646545410156, "team_transitions": 480, "agent_samples": 2160, "episodes": 144, "updates": 9, "seconds": 604.556576974981, "mean_burned": 569.5}
+{"policy_loss": -0.012516502679015199, "entropy": 1.0229091743628185, "actor_grad_norm": 0.17423170370360216, "clip_fraction": 0.04783606169641846, "value_loss": 0.8259890675544739, "team_transitions": 480, "agent_samples": 2160, "episodes": 160, "updates": 10, "seconds": 663.2544063919922, "mean_burned": 554.1875}
+{"policy_loss": -0.01336811133660376, "entropy": 0.9993994186321894, "actor_grad_norm": 0.16695549628800815, "clip_fraction": 0.04820165100196997, "value_loss": 1.0377686023712158, "team_transitions": 480, "agent_samples": 2154, "episodes": 176, "updates": 11, "seconds": 744.0217872550129, "mean_burned": 584.4375}
+{"policy_loss": -0.005433097067806456, "entropy": 1.011957620580991, "actor_grad_norm": 0.17835011146962643, "clip_fraction": 0.0254608356497354, "value_loss": 0.8517407178878784, "team_transitions": 480, "agent_samples": 2150, "episodes": 192, "updates": 12, "seconds": 811.160530943016, "mean_burned": 539.25}
+{"policy_loss": -0.011497126892209053, "entropy": 0.9442828363842435, "actor_grad_norm": 0.20083660301234987, "clip_fraction": 0.03653583854126433, "value_loss": 0.6014502644538879, "team_transitions": 480, "agent_samples": 2160, "episodes": 208, "updates": 13, "seconds": 886.9938285329845, "mean_burned": 575.6875}
+{"policy_loss": -0.014484526809408434, "entropy": 0.9601553943422105, "actor_grad_norm": 0.20807782519194815, "clip_fraction": 0.08152913974805011, "value_loss": 1.050764560699463, "team_transitions": 480, "agent_samples": 2150, "episodes": 224, "updates": 14, "seconds": 939.5962752699852, "mean_burned": 588.375}
+{"policy_loss": -0.007818056917231943, "entropy": 0.9637401037746005, "actor_grad_norm": 0.1690794825553894, "clip_fraction": 0.02106311275727219, "value_loss": 1.8494383096694946, "team_transitions": 480, "agent_samples": 2133, "episodes": 240, "updates": 15, "seconds": 995.6975650539971, "mean_burned": 553.6875}
+{"policy_loss": -0.011222683540028002, "entropy": 0.8836731149090661, "actor_grad_norm": 0.19485350770668852, "clip_fraction": 0.0360243052451147, "value_loss": 0.614104688167572, "team_transitions": 480, "agent_samples": 2148, "episodes": 256, "updates": 16, "seconds": 1060.3213839539676, "mean_burned": 537.9375}
+{"policy_loss": -0.0037855778355151415, "entropy": 0.9042274951934814, "actor_grad_norm": 0.16649816568113035, "clip_fraction": 0.014153598161000345, "value_loss": 1.497291088104248, "team_transitions": 480, "agent_samples": 2139, "episodes": 272, "updates": 17, "seconds": 1141.2249053340056, "mean_burned": 527.5}
+{"policy_loss": -0.008757854682496853, "entropy": 0.8810189200772179, "actor_grad_norm": 0.18032909598615435, "clip_fraction": 0.04566473037832313, "value_loss": 0.5791529417037964, "team_transitions": 480, "agent_samples": 2152, "episodes": 288, "updates": 18, "seconds": 1204.6712099119904, "mean_burned": 538.75}
+{"policy_loss": -0.007328218858068188, "entropy": 0.8833202090528276, "actor_grad_norm": 0.22711153307722676, "clip_fraction": 0.04085385075045957, "value_loss": 0.5167935490608215, "team_transitions": 480, "agent_samples": 2158, "episodes": 304, "updates": 19, "seconds": 1257.6083440330112, "mean_burned": 528.75}
+{"policy_loss": -0.007624259322053856, "entropy": 0.8791999138063855, "actor_grad_norm": 0.23114488646388054, "clip_fraction": 0.03978866204205486, "value_loss": 0.6749440431594849, "team_transitions": 480, "agent_samples": 2152, "episodes": 320, "updates": 20, "seconds": 1326.1327182020177, "mean_burned": 568.875}
+{"policy_loss": -0.010208992597957453, "entropy": 0.9268116801977158, "actor_grad_norm": 0.24543390485147634, "clip_fraction": 0.05538972425791952, "value_loss": 0.582819938659668, "team_transitions": 480, "agent_samples": 2154, "episodes": 336, "updates": 21, "seconds": 1412.686343592999, "mean_burned": 540.5}
+{"policy_loss": -0.013240506122302678, "entropy": 0.85936439037323, "actor_grad_norm": 0.1887777727097273, "clip_fraction": 0.024602770287957456, "value_loss": 2.779395341873169, "team_transitions": 480, "agent_samples": 2140, "episodes": 352, "updates": 22, "seconds": 1472.8962773749954, "mean_burned": 532.75}
+{"policy_loss": -0.014548902632668614, "entropy": 0.9003846247990926, "actor_grad_norm": 0.20052553506361115, "clip_fraction": 0.0405776874265737, "value_loss": 0.48069581389427185, "team_transitions": 480, "agent_samples": 2159, "episodes": 368, "updates": 23, "seconds": 1525.5374362089788, "mean_burned": 518.375}
+{"policy_loss": -0.010414989018398855, "entropy": 0.8364048881663216, "actor_grad_norm": 0.2676164296766122, "clip_fraction": 0.09686569993694623, "value_loss": 0.5087486505508423, "team_transitions": 480, "agent_samples": 2160, "episodes": 384, "updates": 24, "seconds": 1577.2432206629892, "mean_burned": 506.8125}
+{"policy_loss": -0.0016198568822195132, "entropy": 0.8506834457317988, "actor_grad_norm": 0.26289647569259006, "clip_fraction": 0.030008680549346738, "value_loss": 0.5094088912010193, "team_transitions": 480, "agent_samples": 2148, "episodes": 400, "updates": 25, "seconds": 1655.8563317059889, "mean_burned": 525.0625}
+{"policy_loss": -0.010929198961498009, "entropy": 0.8229891293578677, "actor_grad_norm": 0.2368626445531845, "clip_fraction": 0.04423983159681989, "value_loss": 0.388204962015152, "team_transitions": 480, "agent_samples": 2160, "episodes": 416, "updates": 26, "seconds": 1707.2197880689637, "mean_burned": 513.75}
+{"policy_loss": -0.010356281806404391, "entropy": 0.7732153485218684, "actor_grad_norm": 0.23558840631610817, "clip_fraction": 0.03319205281635126, "value_loss": 0.7057643532752991, "team_transitions": 480, "agent_samples": 2146, "episodes": 432, "updates": 27, "seconds": 1757.0947199150105, "mean_burned": 524.4375}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/hrl_dqn_improve/experiments/local_allocator/train.py", line 84, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/workspace/hrl_dqn_improve/experiments/local_allocator/train.py", line 71, in main
+    results=list(pool.map(episode,jobs))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/process.py", line 642, in _chain_from_iterable_of_lists
+    for element in iterable:
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 451, in result
+    self._condition.wait(timeout)
+  File "/usr/lib/python3.12/threading.py", line 355, in wait
+    waiter.acquire()
+KeyboardInterrupt
+
+---
+exit_code: 1
+elapsed_ms: 1794753
+ended_reason: Task has been completed
+ended_at: 2026-11-03 20:53:49

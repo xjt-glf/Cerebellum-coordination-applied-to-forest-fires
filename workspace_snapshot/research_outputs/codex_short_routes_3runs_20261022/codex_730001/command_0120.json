@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 120, "plan": {"uavs": [{"task": "charge", "target": [90, 90]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 5}]}, "reason": "东机先充电，西南脱网人员需要单独保障。"}

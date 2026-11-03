@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 40, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[61, 44], [64, 51], [61, 57]]}, {"task": "explore", "route": [[44, 69], [45, 76], [41, 82]]}, {"task": "explore", "target": [75, 25]}]}, "reason": "补扫火场剩余边缘，东侧飞机直飞未探索区域。"}

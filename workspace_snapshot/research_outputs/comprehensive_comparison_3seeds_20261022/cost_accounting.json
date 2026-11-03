@@ -1,0 +1,12 @@
+{
+  "formal_qwen_calls": 90,
+  "formal_qwen_prompt_tokens": 12754309,
+  "formal_qwen_completion_tokens": 8165,
+  "qwen_historical_decision_median_s": 17.527685395994922,
+  "qwen_historical_decision_p95_s": 25.151728814537623,
+  "heuristic_planning_median_s": 3.129199467366561e-05,
+  "codex_interactive_wait_median_s": 26.549426728997787,
+  "codex_interactive_wait_p95_s": 44.47430804404794,
+  "codex_external_api_calls": 0,
+  "new_api_calls_for_this_report": 0
+}

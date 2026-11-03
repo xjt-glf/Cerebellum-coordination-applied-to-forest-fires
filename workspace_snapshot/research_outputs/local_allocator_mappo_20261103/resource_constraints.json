@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-11-03 approximately 20:58 local",
+  "container": "xiangjutao-kda-bench",
+  "gpu": "8 x NVIDIA H800",
+  "cpu_affinity_count": 192,
+  "cgroup_cpu_max": "max 100000",
+  "cgroup_memory_max": "max",
+  "root_filesystem": {"size": "90G", "used": "90G", "available_at_check": "12M", "failure": "OCI runtime exec failed: write /tmp/runc-process3034063002: no space left on device"},
+  "workspace_filesystem": {"mount": "/ssd3", "size": "3.5T", "available_at_check": "1.4T"},
+  "response": "Preserved unrelated data. Retried exec successfully; new coverage branch TMPDIR points to output directory on /ssd3 bind mount.",
+  "learning_compute": "CPU whole-episode workers and CPU frozen movement actor; GPUs0/1/2 main learners, GPU3 normalized reward, GPUs4/5/6 coverage reward branch",
+  "initial_patch_tool_failure": "apply_patch editor returned success without persisted second batch, then repeatedly timed out after5000ms. Verified real files and applied patches via shell fallback apply_patch parser. Original failed smoke output preserved in tool terminal 1dtnwo.",
+  "throughput": "See audit_* JSONL, reward_audit.json and per-run updates.jsonl; not claiming2000 episodes until actually completed."
+}

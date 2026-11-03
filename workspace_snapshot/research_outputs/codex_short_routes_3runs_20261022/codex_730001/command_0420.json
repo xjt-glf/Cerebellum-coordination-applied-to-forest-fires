@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 420, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "route": [[16, 74], [12, 81], [17, 87]]}, {"task": "explore", "target": [75, 15]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "西北剩余未知带用短弧补扫，东南机直飞未探索南带。"}

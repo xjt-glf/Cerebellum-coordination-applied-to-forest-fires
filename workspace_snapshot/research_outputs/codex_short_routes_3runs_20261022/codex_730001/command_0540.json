@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 540, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "route": [[29, 86], [31, 93], [37, 94]]}, {"task": "explore", "target": [50, 45]}, {"task": "charge", "target": [90, 50]}]}, "reason": "西北短弧补北缘，西南满电机向中央未探索区直飞，中央中继返近站。"}

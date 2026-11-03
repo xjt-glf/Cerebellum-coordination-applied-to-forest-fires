@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 80, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [70, 30]}, {"task": "explore", "target": [95, 35]}, {"task": "explore", "target": [45, 65]}]}, "reason": "火场发现已充分，三架感知机转向不同未知区域；南侧UAV1局部覆盖停滞，明确换目标，避免原地消耗。"}

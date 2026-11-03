@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 80, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [62, 48]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [63, 20]}]}, "reason": "北部人员脱离覆盖，第二机中继补北组；两火区刷新时效。"}

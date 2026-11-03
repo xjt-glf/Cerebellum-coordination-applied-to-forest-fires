@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>大小脑协同灭火仿真</title>
+<style>
+:root{--bg:#11131a;--panel:#1a1d27;--line:#2c3040;--fg:#dfe3ee;--dim:#8b92a8;--acc:#4da3ff}
+*{box-sizing:border-box}
+body{margin:0;font:13px/1.6 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+     background:var(--bg);color:var(--fg)}
+h1{font-size:15px;margin:0 0 10px;font-weight:600}
+h2{font-size:12px;margin:14px 0 6px;color:var(--dim);font-weight:600;
+   letter-spacing:.5px;border-bottom:1px solid var(--line);padding-bottom:4px}
+#wrap{display:grid;grid-template-columns:272px minmax(0,1fr) 356px;gap:12px;padding:12px;
+      height:100vh;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+       padding:12px;max-height:calc(100vh - 24px);overflow:auto}
+/* 中间舞台固定宽度（500 画布 + 左右 12 内边距），在 1fr 里自己居中 */
+.stage{width:min(524px,100%);margin:0 auto}
+#left label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:5px 0}
+#left label span{color:var(--dim);flex:1;min-width:0}
+input,select{background:#0d0f16;border:1px solid var(--line);color:var(--fg);
+             border-radius:4px;padding:4px 6px;width:92px;font:inherit}
+input[type=checkbox],input[type=radio]{width:auto;margin:0;accent-color:var(--acc)}
+input.wide{width:100%}
+button{background:var(--acc);border:0;color:#06121f;border-radius:5px;
+       padding:7px 14px;cursor:pointer;font:inherit;font-weight:600}
+button.ghost{background:#2a2f3e;color:var(--fg)}
+button:disabled{opacity:.4;cursor:not-allowed}
+#cv{display:block;width:500px;max-width:100%;background:#2b3a1c;border-radius:3px;
+    border:2px solid #0d1016;image-rendering:pixelated}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* ---- 中间栏：标题行 / 播放控制 / 图层开关 / 图例 ---- */
+.shead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.shead h1{margin:0}
+.badge{font-size:11px;padding:2px 9px;border-radius:999px;white-space:nowrap;
+       background:#242a38;color:var(--dim);border:1px solid var(--line)}
+.badge.run{background:#13304a;color:#7fc8ff;border-color:#2a5f8f}
+.badge.ok{background:#14321f;color:#79d79b;border-color:#2d6b43}
+.badge.bad{background:#3a1c18;color:#ff9d86;border-color:#7a3528}
+.pctl{display:flex;gap:8px;align-items:center;margin-top:10px}
+.pctl #spd{width:86px;flex:none}
+.pctl #play{flex:none;min-width:62px;padding:6px 12px}
+#seek{flex:1;width:auto;min-width:0;padding:0;background:none;border:0}
+.tline{display:flex;justify-content:space-between;gap:10px;font-size:11px;
+       color:var(--dim);font-variant-numeric:tabular-nums;margin-top:4px}
+.tline span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;font-size:12px;
+      background:#0d0f16;border:1px solid var(--line);border-radius:999px;
+      color:var(--dim);cursor:pointer;white-space:nowrap;user-select:none}
+.chip:hover{border-color:#44506b}
+.chip:has(input:checked),.chip.on{background:#16253a;border-color:var(--acc);color:var(--fg)}
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));
+    gap:3px 10px;font-size:11px;color:var(--dim)}
+.lg span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lg i{width:10px;height:10px;display:inline-block;margin-right:5px;
+      vertical-align:-1px;border:1px solid #0006;flex:none}
+.m{display:flex;justify-content:space-between;gap:10px;padding:3px 0;
+   border-bottom:1px dotted #252936}
+.m span{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m b{font-variant-numeric:tabular-nums;font-weight:600;flex:none}
+.k{font-size:11px;color:var(--dim)}
+#log{font-size:11.5px}
+#log .ev{border-left:2px solid var(--acc);padding:4px 0 4px 8px;margin:8px 0}
+#log .ev.deg{border-color:#ff7a59}
+#log .t{color:var(--acc);font-weight:600}
+#log ul{margin:3px 0;padding-left:16px}
+#log li{color:#b9c0d4}
+pre{white-space:pre-wrap;word-break:break-all;background:#0d0f16;padding:6px;
+    border-radius:4px;font-size:11px;color:#9fb4d0;margin:4px 0;max-height:150px;overflow:auto}
+#err{color:#ff8a70;font-size:12px}
+textarea{background:#0d0f16;border:1px solid var(--line);color:var(--fg);border-radius:4px;
+         padding:6px;width:100%;font:inherit;font-size:12px;resize:vertical}
+textarea::placeholder{color:#5a6176}
+#evcur.on{color:#ffd36e}
+#bar{height:4px;background:#0d0f16;border-radius:2px;overflow:hidden;margin:8px 0 0}
+#bar div{height:100%;background:var(--acc);width:0;transition:width .12s linear}
+</style>
+</head>
+<body>
+<div id="wrap">
+<div class="panel" id="left"></div>
+<div class="panel stage">
+  <div class="shead">
+    <h1>任务态势</h1>
+    <span class="badge" id="status">未开始</span>
+  </div>
+  <canvas id="cv" width="500" height="500"></canvas>
+  <div class="pctl">
+    <button id="play" class="ghost" disabled>暂停</button>
+    <select id="spd">
+      <option value="4">0.25x</option><option value="2">0.5x</option>
+      <option value="1" selected>1x</option><option value="0.5">2x</option>
+      <option value="0.25">4x</option><option value="0">最快</option>
+    </select>
+    <input type="range" id="seek" min="0" max="0" value="0" disabled>
+  </div>
+  <div id="bar"><div></div></div>
+  <div class="tline"><span id="tinfo">尚未开始</span><span id="tmeta"></span></div>
+  <h2>显示图层</h2>
+  <div class="chips">
+    <label class="chip"><input type="radio" name="ly" value="fire" checked>真值火场</label>
+    <label class="chip"><input type="radio" name="ly" value="known">无人机认知</label>
+    <label class="chip"><input type="radio" name="ly" value="rknown">人员认知</label>
+  </div>
+  <div class="chips" style="margin-top:6px">
+    <label class="chip"><input type="checkbox" id="showcomm" checked>通信范围</label>
+    <label class="chip"><input type="checkbox" id="showst" checked>补给点</label>
+  </div>
+  <h2>图例</h2>
+  <div class="lg" id="legend"></div>
+</div>
+<div class="panel">
+  <h2>实时指标</h2><div id="met" class="k">—</div>
+  <h2>任务报告</h2><div id="rep" class="k">任务结束后在此输出</div>
+  <h2>上层指令日志</h2><div id="log" class="k">—</div>
+</div>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+
+/* ---------------------------------------------------------------- 表单 */
+const FIELDS=[
+ ['#','环境参数'],
+ ['grid','任务区域边长',100,'num'],
+ ['fires','初始火点数',3,'num'],
+ ['random_fires','火点数每回合 2-4 随机',false,'bool'],
+ ['rescuers','地面人员数',10,'num'],
+ ['uavs','无人机数（1-8）',4,'num'],
+ ['steps','回合步数',600,'num'],
+ ['spread_steps','开局自蔓延步数',40,'num'],
+ ['spread_gain','火蔓延速度增益',1.0,'num'],
+ ['seed','随机种子',20000,'num'],
+ ['#','高层（大脑）'],
+ ['brain','大脑','llm','sel'],
+ ['replan_every','重规划周期（步）',20,'num'],
+ ['explore_until','转巡逻的探索率阈值',0.70,'num'],
+ ['charge_at','补给电量门限（满电 600）',300,'num'],
+ ['max_chargers','同时补给上限',2,'num'],
+ ['#','大模型接口（大脑选 llm 时生效）'],
+ ['base_url','base_url','','wide'],
+ ['api_key','api_key','','wide'],
+ ['model','model','qwen-plus','wide'],
+ ['temperature','temperature',0.2,'num'],
+ ['llm_timeout','超时（秒）',180,'num'],
+ ['llm_full_state','发送完整环境信息（含逐格真值）',true,'bool'],
+ ['#','运行'],
+ ['every','每几步录一帧',2,'num'],
+ ['stop_when_clear','真值及人员认知活火均归零时提前结束',true,'bool'],
+ ['stop_when_depleted','无人机全部耗尽时提前结束',false,'bool'],
+ ['waypoint_assist','定点驻留用确定性寻路',false,'bool'],
+ ['goal_update','目标完成/失效后更新',true,'bool'],
+ ['random_policy','用随机动作替代策略（对照）',false,'bool'],
+];
+(function(){
+  let h='<h1>大小脑协同灭火仿真</h1>';
+  for(const f of FIELDS){
+    if(f[0]==='#'){h+=`<h2>${f[1]}</h2>`;continue}
+    const [k,lab,dv,ty]=f;
+    if(ty==='bool') h+=`<label><span>${lab}</span><input type="checkbox" id="f_${k}" ${dv?'checked':''}></label>`;
+    else if(ty==='sel') h+=`<label><span>${lab}</span><select id="f_${k}"><option value="heuristic"${
+      dv==='heuristic'?' selected':''}>启发式</option><option value="llm"${
+      dv==='llm'?' selected':''}>大模型</option></select></label>`;
+    else if(ty==='wide') h+=`<label style="display:block"><span>${lab}</span><input type="${k==='api_key'?'password':'text'}" class="wide" id="f_${k}" value="${dv}" autocomplete="off"></label>`;
+    else h+=`<label><span>${lab}</span><input id="f_${k}" value="${dv}"></label>`;
+  }
+  h+=`<div class="row" style="margin-top:14px"><button id="go">开始</button>
+      <button id="stop" class="ghost" disabled>停止</button>
+      <button id="promptview" class="ghost">查看最近大模型输入</button></div>
+      <div id="err" style="margin-top:8px"></div>
+      <h2>突发事件（自然语言）</h2>
+      <textarea id="ev" rows="4" placeholder="例：西北区域发现疑似火点，派一架去确认；在 (30,30) 发现待救援人员，需要一架无人机在其上方盘旋监视"></textarea>
+      <div class="row" style="margin-top:6px">
+        <button id="evgo" class="ghost">下发</button>
+        <button id="evclr" class="ghost">清除</button></div>
+      <div class="k" id="evcur" style="margin-top:6px">当前无生效事件</div>
+      <div class="k" style="margin-top:8px">事件会注入到**下一次**重规划的 prompt 里并持续生效，
+      直到你清除。需要大脑设为「大模型」——启发式看不懂自然语言。
+      事件只改变指挥决策，<b>不会修改环境真值</b>（不会凭空多出火点或人员）。</div>
+      <div class="k" style="margin-top:10px">底层模型：<span id="actor_path">正在读取…</span>。
+      大模型失败会自动降级到启发式并在日志里标红。</div>`;
+  $('#left').innerHTML=h;
+  fetch('/api/model').then(r=>r.json()).then(m=>{
+    document.getElementById('actor_path').textContent=m.path;
+  }).catch(()=>{document.getElementById('actor_path').textContent='读取失败，请检查服务';});
+})();
+function cfg(){
+  const o={};
+  for(const f of FIELDS){
+    if(f[0]==='#')continue;
+    const [k,,dv,ty]=f, el=$('#f_'+k);
+    if(ty==='bool') o[k]=el.checked;
+    else if(ty==='num') o[k]=parseFloat(el.value);
+    else o[k]=el.value.trim();
+  }
+  return o;
+}
+
+/* ------------------------------------------------------------ 贴图生成 */
+/* 像素风（Minecraft 俯视地图）：每格 5px，画布 500x500 与显示 1:1，关掉所有平滑，
+   所有图标都用字符画 + 调色板画出来，保证硬边、无渐变。 */
+const SC=5;
+function pad(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;
+                  return [c,c.getContext('2d')]}
+const rnd=s=>{s=Math.sin(s*12.9898)*43758.5453;return s-Math.floor(s)};
+
+/* 字符画 → canvas。art 每行一串字符，pal 把字符映射成颜色，'.' 为透明 */
+function pixel(art,pal,s){
+  const w=art[0].length,h=art.length,[c,x]=pad(w*s,h*s);
+  for(let j=0;j<h;j++)for(let i=0;i<w;i++){
+    const col=pal[art[j][i]]; if(!col)continue;
+    x.fillStyle=col; x.fillRect(i*s,j*s,s,s);
+  }
+  return c;
+}
+
+/* 火场方块贴图：每种状态 4 个变体，5x5 像素的硬边噪点，像 MC 的方块顶面 */
+const TILE={};
+function fireTiles(){
+  const SPEC={
+    1:['#ffd942','#ff8c1a','#d94a00'],   // 燃烧中：MC 火焰黄橙
+    2:['#fff2b0','#ff5c12','#9e1500'],   // 完全燃烧：白热芯 + 深红
+    3:['#4a443f','#2a2522','#121010'],   // 烧尽：煤块灰黑
+    4:['#6ec6f0','#2b79c4','#17457a'],   // 已扑灭：蓝（隔火带）
+  };
+  for(const k in SPEC){
+    const C=SPEC[k];TILE[k]=[];
+    for(let v=0;v<4;v++){
+      const [c,x]=pad(SC,SC);
+      for(let i=0;i<SC;i++)for(let j=0;j<SC;j++){
+        const n=rnd(k*977+v*331+i*37+j*7);
+        x.fillStyle=n<0.26?C[0]:(n>0.72?C[2]:C[1]);
+        x.fillRect(i,j,1,1);
+      }
+      TILE[k].push(c);
+    }
+  }
+}
+
+/* 无人机：12x12 字符画的四旋翼俯视图，2px/像素 → 24px ≈ 5 格宽 */
+const UAV_ART=[
+  '.GG......GG.',
+  'GGGG....GGGG',
+  'GGGG....GGGG',
+  '.GGD....DGG.',
+  '...DhBBBD...',
+  '....hBBB....',
+  '....BBBB....',
+  '...DBBBBD...',
+  '.GGD....DGG.',
+  'GGGG....GGGG',
+  'GGGG....GGGG',
+  '.GG......GG.'];
+function uavSprite(relay){
+  return pixel(UAV_ART,{G:'#c4d8e8',D:'#23262e',
+    B:relay?'#39404e':'#8f2bc9', h:relay?'#5d6577':'#c86ef0'},2);
+}
+
+/* 地面人员：14x16 的像素小人（安全帽 + 帽檐 + 眼睛 + 反光条背带裤 + 白手套 + 靴子），
+   1px/像素 → 14x16px。配色按"已覆盖=青 / 未覆盖=橙"区分，帽子和背带裤同色系。 */
+const RES_ART=[
+  '.....HHHH.....',
+  '...HHHHHHHH...',
+  '..hhhhhhhhhh..',
+  '....SSSSSS....',
+  '....SFSSFS....',
+  '....SSSSSS....',
+  '.....SSSS.....',
+  '...VVVVVVVV...',
+  '..WVVVPPVVVW..',
+  '..WVVVPPVVVW..',
+  '...VVVVVVVV...',
+  '....VVVVVV....',
+  '....VV..VV....',
+  '....VV..VV....',
+  '...BBB..BBB...',
+  '...BBB..BBB...'];
+function personSprite(cov){
+  return pixel(RES_ART,{
+    H:cov?'#5ee8f0':'#ffb347',      // 安全帽
+    h:cov?'#0f98a2':'#c25e00',      // 帽檐（压暗一档）
+    S:'#f3b784',                    // 皮肤
+    F:'#2a1c10',                    // 眼睛
+    V:cov?'#12b9c4':'#f07c0c',      // 背带裤 / 马甲
+    P:'#fff3c4',                    // 反光条
+    W:'#ffffff',                    // 白手套
+    B:'#5a3410'},1);                // 靴子
+}
+
+/* 补给点：5x5 停机坪，3px/像素 → 15px，正好等于环境里 3x3 格的有效充电范围 */
+const ST_ART=[
+  'SSSSS',
+  'SDDDS',
+  'SDYDS',
+  'SDDDS',
+  'SSSSS'];
+function stationSprite(){
+  return pixel(ST_ART,{S:'#4fd3ff',D:'#101a26',Y:'#ffe24a'},3);
+}
+
+let ST=null;      // {init, frames, grids, applied, cur, sid, playing, status}
+const cv=$('#cv'), ctx=cv.getContext('2d');
+const SPR={};
+let BG=null, FOGC=null, FOGX=null;
+
+/* 背景：MC 俯视地图风。每格一个"方块顶面"，纯色 + 1px 硬边噪点，
+   颜色由可燃物密度（密林/疏林）决定，再用真实高程做西北光照的台阶式明暗。 */
+function makeBG(H,W,ter,fuel){
+  const [c,x]=pad(W*SC,H*SC);
+  const im=x.createImageData(W*SC,H*SC),d=im.data;
+  const at=(xx,yy)=>ter[Math.min(H-1,Math.max(0,xx))*W+Math.min(W-1,Math.max(0,yy))];
+  const LW=W*SC;
+  for(let gx=0;gx<H;gx++)for(let gy=0;gy<W;gy++){
+    const sl=((at(gx,gy+1)-at(gx,gy-1))-(at(gx+1,gy)-at(gx-1,gy)))/255;
+    const sh=sl>0.04?1.14:sl<-0.04?0.84:1;          // 只有三档，像素风不要连续渐变
+    const hh=ter[gx*W+gy]/255, fu=fuel[gx*W+gy]/255;
+    const r=(78-34*fu)+24*hh, g=(106+20*fu)+18*hh, b=(54-18*fu)+20*hh;
+    const px0=gx*SC, py0=(H-1-gy)*SC;
+    for(let i=0;i<SC;i++)for(let j=0;j<SC;j++){
+      const n=rnd(gx*4099+gy*131+i*17+j*3);
+      const dv=n<0.16?20:(n>0.86?-18:0);            // 方块顶面的颗粒
+      const p=((py0+j)*LW+px0+i)*4;
+      d[p]  =Math.max(0,Math.min(255,r*sh+dv));
+      d[p+1]=Math.max(0,Math.min(255,g*sh+dv));
+      d[p+2]=Math.max(0,Math.min(255,b*sh+dv));
+      d[p+3]=255;
+    }
+  }
+  x.putImageData(im,0,0);
+  return c;
+}
+
+const LEG=[['燃烧中',1],['完全燃烧',2],['烧尽',3],['已扑灭(隔火带)',4]];
+function b64u8(s){
+  const b=atob(s), a=new Uint8Array(b.length);
+  for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);
+  return a;
+}
+function resetGrids(){
+  const I=ST.init;
+  ST.grids={fire:b64u8(I.fire0),known:b64u8(I.known0),rknown:b64u8(I.rknown0)};
+  ST.applied=-1;
+}
+function applyTo(n){
+  if(n<ST.applied) resetGrids();
+  for(let i=ST.applied+1;i<=n;i++){
+    const f=ST.frames[i]; if(!f)break;
+    for(const k of ['fire','known','rknown']){
+      const d=f[k]; if(!d)continue;
+      const g=ST.grids[k];
+      for(let j=0;j<d.i.length;j++) g[d.i[j]]=d.v[j];
+    }
+    ST.applied=i;
+  }
+}
+function layer(){return document.querySelector('input[name=ly]:checked').value}
+
+function setup(I){
+  cv.width=I.W*SC; cv.height=I.H*SC;
+  fireTiles();
+  SPR.uav=[uavSprite(false),uavSprite(true)];
+  SPR.person=[personSprite(false),personSprite(true)];
+  SPR.station=stationSprite();
+  BG=makeBG(I.H,I.W,b64u8(I.terrain),b64u8(I.fuel));
+  [FOGC,FOGX]=pad(I.W,I.H);
+  resetGrids(); drawLegend();
+}
+
+function drawLegend(){
+  const sw={1:'#ff8c1a',2:'#ff5c12',3:'#2a2522',4:'#2b79c4'};
+  $('#legend').innerHTML=LEG.map(([n,c])=>
+    `<span><i style="background:${sw[c]}"></i>${n}</span>`).join('')
+   +`<span><i style="background:#3d6b2e"></i>未过火林地</span>
+     <span><i style="background:#8f2bc9"></i>无人机(感知/补给)</span>
+     <span><i style="background:#39404e"></i>无人机(中继)</span>
+     <span><i style="background:#12b9c4"></i>人员(已覆盖)</span>
+     <span><i style="background:#f07c0c"></i>人员(未覆盖)</span>
+     <span><i style="background:#101a26;border-color:#4fd3ff"></i>补给点</span>`
+   +(layer()==='fire'?'':'<span><i style="background:#0a0c14"></i>未知区域(迷雾)</span>');
+}
+
+function draw(){
+  if(!ST||!ST.init||!BG)return;
+  const I=ST.init,H=I.H,W=I.W,ly=layer(),g=ST.grids[ly];
+  ctx.imageSmoothingEnabled=false;              // 像素风：全程关掉平滑
+  ctx.clearRect(0,0,cv.width,cv.height);
+  ctx.drawImage(BG,0,0);
+
+  // 认知图层：未知区域铺一层迷雾（整层一次 drawImage，不逐格 fillRect）
+  if(ly!=='fire'){
+    const im=FOGX.createImageData(W,H),d=im.data;
+    for(let x=0;x<H;x++)for(let y=0;y<W;y++){
+      const p=((H-1-y)*W+x)*4;
+      d[p]=8;d[p+1]=10;d[p+2]=18;d[p+3]=g[x*W+y]===0?216:0;
+    }
+    FOGX.putImageData(im,0,0);
+    ctx.drawImage(FOGC,0,0,cv.width,cv.height);
+  }
+  // 火场方块。认知图层里 1=已知健康，不画（露出林地）
+  const lo=ly==='fire'?1:2;
+  for(let x=0;x<H;x++)for(let y=0;y<W;y++){
+    const v=g[x*W+y];
+    if(v<lo)continue;
+    const t=TILE[v]; if(!t)continue;
+    ctx.drawImage(t[(x*7+y*13)&3],x*SC,(H-1-y)*SC);
+  }
+
+  const X=x=>(x+0.5)*SC, Y=y=>(H-1-y+0.5)*SC;
+  if($('#showst').checked)
+    for(const [sx,sy] of I.stations)
+      ctx.drawImage(SPR.station,Math.round(X(sx))-7,Math.round(Y(sy))-7);
+  const f=ST.frames[ST.cur]; if(!f)return;
+  if($('#showcomm').checked){
+    ctx.save();ctx.setLineDash([3,3]);ctx.strokeStyle='rgba(130,238,255,.65)';ctx.lineWidth=1;
+    for(const u of f.uavs){ctx.beginPath();ctx.arc(X(u.x),Y(u.y),I.uav_comm_r*SC,0,7);ctx.stroke()}
+    ctx.setLineDash([1,4]);ctx.strokeStyle='rgba(130,255,170,.65)';
+    ctx.beginPath();ctx.arc(X(I.base[0]),Y(I.base[1]),I.base_r*SC,0,7);ctx.stroke();
+    ctx.restore();
+  }
+  for(const p of f.res)
+    ctx.drawImage(SPR.person[p.c?1:0],Math.round(X(p.x))-7,Math.round(Y(p.y))-12);
+  // 显式指定的目标：画十字标 + 一条连到执行机的虚线，直观看"去没去"
+  ctx.save();
+  f.uavs.forEach(u=>{
+    if(!u.tgt)return;
+    const tx=X(u.tgt[0]),ty=Y(u.tgt[1]);
+    ctx.setLineDash([2,3]);ctx.strokeStyle='rgba(255,220,110,.5)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(X(u.x),Y(u.y));ctx.lineTo(tx,ty);ctx.stroke();
+    ctx.setLineDash([]);ctx.strokeStyle='#ffdc6e';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(tx-5,ty);ctx.lineTo(tx+5,ty);
+    ctx.moveTo(tx,ty-5);ctx.lineTo(tx,ty+5);ctx.stroke();
+    if(u.ring!==undefined){
+      ctx.setLineDash([2,2]);ctx.strokeStyle='rgba(255,220,110,.45)';
+      ctx.beginPath();ctx.arc(tx,ty,u.ring*SC,0,7);ctx.stroke();
+    }
+  });
+  ctx.restore();
+  f.uavs.forEach((u,i)=>{
+    ctx.drawImage(SPR.uav[u.task===1?1:0],Math.round(X(u.x))-12,Math.round(Y(u.y))-12);
+    ctx.fillStyle='#fff';ctx.font='bold 9px monospace';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.strokeStyle='#000';ctx.lineWidth=2.5;
+    ctx.strokeText(i,X(u.x),Y(u.y));ctx.fillText(i,X(u.x),Y(u.y));
+  });
+}
+
+/* -------------------------------------------------------------- 面板 */
+const MET=[['explored','全图探索率',3],['discovery','火情发现率',3],
+ ['rescuer_known','人员已知火情',3],['coverage','无人机覆盖率(均值)',3],
+ ['burned','过火面积',4],['extinguished','扑灭格数',0],
+ ['contained','已合围火点',0],['active_fires','剩余活火点(认知)',0],
+ ['active_cells','真值未合围活火格数',0],
+ ['burning_cells','真值燃烧格数（含已合围）',0],
+ ['people_burning_cells','人员认知燃烧格数',0],
+ ['max_aoi','最大信息时效',0],['depleted','耗尽机数',0],
+ ['min_energy','最低电量',1],['ret','累计回报',1]];
+const TASKN=['感知','中继','补给'],MODEN=['搜寻','巡逻'];
+function panel(){
+  const f=ST.frames[ST.cur];if(!f)return;
+  let h=MET.map(([k,n,p])=>`<div class="m"><span>${n}</span><b>${(f.m[k]??0).toFixed(p)}</b></div>`).join('');
+  h+='<div class="m" style="border:0;margin-top:6px"><span>当前分工</span></div>';
+  h+=f.uavs.map((u,i)=>`<div class="m"><span>UAV${i} 电量 ${u.e}</span><b>${
+    TASKN[u.task]}${u.task===0?'·'+MODEN[u.mode]:''}${u.stranded?' · 站外耗尽':u.recharged?' · 已补给':''}</b></div>`).join('');
+  // 指令跟随探针：只有高层显式指定了目标的机才有 tgt/dt
+  const wt=f.uavs.map((u,i)=>[u,i]).filter(([u])=>u.tgt);
+  if(wt.length){
+    h+='<div class="m" style="border:0;margin-top:6px"><span>指令跟随（距指定目标）</span></div>';
+    h+=wt.map(([u,i])=>`<div class="m"><span>UAV${i} → [${u.tgt[0]},${u.tgt[1]}]${
+      u.ring!==undefined?' 环'+u.ring:''}</span><b>${u.dt} 格</b></div>`).join('');
+    const mean=wt.reduce((a,[u])=>a+u.dt,0)/wt.length;
+    h+=`<div class="m"><span>平均偏差</span><b>${mean.toFixed(1)} 格</b></div>`;
+  }
+  $('#met').innerHTML=h;
+}
+function report(){
+  const r=ST.result;if(!r)return;
+  let h=`<div class="m"><span>总步数</span><b>${r.steps}</b></div>`
+    +(r.end_reason?`<div class="m"><span>结束原因</span><b>${esc(r.end_reason)}</b></div>`:'')
+    +MET.map(([k,n,p])=>`<div class="m"><span>${n}</span><b>${(r[k]??0).toFixed(p)}</b></div>`).join('');
+  if(r.llm_calls!==undefined)
+    h+=`<div class="m"><span>大模型调用 / 失败降级</span><b>${r.llm_calls} / ${r.llm_failures}</b></div>`;
+  h+=`<div class="row" style="margin-top:8px">
+      <button class="ghost" id="dl">下载报告 JSON</button></div>`;
+  $('#rep').innerHTML=h;
+  $('#dl').onclick=()=>{
+    const blob=new Blob([JSON.stringify({config:ST.cfg,init:{...ST.init,fire0:undefined,
+      known0:undefined,rknown0:undefined},result:r,commands:ST.log},null,2)],
+      {type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='mission_report.json';a.click();
+  };
+}
+function renderLog(){
+  $('#log').innerHTML=ST.log.slice().reverse().map(L=>{
+    const deg=L.meta&&L.meta.source&&L.meta.source.includes('->');
+    const b=L.brief;
+    return `<div class="ev${deg?' deg':''}"><span class="t">t=${L.t}</span>
+      <span class="k">探索 ${b.explored.toFixed(3)} · 发现 ${b.discovery.toFixed(3)}
+      · 覆盖 ${b.coverage.toFixed(3)} · 人员已知 ${b.rescuer_known.toFixed(3)}
+      · 活火点 ${L.n_clusters} · ${L.ms}ms</span>
+      ${L.meta&&L.meta.prompt_chars?`<div class="k">大模型输入：${L.meta.input_mode==='full_environment_truth'?'完整环境（含真值）':'简报'} · ${L.meta.prompt_chars.toLocaleString()}字符 · ${L.meta.truth_cells}个真值格${L.meta.usage&&L.meta.usage.prompt_tokens?' · '+L.meta.usage.prompt_tokens+' tokens':''}</div>`:''}
+      ${L.event?`<div style="color:#ffd36e">突发事件：${esc(L.event)}</div>`:''}
+      <ul>${L.reason.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+      <pre>${esc(JSON.stringify(L.plan))}</pre></div>`;
+  }).join('')||'—';
+}
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ------------------------------------------------------- 轮询与播放 */
+const BADGE={starting:['run','启动中'],running:['run','仿真中'],done:['ok','已结束'],
+             stopped:['','已停止'],error:['bad','出错了']};
+function setStatus(s){
+  const [c,t]=BADGE[s]||['','未开始'];
+  const el=$('#status'); el.className='badge '+c; el.textContent=t;
+}
+function show(n){
+  if(!ST.frames.length)return;
+  ST.cur=Math.max(0,Math.min(n,ST.frames.length-1));
+  applyTo(ST.cur);draw();panel();
+  const f=ST.frames[ST.cur];
+  $('#seek').max=ST.frames.length-1;$('#seek').value=ST.cur;
+  $('#bar div').style.width=(100*(ST.cur+1)/ST.frames.length)+'%';
+  $('#tinfo').textContent=`t=${f.t}/${ST.init.steps} · 帧 ${ST.cur+1}/${ST.frames.length}`;
+  $('#tmeta').textContent=`${ST.init.policy} · 大脑 ${ST.init.brain} · 重规划/${ST.init.replan_every}步${ST.init.brain==='llm'?' · '+ST.init.llm_input_mode:''}`;
+}
+async function poll(){
+  if(!ST)return;
+  let r;
+  const state=ST;
+  try{
+    const response=await fetch(`/api/frames/${state.sid}?since=${state.frames.length}&log_since=${state.log.length}`);
+    if(!response.ok){
+      const error=new Error((await response.json()).detail||`HTTP ${response.status}`);
+      error.status=response.status;throw error;
+    }
+    r=await response.json();
+  }catch(e){
+    if(ST!==state)return;
+    if(e.status===404){
+      ST.status='error';ST.playing=false;setStatus('error');
+      $('#err').textContent=String(e);$('#go').disabled=false;$('#stop').disabled=true;
+      return;
+    }
+    $('#err').textContent='连接服务失败，正在重试：'+e;
+    setTimeout(poll,1000);return;
+  }
+  if(ST!==state)return;
+  if(r.init&&!ST.init){ST.init=r.init;setup(r.init)}
+  if(r.frames&&r.frames.length){
+    const first=!ST.frames.length;
+    ST.frames.push(...r.frames);
+    if(first)show(0);
+  }
+  if(r.log&&r.log.length){ST.log.push(...r.log);renderLog()}
+  ST.status=r.status;ST.total=r.total;setStatus(r.status);
+  showEvent(r.event);
+  if(r.error){$('#err').innerHTML=esc(r.error)+`<pre>${esc(r.trace||'')}</pre>`}
+  if(r.result&&!ST.result){ST.result=r.result;report()}
+  // 后台结束不代表所有分页帧已取完；继续拉取到 total。
+  if(['running','starting'].includes(r.status)||ST.frames.length<r.total) setTimeout(poll,350);
+  else {$('#stop').disabled=true;$('#go').disabled=false;show(ST.cur)}
+}
+let timer=null;
+function tick(){
+  if(!ST||!ST.playing)return;
+  const mul=parseFloat($('#spd').value);
+  if(ST.cur<ST.frames.length-1) show(ST.cur+1);
+  else if(!['running','starting'].includes(ST.status)&&ST.frames.length>=ST.total){ST.playing=false;$('#play').textContent='重播'}
+  timer=setTimeout(tick,mul===0?0:60*mul);
+}
+$('#play').onclick=()=>{
+  if(!ST)return;
+  if(!ST.playing&&ST.cur>=ST.frames.length-1&&ST.status!=='running')show(0);
+  ST.playing=!ST.playing;$('#play').textContent=ST.playing?'暂停':'播放';
+  if(ST.playing){clearTimeout(timer);tick()}
+};
+$('#seek').oninput=e=>{ST.playing=false;$('#play').textContent='播放';show(+e.target.value)};
+/* 老浏览器不支持 :has()，用 class 兜底高亮选中的 chip */
+function syncChips(){
+  document.querySelectorAll('.chip').forEach(c=>{
+    const i=c.querySelector('input');
+    if(i) c.classList.toggle('on',i.checked);
+  });
+}
+document.querySelectorAll('.chip input').forEach(i=>i.addEventListener('change',syncChips));
+document.querySelectorAll('input[name=ly]').forEach(r=>r.onchange=()=>{drawLegend();draw()});
+$('#showcomm').onchange=draw;$('#showst').onchange=draw;
+
+$('#go').onclick=async()=>{
+  $('#err').textContent='';$('#rep').innerHTML='运行中…';
+  const c=cfg();
+  let r;
+  try{
+    r=await fetch('/api/start',{method:'POST',headers:{'Content-Type':'application/json'},
+                                body:JSON.stringify(c)});
+  }catch(e){$('#err').textContent='连接服务失败：'+e;return}
+  const j=await r.json();
+  if(!r.ok){$('#err').textContent=j.detail||JSON.stringify(j);$('#rep').innerHTML='—';return}
+  clearTimeout(timer);
+  ST={sid:j.sid,cfg:c,init:null,frames:[],total:0,log:[],grids:null,applied:-1,cur:0,
+      playing:true,status:'starting',result:null};
+  $('#log').innerHTML='—';$('#met').innerHTML='—';
+  $('#go').disabled=true;$('#stop').disabled=false;
+  $('#play').disabled=false;$('#play').textContent='暂停';$('#seek').disabled=false;
+  $('#tinfo').textContent='启动中（开局火自蔓延，约 5 秒）…';$('#tmeta').textContent='';
+  setStatus('starting');
+  poll();tick();
+};
+$('#stop').onclick=async()=>{
+  if(ST)await fetch('/api/stop/'+ST.sid,{method:'POST'});
+  $('#stop').disabled=true;
+};
+$('#promptview').onclick=()=>{
+  if(!ST){$('#err').textContent='先用大模型运行一局，再查看输入';return}
+  window.open('/api/prompt/'+ST.sid,'_blank');
+};
+for(const key of ['stop_when_clear','stop_when_depleted']){
+  document.getElementById('f_'+key).onchange=async()=>{
+    if(!ST||!['running','starting'].includes(ST.status))return;
+    try{
+      const options={stop_when_clear:$('#f_stop_when_clear').checked,
+                     stop_when_depleted:$('#f_stop_when_depleted').checked};
+      const response=await fetch('/api/stop_options/'+ST.sid,{method:'POST',
+        headers:{'Content-Type':'application/json'},body:JSON.stringify(options)});
+      if(!response.ok)throw new Error('停止选项更新失败');
+      Object.assign(ST.cfg,options);
+    }catch(e){$('#err').textContent=String(e)}
+  };
+}
+/* -------------------------------------------------------- 突发事件入口 */
+async function sendEvent(txt){
+  if(!ST){$('#err').textContent='先点「开始」跑一局，再下发事件';return}
+  try{
+    const r=await fetch('/api/event/'+ST.sid,{method:'POST',
+      headers:{'Content-Type':'application/json'},body:JSON.stringify({text:txt})});
+    const j=await r.json();
+    if(!r.ok){$('#err').textContent=j.detail||'下发失败';return}
+    showEvent(j.event);
+    $('#err').textContent='';
+  }catch(e){$('#err').textContent='下发失败：'+e}
+}
+function showEvent(ev){
+  const el=$('#evcur');
+  if(ev){el.className='k on';el.textContent='生效中：'+ev}
+  else  {el.className='k';   el.textContent='当前无生效事件'}
+}
+$('#evgo').onclick=()=>sendEvent($('#ev').value);
+$('#evclr').onclick=()=>{$('#ev').value='';sendEvent('')};
+drawLegend();syncChips();setStatus();
+
+
+
+
+
+
+</script>
+</body>
+</html>

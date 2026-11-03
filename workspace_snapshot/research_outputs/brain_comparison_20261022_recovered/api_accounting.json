@@ -1,0 +1,15 @@
+{
+  "formal_decisions": 300,
+  "formal_fallbacks": 0,
+  "paid_prefix_replayed_decisions": 209,
+  "formal_prompt_tokens_including_paid_prefix": 42623793,
+  "formal_completion_tokens_including_paid_prefix": 27382,
+  "formal_decision_historical_latency_median_s": 17.620963166504225,
+  "formal_decision_historical_latency_p95_s": 26.437032877111054,
+  "all_experiment_http_attempts_including_discarded_mixed_runs": 396,
+  "all_experiment_successful_requests": 313,
+  "all_experiment_prompt_tokens": 44442122,
+  "all_experiment_completion_tokens": 28478,
+  "all_experiment_http_errors": 83,
+  "health_probe_note": "One extra small health request failed HTTP 403; no usage returned; excluded from rollout counts."
+}

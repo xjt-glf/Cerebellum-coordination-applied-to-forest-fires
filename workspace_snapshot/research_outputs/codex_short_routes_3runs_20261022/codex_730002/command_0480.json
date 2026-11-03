@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 480, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [10, 30]}, {"task": "explore", "route": [[75, 80], [78, 73], [73, 67]]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "恢复南组中继，东北空白用短弧补齐，西机沿边界直飞。"}

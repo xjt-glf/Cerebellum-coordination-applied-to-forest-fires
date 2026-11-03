@@ -1,0 +1,61 @@
+{
+  "status": "passed",
+  "episodes": [
+    {
+      "seed": 730000,
+      "steps": 600,
+      "explicit_agent_commands": 30,
+      "actor_and_initial_state_match": true,
+      "external_api_calls": 0,
+      "depleted_ever": 0
+    },
+    {
+      "seed": 730001,
+      "steps": 600,
+      "explicit_agent_commands": 30,
+      "actor_and_initial_state_match": true,
+      "external_api_calls": 0,
+      "depleted_ever": 0
+    },
+    {
+      "seed": 730002,
+      "steps": 600,
+      "explicit_agent_commands": 30,
+      "actor_and_initial_state_match": true,
+      "external_api_calls": 0,
+      "depleted_ever": 0
+    }
+  ],
+  "total_explicit_agent_commands": 90,
+  "total_env_steps": 1800,
+  "external_api_calls": 0,
+  "all_initial_fingerprints_match": true,
+  "no_actor_retraining": true,
+  "replay_verification": [
+    {
+      "seed": 730000,
+      "all_600_transitions_identical": true,
+      "actions_orders_metrics_positions_energy_aoi_identical": true,
+      "external_api_calls": 0,
+      "not_a_new_policy_trial": true
+    },
+    {
+      "seed": 730001,
+      "all_600_transitions_identical": true,
+      "actions_orders_metrics_positions_energy_aoi_identical": true,
+      "external_api_calls": 0,
+      "not_a_new_policy_trial": true
+    },
+    {
+      "seed": 730002,
+      "all_600_transitions_identical": true,
+      "actions_orders_metrics_positions_energy_aoi_identical": true,
+      "external_api_calls": 0,
+      "not_a_new_policy_trial": true
+    }
+  ],
+  "credential_scan": {
+    "files_checked": 330,
+    "credential_found": false
+  }
+}

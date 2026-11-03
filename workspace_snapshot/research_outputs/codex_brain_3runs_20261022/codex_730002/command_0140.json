@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 140, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [75, 75]}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 3}]}, "reason": "人员实际分成南中北三组，南侧四人已断链17步，临时增加第三中继恢复灭火队伍；唯一感知机继续未完成区域。"}

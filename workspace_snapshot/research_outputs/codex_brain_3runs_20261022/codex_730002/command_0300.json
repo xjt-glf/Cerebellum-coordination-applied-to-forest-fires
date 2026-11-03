@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 300, "plan": {"uavs": [{"task": "explore", "target": [40, 50]}, {"task": "explore", "target": [10, 90]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [90, 30]}]}, "reason": "中央机继续接近两名AoI上升人员并补图；西机北向扩展并经过补给点，南机补东南未知区，保留一架服务孤立南中部人员。"}

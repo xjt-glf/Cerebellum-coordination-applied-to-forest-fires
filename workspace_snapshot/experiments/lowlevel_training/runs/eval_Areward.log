@@ -1,0 +1,12 @@
+/usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+Traceback (most recent call last):
+  File "/ssd3/xiangjutao/hrl_dqn_improve/experiments/lowlevel_training/evaluate.py", line 629, in <module>
+    main()
+  File "/ssd3/xiangjutao/hrl_dqn_improve/experiments/lowlevel_training/evaluate.py", line 619, in main
+    print(f"[eval] actor={args.actor} sha256={sha256_of(args.actor)[:16]}... "
+                                              ^^^^^^^^^^^^^^^^^^^^^
+  File "/ssd3/xiangjutao/hrl_dqn_improve/experiments/lowlevel_training/evaluate.py", line 59, in sha256_of
+    with open(path, "rb") as f:
+         ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'experiments/lowlevel_training/runs/A_reward_s1501/actor_final_snapshot.pt'

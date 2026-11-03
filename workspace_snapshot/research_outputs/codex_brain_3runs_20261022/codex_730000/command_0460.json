@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 460, "plan": {"uavs": [{"task": "charge", "target": [90, 50]}, {"task": "explore", "target": [95, 95]}, {"task": "explore", "target": [90, 30]}, {"task": "explore", "target": [3, 95]}]}, "reason": "中继电量102立即前往可达的东北侧补给点，替补感知机将在原覆盖位置附近到位；其余两机补东北与西北角落。"}

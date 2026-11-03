@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 120, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [75, 75]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [70, 25]}]}, "reason": "中部人员5失联，主中继转向该人员兼顾南组；满电感知机分别向东北未知区及南部火线外缘推进，北侧中继继续跟随。"}

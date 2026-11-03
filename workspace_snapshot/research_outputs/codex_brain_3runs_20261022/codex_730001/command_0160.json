@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 160, "plan": {"uavs": [{"task": "explore", "target": [70, 50]}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 2}]}, "reason": "UAV3剩200电，提前派满电UAV2赶往前方中继交接，交接到位前旧中继保持；UAV0拓展中东部，西南覆盖继续。"}

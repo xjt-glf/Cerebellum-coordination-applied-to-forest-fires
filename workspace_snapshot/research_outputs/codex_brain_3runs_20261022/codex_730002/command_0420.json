@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 420, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [30, 90]}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 1}]}, "reason": "南侧感知机已回到四人组附近，改为人员中继避免已知区域探索自动改点；北侧低电机完成未结束航程后安排补给，中央覆盖保持。"}

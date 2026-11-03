@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 260, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "route": [[93, 26], [91, 32], [85, 34]]}]}, "reason": "东侧最后活火持续侧扫，三组人员通信保持。"}

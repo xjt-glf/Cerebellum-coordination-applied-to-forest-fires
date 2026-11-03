@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 160, "plan": {"uavs": [{"task": "explore", "target": [65, 75]}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 2}, {"task": "charge", "target": [10, 10]}]}, "reason": "西南机就近充电；中部两机分别补失联人员和东行组。"}

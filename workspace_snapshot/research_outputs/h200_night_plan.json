@@ -1,0 +1,332 @@
+{
+  "schema_version": 1,
+  "purpose": "execution_contract_for_server_agent_not_existing_training_cli",
+  "version": "goal_conditioned_overnight_v1",
+  "project_root_resolution": "discover_at_runtime",
+  "documents": [
+    "research_outputs/lowlevel_training_plan.md",
+    "research_outputs/lowlevel_training_acceptance.md",
+    "research_outputs/H200服务器执行说明.md"
+  ],
+  "entrypoint": {
+    "path": "experiments/lowlevel_training/overnight.py",
+    "status": "requires_server_implementation"
+  },
+  "runtime": {
+    "wall_hours": 8,
+    "max_optional_wall_hours": 10,
+    "timezone": "Asia/Shanghai",
+    "deadline": null,
+    "final_acceptance_reserve_minutes": 60,
+    "gpu_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "strategy": "independent_trials_one_gpu_each",
+    "require_cuda": true,
+    "require_real_h200_inventory": true,
+    "allow_cpu_training_fallback": false
+  },
+  "baseline": {
+    "actor": "deliverable/model/actor_best.pt",
+    "actor_sha256": "e70e3f6169704b7b4027974049d3505a9113e2d6cfd38ceef93e46b460271168",
+    "checkpoint": "lowlevel/runs/w4_h384/ckpt_best.pt",
+    "checkpoint_sha256": "1b03cb900760d101ab396e80667135ed10d6c9a13e010728c96a1b39b479bb87",
+    "immutable": true
+  },
+  "architecture": {
+    "obs_dim": 355,
+    "n_actions": 9,
+    "global_dim": 8,
+    "hidden": 384,
+    "n_layers": 2,
+    "initial_precision": "float32",
+    "deployment_action_mode": "argmax"
+  },
+  "initialization": {
+    "finetune": "actor_only_reset_value_optimizer_valuenorm",
+    "same_trial_resume": "full_state_with_version_check",
+    "critic_warmup_updates": 5,
+    "original_full_resume_for_new_rewards": false
+  },
+  "sampler": {
+    "grid": [
+      100,
+      100
+    ],
+    "max_steps": 600,
+    "spread_steps": 40,
+    "spread_gain": 1,
+    "randomize_wind": true,
+    "energy_cost_mode": "uniform",
+    "pilot_num_uavs": 4,
+    "rescuers": [
+      10,
+      14
+    ],
+    "primary_fires": 3,
+    "late_fires": [
+      3,
+      4
+    ],
+    "replan_check_steps": 20,
+    "retain_valid_unfinished_goal": true,
+    "role_assignment": "randomized_among_feasible_agents",
+    "formal_num_uavs_blocks": [
+      4,
+      4,
+      4,
+      3
+    ],
+    "variable_n_same_batch": false
+  },
+  "goals": {
+    "explore_roi_half_width": 5,
+    "arrival_radius": 5,
+    "min_initial_unknown_fraction": 0.6,
+    "completion_fraction_of_initial_unknown": 0.8,
+    "goal_bonus_dedup": true,
+    "patrol_band_tolerance": 3,
+    "patrol_angle_sectors": 12,
+    "patrol_require_observed_fire": true,
+    "auto_radius_eval": "resolve_each_step",
+    "held_goal_timeout": {
+      "minimum": 40,
+      "maximum": 160,
+      "formula": "2*shortest_navigation_steps+20"
+    }
+  },
+  "reward_candidates": {
+    "P1": {
+      "explore_inside_new_cell": 0.04,
+      "explore_inside_new_fire": 0.4,
+      "explore_outside_multiplier": 0.05,
+      "grid_progress_weight": 0.05,
+      "progress_clip": "[-sqrt(2),sqrt(2)]",
+      "arrival_bonus": 2,
+      "completion_bonus": 3,
+      "patrol_progress_weight": 0.05,
+      "patrol_in_band_bonus": 0.02,
+      "patrol_new_sector_bonus": 0.15,
+      "preserve_common_safety": true,
+      "preserve_charge_relay_initially": true
+    },
+    "P2": {
+      "base": "P1",
+      "explore_outside_multiplier": 0,
+      "grid_progress_weight": 0.1,
+      "arrival_bonus": 3,
+      "completion_bonus": 5,
+      "patrol_progress_weight": 0.1,
+      "patrol_in_band_bonus": 0.04,
+      "patrol_new_sector_bonus": 0.25
+    },
+    "P3": {
+      "base": "P1",
+      "behavior_cloning": true,
+      "teacher_transition_target": 100000,
+      "teacher_units": "single_agent_transition",
+      "bc_epochs_min": 3,
+      "bc_epochs_max": 10,
+      "no_teacher_at_evaluation": true
+    }
+  },
+  "ppo": {
+    "actor_lr": 0.0001,
+    "critic_lr": 0.0003,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip": 0.15,
+    "ppo_epochs": 4,
+    "entropy_start": 0.02,
+    "entropy_final": 0.01,
+    "rollout": 128,
+    "optional_rollout": 256,
+    "target_minibatch_agent_samples": 4096,
+    "max_grad_norm": 5,
+    "eval_every_env_steps": 200000,
+    "eval_wall_interval_minutes": 20,
+    "save_wall_interval_minutes": 10
+  },
+  "resources": {
+    "cpu_effective_limit_detection": [
+      "affinity",
+      "cgroup",
+      "online_cpu"
+    ],
+    "training_worker_fraction": 0.7,
+    "eval_worker_fraction": 0.15,
+    "worker_threads": 1,
+    "initial_workers_per_trial_max": 16,
+    "initial_envs_per_worker": 2,
+    "profile_envs_per_worker": [
+      1,
+      2,
+      4
+    ],
+    "profile_all_eight_trials": true,
+    "worker_cuda_context": false
+  },
+  "initial_trials": [
+    {
+      "id": "P1_s1101",
+      "gpu": 0,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1101,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P1_s1102",
+      "gpu": 1,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1102,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P2_s1201",
+      "gpu": 2,
+      "reward": "P2",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1201,
+      "actor_lr": 0.0002
+    },
+    {
+      "id": "P2_s1202",
+      "gpu": 3,
+      "reward": "P2",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1202,
+      "actor_lr": 0.0002
+    },
+    {
+      "id": "P3_s1301",
+      "gpu": 4,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_then_bc",
+      "seed": 1301,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P3_s1302",
+      "gpu": 5,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_then_bc",
+      "seed": 1302,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "A_roles_s1401",
+      "gpu": 6,
+      "reward": "original",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1401,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "A_reward_s1501",
+      "gpu": 7,
+      "reward": "P1",
+      "roles": "legacy_fixed",
+      "init": "actor_only",
+      "seed": 1501,
+      "actor_lr": 0.0001
+    }
+  ],
+  "stage_gates": {
+    "preflight_target_minutes": 45,
+    "pilot_target_env_steps_per_trial": 600000,
+    "pilot_wall_minutes_max": 75,
+    "first_selection_elapsed_hours": 2,
+    "fallback_decision_elapsed_hours": 3.5,
+    "promotion_skill_gain_pp": 15,
+    "promotion_partial_gain_pp": 5,
+    "fallback_insufficient_skill_gain_pp": 10,
+    "minimum_meaningfully_updated_candidate_families": 2,
+    "max_promoted_families": 2
+  },
+  "fallback": {
+    "enabled": true,
+    "requires_finetune_failure_gate": true,
+    "keep_best_finetune_trial": true,
+    "branches": [
+      {
+        "id": "R1",
+        "reward": "P1",
+        "roles": "randomized",
+        "init": "random",
+        "seeds": [
+          2101,
+          2102
+        ]
+      },
+      {
+        "id": "R2",
+        "reward": "P1",
+        "roles": "randomized",
+        "init": "random_then_bc",
+        "seeds": [
+          2201,
+          2202
+        ]
+      }
+    ],
+    "architecture_change_default": false
+  },
+  "split": {
+    "training_seed_range": [
+      100000,
+      499999
+    ],
+    "quick_dev_seed_start": 510000,
+    "quick_dev_scenarios": 8,
+    "full_dev_seed_start": 511000,
+    "full_dev_scenarios": 12,
+    "final_skill_seed_start": 520000,
+    "final_skill_scenarios": 20,
+    "final_mission_seed_start": 530000,
+    "final_mission_episodes": 20,
+    "final_test_used_for_tuning": false
+  },
+  "acceptance": {
+    "protocol": "research_outputs/lowlevel_training_acceptance.md",
+    "explore_arrival_success": 0.8,
+    "explore_own_region_complete": 0.7,
+    "patrol_arrival_success": 0.8,
+    "patrol_in_band_ratio": 0.7,
+    "relay_own_arrival_success": 0.85,
+    "relay_own_after_arrival_coverage": 0.9,
+    "charge_success": 0.95,
+    "no_waypoint_assist": true,
+    "no_teacher_override": true,
+    "record_worst_agent": true,
+    "report_clustered_confidence_intervals": true,
+    "statuses": [
+      "passed",
+      "provisional",
+      "failed"
+    ]
+  },
+  "output": {
+    "runs_dir": "lowlevel/runs/goal_conditioned_night",
+    "delivery_dir": "research_outputs/lowlevel_training_final",
+    "selected_actor": "actor_selected.pt",
+    "metadata": "metadata.json",
+    "report": "training_report.md",
+    "do_not_overwrite_baseline": true
+  }
+}

@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 0, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[55, 35], [49, 35], [44, 30]]}, {"task": "explore", "target": [85, 37]}, {"task": "explore", "target": [30, 55]}]}, "reason": "一机传递人员知识，三机分赴火区；附近中央火区用19步短弧线，其余直飞。"}

@@ -1,0 +1,36 @@
+{
+  "expected_tick": 520,
+  "source": "codex_joint",
+  "reason": "未发现新增失控火区，人员全员保持安全集结。U0继续南部[85,5]，U1继续[30,90]，U2搜索西北边缘[5,95]，U3向中东[70,45]补扫。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        85,
+        5
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        30,
+        90
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        5,
+        95
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        70,
+        45
+      ]
+    }
+  ],
+  "orders": []
+}

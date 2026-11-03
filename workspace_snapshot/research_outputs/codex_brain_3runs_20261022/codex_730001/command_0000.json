@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 0, "plan": {"uavs": [{"task": "explore", "target": [82, 80]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [38, 37]}, {"task": "explore", "target": [22, 15]}]}, "reason": "三架分别侦查三个火场；西侧UAV1负责人员链路，远端东北火场提前派UAV0前往。"}

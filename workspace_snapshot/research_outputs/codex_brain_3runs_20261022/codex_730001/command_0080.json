@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 80, "plan": {"uavs": [{"task": "explore", "target": [75, 86]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [50, 80]}, {"task": "relay", "rescuer_id": 8}]}, "reason": "东北感知机补西缘并拓图；北部机向东北未知区移动，两个中继分别追随已分离的人员组。"}

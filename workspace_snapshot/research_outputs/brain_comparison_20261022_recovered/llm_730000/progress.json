@@ -1,0 +1,8 @@
+{
+  "arm": "llm",
+  "seed": 730000,
+  "t": 600,
+  "elapsed_seconds": 109.13324733400077,
+  "api_calls": 30,
+  "api_fallbacks": 0
+}

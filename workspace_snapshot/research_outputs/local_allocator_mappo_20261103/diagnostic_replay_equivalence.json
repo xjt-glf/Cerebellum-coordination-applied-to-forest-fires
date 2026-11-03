@@ -1,0 +1,156 @@
+{
+  "checked": 25,
+  "all_match": true,
+  "comparisons": [
+    {
+      "train_seed": "1103",
+      "n": 7,
+      "seed": 988001,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 7,
+      "seed": 988000,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 6,
+      "seed": 987120,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 4,
+      "seed": 987040,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 3,
+      "seed": 987001,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 5,
+      "seed": 987081,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 8,
+      "seed": 988041,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 5,
+      "seed": 987080,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 3,
+      "seed": 987000,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 6,
+      "seed": 987121,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 8,
+      "seed": 988040,
+      "match": true
+    },
+    {
+      "train_seed": "1103",
+      "n": 4,
+      "seed": 987041,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 6,
+      "seed": 987120,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 5,
+      "seed": 987081,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 5,
+      "seed": 987080,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 3,
+      "seed": 987001,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 4,
+      "seed": 987041,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 7,
+      "seed": 988001,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 4,
+      "seed": 987040,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 7,
+      "seed": 988000,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 3,
+      "seed": 987000,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 6,
+      "seed": 987121,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 8,
+      "seed": 988041,
+      "match": true
+    },
+    {
+      "train_seed": "1104",
+      "n": 8,
+      "seed": 988040,
+      "match": true
+    },
+    {
+      "train_seed": "1105",
+      "n": 3,
+      "seed": 987001,
+      "match": true
+    }
+  ]
+}

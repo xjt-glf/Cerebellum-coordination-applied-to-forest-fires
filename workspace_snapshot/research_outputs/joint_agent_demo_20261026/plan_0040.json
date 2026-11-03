@@ -1,0 +1,70 @@
+{
+  "expected_tick": 40,
+  "source": "codex_joint",
+  "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        34,
+        48
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        84,
+        29
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2
+      ],
+      "task": "contain",
+      "target": [
+        29,
+        46
+      ],
+      "approach_sector": "west",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        3,
+        4
+      ],
+      "task": "contain",
+      "target": [
+        29,
+        46
+      ],
+      "approach_sector": "south",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        8,
+        9,
+        10
+      ],
+      "task": "move",
+      "target": [
+        49,
+        46
+      ],
+      "valid_for_ticks": 1200
+    }
+  ]
+}

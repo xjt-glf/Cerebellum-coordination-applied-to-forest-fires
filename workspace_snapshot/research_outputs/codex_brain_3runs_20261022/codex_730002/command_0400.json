@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 400, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [30, 90]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [75, 15]}]}, "reason": "满电南中部机回到孤立人员6；西侧机利用返航余量补西北大片未知区，南侧机继续完成返回南组的航程，中央覆盖保持。"}

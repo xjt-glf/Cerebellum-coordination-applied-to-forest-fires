@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 260, "plan": {"uavs": [{"task": "explore", "target": [20, 20]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [20, 75]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "三火均已合围，释放两机直线拓展未知地图，双中继随人员推进。"}

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "original_independent_episodes": 9,
+  "additional_independent_episodes": 0,
+  "new_api_calls": 0,
+  "seeds": [
+    730000,
+    730001,
+    730002
+  ],
+  "metric_count": 54,
+  "instrumented_transition_records": 5400,
+  "all_nine_trajectories_identical_to_original": true,
+  "initial_state_actor_and_horizon_match": true,
+  "checks": [
+    "area accounting: affected=burning+burnout+extinguished",
+    "comm_coverage_rate=share AoI==0",
+    "role fractions sum to1",
+    "depleted counts match original summaries",
+    "instruction switches match original summaries"
+  ],
+  "source_sha256": {
+    "experiments/comprehensive_comparison/enrich.py": "d7da8d3ea04656ae3cd4441bdfccdd41878270e6569757439e54adf8a961cdd8",
+    "experiments/comprehensive_comparison/analyze.py": "38dee1842832fe9a640dd9de3e2fb466ba8bcadd50ebbe682d26122ba5580bcb"
+  },
+  "credential_scan": {
+    "files_checked": 276,
+    "credential_found": false
+  }
+}

@@ -1,0 +1,10 @@
+[ranking] Q(规划器) 高于对照的比例：
+  vs degenerate  772/960 = 80.4%   mean gap +0.143
+  vs random      735/960 = 76.6%   mean gap +0.090
+[增量优势 S_ReAd 分布] （门限 alpha 就从这里取）
+  planner     mean +0.0099  p10 -0.0466  p20 -0.0272  p50 +0.0077
+  degenerate  mean -0.0259  p10 -0.0875  p20 -0.0597  p50 -0.0243
+  random      mean -0.0127  p10 -0.0808  p20 -0.0503  p50 -0.0115
+[gating] alpha 自动标定 = -0.0272
+[ungated               ] explored 0.687 disc 0.635 rknown 0.635 ext 209 contained 2.35 depleted 3.30
+[gated(alpha=-0.027)   ] explored 0.734 disc 0.831 rknown 0.831 ext 235 contained 2.73 depleted 2.35  resamples 4121

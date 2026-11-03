@@ -1,0 +1,27 @@
+{
+  "expected_tick": 280,
+  "source": "codex_joint",
+  "reason": "撤离令已对全部人员生效；9号正从南侧绕过火场，U0改为护送9号，U3护送北侧10号，U1随中部3号。U2搜索北部[50,85]，人员继续既定撤离路线。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 3
+    },
+    {
+      "task": "explore",
+      "target": [
+        50,
+        85
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    }
+  ],
+  "orders": []
+}

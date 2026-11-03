@@ -1,0 +1,62 @@
+[
+  {
+    "seed": 730000,
+    "first_fallback_t": 480,
+    "fallbacks": 3,
+    "successful_api_decisions": 27
+  },
+  {
+    "seed": 730001,
+    "first_fallback_t": 460,
+    "fallbacks": 5,
+    "successful_api_decisions": 25
+  },
+  {
+    "seed": 730002,
+    "first_fallback_t": 440,
+    "fallbacks": 6,
+    "successful_api_decisions": 24
+  },
+  {
+    "seed": 730003,
+    "first_fallback_t": 440,
+    "fallbacks": 8,
+    "successful_api_decisions": 22
+  },
+  {
+    "seed": 730004,
+    "first_fallback_t": 400,
+    "fallbacks": 9,
+    "successful_api_decisions": 21
+  },
+  {
+    "seed": 730005,
+    "first_fallback_t": 400,
+    "fallbacks": 10,
+    "successful_api_decisions": 20
+  },
+  {
+    "seed": 730006,
+    "first_fallback_t": 380,
+    "fallbacks": 10,
+    "successful_api_decisions": 20
+  },
+  {
+    "seed": 730007,
+    "first_fallback_t": 380,
+    "fallbacks": 10,
+    "successful_api_decisions": 20
+  },
+  {
+    "seed": 730008,
+    "first_fallback_t": 400,
+    "fallbacks": 8,
+    "successful_api_decisions": 22
+  },
+  {
+    "seed": 730009,
+    "first_fallback_t": 400,
+    "fallbacks": 9,
+    "successful_api_decisions": 21
+  }
+]

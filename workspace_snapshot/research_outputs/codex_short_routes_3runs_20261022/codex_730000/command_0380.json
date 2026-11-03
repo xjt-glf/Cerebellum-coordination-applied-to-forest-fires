@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 380, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "explore", "route": [[23, 82], [16, 82], [13, 87]]}, {"task": "explore", "route": [[78, 95], [85, 95], [91, 90]]}, {"task": "charge", "target": [90, 50]}]}, "reason": "两处北缘短折线补扫；上组中继近站轮充。"}

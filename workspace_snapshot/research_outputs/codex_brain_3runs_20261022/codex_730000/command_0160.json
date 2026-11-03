@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 160, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 10}, {"task": "explore", "target": [85, 35]}, {"task": "explore", "target": [30, 75]}]}, "reason": "南侧中继向人员9调整以覆盖中间缺口，东侧机回看仍在扩散火场；已满电北侧机拓展西北地图。"}

@@ -1,0 +1,50 @@
+[
+  {
+    "n": 3,
+    "persons": 0,
+    "passed": true,
+    "reward": -0.44145000000000006
+  },
+  {
+    "n": 3,
+    "persons": 1,
+    "passed": true,
+    "reward": -0.5553499999999999
+  },
+  {
+    "n": 3,
+    "persons": 5,
+    "passed": true,
+    "reward": -0.35630000000000006
+  },
+  {
+    "n": 3,
+    "persons": 14,
+    "passed": true,
+    "reward": -0.62235
+  },
+  {
+    "n": 8,
+    "persons": 0,
+    "passed": true,
+    "reward": -0.50975
+  },
+  {
+    "n": 8,
+    "persons": 1,
+    "passed": true,
+    "reward": -0.46530000000000005
+  },
+  {
+    "n": 8,
+    "persons": 5,
+    "passed": true,
+    "reward": -0.3536
+  },
+  {
+    "n": 8,
+    "persons": 14,
+    "passed": true,
+    "reward": -0.23124999999999996
+  }
+]

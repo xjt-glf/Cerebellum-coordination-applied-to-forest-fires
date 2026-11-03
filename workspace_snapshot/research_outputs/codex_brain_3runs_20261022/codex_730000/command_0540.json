@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 540, "plan": {"uavs": [{"task": "explore", "target": [95, 5]}, {"task": "explore", "target": [95, 75]}, {"task": "relay", "target": [90, 28], "handover": false}, {"task": "explore", "target": [25, 85]}]}, "reason": "覆盖点保持稳定，东侧两机分别补东南和东北边界；北侧较低电机只做邻近未知块，下一轮补给。"}

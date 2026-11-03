@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 520, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "route": [[64, 6], [71, 8], [74, 14]]}, {"task": "explore", "target": [50, 73]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "南带邻接空白用短折线扫描，北部机横穿中央未知带。"}

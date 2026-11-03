@@ -1,0 +1,19 @@
+{
+  "container_name": "xiangjutao-kda-bench",
+  "container_id": "eb18d59160a4cb446c8dc35e74804ab3d34c0ecca9e1bbdf78b42b7fbf70d4ab",
+  "image_id": "sha256:c8db43004a0fceca03d17f734d8c0b9b7e5f84305226a1c8e1d164be5274e0f7",
+  "host_project": "/ssd3/xiangjutao/hrl_dqn_improve",
+  "container_project": "/workspace/hrl_dqn_improve",
+  "hardware_observed": "8 x NVIDIA H800",
+  "hardware_requested": "8 x NVIDIA H200",
+  "hardware_note": "Use actual observed H800 hardware in all reported results.",
+  "logical_cpus": 192,
+  "python": "3.12.3",
+  "torch": "2.13.0+cu130",
+  "cuda_runtime": "13.0",
+  "numpy": "2.3.5",
+  "scipy": "1.18.1",
+  "gymnasium": "1.4.0",
+  "lowlevel_actor_sha256_expected": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "provenance_source": "docker inspect and docker exec python3 dependency introspection"
+}

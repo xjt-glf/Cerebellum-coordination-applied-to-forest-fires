@@ -1,0 +1,274 @@
+{
+  "seed": 730002,
+  "t": 580,
+  "metrics": {
+    "explored": 0.669,
+    "discovery": 1.0,
+    "rescuer_known": 1.0,
+    "coverage": 1.0,
+    "burned": 0.0431
+  },
+  "true_clusters": [
+    {
+      "xy": [
+        70.8,
+        13.3
+      ],
+      "size": 9,
+      "contained": true,
+      "unknown_boundary": 0
+    }
+  ],
+  "known_clusters": [],
+  "uavs": [
+    {
+      "id": 0,
+      "xy": [
+        16.0,
+        55.0
+      ],
+      "E": 402.5,
+      "task": "comm_relay",
+      "target": [
+        15.613984830642124,
+        60.89917134196894
+      ],
+      "d": 5.9,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        7,
+        9,
+        10
+      ]
+    },
+    {
+      "id": 1,
+      "xy": [
+        38.0,
+        52.0
+      ],
+      "E": 300.0,
+      "task": "comm_relay",
+      "target": [
+        38.70710678118655,
+        53.29289321881345
+      ],
+      "d": 1.5,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": 2,
+      "xy": [
+        46.0,
+        23.0
+      ],
+      "E": 150.0,
+      "task": "comm_relay",
+      "target": [
+        44.0,
+        21.0
+      ],
+      "d": 2.8,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        6
+      ]
+    },
+    {
+      "id": 3,
+      "xy": [
+        73.0,
+        9.0
+      ],
+      "E": 552.5,
+      "task": "comm_relay",
+      "target": [
+        70.0,
+        9.0
+      ],
+      "d": 3.0,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": 1,
+      "xy": [
+        75.0,
+        12.5
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 2,
+      "xy": [
+        74.0,
+        11.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 3,
+      "xy": [
+        70.0,
+        9.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 4,
+      "xy": [
+        75.0,
+        13.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 5,
+      "xy": [
+        38.7,
+        53.3
+      ],
+      "aoi": 0.0,
+      "link": [
+        1
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 6,
+      "xy": [
+        44.0,
+        21.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        2
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 7,
+      "xy": [
+        15.6,
+        60.9
+      ],
+      "aoi": 0.0,
+      "link": [
+        0
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 8,
+      "xy": [
+        43.8,
+        48.4
+      ],
+      "aoi": 0.0,
+      "link": [
+        1
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 9,
+      "xy": [
+        14.5,
+        58.5
+      ],
+      "aoi": 0.0,
+      "link": [
+        0
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 10,
+      "xy": [
+        17.5,
+        55.5
+      ],
+      "aoi": 0.0,
+      "link": [
+        0
+      ],
+      "status": "idle"
+    }
+  ],
+  "unknown_tiles_x_rows_y_cols_centers_10_30_50_70_90": [
+    [
+      400,
+      211,
+      39,
+      117,
+      271
+    ],
+    [
+      333,
+      264,
+      30,
+      32,
+      161
+    ],
+    [
+      124,
+      48,
+      1,
+      26,
+      105
+    ],
+    [
+      23,
+      49,
+      30,
+      14,
+      130
+    ],
+    [
+      163,
+      110,
+      105,
+      327,
+      194
+    ]
+  ],
+  "wind": {
+    "wind_speed": 12,
+    "wind_direction_radians": 5.959917504467206
+  }
+}

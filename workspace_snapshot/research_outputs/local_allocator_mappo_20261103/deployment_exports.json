@@ -1,0 +1,20 @@
+{
+  "1103": {
+    "actor": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/deployment/s1103/actor_selected.pt",
+    "actor_sha256": "ca831ae50ef667a1fee0085369a5481cb6ed396e3fe734c06afe15f2c222dba2",
+    "critic_sha256": "616cc25f09963933fcc2190e4cb225599e24da563b8f564e0dbe2204c8c7ef09",
+    "source_checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_01088.pt"
+  },
+  "1104": {
+    "actor": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/deployment/s1104/actor_selected.pt",
+    "actor_sha256": "f60243da8dc0beb190e57804a74a4de246df370362264f48473db46da9b5c021",
+    "critic_sha256": "7c0d1ddaca2f11a6ef96a88a6a46425af4a88cdd485972a65e286ef0560929b1",
+    "source_checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/checkpoint_01008.pt"
+  },
+  "1105": {
+    "actor": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/deployment/s1105/actor_selected.pt",
+    "actor_sha256": "3f49caa7c6630b0b1e8ca9168c5c3732646a017aa0624ea5d6a54bf03b46d2cc",
+    "critic_sha256": "658d41531f5e692aab17b86b15d96211db46e662c2fccd3b1b3ef7e554e1e357",
+    "source_checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/checkpoint_00896.pt"
+  }
+}

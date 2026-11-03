@@ -1,0 +1,44 @@
+{
+  "expected_tick": 100,
+  "source": "codex_joint",
+  "reason": "西火区南侧火线已改变，3、4号解除南侧约束，与1、2号共同追踪剩余有效边界。中南队将到达火线，东南队继续行进。U0刷新西区北边，U2扫描中南区并与U1形成交付覆盖，U3随东队前推。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        29,
+        52
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        51,
+        28
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        3,
+        4
+      ],
+      "task": "contain",
+      "target": [
+        30,
+        48
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

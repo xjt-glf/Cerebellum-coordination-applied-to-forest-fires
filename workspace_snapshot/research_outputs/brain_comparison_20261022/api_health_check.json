@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "status": 403,
+  "body": "{\"error\":{\"message\":\"Access to model denied. Please make sure you are eligible for using the model.\",\"id\":\"bc2aa33e-c8ae-978b-a892-87e9a7e4cd49\",\"type\":\"AccessDenied.Unpurchased\",\"code\":\"AccessDenied.Unpurchased\"}}"
+}

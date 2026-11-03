@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 440, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [30, 10]}, {"task": "explore", "target": [74, 69]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "南站机直飞西南未知带，东机回扫东北内侧空白。"}

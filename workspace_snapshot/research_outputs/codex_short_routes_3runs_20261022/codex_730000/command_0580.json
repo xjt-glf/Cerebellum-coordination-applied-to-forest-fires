@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 580, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [66, 72]}, {"task": "charge", "target": [90, 90]}, {"task": "relay", "rescuer_id": 4}]}, "reason": "最后窗口完成北部直线，低电机安全返东北站，上组中继补第四人。"}

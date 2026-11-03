@@ -1,0 +1,26 @@
+{
+  "expected_tick": 320,
+  "source": "codex_joint",
+  "reason": "撤离队伍拉长，覆盖降到30%，将U0由9号转到中部6号，把覆盖向中队补齐；U3转护送后方8号。U1继续补给，U2在靠近西北补给点的同时完成[10,80]搜索。人员无新火情，继续撤离。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "explore",
+      "target": [
+        10,
+        80
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    }
+  ],
+  "orders": []
+}

@@ -1,0 +1,29 @@
+{
+  "seeds": [
+    730000,
+    730001,
+    730002
+  ],
+  "means": {
+    "heuristic": {
+      "affected": 553.6666666666666,
+      "uav_coverage": 0.7002222222222222,
+      "aoi_mean": 5.637666666666667,
+      "explore_final": 0.8204666666666666
+    },
+    "llm": {
+      "affected": 533.0,
+      "uav_coverage": 0.7652777777777778,
+      "aoi_mean": 4.3292777777777784,
+      "explore_final": 0.6628
+    },
+    "codex": {
+      "affected": 445.3333333333333,
+      "uav_coverage": 0.8302777777777778,
+      "aoi_mean": 1.8770555555555555,
+      "explore_final": 0.7777333333333333
+    }
+  },
+  "comparison": "historical same-three-seed Codex single-waypoint cohort; not latest short-route cohort",
+  "source": "research_outputs/comprehensive_comparison_3seeds_20261022/analysis.json"
+}

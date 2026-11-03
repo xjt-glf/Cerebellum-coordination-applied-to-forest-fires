@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 340, "plan": {"uavs": [{"task": "charge", "target": [10, 50]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[41, 96], [47, 93], [51, 87]]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "西机补能，北机短弧扫北缘并经过充电区，双中继继续维持。"}

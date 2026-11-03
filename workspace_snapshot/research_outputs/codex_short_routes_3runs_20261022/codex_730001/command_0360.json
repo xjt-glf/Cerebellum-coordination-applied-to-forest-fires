@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 360, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [40, 75]}, {"task": "relay", "rescuer_id": 9}, {"task": "charge", "target": [90, 50]}]}, "reason": "火场已全部合围，释放北机探索西北未知区域，中央接替中继。"}

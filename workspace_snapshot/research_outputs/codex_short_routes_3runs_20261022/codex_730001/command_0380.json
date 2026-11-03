@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 380, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [40, 75]}, {"task": "charge", "target": [90, 50]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "东站刚充满机接替中央中继，原中继返同站补能，西北探索继续。"}

@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 100, "plan": {"uavs": [{"task": "explore", "target": [90, 90]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [60, 95]}, {"task": "relay", "rescuer_id": 2}]}, "reason": "重新分开两个中继：一架覆盖西侧落后人员，一架跟进最前方人员；东北机在补给点附近刷新火情并补能，另一机扩北侧。"}

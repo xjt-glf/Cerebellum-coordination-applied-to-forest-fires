@@ -1,0 +1,8 @@
+{
+  "sid": "2f74ce276ee5",
+  "url": "http://127.0.0.1:8000/?sid=2f74ce276ee5",
+  "seed": 730000,
+  "actor": "actor_selected.pt",
+  "uav_brain": "heuristic",
+  "personnel_brain": "codex"
+}

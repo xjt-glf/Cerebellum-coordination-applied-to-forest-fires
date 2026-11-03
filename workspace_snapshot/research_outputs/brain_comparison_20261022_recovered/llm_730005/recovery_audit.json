@@ -1,0 +1,6 @@
+{
+  "source": "/Users/xiangjutao/Desktop/hrl_dqn_improve/research_outputs/brain_comparison_20261022/llm_730005",
+  "replayed_steps": 400,
+  "prefix_trajectory_identical": true,
+  "live_api_from_t": 400
+}

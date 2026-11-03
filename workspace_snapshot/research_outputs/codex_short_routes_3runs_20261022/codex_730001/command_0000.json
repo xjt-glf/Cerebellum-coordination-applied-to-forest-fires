@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 0, "plan": {"uavs": [{"task": "explore", "target": [82, 80]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [38, 37]}, {"task": "explore", "route": [[23, 10], [22, 17], [16, 21]]}]}, "reason": "保持一机通信，三火区并行感知，西南火区用18步折线绕行。"}

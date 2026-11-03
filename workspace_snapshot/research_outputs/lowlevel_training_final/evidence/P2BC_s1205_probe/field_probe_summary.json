@@ -1,0 +1,25 @@
+{
+ "explore_AB_pairs": 6,
+ "both_arrived": 6,
+ "one_arrived": 0,
+ "mean_traj_diff": 66.83333333333333,
+ "patrol_ring": {
+  "auto": {
+   "err": 1.95,
+   "arrived": true
+  },
+  "6.0": {
+   "err": 2.53,
+   "arrived": true
+  },
+  "10.0": {
+   "err": 1.95,
+   "arrived": true
+  }
+ },
+ "relay_mixed": {
+  "n": 12,
+  "resolved_correct": 12,
+  "followed_right": 12
+ }
+}

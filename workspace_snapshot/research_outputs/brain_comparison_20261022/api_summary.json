@@ -1,0 +1,20 @@
+{
+  "logical_calls": 300,
+  "successful_llm_decisions": 222,
+  "fallback_decisions": 78,
+  "http_attempts": 305,
+  "failed_attempts": 83,
+  "latency_median_s": 17.522426854498917,
+  "latency_p95_s": 26.437032877111054,
+  "prompt_tokens": 31682470,
+  "completion_tokens": 20541,
+  "returned_models": [
+    "qwen-plus"
+  ],
+  "successful_http_median_s": 17.71090397900116,
+  "successful_http_p95_s": 27.112630130600156,
+  "error_counts": {
+    "429": 5,
+    "403": 78
+  }
+}

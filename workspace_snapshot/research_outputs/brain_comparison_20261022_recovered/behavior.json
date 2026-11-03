@@ -1,0 +1,321 @@
+[
+  {
+    "arm": "heuristic",
+    "seed": 730000,
+    "role_uav_steps": {
+      "relay": 800,
+      "explore": 1260,
+      "charge": 180,
+      "patrol": 160
+    },
+    "first_70pct_explored_step": 282,
+    "mean_all_fire_knowledge": 0.6564780902371776,
+    "mean_all_fire_discovery": 0.6584502665690166,
+    "mean_extinguished_cells": 147.88833333333332,
+    "instruction_changes": 53,
+    "charge_override_events": 6
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730001,
+    "role_uav_steps": {
+      "explore": 1260,
+      "relay": 680,
+      "charge": 300,
+      "patrol": 160
+    },
+    "first_70pct_explored_step": 382,
+    "mean_all_fire_knowledge": 0.2521229441970688,
+    "mean_all_fire_discovery": 0.25283765024471944,
+    "mean_extinguished_cells": 105.70666666666666,
+    "instruction_changes": 68,
+    "charge_override_events": 9
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730002,
+    "role_uav_steps": {
+      "relay": 680,
+      "explore": 1220,
+      "charge": 240,
+      "patrol": 260
+    },
+    "first_70pct_explored_step": 284,
+    "mean_all_fire_knowledge": 0.7052595787983159,
+    "mean_all_fire_discovery": 0.7082393617037704,
+    "mean_extinguished_cells": 138.86166666666668,
+    "instruction_changes": 61,
+    "charge_override_events": 8
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730003,
+    "role_uav_steps": {
+      "relay": 640,
+      "explore": 1140,
+      "charge": 260,
+      "patrol": 360
+    },
+    "first_70pct_explored_step": 354,
+    "mean_all_fire_knowledge": 0.5374781149488986,
+    "mean_all_fire_discovery": 0.5403399367991303,
+    "mean_extinguished_cells": 118.63,
+    "instruction_changes": 78,
+    "charge_override_events": 8
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730004,
+    "role_uav_steps": {
+      "relay": 820,
+      "explore": 1080,
+      "charge": 220,
+      "patrol": 280
+    },
+    "first_70pct_explored_step": 271,
+    "mean_all_fire_knowledge": 0.47169304550016394,
+    "mean_all_fire_discovery": 0.47642951546553,
+    "mean_extinguished_cells": 92.25333333333333,
+    "instruction_changes": 81,
+    "charge_override_events": 8
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730005,
+    "role_uav_steps": {
+      "explore": 1140,
+      "relay": 740,
+      "charge": 300,
+      "patrol": 220
+    },
+    "first_70pct_explored_step": 304,
+    "mean_all_fire_knowledge": 0.527739267660648,
+    "mean_all_fire_discovery": 0.5313636611001579,
+    "mean_extinguished_cells": 91.025,
+    "instruction_changes": 72,
+    "charge_override_events": 9
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730006,
+    "role_uav_steps": {
+      "relay": 660,
+      "explore": 1400,
+      "charge": 240,
+      "patrol": 100
+    },
+    "first_70pct_explored_step": 386,
+    "mean_all_fire_knowledge": 0.6682064947603528,
+    "mean_all_fire_discovery": 0.6682064947603528,
+    "mean_extinguished_cells": 160.09166666666667,
+    "instruction_changes": 77,
+    "charge_override_events": 8
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730007,
+    "role_uav_steps": {
+      "explore": 1500,
+      "relay": 600,
+      "charge": 300
+    },
+    "first_70pct_explored_step": 327,
+    "mean_all_fire_knowledge": 0.8579067076151371,
+    "mean_all_fire_discovery": 0.8591198223692355,
+    "mean_extinguished_cells": 170.99166666666667,
+    "instruction_changes": 72,
+    "charge_override_events": 11
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730008,
+    "role_uav_steps": {
+      "explore": 1300,
+      "relay": 680,
+      "charge": 260,
+      "patrol": 160
+    },
+    "first_70pct_explored_step": 292,
+    "mean_all_fire_knowledge": 0.620707759590583,
+    "mean_all_fire_discovery": 0.6280085317186914,
+    "mean_extinguished_cells": 144.70166666666665,
+    "instruction_changes": 77,
+    "charge_override_events": 10
+  },
+  {
+    "arm": "heuristic",
+    "seed": 730009,
+    "role_uav_steps": {
+      "explore": 1100,
+      "relay": 640,
+      "charge": 280,
+      "patrol": 380
+    },
+    "first_70pct_explored_step": 335,
+    "mean_all_fire_knowledge": 0.5711394641767081,
+    "mean_all_fire_discovery": 0.5711394641767081,
+    "mean_extinguished_cells": 125.41833333333334,
+    "instruction_changes": 71,
+    "charge_override_events": 9
+  },
+  {
+    "arm": "llm",
+    "seed": 730000,
+    "role_uav_steps": {
+      "relay": 810,
+      "explore": 902,
+      "patrol": 303,
+      "charge": 385
+    },
+    "first_70pct_explored_step": 509,
+    "mean_all_fire_knowledge": 0.5620997081278469,
+    "mean_all_fire_discovery": 0.5650211534297269,
+    "mean_extinguished_cells": 148.97333333333333,
+    "instruction_changes": 51,
+    "charge_override_events": 10
+  },
+  {
+    "arm": "llm",
+    "seed": 730001,
+    "role_uav_steps": {
+      "relay": 638,
+      "explore": 756,
+      "patrol": 380,
+      "charge": 626
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.3337435549371165,
+    "mean_all_fire_discovery": 0.33541620827604857,
+    "mean_extinguished_cells": 106.83166666666666,
+    "instruction_changes": 54,
+    "charge_override_events": 9
+  },
+  {
+    "arm": "llm",
+    "seed": 730002,
+    "role_uav_steps": {
+      "relay": 653,
+      "explore": 740,
+      "patrol": 584,
+      "charge": 423
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.5760499360548105,
+    "mean_all_fire_discovery": 0.5985629444705002,
+    "mean_extinguished_cells": 110.76666666666667,
+    "instruction_changes": 63,
+    "charge_override_events": 7
+  },
+  {
+    "arm": "llm",
+    "seed": 730003,
+    "role_uav_steps": {
+      "relay": 755,
+      "explore": 960,
+      "patrol": 460,
+      "charge": 225
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.18691053875968242,
+    "mean_all_fire_discovery": 0.1872351493216629,
+    "mean_extinguished_cells": 91.67666666666666,
+    "instruction_changes": 50,
+    "charge_override_events": 6
+  },
+  {
+    "arm": "llm",
+    "seed": 730004,
+    "role_uav_steps": {
+      "relay": 1131,
+      "explore": 569,
+      "patrol": 553,
+      "charge": 147
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.25801451008515447,
+    "mean_all_fire_discovery": 0.26087922233239863,
+    "mean_extinguished_cells": 50.90833333333333,
+    "instruction_changes": 48,
+    "charge_override_events": 6
+  },
+  {
+    "arm": "llm",
+    "seed": 730005,
+    "role_uav_steps": {
+      "relay": 756,
+      "explore": 832,
+      "patrol": 393,
+      "charge": 419
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.2350556190767504,
+    "mean_all_fire_discovery": 0.23513113148235992,
+    "mean_extinguished_cells": 67.29833333333333,
+    "instruction_changes": 49,
+    "charge_override_events": 5
+  },
+  {
+    "arm": "llm",
+    "seed": 730006,
+    "role_uav_steps": {
+      "relay": 715,
+      "explore": 882,
+      "patrol": 609,
+      "charge": 194
+    },
+    "first_70pct_explored_step": 579,
+    "mean_all_fire_knowledge": 0.47155460509808145,
+    "mean_all_fire_discovery": 0.47155460509808145,
+    "mean_extinguished_cells": 121.25,
+    "instruction_changes": 61,
+    "charge_override_events": 8
+  },
+  {
+    "arm": "llm",
+    "seed": 730007,
+    "role_uav_steps": {
+      "relay": 1070,
+      "explore": 720,
+      "patrol": 273,
+      "charge": 337
+    },
+    "first_70pct_explored_step": 594,
+    "mean_all_fire_knowledge": 0.7683364567021317,
+    "mean_all_fire_discovery": 0.7872165135723892,
+    "mean_extinguished_cells": 137.47166666666666,
+    "instruction_changes": 46,
+    "charge_override_events": 7
+  },
+  {
+    "arm": "llm",
+    "seed": 730008,
+    "role_uav_steps": {
+      "relay": 807,
+      "explore": 602,
+      "patrol": 527,
+      "charge": 464
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.3449245432375561,
+    "mean_all_fire_discovery": 0.351193041747087,
+    "mean_extinguished_cells": 116.185,
+    "instruction_changes": 52,
+    "charge_override_events": 7
+  },
+  {
+    "arm": "llm",
+    "seed": 730009,
+    "role_uav_steps": {
+      "relay": 700,
+      "explore": 720,
+      "patrol": 485,
+      "charge": 495
+    },
+    "first_70pct_explored_step": null,
+    "mean_all_fire_knowledge": 0.31399209568680564,
+    "mean_all_fire_discovery": 0.31399209568680564,
+    "mean_extinguished_cells": 109.87666666666667,
+    "instruction_changes": 45,
+    "charge_override_events": 5
+  }
+]

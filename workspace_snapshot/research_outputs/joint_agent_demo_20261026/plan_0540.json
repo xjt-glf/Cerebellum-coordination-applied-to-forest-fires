@@ -1,0 +1,36 @@
+{
+  "expected_tick": 540,
+  "source": "codex_joint",
+  "reason": "所有20格分区的未知格均已低于200，最后阶段补充西北、中央北部及中东盲区。人员继续安全集结，没有新增扑救需求。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        70,
+        15
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        30,
+        75
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        8,
+        65
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        65,
+        55
+      ]
+    }
+  ],
+  "orders": []
+}

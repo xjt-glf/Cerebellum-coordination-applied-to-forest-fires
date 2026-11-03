@@ -1,0 +1,6 @@
+{
+  "expected_tick": 20,
+  "source": "codex",
+  "reason": "当前人员尚未收到火区情报，继续既定接近任务，不盲目派往未发现火区。",
+  "orders": []
+}

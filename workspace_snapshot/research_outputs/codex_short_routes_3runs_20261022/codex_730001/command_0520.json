@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 520, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [32, 90]}, {"task": "charge", "target": [10, 10]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "西北仍有大片空白，直线推进；西南机近站补能准备最后一段。"}

@@ -1,0 +1,9 @@
+{
+  "arm": "codex",
+  "seed": 730000,
+  "t": 600,
+  "elapsed_seconds": 819.2307172080036,
+  "api_fallbacks": 0,
+  "agent_decisions": 30,
+  "external_api_calls": 0
+}

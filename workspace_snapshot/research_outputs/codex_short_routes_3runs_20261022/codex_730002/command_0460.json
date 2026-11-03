@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 460, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[24, 7], [17, 7], [12, 13]]}, {"task": "explore", "route": [[68, 71], [62, 77], [68, 82]]}, {"task": "charge", "target": [90, 10]}]}, "reason": "两块剩余未知区采用短折线扩图，南组中继再轮充。"}

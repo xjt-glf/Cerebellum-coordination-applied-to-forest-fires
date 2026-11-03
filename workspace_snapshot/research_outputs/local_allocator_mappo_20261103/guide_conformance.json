@@ -1,0 +1,34 @@
+{
+  "overall_full_guide_acceptance": "not established; provisional implementation and budgeted experiment",
+  "implemented_and_tested": [
+    "Separate shared3-action Actor and team-once Critic, entity masking, variable N",
+    "CPU independent whole-episode workers, GPU PPO updates, independent per-UAV sampling",
+    "600 real terminal, no bootstrap at episode end; exact completed-batch checkpoint recovery",
+    "Known-map observations, privileged truth isolated to rewards and evaluation",
+    "Deterministic local target computation, retention before new assignments, explore/relay deduplication",
+    "Common ChargeProtocol every physical step and deterministic frozen9-action movement Actor",
+    "Same downstream protocol for random/fixed/H3/MAPPO; original patrol-capable H separately marked",
+    "Actual3..8 UAV smoke, full600-step7/8 smoke, empty/variable personnel counts, local H3 equality",
+    "Reward component reconciliation, full physical traces and true terminal markers",
+    "Development-only versioned reward changes, source/checkpoint freeze before heldout evaluation"
+  ],
+  "known_implementation_deviations": [
+    "self.current_task_age uses task-or-goal age; it resets on effective target changes and does not separately reset on every protection-induced task transition",
+    "self.goal_complete is derived from protocol target validity rather than all GoalManager task-specific completion flags; charge is always considered valid",
+    "self.charge_protection_active encodes last-step task-transition override rather than a persistent active-protection latch",
+    "task proportions and energy summary use full physical fleet, including depleted visible vehicles, rather than strictly active-only denominators",
+    "message_bytes measures minimal target snapshot plus action map JSON; complete observation/history broadcast and receiver fanout are not included",
+    "broadcast checks version/participant IDs/action range, but lacks packet timestamp/hash-disagreement validation and duplicate packet handling",
+    "target fallback/allowed duplication are deterministic but not individually counted or reason-coded in episode metrics",
+    "decision trace stores observation hashes but not complete raw actor observation tensors; target snapshot is a smaller public-message representation"
+  ],
+  "budgeted_evaluation_deviations": [
+    "Main checkpoint choice uses8 development episodes per N, H3 grid uses4 per N; full40 frozen-model diagnostic is scheduled separately and cannot retrospectively change selection",
+    "No strict every100-episode development checkpoint evaluation; early/mid/late candidate subset is explicit",
+    "Actual episodes per seed may remain below2000; resumed v4 fork reports inherited512 separately from newly simulated episodes",
+    "No-person/no-teammate ablations are frozen inference ablations, not separately retrained controls",
+    "ID rotation audit is budgeted2 scenes per N and rotates target-protocol labels, not the frozen movement Actor identity encoding",
+    "Execution diagnostics measure protected-order segment success, not arrival-conditional original30-step lowlevel skill acceptance"
+  ],
+  "interpretation": "A unit-test passed flag or task point-estimate threshold is not full guide acceptance. All above deviations remain visible in this handoff; preserve checkpoints and raw failures for subsequent correction under a new observation/protocol version."
+}

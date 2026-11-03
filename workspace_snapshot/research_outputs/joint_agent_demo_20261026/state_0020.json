@@ -1,0 +1,760 @@
+{
+  "status": "waiting_personnel",
+  "snapshot": {
+    "t": 20,
+    "communication": "existing_geometric_link; no rate/queue model",
+    "people": [
+      {
+        "id": 1,
+        "x": 10.5,
+        "y": 46.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          43.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            43.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-1"
+      },
+      {
+        "id": 2,
+        "x": 11.0,
+        "y": 46.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          43.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            43.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-2"
+      },
+      {
+        "id": 3,
+        "x": 11.5,
+        "y": 48.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          43.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            43.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-3"
+      },
+      {
+        "id": 4,
+        "x": 10.5,
+        "y": 48.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          43.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            43.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-4"
+      },
+      {
+        "id": 5,
+        "x": 11.0,
+        "y": 50.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          50.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-5"
+      },
+      {
+        "id": 6,
+        "x": 11.5,
+        "y": 50.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          50.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-6"
+      },
+      {
+        "id": 7,
+        "x": 10.5,
+        "y": 52.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          50.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-7"
+      },
+      {
+        "id": 8,
+        "x": 11.0,
+        "y": 52.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          57.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            57.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-8"
+      },
+      {
+        "id": 9,
+        "x": 11.5,
+        "y": 54.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          57.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            57.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-9"
+      },
+      {
+        "id": 10,
+        "x": 10.5,
+        "y": 54.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "active",
+        "target": [
+          22.0,
+          57.0
+        ],
+        "waypoints": [
+          [
+            22.0,
+            57.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-0-10"
+      }
+    ],
+    "known_fire_clusters": [],
+    "events": [
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-1",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-2",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-3",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-4",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-5",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-6",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-7",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-8",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-9",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-10",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-1",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-2",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-3",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-4",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-5",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-6",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-7",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-8",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-9",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-10",
+        "source": "codex_joint"
+      }
+    ],
+    "situation": {
+      "t": 20,
+      "H": 100,
+      "W": 100,
+      "charging_stations": [
+        [
+          10.0,
+          10.0
+        ],
+        [
+          10.0,
+          90.0
+        ],
+        [
+          90.0,
+          90.0
+        ],
+        [
+          90.0,
+          10.0
+        ],
+        [
+          10.0,
+          50.0
+        ],
+        [
+          50.0,
+          10.0
+        ],
+        [
+          50.0,
+          90.0
+        ],
+        [
+          90.0,
+          50.0
+        ]
+      ],
+      "base_pos": [
+        0.0,
+        50.0
+      ],
+      "explored": 0.143,
+      "discovery": 0.235,
+      "burned": 0.0315,
+      "coverage": 0.0,
+      "rescuer_known": 0.0,
+      "max_aoi": 0,
+      "clusters": [
+        {
+          "centroid": [
+            50.1,
+            28.1
+          ],
+          "size": 74
+        }
+      ],
+      "rescuers": [
+        {
+          "id": 1,
+          "pos": [
+            10.5,
+            46.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 2,
+          "pos": [
+            11.0,
+            46.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 3,
+          "pos": [
+            11.5,
+            48.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 4,
+          "pos": [
+            10.5,
+            48.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 5,
+          "pos": [
+            11.0,
+            50.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 6,
+          "pos": [
+            11.5,
+            50.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 7,
+          "pos": [
+            10.5,
+            52.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 8,
+          "pos": [
+            11.0,
+            52.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 9,
+          "pos": [
+            11.5,
+            54.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 10,
+          "pos": [
+            10.5,
+            54.0
+          ],
+          "covered": true,
+          "aoi": 0
+        }
+      ],
+      "uavs": [
+        {
+          "id": 0,
+          "pos": [
+            26,
+            26
+          ],
+          "e": 550,
+          "margin": 493
+        },
+        {
+          "id": 1,
+          "pos": [
+            52,
+            27
+          ],
+          "e": 550,
+          "margin": 507
+        },
+        {
+          "id": 2,
+          "pos": [
+            74,
+            65
+          ],
+          "e": 550,
+          "margin": 495
+        },
+        {
+          "id": 3,
+          "pos": [
+            32,
+            74
+          ],
+          "e": 558,
+          "margin": 497
+        }
+      ]
+    },
+    "current_uav_orders": [
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          30.0,
+          50.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          52.0,
+          28.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          82.0,
+          30.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "comm_relay",
+        "mode": "explore",
+        "target": null,
+        "ring_radius": null,
+        "rescuer_id": 5,
+        "proactive_handover": true
+      }
+    ],
+    "unknown_tiles": [
+      [
+        0,
+        0,
+        217
+      ],
+      [
+        0,
+        20,
+        364
+      ],
+      [
+        0,
+        40,
+        400
+      ],
+      [
+        0,
+        60,
+        400
+      ],
+      [
+        0,
+        80,
+        400
+      ],
+      [
+        20,
+        0,
+        346
+      ],
+      [
+        20,
+        20,
+        285
+      ],
+      [
+        20,
+        40,
+        400
+      ],
+      [
+        20,
+        60,
+        287
+      ],
+      [
+        20,
+        80,
+        345
+      ],
+      [
+        40,
+        0,
+        400
+      ],
+      [
+        40,
+        20,
+        232
+      ],
+      [
+        40,
+        40,
+        398
+      ],
+      [
+        40,
+        60,
+        379
+      ],
+      [
+        40,
+        80,
+        185
+      ],
+      [
+        60,
+        0,
+        400
+      ],
+      [
+        60,
+        20,
+        323
+      ],
+      [
+        60,
+        40,
+        393
+      ],
+      [
+        60,
+        60,
+        257
+      ],
+      [
+        60,
+        80,
+        400
+      ],
+      [
+        80,
+        0,
+        400
+      ],
+      [
+        80,
+        20,
+        400
+      ],
+      [
+        80,
+        40,
+        400
+      ],
+      [
+        80,
+        60,
+        268
+      ],
+      [
+        80,
+        80,
+        287
+      ]
+    ]
+  }
+}

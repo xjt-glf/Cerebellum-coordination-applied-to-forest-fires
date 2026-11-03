@@ -1,0 +1,32 @@
+{
+  "expected_tick": 480,
+  "source": "codex_joint",
+  "reason": "8人已返回，9、10号距离集结点不足7格，基地链路覆盖可保障最后撤离。U1补给，U2补扫基地北侧[10,70]，U0搜索南边缘[50,5]，U3搜索东部[90,55]。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        50,
+        5
+      ]
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "explore",
+      "target": [
+        10,
+        70
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        90,
+        55
+      ]
+    }
+  ],
+  "orders": []
+}

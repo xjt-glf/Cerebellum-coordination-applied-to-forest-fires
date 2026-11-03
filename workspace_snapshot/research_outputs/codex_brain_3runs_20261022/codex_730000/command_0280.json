@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 280, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [70, 70]}, {"task": "explore", "target": [90, 10]}, {"task": "explore", "target": [10, 70]}]}, "reason": "全场已合围，保留一架覆盖东部主队，三架分别补中北部、东南角和西北未知区；低电机经过东南补给点。"}

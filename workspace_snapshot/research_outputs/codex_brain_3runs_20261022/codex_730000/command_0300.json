@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 300, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [90, 90]}, {"task": "explore", "target": [30, 10]}, {"task": "explore", "target": [10, 70]}]}, "reason": "合围后无人机0微调覆盖南侧漏链人员；其余补东北角、南边界与西北未完成区域，不停止任务。"}

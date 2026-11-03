@@ -1,0 +1,68 @@
+{
+  "created": "2026-11-03 21:45:27.559368",
+  "passed": true,
+  "verified_total_paired_episodes": 1800,
+  "selected_model_checks": {
+    "frozen_manifest.json": [
+      {
+        "seed": "1103",
+        "episodes": 180,
+        "actor_state_sha256": "110dbadea8ef57c09cbaf0c52ca9e890900c9c3aa8cd4bfb1249fa34d40d18fb",
+        "passed": true
+      },
+      {
+        "seed": "1104",
+        "episodes": 180,
+        "actor_state_sha256": "381cfa2ca822ede7d15e8dd753064793b7b021df4ea0682f277f65071f5d90a9",
+        "passed": true
+      },
+      {
+        "seed": "1105",
+        "episodes": 180,
+        "actor_state_sha256": "425f30162d72b2f9316a45c139297e966a73d6bc54cf0864e84bf0140d57831e",
+        "passed": true
+      }
+    ],
+    "v3_frozen_manifest.json": [
+      {
+        "seed": "1103",
+        "episodes": 180,
+        "actor_state_sha256": "07519ca3ed09397d9a6c4390f5768a2e33b1bdc3b8d7150b2c25a726e46ff272",
+        "passed": true
+      },
+      {
+        "seed": "1104",
+        "episodes": 180,
+        "actor_state_sha256": "21c1f2a4655008586c22a040e3dae1f7dfd532986840ae6fee726c5f63754f41",
+        "passed": true
+      },
+      {
+        "seed": "1105",
+        "episodes": 180,
+        "actor_state_sha256": "2ca140f488ade0f74c1aa3eb9fd5921db153e06b5bf26339ec5464b6568fc2a2",
+        "passed": true
+      }
+    ],
+    "v4_frozen_manifest.json": [
+      {
+        "seed": "1103",
+        "episodes": 180,
+        "actor_state_sha256": "b3298b89cee49226cd195c7a97c7a79b329ef5acfbf30068521f8ad5699b9306",
+        "passed": true
+      },
+      {
+        "seed": "1104",
+        "episodes": 180,
+        "actor_state_sha256": "e17b19cf9451e532d8764369f0a4b74ab639abf840d660ebb8e07a45b42ea723",
+        "passed": true
+      },
+      {
+        "seed": "1105",
+        "episodes": 180,
+        "actor_state_sha256": "f502050eb789282b18f6c19c6362802388297472881ec76bb7de159f033475e1",
+        "passed": true
+      }
+    ]
+  },
+  "deterministic_three_action_trace_checks": true
+}

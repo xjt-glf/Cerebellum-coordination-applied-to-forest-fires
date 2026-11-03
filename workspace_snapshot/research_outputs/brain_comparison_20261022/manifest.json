@@ -1,0 +1,54 @@
+{
+  "seeds": [
+    730000,
+    730001,
+    730002,
+    730003,
+    730004,
+    730005,
+    730006,
+    730007,
+    730008,
+    730009
+  ],
+  "arms": [
+    "heuristic",
+    "llm"
+  ],
+  "grid": [
+    100,
+    100
+  ],
+  "uavs": 4,
+  "rescuers": 10,
+  "initial_fires": 3,
+  "steps": 600,
+  "spread_steps": 40,
+  "spread_gain": 1.0,
+  "randomize_wind": true,
+  "replan_every": 20,
+  "actor": "research_outputs/lowlevel_training_final/actor_selected.pt",
+  "actor_execution": "argmax; no waypoint assist",
+  "goal_protocol": "same explicit-change acceptance for both planners",
+  "charge_protocol": "webapp.ChargeProtocol reserve_steps=12, both arms",
+  "charge_at": 300,
+  "max_chargers": 2,
+  "explore_until": 0.7,
+  "llm_input": "full_environment truth; heuristic receives same state but its implementation ignores full_environment",
+  "llm_temperature": 0.2,
+  "api_timeout_seconds": 180,
+  "transport_max_attempts": 3,
+  "time_model": "synchronous paused simulation during planning; API latency recorded separately",
+  "fixed_horizon": true,
+  "started_at": "2026-10-22 10:53:51 +0800",
+  "source_sha256": {
+    "experiments/brain_comparison/run.py": "559fb07d349933a450be758234400a4cee899895f44e90d530d52c48b1a6c476",
+    "webapp/brains.py": "135ef56dbc8fb496e647454ed7d8216aa6b28ea97cdae3b845df43fda5e3e0f8",
+    "webapp/goal_protocol.py": "4276e11fea82b63e3998c888c6e4470d3dd007ae826df3301ad62f5fd1e2f9ac",
+    "webapp/charge_protocol.py": "9c752162e2ae5332042135824aa99663fbce4d82470d1dd05b668cb35ed621ce",
+    "webapp/world_snapshot.py": "6e61a1ad550f6e0c03b0181e113af3143fcb863de11d9845650512c518a7f0f6",
+    "lowlevel/env_wrapper.py": "3759cd7ccc73baa2f214c099a895c4b652f9995495a83b5cbb53bb0c36bcf85b",
+    "Env/低层环境.py": "09626dea4a4bad1b9f7c4db6dbec793b97346c3ac39be7da139ac65fc6363607"
+  },
+  "llm_episode_concurrency": 10
+}

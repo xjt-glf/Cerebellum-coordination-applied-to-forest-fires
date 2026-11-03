@@ -1,0 +1,43 @@
+{
+  "expected_tick": 220,
+  "source": "codex_joint",
+  "reason": "东南区南缘已清理，5—7、9号取消南向约束继续追踪残余；其他人保持增援或火线作业。U2继续北部搜索，其余三机维持人员覆盖，暂不重复派往已合围区域。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 4
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "explore",
+      "target": [
+        50,
+        65
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        5,
+        6,
+        7,
+        9
+      ],
+      "task": "contain",
+      "target": [
+        87,
+        27
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

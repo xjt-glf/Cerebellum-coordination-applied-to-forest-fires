@@ -1,0 +1,43 @@
+{
+  "expected_tick": 80,
+  "source": "codex",
+  "reason": "人员已收到东南火区情报。P4、P5、P6当前仍连通，分别负责该火区西、北、南侧；沿现有BFS转场至安全外围，失联后继续已收到任务。其余人员保持接近或待命。",
+  "orders": [
+    {
+      "person_ids": [
+        4
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        28.43
+      ],
+      "approach_sector": "west",
+      "valid_for_ticks": 600
+    },
+    {
+      "person_ids": [
+        5
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        28.43
+      ],
+      "approach_sector": "north",
+      "valid_for_ticks": 600
+    },
+    {
+      "person_ids": [
+        6
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        28.43
+      ],
+      "approach_sector": "south",
+      "valid_for_ticks": 600
+    }
+  ]
+}

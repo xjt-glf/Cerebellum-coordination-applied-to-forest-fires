@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 300, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "route": [[72, 94], [78, 94], [84, 91]]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "火场北沿短弧扫描，三组通信持续刷新。"}

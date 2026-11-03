@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 560, "plan": {"uavs": [{"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 10}, {"task": "explore", "target": [90, 30]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "南站原中继继续充足电，东机探索边缘遗漏带，其余维持全覆盖。"}

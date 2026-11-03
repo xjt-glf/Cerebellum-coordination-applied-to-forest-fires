@@ -1,0 +1,37 @@
+{
+  "expected_tick": 60,
+  "source": "codex",
+  "reason": "P1回撤与P2等待已经生效，P5折线尚在执行；将P3、P4继续向东推进，P7向东北转场，其余保持原任务。",
+  "orders": [
+    {
+      "person_ids": [
+        3
+      ],
+      "task": "move",
+      "target": [
+        24,
+        40
+      ]
+    },
+    {
+      "person_ids": [
+        4
+      ],
+      "task": "move",
+      "target": [
+        24,
+        46
+      ]
+    },
+    {
+      "person_ids": [
+        7
+      ],
+      "task": "move",
+      "target": [
+        20,
+        60
+      ]
+    }
+  ]
+}

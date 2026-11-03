@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 380, "plan": {"uavs": [{"task": "explore", "target": [70, 10]}, {"task": "explore", "target": [66, 58]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "全部火场已合围，西南五人由中间人员9对应的单中继维持；释放UAV0补东南未知区，UAV1驻于中央两人之间，东北中继保持。"}

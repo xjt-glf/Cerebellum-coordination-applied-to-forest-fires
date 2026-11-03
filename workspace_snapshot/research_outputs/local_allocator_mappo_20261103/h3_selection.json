@@ -1,0 +1,47 @@
+{
+  "grid": [
+    {
+      "threshold": 220,
+      "relay_mode": "one",
+      "burned_mean": 486.875,
+      "episodes": 16
+    },
+    {
+      "threshold": 220,
+      "relay_mode": "ratio",
+      "burned_mean": 490.9375,
+      "episodes": 16
+    },
+    {
+      "threshold": 260,
+      "relay_mode": "one",
+      "burned_mean": 489.5,
+      "episodes": 16
+    },
+    {
+      "threshold": 260,
+      "relay_mode": "ratio",
+      "burned_mean": 501.0,
+      "episodes": 16
+    },
+    {
+      "threshold": 300,
+      "relay_mode": "one",
+      "burned_mean": 484.25,
+      "episodes": 16
+    },
+    {
+      "threshold": 300,
+      "relay_mode": "ratio",
+      "burned_mean": 497.1875,
+      "episodes": 16
+    }
+  ],
+  "selected": {
+    "threshold": 300,
+    "relay_mode": "one",
+    "burned_mean": 484.25,
+    "episodes": 16
+  },
+  "budget": "6 candidates x 4 fleet sizes x 4 development scenes = 96 episodes; provisional subset of 40"
+}

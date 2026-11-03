@@ -1,0 +1,26 @@
+{
+  "expected_tick": 400,
+  "source": "codex_joint",
+  "reason": "先头人员进入基地通信范围，U0可轮换补给。U1改护送6号覆盖仍在撤离的中段，U2护送最后10号，U3满电后恢复东北[85,75]搜索。人员保持原撤离令。",
+  "uavs": [
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    },
+    {
+      "task": "explore",
+      "target": [
+        85,
+        75
+      ]
+    }
+  ],
+  "orders": []
+}

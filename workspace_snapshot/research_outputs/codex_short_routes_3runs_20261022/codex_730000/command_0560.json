@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 560, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [66, 72]}, {"task": "explore", "route": [[65, 67], [72, 65], [78, 69]]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "北部邻接空白最后一条短折线，东部满电机恢复上组覆盖。"}

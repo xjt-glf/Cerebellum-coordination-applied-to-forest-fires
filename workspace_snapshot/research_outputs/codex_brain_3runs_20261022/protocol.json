@@ -1,0 +1,13 @@
+{
+  "seeds": [
+    730000,
+    730001,
+    730002
+  ],
+  "steps": 600,
+  "replan_every": 20,
+  "brain": "current Codex agent, explicit JSON at all 90 boundaries",
+  "tools": "current-state spatial summaries only; no future rollouts, no copied heuristic plans",
+  "external_api_calls": 0,
+  "comparison": "same frozen Actor, environment and execution protocol as prior comparison; Codex has tool use and accumulated context, not an API-model-only comparison"
+}

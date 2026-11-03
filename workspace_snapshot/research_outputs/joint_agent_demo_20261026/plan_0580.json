@@ -1,0 +1,25 @@
+{
+  "expected_tick": 580,
+  "source": "codex_joint",
+  "reason": "最后窗口无人机分批补给收尾：U0、U3电量约300返补给，U1与U2返回西部人员集结区上空，人员全员保持已完成安全撤离状态。完整600步联合规划结束。",
+  "uavs": [
+    {
+      "task": "charge"
+    },
+    {
+      "task": "explore",
+      "target": [
+        20,
+        54
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 5
+    },
+    {
+      "task": "charge"
+    }
+  ],
+  "orders": []
+}

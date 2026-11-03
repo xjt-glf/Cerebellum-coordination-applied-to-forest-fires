@@ -1,0 +1,1 @@
+{"brain": "agent", "steps": 600, "every": 2, "seed": 730000, "goal_update": true, "stop_when_clear": false, "stop_when_depleted": false, "personnel_interactive": false}

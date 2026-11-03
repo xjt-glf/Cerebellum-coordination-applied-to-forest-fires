@@ -1,0 +1,74 @@
+{
+  "expected_tick": 0,
+  "source": "codex_joint",
+  "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        30,
+        50
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        52,
+        28
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        82,
+        30
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 5
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "task": "move",
+      "target": [
+        22,
+        43
+      ],
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        5,
+        6,
+        7
+      ],
+      "task": "move",
+      "target": [
+        22,
+        50
+      ],
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        8,
+        9,
+        10
+      ],
+      "task": "move",
+      "target": [
+        22,
+        57
+      ],
+      "valid_for_ticks": 1200
+    }
+  ]
+}

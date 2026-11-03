@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 400, "plan": {"uavs": [{"task": "explore", "target": [70, 10]}, {"task": "explore", "target": [66, 58]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "火场已全部合围且当前覆盖全部人员，保持三个覆盖位置，唯一空闲机继续补东南大片未知地图。"}

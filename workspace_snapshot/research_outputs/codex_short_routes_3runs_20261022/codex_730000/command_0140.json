@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 140, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "route": [[44, 31], [45, 24], [51, 21]]}, {"task": "explore", "target": [84, 36]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央火区短弧刷新，东机充电完成后重返火区。"}

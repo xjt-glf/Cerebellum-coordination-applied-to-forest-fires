@@ -1,0 +1,1889 @@
+
+=== PAGE 1 ===
+1
+Hierarchical LLM-Driven Control for
+HAPS-Assisted UA V Networks: Joint Optimization
+of Flight and Connectivity
+Zijiang Yan ,Graduate Student Member, IEEE, Hao Zhou ,Member, IEEE,
+Wael Jaafar ,Senior Member, IEEE, Jianhua Pei ,Member, IEEE, Ping Wang ,Fellow, IEEE,
+Halim Yanikomeroglu ,Fellow, IEEE, and Hina Tabassum Senior Member, IEEE
+Abstract—Uncrewed aerial vehicles (UA Vs) are increasingly
+deployed in complex networked environments, yet the joint
+optimization of multi-UA V motion control and connectivity
+remains a fundamental challenge. In this paper, we study a
+multi-UA V system operating in an integrated terrestrial and
+non-terrestrial network (ITNTN) comprising terrestrial base
+stations and high-altitude platform stations (HAPS). We consider
+a three-dimensional (3D) aerial highway scenario where UA Vs
+must adapt their motion to ensure collision avoidance, efficient
+traffic flow, and reliable communication under dynamic and
+partially observable conditions. We first model the problem as a
+hierarchical multi-objective partially observable Markov decision
+process (H-MO-POMDP), capturing the coupling between control
+and communication objectives. Based on this formulation, we
+propose a large language model (LLM)-driven hierarchical multi-
+rate control framework. At the global level, an LLM-based
+controller on the HAPS performs long-term planning for load
+balancing and handover decisions. At the local level, each UA V
+employs a hybrid controller that integrates a slow-timescale LLM
+for high-level spatial reasoning with a reinforcement learning
+agent for faster UA V-to-infrastructure (U2I) communication and
+motion control. We further develop a high-fidelity 3D simulation
+platform by integrating the gym-pybullet-drones environment
+with 3GPP-compliant RF/THz channel models. Numerical results
+demonstrate that the proposed framework significantly outper-
+forms state-of-the-art baselines, achieving a 14% increase in
+transportation efficiency and a 25% improvement in telecommu-
+nication throughput. Additionally, it achieves a 23% reduction in
+physical collision rates, demonstrating strong handover stability
+and zero-shot generalization in dynamic scenarios.
+Index Terms—UA V networks, HAPS, non-terrestrial networks,
+LLM agents, multi-agent control, aerial highway mobility.
+I. INTRODUCTION
+U
+NCREWED aerial vehicles (UA Vs) are considered as
+a core component of next-generation Internet-of-Things
+(IoT) and intelligent transportation systems due to their mobil-
+ity, flexible deployment, decreasing production costs, and line-
+of-sight (LoS) connectivity [1]. In cellular-connected configu-
+Z. Yan, J. Pei, P. Wang, and H. Tabassum are with the Department of
+Electrical Engineering and Computer Science, York University, Toronto, ON,
+Canada (e-mails:{zijiang, pingw, hinat}@yorku.ca, jianhuapei98@gmail.com
+). H. Zhou is with Samsung Research America, Toronto, ON, Canada. (e-mail:
+haozhou029@gmail.com) W. Jaafar is with the Department of Software and
+IT Engineering, ´Ecole de technologie sup´erieure ( ´ETS), University of Quebec,
+Montreal, QC, Canada (e-mail: wael.jaafar@etsmtl.ca). H. Yanikomeroglu is
+with the Non-Terrestrial Networks (Carleton-NTN) Lab and the Department of
+Systems and Computer Engineering, Carleton University, Ottawa, ON, Canada
+(e-mail: halim@sce.carleton.ca).
+rations, UA Vs can either act as user equipment (UA V-UEs) that
+require reliable command-and-control (C&C) links, or as aerial
+base stations (BSs) that provide coverage and data services
+to ground and aerial users. Safe and efficient operation of
+beyond-visual-line-of-sight UA Vs critically depends on both
+wireless connectivity and advanced motion control, especially
+when UA Vs operate cooperatively in shared aerial corridors
+[2], [3].
+Meanwhile, the integration of High Altitude Platform Sta-
+tions (HAPS) into 6G networks becomes a promising enabler
+of ubiquitous, resilient, and cost-effective connectivity and
+computing services for users such as UA Vs [4]–[6]. By com-
+bining the wide-area coverage and high payload capabilities
+of HAPS with dense terrestrial BS deployments, integrated
+terrestrial and non-terrestrial networks (ITNTNs) provide a
+natural platform for supporting large-scale low-altitude UA V
+operations. In particular, low-altitude UA Vs are envisioned
+to support urban air mobility, cargo delivery, and aerial
+monitoring, all of which demand not only safe and efficient
+trajectory control but also high-quality-of-service (QoS) links
+for C&C and mission data [7]. In such scenarios, UA Vs must
+navigate a three-dimensional (3D) aerial highway where they
+accelerate, decelerate, and change positions to avoid collisions
+and maintain traffic flow, while simultaneously managing
+handovers (HOs) and comm in the multi-tier ITNTN [2], [8].
+This tight coupling between control and connectivity motivates
+joint motion–communication design for low-altitude economy.
+A. Related Work and Research Gaps
+Research on multi-UA V systems spans motion planning,
+communication-aware control, HAPS-assisted networking,
+and, more recently, LLM-driven coordination. Although these
+directions have progressed independently, they remain insuf-
+ficiently integrated for dense aerial highway environments. In
+what follows, we provide a unified discussion that connects
+these strands and highlights the unresolved challenges that
+motivate this work.
+Early efforts on 3D aerial highway motion planning pri-
+marily explored collision avoidance and energy-efficient rout-
+ing. Applications range from surveillance to factory logistics
+and precision agriculture [2], [9], [10]. A series of studies
+investigated the combination of reinforcement learning (RL)
+and convex optimization for safe navigation. For instance,
+arXiv:2605.11509v1  [cs.AI]  12 May 2026
+
+=== PAGE 2 ===
+2
+Liet al.modeled flying time and energy under kinematic
+constraints but did not incorporate multi-UA V collision in-
+teractions [11]. Other works adopted multi-agent RL, such
+as Multi-Agent Deep Deterministic Policy Gradient (MAD-
+DPG), for pursuit–evasion [12] or distributed velocity-aware
+A∗-based planning [13]. Meanwhile, studies on cargo-UA V
+energy consumption [2], [14] and speed-controlled data col-
+lection [15] omitted mutual interference and large-scale traffic
+dynamics [7], [16]. As a result, although these works con-
+tribute essential foundations, they generally overlook realistic
+acceleration, deceleration, and dense-lane interactions, leaving
+robust collision avoidance under high mobility unresolved.
+In parallel, communication-centric research examined how
+UA V movement affects link quality, often assuming simplified
+or pre-defined trajectories. RL approaches have been used
+to optimize cell association and HO metrics [3], [17], and
+deep learning has been applied to predict HOs in millime-
+ter wave (mmWave) UA V links [3], [18]. However, these
+methods frequently relied on tabular or low-complexity RL
+variants with slow convergence [14], [19] and did not in-
+corporate real-time motion dynamics such as lane changes
+or acceleration. Although recent studies explored speed-HO-
+traffic tradeoffs [20], most schemes still treated mobility and
+communication separately, ignoring HO disruptions triggered
+by rapid UA V maneuvers.
+Beyond terrestrial networks, HAPS platforms have emerged
+as promising enablers of wide-area UA V coverage. Existing
+literature demonstrates their potential for HO-aware com-
+puting, resource allocation, and latency reduction [6], [21],
+[22]. Yet, these solutions remain largely insensitive to the
+high-speed motion patterns of UA V traffic and the resulting
+intense HO dynamics. Furthermore, scalarization-based multi-
+objective designs failed to capture the coupled nature of
+transportation and communication constraints. Recent interest
+in applying LLMs to UA V networking [3], [4], [23] pointed
+toward more adaptive decision-making. Nevertheless, a com-
+prehensive hierarchical framework unifying motion safety,
+communication reliability, and HAPS coordination is still
+missing.
+Recently, LLM-assisted UA V operations have expanded
+rapidly due to advances in zero-shot reasoning and seman-
+tic understanding. Several works translated natural-language
+task descriptions into executable flight trajectories using
+multimodal LLMs integrated with Robot Operating System
+(ROS) [24]. Others used LLMs for mission adaptation [25]
+or dynamic obstacle avoidance [26]. Nevertheless, these ap-
+proaches treated motion purely as spatial navigation, without
+considering how high-speed mobility affects traffic flow or
+communication stability in multi-UA V settings [27]. LLM-
+based resource management exhibits similar limitations [28].
+Indeed, although in-context scheduling [29] and hierarchical
+cloud–edge LLM coordination [7], [30] offer improved auton-
+omy, they typically decouple communication from motion and
+ignore HO-induced link volatility.
+Finally, larger-scale surveys [31], [32] outlined concep-
+tual possibilities for LLM-enhanced aerial networks, but they
+lacked concrete formulations or deployable architectures that
+jointly balance safety, throughput, and communication relia-
+bility [23].
+To summarize, existing research provides valuable progress
+across motion planning, communication, HAPS coordination,
+and LLM-enabled control. However, these domains have
+evolved in isolation, leaving critical gaps in unified joint
+optimization for dense aerial highways. Motivated by these
+limitations, we next identify the key challenges that a holistic
+solution must address.
+B. Key Challenges
+Despite substantial progress in UA V networking, motion
+planning, and HAPS-assisted architectures, designing a uni-
+fied framework for HAPS-enabled low-altitude UA V systems
+remains fundamentally challenging. We summarize the main
+challenges addressed in this work as follows:
+1) Robust Collision Avoidance Under High Mobility and
+Dense Traffic:Low-altitude UA Vs increasingly operate in
+shared and congested aerial corridors, where maintaining safe
+separation under high mobility is critical. Unlike ground ve-
+hicles, UA Vs move in 3D space and experience rapid changes
+in relative locations due to acceleration, deceleration, lane
+changes, and altitude adjustments [7], [33]. As UA V den-
+sity grows, collision risk increases when decisions are made
+myopically or without coordination [16]. Existing trajectory
+planning and RL methods often rely on simplified motion
+models that fail to preserve safety and throughput in dynamic
+aerial highways [11]. Standard deep RL (DRL) agents also
+lack explicit mechanisms for enforcing high-level semantic
+and regulatory constraints, yielding opaque and difficult-to-
+certify policies [7], [33].
+2) Communication Reliability and Handover Disruptions:
+Reliable wireless connectivity is necessary for beyond-visual-
+line-of-sight UA V operations, enabling both C&C and mission-
+critical data transfer [34]. However, high mobility induces
+frequent transitions across terrestrial BS footprints and HAPS
+beams, generating recurrent HO events. Also, poorly timed
+HOs cause transient link failures, increased latency, and re-
+duced throughput [17], [33]. Existing approaches often opti-
+mize communication or mobility in isolation, ignoring their
+mutual dependence [18].
+3) Balancing Transportation Efficiency and Communication
+Performance:A fundamental tradeoff exists between trans-
+portation efficiency and communication reliability in UA V
+networks. Indeed, aggressive mobility enhances throughput but
+increases HO frequency and link instability. Conversely, con-
+servative mobility improves connectivity but degrades trans-
+portation efficiency [20]. Fixed-weight scalarization methods
+cannot adapt to varying network or traffic conditions, often
+yielding suboptimal performance.
+C. Contributions
+Our prior work [7] demonstrated joint motion–
+communication optimization using branching deep Q-
+networks [35], but revealed limitations of single-objective
+DRL in safety-critical, multi-objective ITNTN scenarios.
+In this work, we address the identified gaps through a
+LLM-driven hierarchical control framework that combines
+
+=== PAGE 3 ===
+3
+HAPS-level LLM meta-control with UA V-level LLM agents.
+The main contributions of this paper are summarized as:
+•A Hierarchical Multi-Objective POMDP (a.k.a, H-MO-
+POMDP) for Joint Motion–Communication Optimiza-
+tion:We formalize the tightly coupled problem of 3D
+autonomous flight and handover-aware connectivity as a
+hierarchical multi-objective Partially Observable Markov
+Decision Process (POMDP). The model explicitly em-
+beds the competing goals of collision-free navigation,
+high throughput traffic flow, and robust telecommu-
+nication reliability under realistic partial observability,
+thereby overcoming the limitations of existing formula-
+tions that treat motion and communication as decoupled
+sub-problems.
+•A Generative-AI-Driven Multi-Rate Control Architecture:
+We introduce a novel two-tier collaborative LLM-based
+control framework that transcends fixed-weight RL ap-
+proaches. At the global tier, a HAPS-deployed meta-
+controller executes long-horizon strategic planning for
+load balancing and vertical handover decisions through
+a reflective reasoning loop. At the tactical tier, each
+UA V uses a hybrid multi-rate controller in which a slow-
+timescale LLM provides semantic 3D spatial reasoning
+and intent shaping, while a fast-timescale double deep
+Q-network (DDQN), coupled with a motion decoder,
+performs real-time UA V-to-infrastrucutre (U2I) channel
+selection and continuous C&C.
+•A High-Fidelity 3D ITNTN Simulation and Demonstra-
+tion of Generalization:We develop a rigorous 3D testbed
+by integrating high-fidelitygym-pybullet-dronesenviron-
+ment1 [36] with standardized 3GPP RF/THz propagation
+models, departing from the oversimplified 2D/abstract
+analytic environments commonly used in prior work.
+Extensive numerical experiments show that the proposed
+hierarchical architecture consistently outperforms state-
+of-the-art DRL and Multi-Agent RL (MARL) baselines
+in overall reward, collision mitigation, and handover
+stability, while exhibiting robust zero-shot adaptability in
+dense and rapidly evolving aerial highway scenarios.
+The remainder of this paper is organized as follows. Sec-
+tion II presents the ITNTN system model, detailing both the
+multi-tier communication infrastructure and the high-fidelity
+UA V physical kinematics. Section III formulates the joint
+flight navigation and network association problem as a hierar-
+chical multi-objective POMDP (H-MO-POMDP). Section IV
+introduces the proposed generative AI-driven collaborative
+framework, outlining the cognitive reasoning loops for the
+HAPS meta-controller and the UA V tier edge-agents. Sec-
+tion V provides comprehensive numerical results to validate
+the effectiveness of the proposed architecture. Finally, Sec-
+tion VI concludes the paper.
+II. SYSTEMMODEL
+As illustrated in Fig. 1, we consider a dynamic 3D aerial
+highway scenario where a set ofMUA Vs, denoted byM=
+1An open-source multi-rotor physics simulator based on PyBullet, utilized
+for our experimental evaluations in Section V. Source code: https://github.
+com/utiasDSL/gym-pybullet-drones
+Fig. 1: 3D HAPS-assisted UA V network model.
+{1,2, . . . , M}, operate within an ITNTN infrastructure. This
+infrastructure comprises a set ofBterrestrial base stations
+(TBSs), denoted byB={1,2, . . . , B}, and a high-altitude
+platform station (HAPS) node denoted byH.
+The specific mission and communication requirements of
+the UA Vs are defined as follows:
+(a) Heterogeneous 3D Transit Missions:Rather than act-
+ing as a synchronized swarm performing a single collaborative
+task, each UA Vm∈ Mis tasked with an independent
+logistics or transit mission. Each UA V must navigate from
+its unique origin to a specific 3D destination (x m
+target). The
+UA Vs are not constrained to a uniform altitude, they must
+dynamically exploit the full continuous 3D airspace to avoid
+collisions within the shared corridor.
+(b) Mission-Critical Communication Constraints:Oper-
+ating safely in a high-density, high-speed aerial corridor re-
+quires uninterrupted command-and-control (C2) and telemetry
+links. A communication outage or severe latency spike di-
+rectly compromises physical flight safety. Therefore, the UA Vs
+must maintain continuous, high-quality data rates (WR m,c
+t )
+to stream vital sensor data and receive traffic coordination
+directives from the HAPS meta-controller.
+Because UA Vs traverse the overlapping coverage areas of
+the HAPS and varying TBSs at high velocities, they in-
+evitably trigger network handovers. Consequently, this system
+model encompasses two highly coupled and dynamic domains,
+namely the multi-tier communication architecture that dictates
+link reliability and load balancing, and the continuous phys-
+ical kinematics that govern real-time UA V flight safety and
+aerodynamic stability.
+A. Multi-Tier Communication Model
+1) Ground-to-Air (G2A) Channel Model:The G2A channel
+model between a terrestrial BSb∈ Band a UA Vm∈ Mis
+fundamentally dependent on the 3D distanced m,b
+t between
+them at time slott, the BS antenna gain, and the LoS
+probability [37]. In cellular-connected aerial systems, UA Vs
+frequently rely on the sidelobe emissions of BS antennas. We
+adopt the 3GPP antenna pattern specification [37], partitioning
+each BS into three sectors with cross-polarized elements in a
+uniform linear array (ULA).
+Each antenna element delivers a peak gain ofB max = 8dBi
+along its principal lobe. The sidelobe gains vary according to
+
+=== PAGE 4 ===
+4
+the azimuth angleϕ m,b
+t and elevation angleζ m,b
+t between BS
+band UA Vmat timet[38]:
+Baz(ϕm,b
+t ) = min
+
+
+12
+ 
+ϕm,b
+t
+ϕ3dB
+!2
+,B m
+
+
+ ,(1)
+Bel(ζ m,b
+t ) = min
+
+
+12
+ 
+ζ m,b
+t
+ζ3dB
+!2
+,SLA
+
+
+ ,(2)
+whereϕ 3dB =ζ 3dB = 65π
+180 represents the 3 dB bandwidths,
+andB m andSLAare the antenna null thresholds. The com-
+bined element gain is:
+B(ζ m,b
+t , ϕm,b
+t ) =B max −min{−(B az(ϕm,b
+t ) +B el(ζ m,b
+t )),B m}.
+(3)
+Assuming BSbis equipped withNantennas with a down-tilt
+ζ d
+b , the array factor is:
+F(ζ m,b
+t ) =
+sin
+
+N π
+2 (sinζ m,b
+t −sinζ d
+b )
+
+√
+Nsin
+
+π
+2 (sinζ m,b
+t −sinζ d
+b )
+ .(4)
+Then, the total array radiation pattern from BSbto UA Vm
+isB m,b
+t =B(ζ m,b
+t , ϕm,b
+t ) + F(ζm,b
+t ).
+The probability that UA Vm, flying at altitudehm, maintains
+a LoS connection with BSbat distanced m,b
+t is
+PLoS(dm,b
+t ) =
+
+
+
+1,ifd m,b
+t ≤d 1
+d1
+dm,b
+t
++e −
+dm,b
+t
+p1
+
+1− d1
+dm,b
+t
+
+,otherwise,
+(5)
+whered 1 = max{460 log 10(hm)−700,18}andp 1 =
+4300 log10(hm)−3800. Forh m ∈[100,300]m, we assume
+PLoS ≈1.
+The probabilistic mean path lossL m,b
+t (in dB) is calculated
+as
+Lm,b
+t =L LoS
+b PLoS(dm,b
+t ) +L NLoS
+b (1−P LoS(dm,b
+t )),(6)
+whereL LoS
+b andL NLoS
+b are the LoS and non-LoS (NLoS) path
+loss components.
+To formulate the signal-to-interference-plus-noise ratio
+(SINR), we first define the linear channel power gainG m,b
+t
+between UA Vmand terrestrial BSbas
+Gm,b
+t = 10(Gmax−Lm,b
+t )/10,(7)
+whereG max is the peak antenna gain in dBi.
+Assuming downlink transmission, the received SINR in
+linear scale at UA Vmis given by
+SINRm,b
+t = PT Gm,b
+t
+N0Bb +P
+b′∈B\{b} PT Gm,b′
+t
+,(8)
+whereP T denotes the transmission power of the terrestrial
+base stations in milliwatts (mW),N 0 represents the noise
+power spectral density in mW/Hz, andB b represents the
+bandwidth allocated to terrestrial base stationbin Hz. The
+summation term in the denominator represents the aggregate
+downlink interference received from all other transmitting
+terrestrial BSs.
+2) UAV-HAPS Channel Model:We assume that each UA V
+is equipped with a single antenna, whereas the HAPS utilizes
+a multi-antenna array to generate spot-beams. Given a total
+available HAPS bandwidthB HAPS, the fraction allocated to
+UA Vmisb H,m
+t ∈[0,1], subject to P
+m∈M bH,m
+t ≤1. The
+UA V-HAPS link is dominated by LoS conditions, yielding an
+instantaneous channel gain [39].
+Bm,H
+t =B H
+ vl
+4π dm,H
+t fc
+2hm,H
+t
+2
+,(9)
+wherev l is the speed of light,f c is the carrier frequency,
+BH is the directional antenna gain, andh m,H is the small-
+scale Rician-fading coefficient, andd m,H
+t is the 3D distance
+between UA Vmand HAPSH. The small-scale fadingh m,H
+t
+follows a Rician distribution, i.e.,
+hm,H
+t ∼ 1√
+2
+ r
+K
+K+ 1 ejθ +
+r
+1
+K+ 1 (gI +jg Q)
+!
+,(10)
+whereK= 15dB is the Rician factor,θ∼ U[0,2π)is the
+LoS phase,g I , gQ ∼ N(0,1)are independent and identically
+distributed (i.i.d.) Gaussian random variables representing the
+in-phase/quadrature scattering components, andj= √−1
+imaginary unit [39].
+Subsequently, the achievable data rate over the UA V-HAPS
+link at timetis
+Rm,H
+t =b H,m
+t BHAPS log2
+ 
+1 + pH,m
+t PmaxBm,H
+t
+bH,m
+t BHAPSN0
+!
+,(11)
+wherep H,m
+t ∈[0,1]is the dynamic power allocation fraction
+at timet,P max is the UA V transmit power limit.
+3) Weighted Data Rate with Handover Constraints:Each
+nodec∈ C=B ∪ {HAP S}has a finite capacity quota
+Qc, which is the maximum number of UA V users it can
+simultaneously serve. Letn c,t be the current number of
+associated UA V users to nodec∈ Cat timet. The weighted
+rate of UA Vmserved by nodecpenalizes overload and HOs
+as follows:
+WRm,c
+t = Rm,c
+t
+min(Qc, nc,t)(1−γI HO,t),∀m∈ M, c∈ C,
+(12)
+whereR m,c
+t is given by eq.(11),min(Q c, nc,t)allocates per-
+user share under saturation (i.e,n c,t > Q c slows down new
+UA V associations to nodec),γpenalizes HO switches where
+IHO,t = 1if UA Vmwas associated to a node different
+fromcat timet−1, otherwise,I HO,t = 0. This discourages
+overcrowding the BSs and HAPS.
+B. Physical Kinematics and Dynamics Model
+We adopt a high-fidelity dynamic model for the quadcopter
+UA Vs based on the rigid body formulation in [36].
+Let the position of them-th UA V in the inertial frame be
+xm = [x m, ym, zm]⊤, and its attitude be represented by the
+rotation matrixR m, which defines transformation from the
+body frame to the inertial frame. The translational dynamics
+are governed by Newton’s second law:
+¨ xm = 1
+Mu
+(Rm ·F T,m −F g −F drag,m),∀m∈ M,(13)
+
+=== PAGE 5 ===
+5
+whereM u is the UA V mass,F g = [0,0, M ug]⊤ is the
+gravity vector,gis gravitational constant, andF T,m =
+[0,0,P4
+k=1 Fk,m]⊤ represents the total thrust generated by the
+motors in the body frame. The drag forceF drag,m accounts for
+air resistance and is modeled proportional to the linear velocity
+˙ xm [40]:
+Fdrag,m =D·˙ x m,(14)
+whereDis the diagonal drag coefficient matrix.
+The rotational dynamics describe the evolution of the angu-
+lar velocityω m in the body frame as
+J ˙ωm =τ m −ω m ×(Jω m),(15)
+whereJis the diagonal inertia matrix andτ m =
+[τx,m, τy,m, τz,m]⊤ is the torque vector generated by the
+differential thrust of the rotors.
+The forceF k,m and torque contribution produced by thek-
+th motor (k∈ {1, . . . ,4}) are proportional to the square of its
+rotational speedP k,m (in round per minute -RPM) [41], given
+by
+Fk,m =k F P 2
+k,m, M k,m =k T P 2
+k,m,
+∀k∈ {1, . . . ,4}, m∈ M, (16)
+wherek F andk T are the thrust and torque coefficients,
+respectively, andM k,m is the yaw moment produced by the
+spinning rotor. For a standard X-configuration quadcopter, the
+total body torques are expressed by
+τm =
+
+
+L√
+2(F1,m −F 2,m −F 3,m +F 4,m)
+L√
+2(F1,m +F 2,m −F 3,m −F 4,m)P4
+k=1(−1)k+1Mk,m
+
+ ,(17)
+whereLdenotes the arm length of the UA V .
+To enhance simulation realism, we incorporate the ground
+effect, which increases lift when the UA V operates close to the
+surface. Following [42], the thrust of thek-th motor, called
+Gk,m, is augmented by a factor, depending on the altitude
+hk,m of the propeller, as
+Gk,m =k G ·k F
+ rP
+4hk,m
+2
+P 2
+k,m,
+∀k∈ {1, . . . ,4}, m∈ M,
+(18)
+wherer P is the propeller radius andk G, kF are the ground
+effect coefficient and thrust coefficient, respectively. During
+low-altitude scenarios, the effective thrust of each motor is
+updated toF k,m +G k,m, which proportionally increases the
+total thrust vectorF T,m in Eq. (13).
+Although the environment can be accurately simulated with
+precise multi-rotor RPMs and torques, directly optimizing
+these low-level variables is computationally complex for dis-
+crete semantic agents like LLMs. To bypass this issue, our
+proposed framework delegates only high-level semantic way-
+points and velocity targeting to the LLM agent. Subsequently,
+a lower-level motion decision decoder maps these semantic
+intentions into the precise continuous rotation speed required
+by the rigid-body kinematic model, thereby closely coupling
+the physical reality of flight with the strategic reasoning of
+generative AI. To capture the coupled dynamics of 3D trajec-
+tory control and handover-aware cell association, we first de-
+fine the global joint optimization problemP. The overarching
+objective is to maximize the aggregate system utility, encom-
+passing both transportation efficiency and telecommunication
+data rates, while strictly adhering to physical kinematics,
+safety distances, and ITNTN capacity constraints.
+Letu m,c
+t ∈ {0,1}be a binary association indicator, where
+um,c
+t = 1if UA Vmconnects to serving nodec∈ Cat time
+t, andu m,c
+t = 0otherwise. The centralized joint optimization
+problem is formulated as follows:
+P: max
+Amot,U
+lim
+T→∞
+1
+T
+TX
+t=1
+X
+m∈M
+"
+Rm
+tran,t +
+X
+c∈C
+um,c
+t WRm,c
+t
+#
+s. t.C1 :
+X
+c∈C
+um,c
+t = 1,∀m∈ M,∀t,
+C2 :
+X
+m∈M
+um,c
+t ≤Q c,∀c∈ C,∀t,
+C3 :
+X
+m∈M
+um,H
+t Rm,H
+t ≤C HAPS
+max ,∀t,
+C4 :∥x m
+t −x j
+t ∥2 ≥d safe,∀m̸=j∈ M,∀t,
+C5 :x m
+t+1 = Φ(xm
+t ,a m
+mot,t),∀m∈ M,∀t,
+C6 :u m,c
+t ∈ {0,1},∀m, c, t.
+(19)
+In this formulation,A mot represents the continuous motion
+actions (rotor RPMs) andUrepresents the discrete network
+association matrix. The constraints are defined as follows:
+C1Ensures each UA V maintains exactly one active C&C
+link with a serving node (TBS or HAPS) at any given time.
+C2restricts the number of associated users per node to its
+maximum hardware quotaQ c. For the HAPS tier,C3explicitly
+guarantees that the aggregated data rate does not exceed the
+total backhaul capacityC HAPS
+max , preventing systemic network
+saturation.C4is a strict physical safety constraint ensuring
+that the 3D Euclidean distance between any two UA Vs never
+falls below the safety thresholdd safe.C5Ensures that the
+continuous spatial evolutionΦ(·)strictly obeys the high-
+fidelity 3D rigid-body dynamic equations defined in Eq. (13)–
+(16), driven by the continuous rotor commandsa m
+mot,t.
+ProblemPis a highly non-convex mixed-integer non-
+linear programming problem with deeply coupled continu-
+ous physics and discrete associations in high-mobility en-
+vironments. Therefore, to make the problem solvable, we
+decompose this optimization via a two-tier Hierarchical Multi-
+Objective POMDP, delegating specific constraints to distinct
+LLM intelligent tiers:
+•Global Strategic Level (HAPS Meta-Controller):The
+massive cloud-deployed LLM explicitly addresses con-
+straintsC2andC3. By operating at a slow timescale, it
+orchestrates the global association matrixUto ensure
+load-balancing and proactively prevent capacity viola-
+tions across the ITNTN.
+•Local Tactical Level (UA V Edge-Agents):The
+lightweight UA V-deployed LLMs alongside the DDQN
+explicitly handle constraintsC4andC5. They contin-
+uously optimize the physical thrust actionsa m
+mot,t and
+execute localized U2I handovers to maximize trajectory
+efficiency and safety, dynamically adapting their objec-
+
+=== PAGE 6 ===
+6
+tives based on the strategic network boundaries imposed
+by the HAPS.
+III. HIERARCHICALMO-POMDP FORMULATION FOR
+UAV CONTROL
+To capture the complex interplay between continuous flight
+dynamics and discrete network associations, we formulate
+the multi-UA V control problem as a Hierarchical Multi-
+Objective Partially Observable Markov Decision Process (H-
+MO-POMDP). In practical simulation environments, agents
+rarely have access to the perfect global state; instead, they must
+rely on localized, partial observations. Within this framework,
+we aim to simultaneously balance strictly competing objec-
+tives, namely, flight safety, traffic flow, and communication
+reliability.
+The H-MO-POMDP is formally defined by the tuple
+⟨S,A,P, ⃗R,Ω,O, γ d⟩, where:
+•Sis the global state space of the multi-UA V environment.
+•Ais the joint hybrid action space for hierarchical motion
+and communication.
+•P(S t+1|St,a t)represents the transition probability func-
+tion, governed by the rigid-body physics engine and
+wireless channel stochasticity.
+• ⃗Ris the multi-objective reward vector.
+•Ωis the joint localized observation space available to the
+agents.
+•O(o t|St,a t−1)is the joint observation probability func-
+tion generating the partial states.
+•γ d ∈[0,1)is the temporal discount factor.
+To effectively solve this complex H-MO-POMDP, decision-
+making authority over the tuple is distributed across two
+cognitive tiers, i.e., a slow-timescale HAPS meta-controller
+for global strategic orchestration and fast-timescale UA V edge-
+agents for localized tactical execution.
+A. State and Observation Spaces
+1) Global Environment State:The global stateS t ∈ S
+represents the ground truth tracked by the simulation envi-
+ronment. It includes the complete kinematic data (i.e., 3D
+position, velocity, attitude, and rotor RPMs) of allMUA Vs,
+governed by the rigid-body dynamics in Section II-B, along-
+side the precise network load of all base stationsBand the
+HAPSH.
+2) HAPS Meta-Observation:The HAPS operates as
+a strategic orchestrator. Its observation space aggregates
+network-level metrics as
+oHAPS
+t =
+h
+ℓHAPS
+t , C HAPS
+rem ,{d m,H
+t }m∈M,{WR m,H
+t }m∈M
+i
+,
+(20)
+whereℓ HAPS
+t is the current HAPS bandwidth load,C HAPS
+rem is
+the remaining capacity, andd m,H
+t (resp. WR m,H
+t ) represents
+the distance between UA Vmand HAPS (resp. the weighted
+data rate of each connected UA V) at stateS t.
+3) UAV Local Observation:Due to sensing and commu-
+nication limitations, each UA Vmreceives a local observa-
+tion generated by the observation functionO(o m
+t |St,a m
+t−1).
+Inspired by [36], [43], the local observation vector is defined
+by
+om
+t =
+h
+˜xm
+t , ˜vm
+t , ˜θm
+t , ˜ωm
+t , ˜Pm
+t ,N m
+t , cm
+t , dm,c
+t ,SINR m,c
+t
+i
+,
+(21)
+where the tilde (∼) denotes noisy onboard sensor readings.
+Specifically, ˜xm
+t and ˜vm
+t are the 3D position and linear ve-
+locity, ˜θm
+t represents the attitude via Euler angles (roll, pitch,
+yaw), ˜ωm
+t is the angular velocity, and ˜Pm
+t captures the current
+RPMs of the four rotors. The termN m
+t encapsulates the rela-
+tive positions and velocities of nearby neighbor UA Vs within a
+designated perception radius. For the telecommunication state,
+cm
+t ∈ B ∪ {HAP S}denotes the currently associated serving
+node, andd m,c
+t (resp. SINR m,c
+t ) represents the corresponding
+distance (resp. real-time link quality) between the nodec m
+t
+and UA Vm.
+B. Hierarchical Action Space
+Because decision-making is distributed across two cognitive
+tiers, the global action spaceAis decoupled into strategic
+HAPS meta-actions and tactical UA V edge-actions.
+1) HAPS Meta-Action Space (A HAPS):Operating on the
+slow timescaleT HAPS, the HAPS meta-controller determines
+the vertical network topology to prevent capacity saturation.
+Its discrete action space is defined as:
+aHAPS
+t ∈
+
+Offload(m),Recall(m),Idle
+	
+,(22)
+whereOffload(m)forces a specific UA Vmto discon-
+nect from the HAPS and associate with a terrestrial BS,
+Recall(m)allows a previously offloaded UA V to re-
+establish a HAPS link, andIdlemaintains the current
+network associations.
+2) UAV Tactical Action Space (A m):Operating on the fast
+timescaleT fast (whereT fast < T HAPS), each UA V edge-agent
+mselects a joint hybrid actiona m
+t = [am
+mot,t,a m
+tele,t]⊤ to handle
+immediate motion and communication dynamics.
+1) Continuous Motion Action:To fully leverage the
+high-fidelity rigid body dynamics, the physical motion action
+specifies the continuous target rotational speeds for the four
+rotors:
+am
+mot,t = [P1,m,t, P2,m,t, P3,m,t, P4,m,t]⊤,(23)
+whereP k,m,t ∈[P min, Pmax]represents the RPM for each
+rotork∈ {1, . . . ,4}. As previously established, rather than
+forcing the LLM to directly output these continuous variables,
+the semantic directives of the LLM are deterministically
+mapped into this continuous action vector via the onboard
+motion decision decoder.
+2) Discrete Telecommunication Action:Simultaneously,
+the UA V agent selects a localized network association com-
+mand:
+am
+tele,t ∈
+
+Stay,HO tob∈ B,Request HAPS
+	
+.(24)
+It is important to note the hierarchical dependency where
+a UA V’s tactical decision to Request HAPS is ultimately
+governed by the strategica HAPS
+t decisions made by the HAPS
+meta-controller.
+
+=== PAGE 7 ===
+7
+Fig. 2: The generative AI-driven hierarchical control paradigm for multi-UA V networks in an ITNTN environment.
+C. Vectorized Multi-Objective Reward
+To address the H-MO-POMDP, we define the reward as a
+vector comprising distinct and often conflicting objectives. For
+each UA Vm∈ Mat timestept, the vectorized reward ⃗Rm
+t
+is formulated as
+⃗Rm
+t =
+Rm
+tran,t Rm
+tele,t −C m
+safe,t −C m
+HO,t
+⊤
+,(25)
+where the components are mathematically defined to balance
+physical navigation efficiency and network reliability as fol-
+lows:
+•Transportation Efficiency (R m
+tran,t):This metric rewards
+forward progress while penalizing excessive energy con-
+sumption and unstable flight. It is modeled as
+Rm
+tran,t =α 1 exp
+ 
+− ∥xm
+t −x m
+target∥2
+
+−α 2∥am
+mot,t∥2
+2 −α 3∥θm
+t ∥2
+2, (26)
+where the first term incentivizes reducing the 3D Eu-
+clidean distance to its specific target waypoint (x m
+target),
+the second term penalizes aggressive changes in motor
+RPMs in terms of exceeding energy consumption, and
+the third term penalizes extreme Euler angles (θ m
+t ) to
+maintain aerodynamic stability.
+•Telecommunication (R m
+tele,t):It rewards the achievable
+data rate based on the selected serving node, scaled by
+the network capacity constraints. It is written as
+Rm
+tele,t =WR m,c
+t ,(27)
+ensuring the agent favors high-SINR links without over-
+loading the HAPS or BSs.
+•Safety Penalty (C m
+safe,t):A sparse yet severe penalty is
+triggered to prevent collisions in the dense aerial highway.
+It is expressed by
+C m
+safe,t =
+(
+ρcrash,ifmin j∈N m
+t ∥xm
+t −x j
+t ∥2 < dsafe
+0,otherwise,
+(28)
+whered safe is the minimum allowable physical separation
+distance between UA Vs.
+•Handover Cost (C m
+HO,t):It is a dense penalty applied
+when the discrete telecommunication actiona m
+tele,t trig-
+gers a network switch, reflecting the signaling overhead
+and transient latency as
+C m
+HO,t =βI(c m
+t ̸=c m
+t−1),(29)
+whereI(·)is the indicator function andβis the handover
+severity weight.
+During execution, our generative AI-driven hierarchical
+LLM architecture navigates this adversarial multi-objective
+space. The semantic reasoning of the two-tier LLMs evaluates
+the tradeoff between physical velocity (Rtran) and link stability
+(CHO).
+IV. COLLABORATIVELLM-DRIVENCOGNITIVE
+FRAMEWORK
+To effectively navigate the highly dynamic ITNTN envi-
+ronment and solve the H-MO-POMDP defined in Section III,
+we detail here the operational realization of the proposed
+collaborative LLM-driven cognitive framework. In contrast to
+conventional DRL pipelines that rely strictly on parameterized
+value updates, the proposed architecture (illustrated in Fig. 2)
+utilizes prompt-conditioned reasoning, memory retrieval, and
+structured action decoding. The system follows a closed-loop
+cognitive paradigm as follows: observe→retrieve→reason
+→act→reflect→update memory.
+
+=== PAGE 8 ===
+8
+Fig. 3: LLM-based HAPS Meta-controller Decision Process, illustrating the synthesis of the static role, dynamic observation
+state, and retrieved history memories into a structured meta-action.
+A. Overall Multi-Timescale Execution
+To prevent the latency bottleneck inherent in generative
+AI inference, the framework operates on a dual-timescale
+coordinated execution model, specifically:
+•HAPS Meta-Tier (Slow Timescale,T HAPS):The HAPS
+meta-controller executes globally, regulating load distri-
+bution, vertical handovers, and congestion prevention.
+•UA V Tactical Tier (Fast Timescale,T fast):Each UA V
+edge-agent determines localized continuous motion and
+discrete communication actions based on real-time chan-
+nel fluctuations and current network guidance.
+This bi-level execution drastically reduces the complexity of
+full joint control while preserving coordination between global
+network management and localized UA V adaptation.
+B. Task Discretization and Prompt Construction
+Because LLMs inherently process semantic tokens rather
+than continuous numerical tensors, numerical observations
+must be converted via a task discretization functionT(·). For a
+given tier-specific observation (either the global HAPS meta-
+stateo HAPS
+t or the local UA V stateo m
+t ), the dynamic state
+prompt is generated asp dyn
+t =T(o t). This function maps
+numerical bounds into categorical text.
+Both the HAPS controller and UA V agents generate de-
+cisions through this structured prompt-based reasoning. As
+illustrated in Fig. 3, at each decision epoch, the complete
+promptP t is synthesized as
+Pt =P stat ⊕p dyn
+t ⊕ P mem
+t ,(30)
+where⊕denotes string concatenation, and the prompt com-
+ponents are defined by
+•Static Prompt (P stat):It defines the agent’s role, task
+objectives, action constraints, and required output format.
+For the HAPS controller, it enforces the goal of maintain-
+ing the load belowC HAPS
+max while minimizing HO events.
+For the UA V agents, it enforces localized 3D flight safety,
+trajectory goals, and interference constraints.
+•Dynamic Prompt (p dyn
+t ):It describes the real-time
+discretized observable state. The HAPS dynamic prompt
+includes the current association profile, weighted rates
+WRm,c
+t , and aggregate loadℓ HAPS
+t . The UA V dynamic
+prompt details its kinematics, neighbor statesN m
+t , serv-
+ing node, and localized SINR.
+•Memory Prompt (P mem
+t ):It contains the top-Khistor-
+ical examples retrieved from the episodic memory pool.
+These examples act as in-context demonstrations, guiding
+the LLM toward high-quality decisions under similar
+environmental conditions without gradient updates.
+In a dense ITNTN, individual UA Vs lack global net-
+work visibility. Greedy and uncoordinated BS associations in-
+evitably lead to severe local terrestrial congestion and resource
+starvation. The HAPS meta-controller operates as a strategic
+orchestrator to resolve this. Indeed, it keeps the aggregate
+HAPS load strictly below the capacity limit (ℓHAPS
+t ≤C HAPS
+max )
+while maximizing overall network throughput and minimizing
+unnecessary vertical HOs.
+As illustrated in Fig. 3, at each slow-timescale decision
+epoch, the HAPS controller synthesizes its structured prompt
+P HAPS
+t . Operating purely as a generative AI orchestrator, the
+meta-action is sampled from the LLM policyπ HAPS:
+aHAPS
+t ∼π HAPS
+ 
+· | P HAPS
+t
+
+∈ {Offload(U),Recall(U),Idle}, (31)
+whereU ⊆ Mrepresents the specific subset of UA Vs selected
+for network reconfiguration. The chosen action is immediately
+broadcast to the affected UA Vs, and the global association
+matrix is updated before the lower-tier edge-agents execute
+their tactical decisions.
+To continuously evaluate the quality of these strategic
+decisions, the HAPS computes a global system reward, defined
+as
+RHAPS
+t =η 1
+X
+m∈M
+WRm,c
+t −η 2I
+ 
+ℓHAPS
+t > C HAPS
+max
+
+−η 3
+X
+m∈M
+I(HOm
+t ),
+(32)
+
+=== PAGE 9 ===
+9
+whereη 1, η2, η3 are strategic balancing weights. This reward
+function is used exclusively for experience evaluation and
+memory updates, rather than for gradient-based parameter
+backpropagation. The complete strategic execution loop is
+summarized in Algo. 1.
+Algorithm 1:LLM-driven HAPS Meta-Controller for
+Network Reconfiguration
+Input :Initial meta-observationo HAPS
+0 , UA V setM,
+HAPS capacityC HAPS
+max
+Output:Strategic UA V association directivesa HAPS
+t
+Initialize LLM meta-controller parameters and global
+memory buffer;
+foreach timesteptin episodedo
+// Execute only on the slow HAPS
+timescale
+ift(modT HAPS) == 0then
+Observe meta-observationo HAPS
+t (loadℓ HAPS
+t ,
+data rates WR m,H
+t );
+Identify current HAPS-associated UA V subset
+MH ⊆ M;
+ifℓ HAPS
+t > C HAPS
+max then
+Identify subsetU ⊆ M H with lowest data
+rates or least critical tasks;
+Actiona HAPS
+t ←Offload(U)to
+terrestrial BS;
+else ifℓ HAPS
+t < C HAPS
+max and offloaded UAVs exist
+then
+Identify eligible subsetU ′ /∈ MH for
+reattachment;
+Actiona HAPS
+t ←Recall(U ′)to HAPS;
+else
+Actiona HAPS
+t ←Idle;
+Broadcast actiona HAPS
+t to the respective UA V
+edge-agents;
+// Observe feedback and update
+global memory
+Observe next meta-stateo HAPS
+t+1 ;
+Compute global system rewardR HAPS
+t via Eq.
+(32);
+Update meta-policyπ HAPS via LLM cognitive
+reflection on(o HAPS
+t ,a HAPS
+t , RHAPS
+t ,o HAPS
+t+1 );
+C. UAV Edge-Agent for Tactical Joint Control
+At the edge, UA Vs navigating the 3D aerial highway face
+highly dynamic physical threats like collisions and rapid
+RF channel fading that cannot wait for slow-timescale in-
+terventions from the HAPS. The UA V edge-agent acts as a
+localized tactical controller. It leverages the advanced spatial
+reasoning of an onboard LLM to ensure collision-free physical
+trajectories, while simultaneously utilizing a high-frequency
+DRL policy to maintain an optimal communication link.
+As depicted in Fig. 4, the UA V agent strictly decouples its
+action space to satisfy these real-time latency constraints, as
+follows:
+1) Continuous Motion Control:The onboard LLM eval-
+uates the local promptP m
+t to generate a high-level spatial
+directivea sem,m
+t ∼π UA V(· | P m
+t ). A deterministic Motion
+Decision DecoderG(·)then translates this semantic intent into
+the continuous rotor RPMs required by the rigid-body physics
+engine, i.e.,
+am
+mot,t =G
+ 
+asem,m
+t
+
+,(33)
+yielding the precise[P 1,m,t, P2,m,t, P3,m,t, P4,m,t]⊤ motor
+thrusts.
+2) Discrete Telecommunication Control:Concurrently,
+because sub-millisecond RF channel fluctuations cannot wait
+for slow LLM inference cycles, the discrete telecommunica-
+tion handover is processed by a parallel DDQN parameterized
+byθ. The DDQN selects the optimal action based on the
+current local observation and the decided motion intent as
+am
+tele,t = arg max
+a
+Q
+ 
+om
+t ,a m
+mot,t,a;θ
+
+.(34)
+This hybrid architecture allows the UA V to execute the joint
+actiona m
+t = [am
+mot,t,a m
+tele,t]⊤ seamlessly. The complete tacti-
+cal loop for the edge-agent is summarized in Algo. 2. For
+the semantic reasoning layer, this mechanism facilitates a
+lightweight, self-improving cognitive loop without the severe
+computational overhead of gradient-based parameter back-
+propagation, leaving intensive weight updates to the DDQN.
+D. Cognitive Reflection and Memory Retrieval
+To improve zero-shot robustness and adaptability in highly
+dynamic ITNTN environments, both the HAPS meta-controller
+and the UA V edge-agents maintain independent episodic mem-
+ory buffers. The buffer for each cognitive tier is defined as
+D={(o i,a i,R i,o ′
+i,C i)}N
+i=1,(35)
+whereo i is the localized observation (o HAPS
+t oro m
+t ),a i is
+the executed action,R i is the tier-specific reward (R HAPS
+t or
+the multi-objective vector ⃗Rm
+t ),o ′
+i is the subsequent state,
+andC i is a textual correction summary generated during past
+reflections.
+At decision epocht, the current observationo t is compared
+against stored historical states to identify highly relevant con-
+textual precedents. We employ a Euclidean distance similarity
+measure applied to the normalized state embeddingsϕ(·), i.e.,
+di =∥ϕ(o t)−ϕ(o i)∥2.(36)
+The top-Kexperiences with the smallest distanced i are
+retrieved to construct the memory promptP mem
+t .
+Following the execution of an action, the environment
+returns the reward signal and the next state. If the decision
+yields favorable performance, the tuple is stored directly as
+a positive exemplar (c t =∅). However, if the reward falls
+below a safety threshold, mathematically defined for the UA V
+mas ⃗w⊤ ⃗Rm
+t < ρ thresh (indicating a near-miss collision or
+an inefficient handover loop), a cognitive reflection step is
+triggered. The LLM deduces the causality of the suboptimal
+action, generates a linguistic correction notec t, and appends
+the updated experience toD. This mechanism facilitates a
+lightweight, self-improving cognitive loop without the severe
+computational overhead of gradient backpropagation.
+
+=== PAGE 10 ===
+10
+Fig. 4: The architectural framework of the proposed UA V edge-agent.
+V. NUMERICALRESULTS ANDDISCUSSION
+To rigorously evaluate the proposed generative AI-driven
+hierarchical framework, we conduct extensive experiments
+focusing on both the qualitative cognitive reasoning of the
+LLM agents and the quantitative system-level performance
+under varying network densities.
+A. Simulation Setup and Parameters
+We adopt a high-fidelity 3D physics environment built
+upon [36]. This engine numerically integrates the rigid-body
+dynamics detailed in Section II-B, capturing precise multi-
+rotor thrusts, torques, drag, and ground effects at a simulation
+frequency of 20 Hz (∆t= 0.05s). The UA Vs are modeled
+with a mass ofM u = 1.5kg, representing standard commer-
+cial quadrotors capable of outdoor flight, and the minimum
+physical safety separation to avoid collision penalties is de-
+fined asd safe = 5.0m. The aerial highway is modeled as a
+1000×1000×300m 3 airspace containing static cylindrical no-
+fly zones. To evaluate scalability, the number of active UA Vs
+varies acrossM∈ {5,10,15,20,25,30}.
+The communication network consists of one HAPS meta-
+node operating at an altitude of 20 km andB= 4TBSs
+distributed uniformly across the ground plane. The HAPS op-
+erates at a carrier frequency of 2.0 GHz with a total allocated
+bandwidth ofB HAPS = 20MHz and a strict aggregated
+capacity limit ofC HAPS
+max = 100Mbps. The terrestrial BSs
+operate at 2.1 GHz with a transmit power ofP T = 40dBm and
+a peak antenna gain ofB max = 8dBi, utilizing 3GPP 3D an-
+tenna radiation patterns to compute accurate G2A line-of-sight
+probabilities and SINR. For the UA V uplink transmissions,
+the maximum transmit power is capped atP max = 23dBm.
+The environment assumes a noise power spectral density of
+N0 =−174dBm/Hz, and the UA V-HAPS channels are
+modeled with a Rician LoS factor ofK= 15dB. Each serving
+node maintains a strict capacity quota ofQ c = 5concurrent
+users.
+To simulate a realistic edge-cloud architecture, the LLM
+reasoning modules are deployed using the OLLAMAinference
+framework [44] on a high-performance computing cluster.
+To ensure architectural consistency, we employ the state-
+of-the-art Qwen 3.5 model family [45]. The localized UA V
+edge-agents utilize the highly efficientQwen3.5-9Bmodel
+to ensure rapid tactical prompt processing within stringent
+edge-hardware constraints. Conversely, the global HAPS meta-
+controller utilizes the massiveQwen3.5-122Bmodel, lever-
+aging the cluster’s A100 GPUs for complex, multi-agent
+strategic load balancing. To satisfy the multi-rate execution
+constraint, the fundamental discrete time slottof the H-MO-
+POMDP formulation is strictly mapped to the fast physics
+execution step, such that one time slot equals∆t=T fast =
+0.05s. Consequently, the upper-tier cognitive modules operate
+at integer multiples of this base time slot. The localized DDQN
+and motion decoder execute continuously at every time slott.
+Conversely, the localized UA V LLM reasoning timescale is set
+toT LLM = 1.0s (executing every 20 time slots), and the global
+HAPS meta-controller regulates the network at a slower strate-
+gic timescale ofT HAPS = 5.0s (executing every 100 time
+slots). Finally, for the H-MO-POMDP reward evaluation and
+cognitive reflection, the multi-objective safety threshold that
+triggers the LLM reflection module is set toρ thresh =−10.0.
+The severe collision penalty is defined asρ crash =−100.0,
+and the scalarization weights balancing the HAPS and UA V
+reward vectors are configured asη {1,2,3} ={1.0,50.0,5.0}
+andα {1,2,3} ={1.0,0.1,0.2}, respectively. We compare our
+proposedHierarchical LLM Frameworkagainst the following
+state-of-the-art baselines:
+•DDQN:A standard Double Deep Q-Network agent
+tasked with managing both discrete flight waypoints and
+U2I handovers simultaneously, representing traditional
+single-objective DRL without semantic spatial reasoning.
+
+=== PAGE 11 ===
+11
+Algorithm 2:UA V Edge-Agent Tactical Cognitive
+Loop
+Input :Initial observationo m
+0 , Memory poolD m,
+DDQN parametersθ, Thresholdρ thresh,
+Weights ⃗w
+foreach timesteptin episodedo
+Observe continuous local stateo m
+t ;
+ift(modT fast) == 0then
+// Slow Timescale: LLM Spatial
+Reasoning
+ift(modT HAPS) == 0ort
+(modT LLM) == 0then
+Discretize state:p dyn
+t ← T(o m
+t );
+Retrieve top-KmemoriesD m
+top-K using
+Euclidean distanced i;
+Generate prompt
+P m
+t =P stat ⊕p dyn
+t ⊕ P mem
+t ;
+Generate semantic directive:
+asem,m
+t ∼π UA V(· | P m
+t );
+// Fast Timescale: Execution &
+U2I
+Decode motion action (Eq. 33):
+am
+mot,t =G(a sem,m
+t );
+Select U2I action via DDQN (Eq. 34):
+am
+tele,t = arg maxa Q(om
+t ,a m
+mot,t,a;θ);
+Execute joint 2D actiona m
+t = [am
+mot,t,a m
+tele,t]⊤;
+Observe multi-objective reward ⃗Rm
+t and next
+stateo m
+t+1;
+// Cognitive Reflection and
+Memory Update
+if ⃗w⊤ ⃗Rm
+t < ρ thresh then
+Trigger Reflection: Prompt LLM with
+(pdyn
+t ,a m
+t , ⃗Rm
+t );
+Generate linguistic correction summaryc m
+t ;
+else
+Setc m
+t ←∅
+Update memory:
+Dm ← D m ∪ {(om
+t ,a m
+t , ⃗Rm
+t ,o m
+t+1, cm
+t )};
+Update localized DDQN parametersθusing
+Bellman error;
+•Envelope-MORL [43]:A multi-objective RL approach
+that utilizes envelope updates to manage linear scalar-
+ization trade-offs between transportation efficiency and
+handover frequency.
+B. Case Studies of Hierarchical LLM Decision-Making
+To intuitively validate the real-time cognitive reasoning and
+execution capabilities of our proposed framework, we extract
+a comprehensive 20-second flight episode. In this scenario,
+three UA Vs navigate a shared 3D corridor while maintaining
+mission-critical data links within a network comprising one
+HAPS and one TBS. The operational state space is recorded
+and presented in Fig. 5.
+1) Kinematic Stability and Spatial Reasoning:A primary
+challenge in applying LLMs to autonomous flight is bridging
+the abstraction gap between discrete semantic commands and
+continuous, high-frequency aerodynamic stability. The attitude
+(roll, pitch) and angular velocity (ω m
+t ) subplots (subfigures in
+1st and 2nd rows of Fig. 5) demonstrate that the LLM’s se-
+mantic directives are successfully decoded into stable physical
+maneuvers. The roll and pitch angles remain tightly bounded
+within safe operational thresholds of±15 ◦, accompanied by
+smooth angular velocities near 0 rad/s (subfigures in 2nd
+row of Fig. 5). This absolute smoothness definitively proves
+that the deterministic motion decoder successfully translates
+text commands into viable aerodynamics, completely avoiding
+the erratic shaking and violent overcorrections, compared to
+current existing approaches [7]. As observed in the 3D Trajec-
+tories subplot of Fig. 5 (subfigures in the last row), all three
+UA Vs successfully advance toward their target zones while
+actively maintaining the strictd safe separation distance. Unlike
+traditional DRL agents that often artificially minimize safety
+penalties by adopting overly conservative hovering policies,
+the varying velocity profiles prove that the LLM’s spatial
+discretization grants dynamic, zero-shot collision awareness.
+2) Telecommunication Orchestration and Link Relia-
+bility:Concurrently, the tactical tier must solve the H-MO-
+POMDP by ensuring that aggressive physical flight maneuvers
+do not compromise network connectivity. As depicted in the
+Distance vs Datarate Relationship subplot of Fig. 5 (last row),
+the UA Vs’ physical distances vary drastically as they navigate
+the corridor, which naturally induces substantial variations in
+path loss and channel fading. However, despite these drastic
+spatial fluctuations, the Average Datarate remains remarkably
+stable, between 1.15 and 1.20 Gbps (subfigures in the last
+row of Fig. 5). This stability serves as the definitive proof
+of the proposed dual-timescale architecture, i.e., while the
+LLM governs the slow-timescale physical flight, the localized
+DDQN successfully executes rapid, high-frequency U2I han-
+dovers to compensate RF fading. By optimally timing these
+vertical handovers based on the LLM’s semantic guidance, the
+dual-agent framework sustains the aggregate system data rate,
+intelligently relying on the terrestrial infrastructure’s spatial
+multiplexing to handle the bulk of the traffic while reserving
+the HAPS’s limited 100 Mbps capacity for critical coverage
+gaps.
+3) HAPS Meta-Controller Offloading Dynamics:To ex-
+plicitly validate the strategic load-balancing capabilities of the
+HAPS meta-controller, we simulate the aerial highway under
+varying traffic densities in Fig. 6. The HAPS is constrained
+by a strict capacity limit, capable of concurrently serving a
+maximum quota ofQ c = 5UA Vs by intelligently offloading
+excess traffic to the terrestrial infrastructure.
+In the low-density scenario (Fig. 6a,M= 4), the aggregate
+demand remains below the capacity threshold, and all active
+UA Vs are optimally accommodated by the high-throughput
+HAPS. However, as traffic scales to medium density (Fig. 6b,
+M= 7), the network demand exceeds the non-terrestrial
+capacity. In this case, the meta-LLM anticipates this saturation
+as follows: Rather than allowing the non-terrestrial tier to
+degrade through interference and resource starvation, the meta-
+controller issues targetedOffload(U)directives, forcing
+two excess UA Vs to execute vertical handovers to the terres-
+
+=== PAGE 12 ===
+12
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000014/uni00000013
+/uni00000018
+/uni00000013
+/uni00000018
+/uni00000014/uni00000013
+/uni00000035/uni00000052/uni0000004f/uni0000004f/uni00000003/uni0000000b/uni00000047/uni00000048/uni0000004a/uni0000000c
+/uni00000035/uni00000052/uni0000004f/uni0000004f
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000013/uni00000011/uni00000014/uni00000013
+/uni00000013/uni00000011/uni00000013/uni00000018
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000013/uni00000018
+/uni00000013/uni00000011/uni00000014/uni00000013
+/uni00000013/uni00000011/uni00000014/uni00000018
+/uni00000013/uni00000011/uni00000015/uni00000013
+/uni00000033/uni0000004c/uni00000057/uni00000046/uni0000004b/uni00000003/uni0000000b/uni00000047/uni00000048/uni0000004a/uni0000000c
+/uni00000033/uni0000004c/uni00000057/uni00000046/uni0000004b
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000014/uni00000013/uni00000013
+/uni00000018/uni00000013
+/uni00000013
+/uni00000018/uni00000013
+/uni00000014/uni00000013/uni00000013
+/uni0000003c /uni00000044/uni0000005a/uni00000003/uni0000000b/uni00000047/uni00000048/uni0000004a/uni0000000c
+/uni0000003c /uni00000044/uni0000005a
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000014/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000018
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000018
+/uni00000014/uni00000011/uni00000013
+/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003x/uni00000003/uni0000000b/uni00000055/uni00000044/uni00000047/uni00000012/uni00000056/uni0000000c
+/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003x
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000013/uni00000011/uni00000013/uni00000013/uni0000001b
+/uni00000013/uni00000011/uni00000013/uni00000013/uni00000019
+/uni00000013/uni00000011/uni00000013/uni00000013/uni00000017
+/uni00000013/uni00000011/uni00000013/uni00000013/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000013/uni00000013
+/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003y/uni00000003/uni0000000b/uni00000055/uni00000044/uni00000047/uni00000012/uni00000056/uni0000000c
+/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003y
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000014
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000016
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000018/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003z/uni00000003/uni0000000b/uni00000055/uni00000044/uni00000047/uni00000012/uni00000056/uni0000000c
+/uni00000024/uni00000051/uni0000004a/uni00000058/uni0000004f/uni00000044/uni00000055/uni00000003/uni00000039/uni00000048/uni0000004f/uni00000052/uni00000046/uni0000004c/uni00000057/uni0000005c/uni00000003z
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000013/uni00000013/uni00000011/uni00000015
+/uni0000003b/uni00000003/uni0000000b/uni00000050/uni0000000c/uni00000013/uni00000011/uni00000015/uni00000018
+/uni00000013/uni00000011/uni00000013/uni00000013
+/uni00000013/uni00000011/uni00000015/uni00000018
+/uni00000013/uni00000011/uni00000018/uni00000013
+/uni0000003c/uni00000003/uni0000000b/uni00000050/uni0000000c
+/uni00000013/uni00000011/uni00000013
+/uni00000013/uni00000011/uni00000015
+/uni00000013/uni00000011/uni00000017
+/uni00000013/uni00000011/uni00000019
+/uni00000013/uni00000011/uni0000001b
+/uni0000003d/uni00000003/uni0000000b/uni00000050/uni0000000c
+/uni00000016/uni00000027/uni00000003/uni00000037/uni00000055/uni00000044/uni0000004d/uni00000048/uni00000046/uni00000057/uni00000052/uni00000055/uni0000004c/uni00000048/uni00000056
+/uni00000013/uni00000015/uni00000017/uni00000019/uni0000001b
+/uni00000037/uni0000004c/uni00000050/uni00000048/uni00000003/uni0000000b/uni00000056/uni0000000c
+/uni00000013/uni00000011/uni0000001c
+/uni00000014/uni00000011/uni00000013
+/uni00000014/uni00000011/uni00000014
+/uni00000014/uni00000011/uni00000015
+/uni00000014/uni00000011/uni00000016
+/uni00000014/uni00000011/uni00000017/uni00000027/uni00000044/uni00000057/uni00000044/uni00000055/uni00000044/uni00000057/uni00000048/uni00000003/uni0000000b/uni0000002a/uni00000045/uni00000053/uni00000056/uni0000000c
+/uni0000003a/uni0000004c/uni00000055/uni00000048/uni0000004f/uni00000048/uni00000056/uni00000056/uni00000003/uni00000027/uni00000044/uni00000057/uni00000044/uni00000055/uni00000044/uni00000057/uni00000048
+/uni00000013/uni00000011/uni00000018/uni00000018/uni00000013/uni00000011/uni00000019/uni00000013/uni00000013/uni00000011/uni00000019/uni00000018/uni00000013/uni00000011/uni0000001a/uni00000013/uni00000013/uni00000011/uni0000001a/uni00000018/uni00000013/uni00000011/uni0000001b/uni00000013/uni00000013/uni00000011/uni0000001b/uni00000018/uni00000013/uni00000011/uni0000001c/uni00000013
+/uni00000027/uni0000004c/uni00000056/uni00000057/uni00000044/uni00000051/uni00000046/uni00000048/uni00000003/uni00000057/uni00000052/uni00000003/uni00000025/uni00000036/uni00000003/uni0000000b/uni00000050/uni0000000c
+/uni00000013/uni00000011/uni0000001c
+/uni00000014/uni00000011/uni00000013
+/uni00000014/uni00000011/uni00000014
+/uni00000014/uni00000011/uni00000015
+/uni00000014/uni00000011/uni00000016
+/uni00000014/uni00000011/uni00000017/uni00000027/uni00000044/uni00000057/uni00000044/uni00000055/uni00000044/uni00000057/uni00000048/uni00000003/uni0000000b/uni0000002a/uni00000045/uni00000053/uni00000056/uni0000000c
+/uni00000027/uni0000004c/uni00000056/uni00000057/uni00000044/uni00000051/uni00000046/uni00000048/uni00000003/uni00000059/uni00000056/uni00000003/uni00000027/uni00000044/uni00000057/uni00000044/uni00000055/uni00000044/uni00000057/uni00000048/uni00000003/uni00000035/uni00000048/uni0000004f/uni00000044/uni00000057/uni0000004c/uni00000052/uni00000051/uni00000056/uni0000004b/uni0000004c/uni00000053
+/uni00000038/uni00000024 /uni00000039/uni00000003/uni00000013/uni00000038/uni00000024 /uni00000039/uni00000003/uni00000014/uni00000038/uni00000024 /uni00000039/uni00000003/uni00000015/uni00000037/uni00000048/uni00000055/uni00000055/uni00000048/uni00000056/uni00000057/uni00000055/uni0000004c/uni00000044/uni0000004f/uni00000003/uni00000025/uni00000044/uni00000056/uni00000048/uni00000003/uni00000036/uni00000057/uni00000044/uni00000057/uni0000004c/uni00000052/uni00000051
+Fig. 5: Comprehensive 20-second simulation profiles of two UA Vs navigating an integrated terrestrial and non-terrestrial network
+(1 HAPS (not shown in the figure) , 1 TBS) using the proposed collaborative LLM-DDQN agent.
+trial BSs.
+This load-balancing behavior scales robustly during the
+high-density surge (Fig. 6c,M= 10), where the meta-
+controller orchestrates a massive offload of five UA Vs. By dy-
+namically partitioning the network, the hierarchical framework
+preserves the integrity of the HAPS links for mission-critical
+nodes while seamlessly shifting delay-tolerant traffic to the
+ground infrastructure, avoiding significant packet drops with-
+out requiring computationally heavy gradient recalculations.
+C. Training-Phase Convergence and Multi-Objective Analysis
+Fig. 7 illustrates the learning curves of the evaluated
+algorithms. Fig. 7a reflects the results of P ⃗Rm
+t in the
+physical domain. after convergence beyond 2000 episodes,
+validating the LLM’s strong semantic reasoning for assertive,
+goal-oriented spatial maneuvers. Conversely, the conventional
+DDQN agent converges towards a conservative, sub-optimal
+policy that artificially minimizes safety penalties.
+Fig. 7b presents the telecommunication utility as a function
+of the number of RL episodes. Although DDQN initially
+saturates at a reward of approximately 7.5, the hierarchical
+LLM framework outperforms it after episode 1,500 towards a
+reward of nearly 10. By decoupling the fast-timescale DDQN
+channel selection from the slow-timescale LLM flight plan-
+ning, the dual-agent proactively anticipates signal degradation
+and initiates timely handovers.
+D. Scalability under Varying 3D Traffic Density
+To evaluate system robustness and the contribution of indi-
+vidual framework components, Fig. 8 presents key operational
+metrics averaged over 500 evaluation episodes as the number
+of active UA Vs (M) scales from 5 to 30. In addition of the
+proposed framework, we evaluate the performances of two
+degraded variants of the proposed framwork, namely:
+1) w/o Memory Prompt (P mem
+t ): The UA V edge-agents rely
+solely on their base state observations (p dyn
+t ) without
+retrieving historical reflection summaries (c m
+t ).
+2) w/o Meta-Controller: The globalQwen3.5-122Bmeta-
+controller is disabled. UA Vs execute greedy network
+associations without HAPS capacity gating (C HAPS
+max ).
+AsMincreases, maintaining efficient flight paths becomes
+increasingly difficult due to higher interference and required
+collision avoidance maneuvers. As illustrated by the trans-
+portation efficiency trends in Fig. 8a, the transportation re-
+ward of the DDQN baseline degrades severely asMscales
+towards 30. In contrast, the proposed framework achieves
+the best transportation reward (even without memory prompt
+or HAPS load-balancing), showcasing a superior and stable
+trajectory profile even at maximalM= 30. The envelope-
+MORL benchmark achieves better performance than DDQN
+but worse than the proposed framework and its variants.
+Finally, for all approaches, asMgrows from 5 to 15, the
+transportation reward degrades due to the rapid onset of
+
+=== PAGE 13 ===
+13
+Fig. 6: 3D visualizations of the ITNTN network topology under varying traffic densities. (a)M= 4: Demand is strictly below
+the capacity limit (Q c = 5). HAPS optimally serves all UA Vs. (b)M= 7: Demand exceeds capacity. The meta-controller
+actively offloads 2 UA Vs to the TN to maintain HAPS stability. (c)M= 10: Demand exceeds capacity. The meta-controller
+actively offloads 5 UA Vs to the TN to maintain HAPS stability.
+0 1000 2000 3000 4000 5000
+Episodes
+8
+10
+12
+14
+16
+18
+20Transportation Reward
+DDQN
+Envelope MORL
+Proposed Framework
+(a) Transportation Efficiency (R m
+tran,t)
+0 1000 2000 3000 4000 5000
+Episodes
+3
+4
+5
+6
+7
+8
+9
+10
+11Telecommunication Reward
+DDQN
+Envelope MORL
+Proposed Framework (b) Telecommunication Utility (R m
+tele,t)
+Fig. 7: Training phase convergence comparison of the proposed hierarchical generative AI framework.
+spatial congestion, forcing UA Vs to deviate constantly from
+their optimal forward trajectories and execute erratic evasive
+movements.However, whenMexceeds 15, the reward slightly
+increases then saturates for higherMvalues. This is due to the
+emergence of collective swarm alignment: at high densities,
+the airspace becomes fully saturated, forcing the agents to
+adopt uniform, platooning to minimize continuous collision
+penalties. Finally, Fig. 8b evaluates network stability by
+plotting the probability of vertical handovers. DDQN exhibits
+the highest handover probability for anyMvalue, reacting to
+localized channel fading with uncoordinated network switches.
+Envelope-MORL performs marginally better. In contrast, the
+proposed framework maintains the lowest and most stable
+handover probability. The performance slightly degrades when
+the HAPS meta-controller or Memory Prompt is removed,
+highliting their important role in executing vertical handovers
+only when necessary.
+E. Impact of LLM Scale and Memory Retrieval
+In Table I, we present the comparative analysis of the
+proposed framework against its ablation variants in terms
+of complexity, collision rate, average datarate, and capacity
+violations. Removing the episodic memory retrieval (w/o
+TABLE I: Ablation Study: Impact of Hierarchical Components
+on System Performance (M= 30UA Vs)
+Architecture Variant Active Components Performance Metrics
+HAPS LLM Memory Collision
+Rate
+(Csafe)
+Avg.
+Datarate
+(Gbps)
+Capacity
+Viola-
+tions
+Proposed Framework✓(122B)✓0.07 1.18 0.0%
+w/o Memory Prompt✓(122B)×0.19 1.15 0.0%
+w/o Meta-Controller×(Greedy)✓0.08 0.62 84.5%
+Memory Prompt) causes a severe degradation in physical
+safety (high collision rate). Indeed, without access to past
+cognitive reflections, theQwen3.5-9Bedge-agents lose their
+zero-shot spatial awareness, causing the collision rate to spike
+from0.07to0.19. This proves that while the LLM possesses
+inherent reasoning capabilities, dynamic grounding viaP mem
+t
+is necessary to bridge the gap to continuous control. On the
+other hand, disabling the strategic HAPS orchestrator (w/o
+Meta-Controller) isolates the failure to the telecommunications
+domain. Without theQwen3.5-122Bmodel anticipating
+congestion, the UA Vs greedily associate with the HAPS,
+violating theC HAPS
+max threshold in84.5%of the time steps.
+This resource starvation causes severe packet drops, degrading
+
+=== PAGE 14 ===
+14
+5 10 15 20 25 30
+Number of UAVs
+22
+21
+20
+19
+Transportation Efficiency
+(a)  
+5 10 15 20 25 30
+Number of UAVs
+0.05
+0.06
+0.07
+0.08
+0.09
+0.10
+0.11Handover Probability
+(b)
+Proposed Framework
+Proposed Framework without Memory Prompt
+Proposed Framework without HAPS load-balancing
+Envelope-MORL
+DDQN
+Fig. 8: Scalability evaluation comparing operational penalties and safety metrics under varying 3D UA V traffic densities.
+the aggregate network throughput to0.62Gbps.
+VI. CONCLUSION ANDFUTUREWORK
+As UA Vs increasingly populate the 3D aerial highway,
+balancing aggressive physical mobility with reliable mission-
+critical connectivity remains a challenge. This paper resolves
+this transportation-telecommunication conflict by proposing a
+novel, generative AI-driven hierarchical cognitive framework
+for ITNTN-enabled UA V swarms. By formulating the envi-
+ronment as an H-MO-POMDP, we successfully distributed
+decision-making across two highly coordinated tiers. At the
+strategic level, a slow-timescale HAPS Meta-Controller uti-
+lizes global cognitive reflection to execute dynamic network
+load balancing, effectively mitigating capacity saturation. At
+the tactical edge level, we pioneered a hybrid dual-agent
+architecture that explicitly bridges the abstraction gap between
+semantic AI and continuous physics. Extensive 3D simulations
+demonstrate that the proposed framework outperforms baseline
+DRL and MORL methods in terms of transportation efficiency,
+telecommunication data rate, collision rate, and HO events.
+REFERENCES
+[1] J. Yuet al., “Deep learning for channel tracking in irs-assisted UA V
+communication systems,”IEEE Trans. Wireless Commun., vol. 21, no. 9,
+pp. 7711–7722, 2022.
+[2] N. Cherifet al., “3D aerial highway: The key enabler of the retail
+industry transformation,”IEEE Commun. Mag., vol. 59, no. 9, pp. 65–
+71, 2021.
+[3] Z. Yanet al., “Hierarchical and Collaborative LLM-Based Control for
+Multi-UA V Motion and Communication in Integrated Terrestrial and
+Non-Terrestrial Networks,”arXiv preprint arXiv:2506.06532, 2025.
+[4] W. Jaafar and H. Yanikomeroglu, “HAPS-ITS: Enabling future its
+services in trans-continental highways,”IEEE Commun. Mag., vol. 60,
+no. 10, pp. 80–86, 2022.
+[5] Q. Renet al., “Caching and computation offloading in high altitude
+platform station (HAPS) assisted intelligent transportation systems,”
+IEEE Trans. Wireless Commun., vol. 21, no. 11, pp. 9010–9024, 2022.
+[6] I. Rziget al., “Energy-efficient vehicular task offloading using multi-
+mode MEC and RIS-equipped aerial platforms,”IEEE Op. J. of the
+Commun. Soc., vol. 6, pp. 7604–7619, 2025.
+[7] Z. Yanet al., “Multi-UA V speed control with collision avoidance and
+handover-aware cell association: DRL with action branching,” inProc.
+IEEE Global Commun. Conf. (GLOBECOM), 2023, pp. 5067–5072.
+[8] N. Cherifet al., “RL-based cargo-UA V trajectory planning and cell
+association for minimum handoffs, disconnectivity, and energy consump-
+tion,”IEEE Trans. Veh. Technol., vol. 73, no. 5, pp. 7304–7309, 2024.
+[9] D. Kotarskiet al., “Design considerations for autonomous cargo trans-
+portation multirotor UA Vs,” inSelf-Driving Vehicles and Enabling
+Technologies, ser. Artificial Intelligence, V olume 6, M. G ˘aiceanu and
+A. Engelbrecht, Eds. London, U.K.: IntechOpen, 2021.
+[10] J.-H. Chenet al., “BDFL: A byzantine-fault-tolerance decentralized
+federated learning method for autonomous vehicle,”IEEE Trans. Veh.
+Technol., vol. 70, no. 9, pp. 8639–8652, 2021.
+[11] B. Liet al., “3D trajectory optimization for energy-efficient UA V
+communication: A control design perspective,”IEEE Trans. Wireless
+Commun., vol. 21, no. 6, pp. 4579–4593, 2021.
+[12] R. Zhanget al., “Game of drones: Multi-UA V pursuit-evasion game with
+online motion planning by deep reinforcement learning,”IEEE Trans.
+Neural Netw. Learn. Syst., vol. 34, no. 10, pp. 7900–7909, 2022.
+[13] Y . Huet al., “3D multi-UA V cooperative velocity-aware motion plan-
+ning,”Future Generation Computer Systems, vol. 102, pp. 762–774,
+2020.
+[14] N. Cherifet al., “Disconnectivity-aware energy-efficient cargo-UA V
+trajectory planning with minimum handoffs,” inProc. IEEE Int. Conf.
+Commun. (ICC), 2021, pp. 1–6.
+[15] X. Liet al., “A novel UA V-enabled data collection scheme for intelligent
+transportation system through UA V speed control,”IEEE Trans. Intelli.
+Transport. Syst., vol. 22, no. 4, pp. 2100–2110, 2020.
+[16] J. N. Yasinet al., “Unmanned aerial vehicles (UA Vs): Collision avoid-
+ance systems and approaches,”IEEE Access, vol. 8, pp. 105 139–
+105 155, 2020.
+[17] N. Cherifet al., “UA V-based cargo-UA V trajectory planning and cell
+association for minimum handoffs, disconnectivity, and energy consump-
+tion,”IEEE Trans. Veh. Technol., vol. 73, no. 5, pp. 7304–7309, 2023.
+[18] Y . Chenet al., “Efficient drone mobility support using reinforcement
+learning,” inProc. IEEE Wireless Commun. Network. Conf. (WCNC),
+2020, pp. 1–6.
+[19] Z. Yanet al., “CVaR-based variational quantum optimization for user
+association in handoff-aware vehicular networks,” inProc. IEEE Int.
+Conf. Commun. (ICC), 2025, pp. 6088–6093.
+[20] H. Shoaib and H. Tabassum, “Optimization of speed and network
+deployment for reliable V2I communication in the presence of handoffs
+and interference,”IEEE Wireless Commun. Lett., vol. 12, no. 6, pp.
+1051–1055, 2023.
+[21] Q. Renet al., “Handoff-aware distributed computing in high altitude
+platform station (HAPS)–assisted vehicular networks,”IEEE Trans.
+Wireless Commun., vol. 22, no. 12, pp. 8814–8827, 2023.
+[22] J. Chenet al., “Dynamic optimization of vehicle production planning in
+transportation networks using federated reinforcement learning,”IEEE
+Trans. Intelli. Transport. Syst., vol. 27, no. 2, pp. 2528–2540, 2026.
+[23] Z. Yanet al., “Hybrid LLM-DDQN-Based Joint Optimization of V2I
+Communication and Autonomous Driving,”IEEE Wireless Commun.
+Lett., vol. 14, no. 4, pp. 1214–1218, 2025.
+
+=== PAGE 15 ===
+15
+[24] N. Sutraet al., “Quadcopter trajectory generation based on large
+language model,” inProc. IEEE Int. Conf. Artif. Intell. Mechatron. Syst.
+(AIMS), 2025.
+[25] A. Tagliabueet al., “REAL: Resilience and adaptation using large
+language models on autonomous aerial robots,” inProc. IEEE Conf.
+Decis. Control (CDC). IEEE, 2024.
+[26] M. A. Baiget al., “LLM-based decision making framework for au-
+tonomous drone navigation,” inProc. IEEE Int. Conf. AI Cybersecurity
+(ICAIC), 2026.
+[27] J. Chenet al., “A robust aggregation of federated large language models
+for multimodal knowledge discovery in computational social systems,”
+IEEE Trans. Comput. Social Syst., vol. 12, no. 6, pp. 5433–5448, 2025.
+[28] K. Zhanget al., “Design, implementation, and deployment of multi-task
+neural networks in programmable data-planes,”IEEE Trans. Netw. Serv.
+Manag., vol. 23, pp. 740–755, 2025.
+[29] Y . Emamiet al., “LLM-enabled in-context learning for data collection
+scheduling in UA V-assisted sensor networks,”IEEE Internet of Things
+J., vol. 12, no. 23, pp. 51 664–51 676, 2025.
+[30] S. Hanet al., “Research on the construction and resource optimization of
+a UA V command information system based on large language models,”
+Drones, vol. 9, no. 9, 2025.
+[31] Y . Emami, H. Zhou, R. Reddy, A. H. Arani, B. Wang, K. Li,
+L. Almeida, and Z. Han, “Large language model-assisted uav operations
+and communications: A multifaceted survey and tutorial,”arXiv preprint
+arXiv:2602.19534, 2026.
+[32] D. Yuanet al., “Enhancing large language models (LLMs) for telecom
+using dynamic knowledge graphs and explainable retrieval-augmented
+generation,”IEEE Wireless Commun., Early Access, pp. 1–9, 2026.
+[33] Z. Yan and H. Tabassum, “Reinforcement learning for joint V2I network
+selection and autonomous driving policies,” inProc. IEEE Global
+Commun. Conf. (GLOBECOM), 2022, pp. 1241–1246.
+[34] F. Yanget al., “Energy efficient and AoI-aware resource allocation for
+UA V-assisted its networks,”IEEE Trans. Veh. Technol., vol. 75, no. 4,
+pp. 6141–6156, 2026.
+[35] A. Tavakoliet al., “Action branching architectures for deep reinforce-
+ment learning,” inProc. AAAI Conf. Artif. Intell. (AAAI), 2018, pp.
+4131–4138.
+[36] J. Paneratiet al., “Learning to fly—a gym environment with pybullet
+physics for reinforcement learning of multi-agent quadcopter control,” in
+Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), 2021, pp. 7512–
+7519.
+[37] 3GPP, “Study on Enhanced LTE Support for Aerial Vehicles
+(Release 15), TR 36.777,” 3rd Generation Partnership Project
+(3GPP), Technical Report TR 36.777, Jun. 2018, release
+15. [Online]. Available: https://portal.3gpp.org/desktopmodules/
+Specifications/SpecificationDetails.aspx?specificationId=3231
+[38] N. Cherif, “Cellular-connected UA V in next-generation wireless net-
+works,” Ph.D. dissertation, Univ. Ottawa, 2022.
+[39] A. Alsharoa and M.-S. Alouini, “Improvement of the global connectiv-
+ity using integrated satellite-airborne-terrestrial networks with resource
+optimization,”IEEE Trans. Wireless Commun., vol. 19, no. 8, pp. 5088–
+5100, 2020.
+[40] J. F ¨orster, “System identification of the crazyflie 2.0 nano quadrocopter,”
+Master’s Thesis, ETH Zurich, 2015.
+[41] C. Powerset al., “Quadrotor kinematics and dynamics,” inSpringer
+Handbook of Robot.Springer Netherlands, 2015, pp. 307–328.
+[42] G. Shiet al., “Neural lander: Stable drone landing control using learned
+dynamics,” inProc. IEEE Int. Conf. Robot. Autom. (ICRA), 2019, pp.
+9784–9790.
+[43] Z. Yan and H. Tabassum, “Generalized multi-objective reinforcement
+learning with envelope updates in URLLC-enabled vehicular networks,”
+IEEE Trans. Veh. Technol., vol. 74, no. 11, pp. 17 666–17 682, 2025.
+[44] Ollama, “Ollama: Run large language models locally,” https://ollama.
+com, 2024, accessed: 2026-04-08.
+[45] A. Yanget al., “Qwen3 technical report,”arXiv preprint
+arXiv:2505.09388, 2025.

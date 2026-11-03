@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 100, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[69, 16], [68, 9], [61, 8]]}]}, "reason": "中央人员掉链，增设第三中继；南火用短弧线补观测。"}

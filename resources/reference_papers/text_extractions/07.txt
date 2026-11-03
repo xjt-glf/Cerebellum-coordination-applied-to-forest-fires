@@ -1,0 +1,1572 @@
+
+=== PAGE 1 ===
+IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026 3643
+Trajectory Design and Beamforming in
+UA V-Assisted Wireless Networks: A Fine-Tuned
+M2LLM-Driven DRL-Based Framework
+Baolin Yin
+ , Xuming Fang
+ , Senior Member , IEEE, Xianbin Wang
+ , Fellow, IEEE, Li Yan
+ , Member , IEEE,
+Junjie Wu
+ , and Jingyu Wang
+Abstract—Optimizing unmanned aerial vehicle (UA V)-assisted
+wireless networks to serve mobile users (MUs) via beamform-
+ing presents signiﬁcant challenges, mainly due to the dynamic
+and complex environments. Traditional single-modal data-based
+modeling methods are often insufﬁcient for capturing the varying
+environmental characteristics, leading to inaccurate UA V trajec-
+tory design and beamforming. To address these issues, we propose
+a multi-UA V-assisted integrated sensing, communication, and
+computation (ISCC) framework that processes multi-modal data
+to enhance environmental awareness and improve communication
+performance. We then formulate an optimization problem to
+maximize the average sum rate by jointly optimizing the UA V tra-
+jectory and beamforming vectors. Given the non-convex nature of
+the problem, traditional optimization techniques are inadequate.
+To this end, we introduce a ﬁne-tuned multi-modal large language
+model (M2LLM)-driven deep reinforcement learning (DRL)-
+based joint optimization framework. Speciﬁcally, a pre-trained
+M2LLM is ﬁrst ﬁne-tuned to predict future MU positions by
+leveraging historical multi-modal data, including texts, images,
+and wireless sensing data. The ﬁne-tuned M2LLM is then
+employed to extract environmental features, where the output
+of the ﬁne-tuned M2LLM’s last hidden layer is regarded as the
+environment state vector to eliminate the output uncertainty of
+the M2LLM. Subsequently, we use a DRL agent to optimize
+the UA V trajectory and beamforming in a coordinated manner.
+Extensive simulation results demonstrate that the proposed
+framework can signiﬁcantly enhance network performance by
+enabling environment-aware and adaptive trajectory design and
+beamforming. The code is available in https://huggingface.co/
+blYin/MmllmDrlUavTdBf
+Index Terms —Unmanned aerial vehicle communication, tra-
+jectory optimization, beamforming, multi-modal, large language
+model (LLM), deep reinforcement learning.
+I. I NTRODUCTION
+T
+O ACHIEVE the ubiquitous connectivity, broad-
+coverage, intelligent operation and beyond commu-
+nication functions in sixth-generation (6G) networks [1],
+Received 23 April 2025; revised 16 July 2025; accepted 29 August
+2025. Date of publication 10 September 2025; date of current version
+22 December 2025. This work was supported in part by NSFC under Grant
+62071393 and in part by Sichuan Science and Technology Program under
+Grant 2024YFHZ0093. The associate editor coordinating the review of this
+article and approving it for publication was C. Poellabauer. (Corresponding
+author: Xuming Fang.)
+Baolin Yin, Xuming Fang, Li Yan, Junjie Wu, and Jingyu Wang are with
+the Key Laboratory of Information Coding and Transmission, Southwest
+Jiaotong University, Chengdu 611756, China (e-mail: blyin@my.swjtu.edu.cn;
+xmfang@swjtu.edu.cn; liyan@swjtu.edu.cn; junjie wu@my.swjtu.edu.cn;
+wangmr930@my.swjtu.edu.cn).
+Xianbin Wang is with the Department of Electrical and Computer
+Engineering, Western University, London, ON N6A 5B9, Canada (e-mail:
+xianbin.wang@uwo.ca).
+Digital Object Identiﬁer 10.1109/TWC.2025.3605277
+unmanned aerial vehicle (UA V)-enabled integrated sensing,
+communication, and computation (ISCC) emerges as a promis-
+ing solution [2]. On the one hand, UA Vs can deliver
+on-demand and high-quality communication services for users
+in areas lacking terrestrial infrastructure, while simultaneously
+integrating sensing capabilities to either enhance communica-
+tion performance or enable value-added sensing services [1].
+Moreover, the integrated sensing and communication function-
+ality allows for acquiring multi-modal data, providing richer
+information to support network optimization [3]. On the other
+hand, UA V-mounted computing units can offer computation
+capabilities to users [4], and leverage artiﬁcial intelligence
+(AI) techniques to optimize both communication and sensing
+performance, including deep reinforcement learning (DRL) to
+optimize UA V trajectory [5], [6], and pre-trained AI models
+to process sensing data [4], [7].
+In UA V-assisted ISCC networks, UA V trajectory design
+and beamforming attract signiﬁcant research attention as key
+enablers for enhancing communication and sensing perfor-
+mance [8], [9]. However, most existing studies only consider
+UA V mobility, while assuming that users remain stationary,
+which makes the above approaches no longer applicable when
+the UA V serves ground or aerial mobile users (MUs). In order
+to provide high-quality communication services for MUs,
+some studies assumed that UA Vs ﬂy along a pre-deﬁned
+trajectory, and implement beam tracking employing either
+ﬁlter-based methods [10], [11], [12] or learning-based methods
+[13], [14], [15]. Although these strategies can yield effective
+beamforming by simplifying the UA V trajectory, they typically
+overlook the coupling effect between trajectory and beam-
+forming, thereby constraining overall system performance.
+Therefore, it is essential to explore high-performance schemes
+that consider both UA V and MU mobility and can dynami-
+cally adapt UA V trajectories and beamforming to maximize
+performance.
+To jointly optimize UA V trajectory and beamforming, DRL,
+combining the powerful ﬁtting ability of neural networks,
+has been regarded as a promising solution. However, these
+approaches face some critical limitations when the UA Vs and
+MUs are both mobile. This is mainly because the performance
+of DRL strongly depends on the accuracy of the environ-
+ment modeling [16]. As a result, the network optimization
+is often constrained by handcrafted modeling assumptions
+and prior knowledge, making the learned policy less robust
+in dynamic and complex environments. Also, most existing
+1536-1276 © 2025 IEEE. All rights reserved, including rights for text and data mining, and training of artiﬁcial intelligence and
+similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 2 ===
+3644 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+studies only use single-modal data to optimize UA V trajec-
+tory and beamforming, such as UA V position, MU position
+and channel state information to train the DRL agent [5],
+[17], [18], which restricts the expressive ability as well as
+optimization performance. To capture more comprehensive
+environment features, a potential way is to use the multi-
+modal data obtained by the UA Vs, including wireless sensing,
+text and image data, to make the optimal decision. Finally,
+the inherent limitation of ﬁxed input and output dimensions
+in neural networks signiﬁcantly diminishes the generalization
+capability of DRL approaches. Consequently, a DRL model
+may become impractical in scenarios where the number of
+UA Vs or users ﬂuctuates dynamically [17], [18].
+Based on these observations, we thus aim to jointly optimize
+UA V trajectory and beamforming, taking into account the
+mobility of both UA Vs and MUs. Speciﬁcally, we consider
+a multi-UA V-assisted ISCC (MUA V-assisted ISCC) network,
+where UA Vs collect multi-modal data, including the image
+and wireless sensing data. To represent the environment more
+accurately, the text, image and wireless sensing data are lever-
+aged to describe the network environment, where the text data
+is used to describe tasks and organize the wireless sensing and
+image data. We then formulate an optimization problem aimed
+at maximizing the average sum rate, where UA V trajectory and
+beamforming vectors are optimized. To solve this problem,
+we propose a ﬁne-tuned multi-modal large language model
+(M2LLM)-driven DRL-based joint optimization framework.
+In this framework, we ﬁrst collect a multi-modal dataset and
+ﬁne-tune a pre-trained M2LLM to predict the trajectory of
+MUs. Then, the operational environment is built based on the
+predictions of the ﬁne-tuned M2LLM. Finally, we reformulate
+the original optimization problem as a fully observable Markov
+decision process (MDP) and solve it using DRL. Unlike
+traditional DRL methods, we apply the ﬁne-tuned M2LLM to
+extract environmental states from multi-modal data, thereby
+improving the DRL’s understanding of the environment and
+enhancing its generalization capabilities. Speciﬁcally, the key
+contributions are summarized as follows:
+• Leveraging multi-modal data from MUA V-assisted
+ISCC for network state and MU trajectory analysis:
+We consider an MUA V-assisted ISCC network, where
+the mobility of both UA Vs and MUs is simultaneously
+accounted for, more accurately reﬂecting real-world sce-
+narios. To obtain a more precise representation of the
+environment that closely approximates reality, and to
+reduce the impact of modeling inaccuracies on network
+performance, we process the multi-modal data using an
+M2LLM to derive the network state, which serves as the
+input for the subsequent DRL. Furthermore, since there
+will be some time consumption due to the collection and
+processing of multi-modal data, we leverage an M2LLM
+to predict the MU trajectory, enabling the system to adapt
+to dynamic environmental changes.
+• Applying ﬁne-tuned M2LLM to characterize dynamic
+environment: To enhance the ability of the M2LLM
+to understand multi-modal data in the MUA V-assisted
+ISCC network, we ﬁrst construct a dataset and ﬁne-tune a
+pre-trained M2LLM. Then, we use the ﬁne-tuned
+M2LLM to process multi-modal data to characterize
+the state of the environment. In order to eliminate the
+uncertainty of the M2LLM output to obtain a one-to-
+one correspondence between the physical environment
+and the state vector, we treat the output of the ﬁne-
+tuned M2LLM’s last hidden layer as the state of the
+environment. We then map the last hidden layer outputs
+to speciﬁc dimensions through a pre-deﬁned linear neural
+network, and the mapped results are regarded as the input
+of the DRL agent.
+• Fine-tuned M2LLM-driven DRL-based joint opti-
+mization framework: To reduce the impact of multi-
+modal data collection and processing delay on network
+performance, we predict the MU trajectory by the ﬁne-
+tuned M2LLM based on historical multi-modal data.
+Leveraging on the prediction results, we then build the
+environment and apply DRL to optimize the UA V tra-
+jectory and beamforming vector to maximize the average
+sum rate. Different from traditional DRL, we use multi-
+modal data, including text, image, and wireless sensing
+data, to extract environmental features through ﬁne-tuned
+M2LLM to obtain a more accurate and detailed represen-
+tation of the environment.
+The remainder of this paper is organized as follows: The
+related works are summarized in Section II. The system model
+and problem formulation are introduced in Section III, while
+the ﬁne-tuned M2LLM-driven DRL-based joint optimization
+framework is proposed in Section IV. Simulation results are
+discussed in Section V, and the conclusion and future work
+of this paper are summarized in Section VI.
+II. R ELATED WORKS
+A. Environment Modeling Enhancement for DRL in
+Communication Networks
+As an advanced technology, DRL can directly solve non-
+convex optimization problems, and has been widely used in
+UA V-assisted network performance optimization [5], [6], [8],
+[19], [20], [21], where the environment modeling directly
+affects the decision-making performance of DRL [16]. In the
+early stage, the environment state modeling is completely
+based on empirical choices, such as taking UA V position and
+channel gain directly as the state [5], [20], [21]. Moreover,
+some studies combine techniques including ﬁltering [22],
+[23] and feature extraction based on neural networks [17],
+[18] to process the original state to obtain more accurate
+environmental states. For instance, Chen et al. and Xue et al.
+in [17] and [22] applied an extended Kalman ﬁlter and a
+pre-trained Transformer, respectively, to process original state
+data for enhancing DRL performance. Speciﬁcally, the former
+uses the extended Kalman ﬁlter technology to estimate and
+denoise the motion trajectory of the UA V to enhance the
+accuracy of the state, while the latter uses the Transformer
+to extract important features in the original state. To fur-
+ther improve state modeling capabilities, several studies have
+focused on modeling environments based on multi-modal data
+[24], [25], where image data and numerical data (such as
+UA V position) are processed by a pre-trained convolutional
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 3 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3645
+neural network and multi-layer perceptron respectively
+in [24].
+Although existing studies signiﬁcantly enhance environ-
+ment modeling through ﬁltering and multi-modal data to
+improve DRL performance, the performance of modeling is
+still affected by human experience. In addition, it is difﬁcult
+to mine the association features between different modal
+data when they are used independently. Therefore, how to
+achieve fully autonomous, high-performance and cross-modal
+environment modeling still needs to be explored.
+B. UA V Trajectory and Beamforming Design for MUs
+It is challenging to jointly design the UA V trajectory and
+beamforming when the MUs are on the move, and existing
+studies usually decompose it into trajectory design and beam-
+forming to solve them separately [10], [11], [12], [13], [14],
+[15]. In cases where the UA V trajectory is either pre-deﬁned
+or optimized independently [26], beamforming is typically
+performed based on time-series predictions [11], [12], [13],
+where recurrent neural networks [14], long short-term memory
+[15], and Transformer [13] are utilized to directly output the
+beam index. In the above prediction methods, a codebook
+needs to be deﬁned in advance and a dataset is constructed
+to train the model, where single-modal data including channel
+state information and the location of MUs are usually regarded
+as features [13], [14]. As one of the key factors affecting
+the UA V-assisted communication networks, the optimization
+of UA V trajectory has been widely concerned [2], [8], [9],
+[17], where convex optimization [2] and DRL [8], [20], [21]
+are commonly used. In order to design UA V trajectories to
+adapt to MUs mobility, the UA V trajectory design based on
+user trajectory prediction is proved to be effective [5], [27],
+[28]. In particular, the movement trajectory of MUs is modeled
+as a time series, and then statistical-based methods are used
+to predict the future trajectory. Based on the prediction, the
+UA V trajectory is optimized by convex optimization [27], [28]
+or DRL [5].
+Based on the above analysis, how to jointly optimize the
+UA V trajectory and beamforming to provide high-quality
+communication services to MUs still needs to be solved to
+adapt to the high dynamic characteristics of the network.
+In addition, the rational use of multi-modal data to enhance
+network performance is a problem worth exploring, including
+enhancing prediction and decision-making performance.
+C. Integrated LLM Into Communication Networks
+The integration of large language models (LLMs) into com-
+munication networks has garnered signiﬁcant attention, with
+applications ranging from communication knowledge ques-
+tion answering [29] to fault diagnosis and log analysis [30].
+Furthermore, some studies leverage the context-understanding
+capabilities of LLMs to optimize network performance. For
+example, Du et al. in [31] proposed a power allocation scheme
+based on in-context learning (ICL). Moreover, some studies
+have applied LLMs’ understanding capabilities to address
+reward function design in DRL [30], [32]. In these cases,
+prompts can be used to instruct LLMs to design a closed-
+form reward expression based on parameters such as sum rate,
+Fig. 1. The system of the MUA V-assisted ISCC network.
+delay, and packet loss probability [30], [32]. The LLM then
+assigns appropriate weights to sum rate, delay, and packet
+loss probability based on channel state information and user
+service requirements. The closed-form rewards are then used
+for DRL training. However, existing studies have primarily
+focused on relatively simple tasks such as power allocation
+[31] and knowledge question answering [29], making it chal-
+lenging to achieve optimal solutions in more complex network
+optimization scenarios. Moreover, how to effectively utilize
+M2LLM to process multi-modal network data and further
+enhance network performance remains an open issue.
+III. S YSTEM MODEL AND PROBLEM FORMULATION
+We assume an MUA V-assisted ISCC network in the real-
+world environment, such as ﬁeld cluster communication
+scenarios, which consists of M UA Vs,N MUs, a ground base
+station equipped with powerful computing processor to be an
+edge computing server, and some obstacles (such as trees,
+buildings, etc), as shown in Fig. 1. The UA Vs access the
+core network through the base station, are equipped with a
+uniform linear array (ULA) with P antennas to cooperatively
+provide ISAC services for single-antenna MUs. In this paper,
+we apply the sensing and computation function to improve
+communication performance, where the sensing task is deﬁned
+as obtaining the position of the MUs based on wireless sensing
+and the environment image obtained from the airborne camera.
+Subsequently, the joint optimization of UA V trajectory and
+beamforming is completed by AI inference at the base station.
+To ensure the normal operation of the network, we assume that
+the network operates in a system period TP , and each period
+is divided into NP time slots, where the length of a time
+slot is δ = TP/NP . For ease of analysis, we only focus on
+the optimization for K consecutive periods. Moreover, since
+the sensing targets are for MUs, the same beam is applied for
+communication and sensing, which is realized by time division
+methods [33]. Similar to [34], we assume that the sensing
+task is implemented periodically, and the sensing frequency
+is deﬁned as f sense. In this paper, the base station works as a
+centralized control center and manages the network. Besides,
+we only focus on improving the service quality of the MUs
+by UA Vs, and the communication between the UA Vs and the
+base station is out of the scope of this paper. For readability,
+we summarize the key symbols with explanations in Table I.
+A. Modeling of ISAC Channel
+We establish a three-dimensional Cartesian coordinate sys-
+tem with the initial distribution center of MUs as the origin
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 4 ===
+3646 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+TABLE I
+KEY SYMBOLS AND EXPLANATIONS
+O = (0 , 0, 0). Therefore, the position of the m-th UA V
+and n-th MU at the time slot i are represented as qu
+m[i] =
+(xu
+m[i],y u
+m[i],h m) and qc
+n[i] = ( xc
+n[i],y c
+n[i], 0), respectively,
+where hm is the ﬂy height of the m-th UA V . Moreover, we
+deﬁne the bandwidth of the network as B, and UA Vs can com-
+municate with multiple MUs simultaneously through different
+beams. For ease of analysis, we assume that UA Vs always
+communicate with pre-determined MUs. We apply the proba-
+bilistic line-of-sight (LoS) transmission model to describe the
+wireless channel between the UA Vs and the MUs. We give the
+Euclidean distance between the m-th UA V and the n-th MU
+at the time slot i as dm,n[i] = ||qu
+m[i] − qc
+n[i]||, and the ele-
+vation angle can be derived as θm,n[i] = arcsin(hm/dm,n[i]).
+Therefore, the probability of LoS transmission between the
+m-th UA V and the n-th MU at the time slot i is expressed as
+P LoS
+m,n[i] = 1
+1 +A exp(−B(θm,n[i] −A)), (1)
+where A and B are constants depending on the environment.
+Subsequently, the probability of non-LoS (NLoS) transmis-
+sion is derived as P NLoS
+m,n [i] = 1 − P LoS
+m,n[i]. We deﬁne the
+beam steering vector for communication and sensing between
+the m-th UA V and the n-th MU at the time slot i as
+am,n[i] =
+[
+1,e
+j2πd sin(θm,n [i])
+λ ,...,e
+j2πd sin(θm,n [i])
+λ
+]T
+, where
+d andλ represent the antenna spacing and carrier wavelength,
+respectively. Then, the channel gain between the m-th UA V
+and the n-th MU at the time slot i is given by
+hm,n[i] =
+√
+P LoSm,n[i](β0d−2m,n[i])am,n[i]
++
+√
+P NLoSm,n [i](ξβ0d−2m,n[i])bm,n[i], (2)
+where β0 and ξ < 1 denote the channel gain when the
+reference distance is 1 meter and additional attenuation factor
+for NLoS transmission, respectively, and bm,n[i] is a complex
+Gaussian random vector with zero mean and unit covariance
+matrix. Then, we can obtain the communication rate between
+the m-th UA V and then-th MU at the time slot i based on the
+following formula,
+Rm,n[i] =αm,n[i]B log2
+(
+1 + |(hm,n[i])H wm,n[i]|2
+Im,n[i] + z0
+)
+,
+(3)
+where z0 and wm,n[i] denote the noise power and the beam-
+forming vector for communication or sensing. Im,n[i] is the
+interference caused by the communication or sensing between
+the m-th UA V and the n′-th (n′ ̸= n) MU at the time slot i,
+which is given by
+Im,n[i] =
+N∑
+n̸=n′
+αm,n[i]|(hm,n[i])H wm,n′[i]|2
++
+N∑
+n̸=n′
+βm,n[i]|(hm,n[i])H wm,n′[i]|2, (4)
+where αm,n[i] ∈ { 0, 1} and βm,n[i] ∈ { 0, 1} represent the
+communication indicator and sensing indicator, respectively.
+It is assumed that the interference between UA Vs can be
+eliminated by a narrow beam, similar to [2]. When the m-th
+UA V communicates with the n-th MU or senses the n-th MU
+at the time slot i, αm,n[i] = 1 or βm,n[i] = 1 . Otherwise,
+αm,n[i] = 0 or βm,n[i] = 0 . When UA Vs perform sensing
+tasks, they ﬁrst send the dedicated ISAC signal through the
+beam and process the echo signal reﬂected by the MUs to
+obtain the state of the MUs. Normally, signal to interference
+plus noise ratio (SINR) is widely used to measure sensing
+performance [35], thus we herein deﬁne the minimum sensing
+SINR as ΓTH. Therefore, we can give the following constraint:
+βm,n[i] |(hm,n[i])H wm,n[i]|2
+Im,n[i] + z0
+≥βm,n[i]ΓTH. (5)
+B. Modeling of the UA V Mobility
+When a time slot is short enough, the motion of the UA V
+in a time slot can be regarded as a uniform linear motion [1],
+[2]. Let vm[i] represent the speed of the m-th UA V at the time
+slot i. Then, we deﬁne the θTD
+m [i] as the ﬂight direction of the
+m-th UA V . Based on the above deﬁnition, the position of the
+UA V is updated based on the following formulas
+qu
+m[i + 1][0] = qu
+m[i][0] +vm[i] cos(θTD
+m [i])δ, (6)
+qu
+m[i + 1][1] = qu
+m[i][1] +vm[i] sin(θTD
+m [i])δ.
+C. Modeling of the UA V Energy
+In this paper, the energy consumption of UA Vs mainly
+consists of two parts: communication energy consumption
+ECOM
+m [i] and navigation energy consumption ENA V
+m [i], they are
+calculated separately by the following formulas
+ECOM
+m [i] =
+i∑
+i′=1
+N∑
+n=1
+,α m,n[i′]pm,n[i′]δ, (7)
+ENA V
+m [i] =
+(
+E1 +E2 +c0v3
+m
+)
+δ, (8)
+where pm,n[i′] represents the transmit power allocated to the
+n-th MU by the m-th UA V ,E1 = P1
+(
+1 + 3v2
+m
+u2p
+)
+, E2 =
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 5 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3647
+Fig. 2. The framework of the M2LLM-enabled DRL joint optimization scheme. (A) Training ﬂow structure diagram. (B) Execution ﬂow structure diagram.
+(C) LoRA ﬁne-tuning structure.
+P2
+(√
+1 + v4m
+4v2
+0
+− v2
+m
+2v2
+0
+)
+, and µ is the effective switched capac-
+itance of CPU processor [2]. P1 and P2 represent the blade
+proﬁle power and induced hovering power, respectively. The
+other parameters up, v0, and c0 are related to the aerody-
+namics of UA Vs [2]. Let EUA V
+max denote the maximum energy
+consumption, the following constraint should be satisﬁed
+ECOM
+m [i] +ENA V
+m [i] ≤EUA V
+max, ∀m,i. (9)
+D. Optimization Problem F ormulation
+We focus on the joint optimization of coupled UA V trajec-
+tory and beamforming to maximize the average sum rate, while
+considering the mobility of both UA Vs and MUs. Therefore,
+the optimization problem is formulated as follows
+(P1): max
+Q,B
+1
+KT P
+KNP∑
+i=1
+M∑
+m=1
+N∑
+n=1
+Rm,n[i] (10)
+s.t. α m,n[i] ∈ {0, 1}, ∀m,n,i, (10a)
+βm,n[i] ∈ {0, 1}, ∀m,n,i, (10b)
+|qu
+m[i] − qu
+m[i − 1]| ≤ Vmaxδ, ∀m,i, (10c)
+N∑
+n=1
+(αm,n[i] +βm,n[i])|wm,n[i]|2 ≤Pmax, ∀m,i,
+(10d)
+αm,n[i]Rm,n[i] ≥αm,n[i]RTH, ∀m,n,i, (10e)√
+|qum[i] − qu
+m′[i]|2 ≥Hsafe, ∀m ̸=m′,i,
+(10f)
+(5), (6), (9), (10g)
+where Q = {qu
+m[i], ∀m,i }, B = {wm,n[i], ∀m,n,i }, qu
+m[i]
+and wm,n[i] represent the position of the m-th UA V at the
+time slot i and the beamforming vector between the m-th
+UA V and then-th MU, respectively. The constraints (10a) and
+(10b) represent the αm,n[i] and βm,n[i] are binary variables.
+If αm,n[i] = 1 or βm,n[i] = 1 , it indicates the m-th UA V
+communicate with the n-th MU or sense the n-th MU at the
+time slot i. Otherwise, αm,n[i] = 0 or βm,n[i] = 0. The UA V
+ﬂight speed vm[i] ∈ [0,V max] is guaranteed by the constraint
+(10c), where Vmax is the maximum ﬂight speed of UA Vs, and
+the maximum transmit power Pmax is limited by (10d). The
+minimum communication performance RTH is ensured by the
+constraints (10e). Finally, the safe ﬂight of UA Vs is guaranteed
+by the constraint (10f) in which the distance between any two
+UA Vs at any time should be larger than the safe distanceHsafe.
+Since the above problem is non-convex, it is difﬁcult to obtain
+the optimal solution directly through traditional optimization
+techniques, thus we apply DRL to get the solution [5], [6].
+IV. M2LLM-D RIVEN DEEP REINFORCEMENT
+LEARNING -BASED JOINT OPTIMIZATION FRAMEWORK
+The framework of the M2LLM-driven DRL-based joint
+optimization framework is shown in Fig. 2, where (A), (B)
+and (C) represent training ﬂow, execution ﬂow and ﬁne-tuning
+structure by low-rank adaptation of large language models
+(LoRA), respectively. To be speciﬁc, the ﬁne-tuned M2LLM in
+Fig. 2 (C) is used for feature extraction in Fig. 2 (A) and (B).
+In addition, the ﬁne-tuned M2LLM in Fig. 2 (C) is also used
+for MU trajectory prediction in Fig. 2 (B). Considering that the
+inference of M2LLM requires sufﬁcient computation capacity
+and energy, it is deployed on the base station to perform MU
+trajectory prediction and state extraction. In addition, UA Vs
+are assumed to transmit the obtained data (wireless sensing
+data and image data) to the base station through a speciﬁc
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 6 ===
+3648 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+channel. Therefore, the environment is fully observable for
+the base station, and we convert the optimization problem (P1)
+into a fully observable MDP, then deploy a DRL agent on the
+base station to complete the joint optimization of the UA V
+trajectory and beamforming. In this paper, we deploy the pre-
+trained large language and vision assistant (LLaV A) [36] as
+the M2LLM to predict the MU trajectory and extract the state.
+Moreover, we build a dataset to ﬁne-tune LLaV A to ensure the
+performance of the MU trajectory prediction and state extrac-
+tion. Leveraging the long-text processing capability of the
+ﬁne-tuned M2LLM and its ability to transform environmental
+states into ﬁxed-dimensional vectors, the proposed framework
+can optimize complex environments in the centralized base
+station, regardless of the number of UA Vs and MUs. In
+addition, in the proposed framework, the M2LLM is trained
+ofﬂine and performs inference operations only during online
+execution. The training and deployment of DRL follow a
+similar approach to [5] and [6], with both ofﬂine and online
+training phases, while execution occurs exclusively online. In
+the following, the combination of M2LLM and the network
+will be described in III-A, the ﬁne-tuning is introduced in
+III-B, the multi-modal data fusion mechanism is analyzed in
+III-C, the MDP modeling is described in III-D, the execution
+and training are elaborated in III-E, and the complexity is
+analyzed in III-F.
+A. Integrated Multi-Modal Large Language Models Into
+UA V-Assisted ISCC Networks
+M2LLM is applied for MU trajectory prediction: To
+provide high-quality service to MUs, an effective way is
+ﬁrst to predict the trajectory of MUs and then to optimize
+the communication performance based on the prediction [5],
+[27], [28]. To predict the MU trajectory, statistics-based and
+learning-based schemes are widely applied [5], [27], [28].
+However, these prediction approaches only rely on the single-
+modal historical position of MUs, which can only dig out the
+rules in the data, ignoring the inﬂuence of realistic factors such
+as terrain, roads and buildings on the trajectory. Therefore,
+to comprehensively consider the impact of multiple factors
+in the real environment on MUs trajectory and obtain more
+accurate prediction results, we should collect multi-modal data
+in the environment, and apply the multi-modal data processing
+ability of M2LLM with the time series prediction ability
+[37] to predict the trajectory of MUs. Moreover, to better
+understand multi-modal data in communication scenarios, we
+build a dataset to ﬁne-tune a pre-trained M2LLM for further
+improving the prediction performance.
+M2LLM is applied for state extraction: The ﬁne-tuned
+M2LLM can better understand and process multi-modal data
+[38], and it can capture the environmental features con-
+tained in multi-modal data. Meanwhile, the feature information
+processed by M2LLM can be mapped to any dimen-
+sion by a simple linear neural network. Therefore, using
+M2LLM to extract states from multi-modal data can not
+only accurately describe the state of the environment, but
+also greatly reduce the dimension of the feature vector, pro-
+viding richer information for network optimization with less
+data.
+M2LLM is not applied for optimization: Although there
+have been some studies using LLM for network performance
+optimization, such as using ICL for power allocation [31],
+LLM can only deal with simple optimization tasks. Currently,
+UA V trajectory optimization and beamforming are still difﬁcult
+to complete by LLM. Moreover, it is difﬁcult to obtain the best
+optimization results using LLM due to the illusion problem,
+such as ICL [30], [31], which essentially obtains feasible
+solutions instead of optimal ones. Therefore, we do not yet
+choose LLM to optimize trajectory and beamforming, and we
+only use it to predict MU trajectory and extract the state.
+B. Fine-Tune M2LLM for Trajectory Prediction of MUs
+LLaV A is a pre-trained M2LLM with strong text and image
+understanding, but it is not trained for time series prediction
+tasks. Therefore, we construct a dataset and ﬁne-tune LLaV A
+using LoRA to ensure the predicted performance. LoRA
+is an LLM ﬁne-tuning technique that creates two trainable
+low-rank matrices in some layers [39], which is shown in
+Fig. 2(D), where LA and LB are deﬁned as a pair of
+trainable low-rank matrices. In LLaV A, Vicuna is applied as
+the language model and the pre-trained contrastive language-
+image pre-training (CLIP) model is used to process the image
+data [36]. Therefore, the prompt is transformed into feature
+vectors by the tokenizer and embedding, while image data are
+transformed into feature vectors by the vision encoder and
+mapped into the space of text feature vectors by projection.
+Then, the text feature vector and the image feature vector are
+concatenated and the concatenated result is regarded as the
+input of the Vicuna for inference. Given that we need to ﬁne-
+tune M2LLM to handle multi-modal data for predicting the
+MUs trajectory, we need to ﬁne-tune the embedding, vision
+encoder, projection, self-attention, and feedforward networks
+(FFN) in each Transformer. Therefore, we should add a new
+bypass consisting of low-rank matrices LA and LB in each of
+the above modules. Moreover, the input of the bypass is the
+same as the input of the ﬁne-tuned part, and the output of the
+two is added as the ﬁnal output. During the LoRA ﬁne-tuning
+process, the parameters of M2LLM remain unchanged, and
+only the parameters of LA and LB are updated, which greatly
+reduces the computational cost and training time [39].
+1) Data Collection: In this paper, the data for ﬁne-tuning
+LLaV A mainly include three types, that is, text data, MU
+position obtained by wireless sensing, and environment image,
+where text data are taken to describe the task information
+and inform the goal to the M2LLM, including predicting the
+trajectory of the MUs based on the historical multi-modal data
+and extracting the state of the environment [37]. Therefore,
+we need to collect the position of the MUs and environment
+images to make the dataset for ﬁne-tuning LLaV A. To achieve
+that, we build a simulation environment through AirSim [40],
+and collect multi-modal data from the simulation environment.
+2) Dataset Production: After collecting enough data from
+the simulation environment, we need to make a dataset to ﬁne-
+tune LLaV A, the dataset is presented in the form of dialogue
+[37]. In this paper, we ﬁne-tune the pre-trained LLaV A through
+supervised ﬁne-tuning (SFT). Speciﬁcally, the samples for
+ﬁne-tuning the LLaV A are in the form of dialogue, and the
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 7 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3649
+Fig. 3. The sample form for ﬁne-tuning LLaV A.
+features are the content input to LLaV A, that is, the prompt and
+images, and the labels are the output of LLaV A. In the prompt,
+we need to inform LLaV A that the task is to predict the
+future trajectory of MU based on historical multi-modal data.
+Therefore, the prompt contains two parts: task description and
+historical multi-modal data. In addition, the label of samples
+is the trajectory of MU in the next system period. The sample
+form for ﬁne-tuning LLaV A is shown in Fig. 3. From Fig. 3,
+we can see that LLaV A is informed in the prompt to pay
+attention to the environment of MUs in the image, thus LLaV A
+can learn the inﬂuence of buildings, roads, and other real
+factors of the environment on the trajectory of MUs, thereby
+improving the prediction performance.
+3) LoRA Fine-Tune: After making the dataset, we need to
+ﬁne-tune the pre-trained LLaV A by LoRA. To be speciﬁc,
+we deﬁne the modules to be ﬁne-tuned as the set J , which
+includes the embedding, vision encoder, projection, self-
+attention, and FNN in each Transformer. Therefore, aiming for
+the j-th (j ∈ J ) ﬁne-tuned module, the original parameters
+of LLaV A are denoted as Wj ∈ Raj×bj , where aj and bj
+represent the input and output dimensions of the j-th ﬁne-tuned
+module, respectively. To ﬁne-tune the LLaV A by LoRA, we
+need to add a bypass consisting of two low-rank matrices LA
+and LB to the j-th ﬁne-tuned module, where the parameters
+of the LA and LB are represented as WLB
+j ∈ Rr×bj and
+WLA
+j ∈ Raj×r, respectively, with r representing the rank
+and r ≪ min(aj,b j) [37]. Therefore, for a given input
+xj ∈ Ra
+j , the output of the j-th ﬁne-tuned module during
+forward propagation is given by
+yj =
+(
+Wj + WLA
+j WLB
+j
+)
+xj. (11)
+Since it is a regression problem when ﬁne-tuning LLaV A by
+SFT, the mean square error loss function L that is built on yj
+and labels is used to measure the error between the predicted
+value and the true value. Therefore, the update formula of the
+low-rank matrices LA and LB is given by
+ˆWLA
+j ← WLA
+j −αLoRA ∂L
+∂WLA
+j
+,
+Fig. 4. The structure of the multi-modal data fusion process.
+ˆWLB
+j ← WLB
+j −αLoRA ∂L
+∂WLB
+j
+, (12)
+where αLoRA is deﬁned as the learning rate. After ﬁne-tuning
+LLaV A, the ﬁne-tuned LLaV A can be directly applied for MU
+trajectory prediction. Therefore, we can input the prompt and
+images into the ﬁne-tuned LLaV A shown in Fig. 3, and the
+ﬁne-tuned LLaV A can accurately predict the MU trajectory. In
+addition, thanks to the strong generalization ability and context
+understanding ability of LLM, the ﬁne-tuned LLaV A can not
+only accurately predict the MU trajectory through a small
+amount of historical data, but also complete the prediction
+for any length of time.
+C. Multi-Modal Data Fusion Mechanism
+In this paper, we utilize LLaV A to process multi-modal data
+directly for MU trajectory prediction and environmental state
+representation, where the multi-modal data include image,
+wireless sensing, and text data. To fully leverage these multi-
+modal data for representing the environment and exploring
+the relationships between different modalities to enhance envi-
+ronmental representation, we perform multi-modal data fusion
+through mid-term fusion and late fusion [36]. Speciﬁcally, the
+multi-modal data are divided into two types of processing
+within LLaV A: the prompt containing wireless sensing and
+text data, and image data. In the mid-term fusion stage, the
+prompt (including wireless sensing and text data) is processed
+by the tokenizer and embedding layers of the Vicuna model,
+while the image data are processed by the CLIP model to
+obtain their respective feature representations. Vicuna, being
+the foundation of LLaV A, handles reasoning and processes the
+prompt, whereas CLIP maps the images into the same feature
+space as the text features. The feature representations of both
+the prompt and the image are then concatenated to form a
+uniﬁed feature representation containing the multi-modal data.
+After completing the mid-term fusion, the concatenated feature
+representations are passed into Vicuna for further inference,
+resulting in the ﬁnal state representation. This state repre-
+sentation not only contains the features from each modality
+but also captures the relationships between them, which is
+referred to as late fusion. The structure of the multi-modal
+data fusion process is illustrated in Fig. 4. Although both MU
+trajectory prediction and state extraction are based on multi-
+modal data and the M2LLM implementation, the inputs and
+outputs are different when executing MU trajectory prediction
+and state extraction. In particular, MU trajectory prediction is
+performed when the input contains historical multi-modal data,
+and the output is the prediction result in the form of natural
+language. In contrast, for state extraction, the input consists of
+the multi-modal data at the current time slot, and the output
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 8 ===
+3650 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+Fig. 5. The prompt for state extraction.
+is a deterministic vector obtained from the last hidden layer,
+which is explained in detail in III-D.
+To achieve MU trajectory prediction and state extraction
+based on multi-modal data, we need to acquire multi-modal
+data for each time slot. For each set of multi-modal data, it
+is always aligned temporally and semantically, ensuring that
+it is collected synchronously and within the same physical
+environment. Therefore, under the proposed framework, no
+additional alignment operations are necessary, which simpliﬁes
+the process.
+D. Modeling of Markov Decision Process
+In this paper, we transform the optimization problem (P1)
+into a fully observable MDP, which is formulated as a tuple
+< A,S,R,P,γ > , where A, S, R, P and γ ∈ [0, 1] represent
+the action space, state space, reward function, state transition
+matrix, and the reward discount coefﬁcient, respectively. Since
+the environment state transition is uniquely determined, the
+state transition matrix can be ignored. Moreover, to adapt to
+the dynamically changing environment, we build the environ-
+ment based on the predicted results of M2LLM, and the fully
+observable MDP is deﬁned as follows, where the base station
+is regarded as the agent.
+1) Action Space: The action for optimizing the trajec-
+tory and beamforming of the m-th UA V at the time slot
+i is represented as am[i] =
+(
+θTD
+m [i],v m[i], wm,n[i]
+)
+, where
+θTD
+m [i] ∈ [0, 2π] is deﬁned as the movement direction of the
+m-th UA V . Therefore, the action of the agent at the time slot
+i is denoted as a[i] = (a1[i], a2[i],..., aM[i]).
+2) State Space: Similar to the MU trajectory prediction,
+state extraction also relies on prompt engineering, with the
+speciﬁc prompt used for state extraction shown in Fig. 5.
+We deﬁne stext[i] and simage[i] as the text data and envi-
+ronmental images representing the state at time slot i,
+respectively. The prompt sprompt(stext[i]) is then built based
+on stext[i] and input along with simage[i] into M2LLM for
+inference. According to Fig. 4, the primary purpose of
+M2LLM when extracting the state is not to generate nat-
+ural language output, we only need to retrieve the output
+from the last hidden layer of M2LLM, which is denoted
+as Hhidden(sprompt(stext[i]),s image[i]). Given the large scale of
+M2LLM, the dimension of Hhidden(sprompt(stext[i]),s image[i])
+remains large. To convert this to a ﬁxed-dimensional state
+vector, we deﬁne a linear layer f linear(), where the input
+dimension matches that of Hhidden(sprompt(stext[i]),s image[i]),
+and the output dimension is N state. Therefore, the state at time
+slot i is represented as:
+s[i] =f linear(Hhidden(sprompt(stext[i]),s image[i])). (13)
+Since the M2LLM is ﬁne-tuned to achieve MU trajectory
+prediction in UA V-assisted ISCC networks, the ﬁne-tuned
+M2LLM can effectively describe the environment in com-
+bination with multi-modal data. In addition, we eliminate
+the uncertainty of M2LLM output by outputting the data
+of the last hidden layer. Therefore, the physical environment
+and the feature representation are in one-to-one correspon-
+dence, which provides a necessary condition for DRL work.
+3) Reward Function: Since we aim to jointly optimize the
+UA V trajectory and beamforming for maximizing the average
+sum rate, the sum rate is regarded as the reward in this paper.
+To ensure minimum communication and sensing performance,
+we transform the constraints into penalty terms in the reward
+function. Therefore, the reward function is given by
+Φ[i] =
+M∑
+m=1
+N∑
+n=1
+[
+αm,n[i]
+(
+2Rm,n[i] −RTH)
++βm,n[i]
+(|(hm,n[i])H wm,n[i]|2
+Im,n[i] + z0
+− ΓTH
+)]
++
+M∑
+m=1
+[
+ECOM
+m [i] +ENA V
+m [i] −EUA V
+max
++
+M∑
+m′=1,m′̸=m
+(√
+|qum[i] − qu
+m′[i]|2 −Hsafe
+)]
+. (14)
+In this paper, the beamforming action output by the agent is
+ﬁrst normalized when executed, and then the power allocation
+is determined by a simple power allocation algorithm to
+ensure the maximum power constraint of the UA V , where the
+power water-ﬁlling algorithm is used to optimize the power
+allocation. Therefore, through the design of the action and
+reward function, DRL can satisfy all constraints when solving
+the optimization problem (P1).
+E. Training and Execution of M2LLM-Enabled DRL Scheme
+The deep deterministic policy gradient (DDPG) is applied
+for jointly optimizing UA V trajectory and beamforming, and
+the training architecture is described in Fig. 2 (A), in which
+the ﬁne-tuned M2LLM is used. Since the DRL agent only
+needs to optimize the UA V trajectory and beamforming for
+a given MU trajectory, the M2LLM is only used for state
+extraction during the training phase. To be speciﬁc, under the
+given MU trajectory QMU[k + 1] in the (k + 1)-th period, we
+ﬁrst build the training environment. In addition, we model the
+(k + 1)-th period as an MDP, where the agent obtains sample
+< s[i], a[i], s[i+1], Φ[i]> by interacting with the environment
+and stores it in the experience pool. Once a sufﬁcient number
+of samples are stored in the experience pool, a batch of
+samples in the experience pool is randomly selected and the
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 9 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3651
+Algorithm 1 The Training Process of the M2LLM-Enabled
+DRL Joint Optimization Scheme
+network parameters are updated through the backpropagation
+algorithm. The training phase is shown in Algorithm 1.
+After training the DRL agent, we can optimize UA V trajec-
+tory and beamforming through the trained actor network and
+ﬁne-tuned M2LLM, which is depicted in Fig. 2 (B), and the
+execution phase is described in Algorithm 2. To adapt to the
+dynamic characteristics of the network, the agent determines
+the UA V trajectory and beamforming in the next period based
+on the prediction. Therefore, the M2LLM is applied for MU
+trajectory prediction and state extraction in the execution
+phase. Speciﬁcally, in the k-th period, M2LLM predicts the
+trajectory of MUs in the (k + 1)-th period through multi-
+modal historical data, and then makes decisions on UA V ﬂight
+action and beamforming at each time slot to obtain the UA V
+trajectory and beamforming in the (k + 1)-th period. In the
+execution phase, the state of the environment is obtained by
+the formula (13). Although M2LLM inference takes a certain
+amount of time, it can meet the time requirements in practical
+applications because it decides the trajectory and beamforming
+in a period. In addition, the initial position of the UA Vs is
+obtained by the K-Means in the execution phase.
+F . Complexity Analysis
+Since DRL is used to solve the problem (P1) in this
+paper, we can analyze the complexity in the training phase
+and execution phase separately. In the training phase, we
+not only need to update the critic network and actor net-
+work parameters, but also need M2LLM to participate in
+Algorithm 2 The Execution Process of the M2LLM-Enabled
+DRL Joint Optimization Scheme
+inference. The complexity of the former can be expressed
+as O(N stateNneu + (Nhidden − 1)N 2
+neu +N actionNneu + (M +
+1)(N state +N action)Nneu + (Nhidden − 1)N 2
+neu +N action), where
+N action, Nhidden and Nneu represent the dimension of the
+action, the number of hidden layers of the actor and critic
+networks and the number of neurons in each hidden layer.
+Since M2LLM needs to process both image data and text
+data, we assume that the height and width of images and the
+number of channels are H, W and C, and the complexity of
+processing the image is O(HWC ). In addition, the current
+LLM is mainly based on the Transformer to process text,
+and the complexity of the inference is O(L2) for text data of
+length L. Moreover, the fusion of the two modalities will bring
+additional complexity. The dimensions of image features and
+text features are deﬁned as DIM and DTE, and the additional
+complexity is O(DIMDTE). In summary, the inference com-
+plexity of the M2LLM is O(HWC +N TRANSL2 +DIMDTE),
+where N TRANS denotes the number of the Transformer in the
+M2LLM. Therefore, the complexity in the training phase can
+be written as O(EmaxSmax(N stateNneu + (Nhidden − 1)N 2
+neu +
+N actionNneu + (M + 1)(N state + N action)Nneu + (Nhidden −
+1)N 2
+neu +N action)(HWC +N TRANSL2 +DIMDTE)), and we
+can reduce the training complexity by reducing the state
+dimension, choosing the reasonable neural network scale, and
+designing short prompts. In the execution phase, we also
+need the M2LLM to process data, and the complexity is
+O(NP (N actionN state +(HWC +N TRANSL2 +DIMDTE))). The
+complexity of the proposed scheme is acceptable on edge
+servers with general computing power.
+V. S IMULATION RESULTS
+In this section, we demonstrate the effectiveness of the
+proposed scheme through numerical simulations. We build
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 10 ===
+3652 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+Fig. 6. The simulation scenario.
+TABLE II
+SIMULATION PARAMETERS
+a rectangular environment with a length and width of 1000
+meters by AirSim as shown in Fig. 6, where there are many
+buildings, trees and mobile vehicles in the environment to
+simulate a real environment. We set the number of UA Vs as
+M = 3 , and each UA V serves 2 MUs simultaneously, that
+is, the number of MUs is N = 6 . In addition, the time for
+each wireless sensing by the UA V is deﬁned as 0.4 second
+[2], and the UA Vs sense the position of the MU 10 times in
+each system period, thus the sensing frequency f sense is set
+as 1 time per second. We deﬁne the maximum speed of the
+MUs as vMU
+max = 30 m/s, thus the speed of MUs at each time
+slot is in [0, 30]. Other simulation parameters are shown in
+Table II. In this section, we apply the following schemes as the
+benchmark schemes to verify the performance improvement of
+the M2LLM-driven DRL-based joint optimization framework:
+Traditional DRL scheme (TdDRLS): Similar to [5], [19]
+and [20], the information such as the numbers and positions of
+UA Vs and MUs is regarded as the state, and the DDPG agent
+determines the action according to the real-time observation.
+The scheme follows the common approach used in existing
+studies, where the UA V trajectory and beamforming are opti-
+mized jointly through DRL. Therefore, the scheme is normally
+used to verify whether M2LLM can bring a performance gain.
+Single-modal prediction and multi-modal decision-
+making scheme (SmpMmdS): Similarly to [5], [27] and [28],
+this scheme only uses the historical position of MUs to predict
+the future trajectory, but the UA V trajectory and beamform-
+ing are determined by the proposed M2LLM-enabled DRL
+Fig. 7. Average distance prediction error versus historical data length under
+different schemes.
+scheme. In this paper, we use a pre-trained recurrent neural
+network (RNN) to predict the trajectory of MUs, which is
+regarded as a classical learning-based prediction method for
+comparison to assess whether the multi-modal data could
+enhance network performance.
+Multi-modal prediction and single-modal decision-
+making scheme (MmpSmdS): The scheme applies multi-
+modal data to predict MU trajectory, and the UA V trajectory
+and beamforming are determined by DRL, but the state is
+similar to [5] and [19]. The scheme can instruct whether
+decision-making based on multi-modal data is signiﬁcant.
+UA V trajectory optimization and beam tracking scheme
+(ToBtS): Similarly to the scheme independently optimizes
+UA V trajectory and beamforming, where DDPG and RNN
+are used to optimize the UA V trajectory and to achieve beam
+tracking. Similarly, the scheme is also regarded as a classical
+learning-based prediction method, and it can instruct whether
+the joint optimization of UA V trajectory and beamforming is
+necessary.
+To verify that the ﬁne-tuned M2LLM can predict the MU
+trajectory with superior performance, Fig. 7 illustrates the
+relationship between the length of historical data and the
+average distance prediction error under different schemes,
+where the prediction time length is set to 10 seconds. In theory,
+a longer historical data length should lead to more accurate
+predictions. However, the simulation results reveal that pre-
+diction accuracy may decrease as the length of historical data
+increases, primarily due to two factors. First, single-modal
+data struggles to capture the impact of realistic factors on
+MU movement, such as obstacles and roadways, leading to
+larger prediction errors. For instance, it may be challenging
+for AI models to learn MU turns caused by buildings using
+single-modal data. Second, the ability of single-modal LLMs
+to capture time-series data may result in degraded prediction
+performance. Speciﬁcally, when there are a few historical data
+and their regularities are unclear, single-modal LLMs tend
+to predict trajectory using more accurate models, such as
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 11 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3653
+Fig. 8. Average reward versus episode under different N state.
+calculating the MU’s acceleration at each time slot. However,
+when there are abundant historical data with strong regular-
+ities, single-modal LLMs apply simpler models, leading to
+lower prediction performance. As shown in Fig. 7, when the
+historical data length is 30, the distribution of the data aligns
+more with linear motion. Consequently, the single-modal LLM
+predicts the MU trajectory using a simplistic linear model,
+which results in signiﬁcantly poorer prediction performance.
+In contrast, the ﬁne-tuned M2LLM ensures high prediction
+accuracy regardless of the historical data length. This can be
+attributed to its ability to effectively integrate multi-modal
+data, providing a more accurate understanding of the envi-
+ronment and thereby improving prediction performance. The
+above analysis highlights the necessity of incorporating multi-
+modal data and demonstrates that the ﬁne-tuned M2LLM can
+predict the MU trajectory with higher performance.
+Fig. 8 depicts the relationship between the average reward
+and the episode count for the proposed scheme during the
+training phase, across different values of N state, with an
+average window size of 100. In this simulation, the DRL agent
+employs a three-layer fully connected actor-critic network with
+32 hidden neurons. From Fig. 8, two key observations can be
+observed. First, the average reward shows a clear upward trend
+as the number of episodes increases, indicating that the agent
+successfully reﬁnes its policy based on experience gained
+from environmental interactions. This improvement is consis-
+tent with the strong correlation between the reward function
+and the objective function in the optimization problem (P1),
+which enables the agent to progressively enhance the decision-
+making performance in UA V trajectory and beamforming,
+thus improving communication performance. Second, the state
+dimension has a signiﬁcant impact on DRL performance,
+which aligns with theoretical expectations. When the state
+dimension is low (e.g., N state = 20 ), the model struggles to
+capture the environmental nuances, leading to suboptimal or
+stagnant learning. As the state dimension increases, the DRL
+agent’s environmental perception improves, facilitating more
+effective policy learning. However, excessively large state
+Fig. 9. Average sum rate versus the number of UA Vs under different schemes.
+dimensions introduce higher computational costs and a greater
+risk of overﬁtting. Speciﬁcally, when the state dimension
+is set to 40, performance declines compared to when the
+state dimension is 30. Through a comprehensive analysis, the
+optimal state dimension is determined to be 30. In addition,
+we have also tried soft actor-critic (SAC) to train as an agent
+whenN state = 30, and it can be seen that its ﬁnal performance
+is lower than that of DDPG. Therefore, DDPG is selected for
+our design due to its demonstrated superiority in this speciﬁc
+task setting.
+Fig. 9 shows the relationship between the average sum
+rate and the number of UA Vs across different schemes. The
+results indicate that, for the same number of UA Vs, the
+proposed scheme achieves the highest performance, while
+TdDRLS exhibits the lowest performance. This proves that
+the M2LLM enhances network performance by improving the
+prediction accuracy of MU trajectory and the environmental
+description capabilities of DRL. The poor performance of
+TdDRLS further conﬁrms that prediction-based optimization
+signiﬁcantly enhances network performance through beam-
+forming and UA V trajectory optimization in mobile scenarios.
+Moreover, the proposed scheme demonstrates stronger gen-
+eralization compared to TdDRLS. Speciﬁcally, the proposed
+scheme processes multi-modal data, including wireless sens-
+ing, image, and text data, into a constant-dimensional state
+vector via the ﬁne-tuned M2LLM, ensuring that it can work
+effectively regardless of the number of UA Vs and MUs. In
+contrast, TdDRLS requires retraining the agent whenever the
+number of UA Vs or MUs changes, as the environmental state
+dimension must align with the input dimension of the neural
+network.
+Fig. 10 simulates the relationship between the maximum
+speed of MUs and the average sum rate under different
+schemes. The results show that, except for TdDRLS, the
+average sum rate of the other schemes remains relatively stable
+as MU speed increases. This demonstrates that optimizing
+UA V trajectory and beamforming based on MU trajectory
+prediction effectively mitigates the impact of MU mobility
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 12 ===
+3654 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+Fig. 10. Average sum rate versus the maximum speed of MUs under different
+schemes.
+on network performance. Furthermore, the proposed scheme
+consistently outperforms the others under identical parameter
+settings. The superior performance is attributed to the accurate
+MU trajectory prediction achieved by processing historical
+multi-modal data with the ﬁne-tuned M2LLM, as well as its
+enhanced ability to extract network states, thereby improving
+the performance of DRL. In contrast, TdDRLS struggles to
+adapt to high-speed MU movement due to delays in state
+collection and data processing, as well as its limited capacity
+for environmental characterization. Speciﬁcally, at low MU
+speeds (10 and 20 m/s), the distance traveled of MUs during
+state collection is minimal, resulting in only a slight perfor-
+mance gap between TdDRLS and the proposed scheme, which
+is primarily due to differences in environment description.
+However, as MU speed increases, the performance of TdDRLS
+deteriorates rapidly. When MUs move at high speeds, the
+distance traveled during state collection becomes signiﬁcant.
+As a result, UA V trajectory and beamforming decisions based
+on outdated states in TdDRLS become misaligned with the
+current environment, leading to inferior performance.
+Fig. 11 explores the impact of sensing frequency on the
+average sum rate across different schemes. In the proposed
+scheme, since the M2LLM can achieve accurate predictions
+with fewer data [37], increases in sensing frequency yield
+minimal performance improvements and may even degrade the
+average sum rate due to the increased communication resource
+consumption. In contrast, SmpMmdS and ToBts rely heavily
+on historical data for MU trajectory prediction and beam track-
+ing. Their performance improves with an increased sensing
+frequency but starts to decline when the frequency exceeds 1.5,
+due to the reduced communication time. Since TdDRLS does
+not predict MU trajectories, increasing the sensing frequency
+merely reduces communication time without providing any
+performance beneﬁts, leading to a negative correlation between
+the average sum rate and sensing frequency.
+To further assess the generalization ability of the proposed
+scheme, we train the agent in the environment depicted
+in Fig. 6 and create a distinct testing environment, with
+Fig. 11. Average sum rate versus the sensing frequency of MUs under
+different schemes.
+Fig. 12. Average sum rate under different schemes in different environments.
+Fig. 13. The ablation experiment of the proposed framework.
+the results shown in Fig. 12. The new testing environment,
+although maintaining the same rectangular dimensions of 1000
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 13 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3655
+Fig. 14. The designed trajectory of the UA Vs and average sum rate under the different schemes.
+meters by 1000 meters, differs signiﬁcantly from the training
+environment, such as the number and position of obstacles.
+Fig. 12 illustrates that all schemes experience a reduction
+in performance in the new environment compared to the
+training phase. This decline is attributed to the entirely new
+environmental features, which challenge the adaptability of
+DRL agents. However, the proposed scheme demonstrates
+the least performance degradation among the benchmark
+schemes. This resilience suggests that the integration of
+M2LLM enhances the DRL’s ability to understand and gen-
+eralize across diverse environments. Moreover, the proposed
+scheme not only exhibits the lowest degradation ratio but also
+maintains optimal performance in the new environment, fur-
+ther emphasizing its superiority. The performance comparison
+between SmpMmdS and MmpSmdS in the new environment
+highlights that effective environmental state description is
+essential for DRL generalization. The substantial performance
+drop of TdDRLS in the new environment reinforces this con-
+clusion, underscoring the importance of robust environmental
+understanding in DRL-based schemes.
+To investigate the contribution of each key component in
+the proposed framework, we conduct ablation experiments,
+and the results are presented in Fig. 13. Speciﬁcally, the
+different schemes are deﬁned as follows. S1: The complete
+proposed framework. S2: The framework without M2LLM,
+instead, image and wireless sensing data are processed by a
+convolutional neural network and an RNN, respectively. S3:
+The framework with wireless sensing and text data, and image
+data is excluded. S4: The framework with image and text
+data as input. S5: The framework where M2LLM directly out-
+puts control actions without DRL-based decision making. As
+shown in Fig. 13, each component plays a critical role in the
+overall performance. First, comparing S1 and S2 demonstrates
+that the M2LLM signiﬁcantly enhances environmental per-
+ception and reasoning capabilities over traditional perception
+modules, thereby improving network performance. Second, the
+results of S3 and S4 highlight the beneﬁts of multi-modal
+sensing: using multiple data modalities can provide more
+comprehensive environmental understanding, which leads to
+better decision-making. Finally, the comparison between S1
+and S5 shows that DRL is indispensable for achieving precise
+control of UA V trajectory and beamforming. While M2LLM
+can provide a high-performance environment representation,
+its probabilistic outputs are not well-suited for precise con-
+trol, which requires continuous and ﬁne-grained adjustments.
+Moreover, it is inherently difﬁcult for M2LLM to internalize
+such control strategies purely through gradient-based learning.
+Therefore, the above results justify the necessity of different
+components in the proposed framework.
+Fig. 14 shows the UA V trajectory design results under
+different schemes. As seen from Fig. 14, the UA Vs follow
+the movements of the serving MUs to provide high-quality
+service under all schemes. However, due to the limited envi-
+ronmental description capabilities of DRL, the performance of
+MmpSmdS is inferior to that of the proposed scheme. Further-
+more, since UA V trajectory and beamforming are optimized
+independently in ToBtS, the UA V trajectory is not optimal for
+a given communication beam, leading to lower communication
+performance compared to joint optimization schemes, such
+as the proposed scheme and MmpSmdS. TdDRLS exhibits
+the worst communication performance among all schemes,
+also requiring many unnecessary movements by the UA Vs.
+This is because TdDRLS does not predict the MU trajectory,
+resulting in delays in state collection and processing, as well
+as poor decision-making performance when MUs are moving
+rapidly. Additionally, the empirical modeling approach used in
+TdDRLS makes it difﬁcult for the DRL to accurately capture
+the environmental characteristics. In conclusion, the results
+demonstrate that the proposed scheme can optimize UA V
+trajectory and beamforming to improve network performance.
+VI. C ONCLUSION AND FUTURE WORK
+In this paper, to improve the communication performance
+of the MUA V-assisted ISCC wireless network, we propose an
+M2LLM-driven DRL-based joint UA V trajectory and beam-
+forming optimization framework. Speciﬁcally, we accurately
+predict the future trajectory of MUs by an M2LLM processing
+multi-modal data, including text, image and sensing data.
+Based on the prediction, we optimize the trajectory with
+beamforming by DRL. Meanwhile, we apply M2LLM to
+understand multi-modal data to depict environmental states,
+which not only improves the state description ability, but also
+enables DRL to adapt to environmental changes, especially
+the number of UA Vs and MUs. To ensure the performance of
+the prediction and the accuracy of the state characterization,
+we obtain the multi-modal dataset through simulation and
+ﬁne-tune a pre-trained M2LLM. Simulation results prove the
+effectiveness of the proposed scheme. Compared with the
+existing studies, the proposed prediction-driven joint optimiza-
+tion method can not only use multi-modal data to predict
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 14 ===
+3656 IEEE TRANSACTIONS ON WIRELESS COMMUNICATIONS, VOL. 25, 2026
+MU trajectory more accurately, but also improve the network
+performance through coordinated UA V trajectory and beam-
+forming optimization. Moreover, the integration of M2LLM
+enhances the DRL agent’s environmental awareness, thereby
+improving its adaptability to dynamic network conditions.
+We have preliminarily explored the application of LLM
+combined with DRL in UA V network optimization, however,
+we believe that several promising directions remain for future
+investigation. First, this study considers the single-agent DRL
+scenario, extending M2LLM to the multi-agent scenario needs
+further research, can further enhance the ﬂexibility of the
+framework. In addition, using LLM to further enhance DRL is
+another compelling direction—for example, by using LLM to
+design the reward function, or even directly taking LLM as an
+agent to generate executable actions. Moreover, we can focus
+on how to improve the robustness of the network, that is, how
+to adapt to changes in the number of UA Vs and MUs during
+the operation of the network to ensure the overall performance
+of the network.
+REFERENCES
+[1] W. Mao, Y . Lu, G. Pan, and B. Ai, “UA V-assisted communications in
+SAGIN-ISAC: Mobile user tracking and robust beamforming,” IEEE
+J. Sel. Areas Commun. , vol. 43, no. 1, pp. 186–200, Jan. 2025.
+[2] C. Deng, X. Fang, and X. Wang, “Integrated sensing, communication,
+and computation with adaptive DNN splitting in multi-UA V networks,”
+IEEE Trans. Wireless Commun., vol. 23, no. 11, pp. 17429–17445, Nov.
+2024.
+[3] N. Chen et al., “Integrated sensing, communication, and computing for
+cost-effective multimodal federated perception,” ACM Trans. Multime-
+dia Comput. Commun. Appl. , vol. 20, no. 8, pp. 1–28, Jun. 2024.
+[4] X. Li and S. Bi, “Optimal AI model splitting and resource allocation for
+device-edge co-inference in multi-user wireless sensing systems,” IEEE
+Trans. Wireless Commun. , vol. 23, no. 9, pp. 11094–11108, Sep. 2024.
+[5] B. Yin, X. Fang, and X. Wang, “Joint optimization of trajectory control,
+resource allocation, and user association based on DRL for multi-ﬁxed-
+wing UA V networks,” IEEE Trans. Wireless Commun. , vol. 23, no. 10,
+pp. 13330–13343, Oct. 2024.
+[6] H. Yang, J. Zhao, Z. Xiong, K.-Y . Lam, S. Sun, and L. Xiao,
+“Privacy-preserving federated learning for UA V-enabled networks:
+Learning-based joint scheduling and resource management,” IEEE J. Sel.
+Areas Commun., vol. 39, no. 10, pp. 3144–3159, Oct. 2021.
+[7] Y . He, G. Yu, Y . Cai, and H. Luo, “Integrated sensing, computation,
+and communication: System framework and performance optimization,”
+IEEE Trans. Wireless Commun. , vol. 23, no. 2, pp. 1114–1128, Feb.
+2024.
+[8] R. Zhang, Y . Zhang, R. Tang, H. Zhao, Q. Xiao, and C. Wang, “A joint
+UA V trajectory, user association, and beamforming design strategy for
+multi-UA V-assisted ISAC systems,” IEEE Internet Things J. , vol. 11,
+no. 18, pp. 29360–29374, Sep. 2024.
+[9] J. Ge, Y .-C. Liang, J. Joung, and S. Sun, “Deep reinforcement learning
+for distributed dynamic MISO downlink-beamforming coordination,”
+IEEE Trans. Commun. , vol. 68, no. 10, pp. 6070–6085, Oct. 2020.
+[10] L. Chen, S. Zhou, and W. Wang, “MmWave beam tracking with spatial
+information based on extended Kalman ﬁlter,” IEEE Wireless Commun.
+Lett., vol. 12, no. 4, pp. 615–619, Apr. 2023.
+[11] C. Liang, J. Kuang, F. Wu, and J. Chen, “Millimetre-wave beam
+tracking: An intelligent machine learning and Kalman ﬁlter fusion
+technology,” IEEE Trans. Cognit. Commun. Netw. , vol. 10, no. 2,
+pp. 487–498, Apr. 2024.
+[12] Q. Zhang, K. Ji, Z. Feng, Z. Han, and H. Gao, “Vehicle behavior-
+cognition-based particle-ﬁlter-enabled mmWave beam tracking for
+connected automated vehicles,” IEEE Internet Things J. , vol. 9, no. 21,
+pp. 21292–21304, Nov. 2022.
+[13] Y . Cui et al., “Sensing-assisted high reliable communication: A
+transformer-based beamforming approach,” IEEE J. Sel. Topics Signal
+Process., vol. 18, no. 5, pp. 782–795, Jul. 2024.
+[14] H. Han, T. Jiang, and W. Yu, “Active sensing for multiuser beam tracking
+with reconﬁgurable intelligent surface,” IEEE Trans. Wireless Commun.,
+vol. 24, no. 1, pp. 540–554, Jan. 2025.
+[15] Y . Zhao, X. Zhang, X. Gao, K. Yang, Z. Xiong, and Z. Han, “LSTM-
+based predictive mmWave beam tracking via sub-6 GHz channels
+for V2I communications,” IEEE Trans. Commun. , vol. 72, no. 10,
+pp. 6254–6270, Oct. 2024.
+[16] N. C. Luong et al., “Applications of deep reinforcement learning in
+communications and networking: A survey,” IEEE Commun. Surveys
+Tuts., vol. 21, no. 4, pp. 3133–3174, 4th Quart., 2019.
+[17] D. Chen, Q. Qi, Q. Fu, J. Wang, J. Liao, and Z. Han, “Transformer-
+based reinforcement learning for scalable multi-UA V area coverage,”
+IEEE Trans. Intell. Transp. Syst. , vol. 25, no. 8, pp. 10062–10077, Aug.
+2024.
+[18] M. Kim, H. Lee, S. Hwang, M. Debbah, and I. Lee, “Cooperative
+multiagent deep reinforcement learning methods for UA V-aided mobile
+edge computing networks,” IEEE Internet Things J. , vol. 11, no. 23,
+pp. 38040–38053, Dec. 2024.
+[19] L. Zhang, J. Peng, W. Yi, H. Lin, L. Lei, and X. Song, “A state-
+decomposition DDPG algorithm for UA V autonomous navigation in
+3-D complex environments,” IEEE Internet Things J. , vol. 11, no. 6,
+pp. 10778–10790, Mar. 2024.
+[20] A. Paul, R. Allu, K. Singh, C.-P. Li, and T. Q. Duong, “Hybridized MA-
+DRL for serving xURLLC with cognizable RIS and UA V integration,”
+IEEE Trans. Wireless Commun., vol. 23, no. 10, pp. 15507–15524, Oct.
+2024.
+[21] Y . Guan, S. Zou, H. Peng, W. Ni, Y . Sun, and H. Gao, “Cooperative
+UA V trajectory design for disaster area emergency communications:
+A multiagent PPO method,” IEEE Internet Things J. , vol. 11, no. 5,
+pp. 8848–8859, Mar. 2024.
+[22] L. Xue, B. Ma, J. Liu, C. Mu, and D. C. Wunsch, “Extended Kalman
+ﬁlter based resilient formation tracking control of multiple unmanned
+vehicles via game-theoretical reinforcement learning,” IEEE Trans.
+Intell. V ehicles, vol. 8, no. 3, pp. 2307–2318, Mar. 2023.
+[23] R. Wang, C. Xu, J. Sun, S. Duan, and X. Zhang, “Cooperative local-
+ization for multi-agents based on reinforcement learning compensated
+ﬁlter,” IEEE J. Sel. Areas Commun. , vol. 42, no. 10, pp. 2820–2831,
+Oct. 2024.
+[24] Y . Bai, B. Xie, Y . Liu, Z. Chang, and R. J ¨antti, “Dynamic UA V
+deployment in multi-UA V wireless networks: A multimodal-feature-
+based deep reinforcement learning approach,” IEEE Internet Things J. ,
+vol. 12, no. 12, pp. 18765–18778, Jun. 2025.
+[25] Q. Lin et al., “RL-based USV path planning under the marine multi-
+modal features considerations,” IEEE Internet Things J. , vol. 12, no. 11,
+pp. 15274–15287, Jun. 2025.
+[26] X. Pang, S. Guo, J. Tang, N. Zhao, and N. Al-Dhahir, “Dynamic ISAC
+beamforming design for UA V-enabled vehicular networks,”IEEE Trans.
+Wireless Commun., vol. 23, no. 11, pp. 16852–16864, Nov. 2024.
+[27] Z. Cheng et al., “Joint user association and resource allocation in
+HetNets based on user mobility prediction,” Comput. Netw. , vol. 177,
+Feb. 2020, Art. no. 107312.
+[28] X. Yan, X. Fang, C. Deng, and X. Wang, “Joint optimization of
+resource allocation and trajectory control for mobile group users in ﬁxed-
+wing UA V-enabled wireless network,” IEEE Trans. Wireless Commun. ,
+vol. 23, no. 2, pp. 1608–1621, Feb. 2024.
+[29] Z. Chen, Z. Zhang, and Z. Yang, “Big AI models for 6G wireless
+networks: Opportunities, challenges, and research directions,” IEEE
+Wireless Commun., vol. 31, no. 5, pp. 164–172, Oct. 2024.
+[30] H. Zhou et al., “Large language model (LLM) for telecommunications: A
+comprehensive survey on principles, key techniques, and opportunities,”
+IEEE Commun. Surveys Tuts. , vol. 27, no. 3, pp. 1955–2005, Jun. 2025.
+[31] Y . Du, H. Deng, S. Chang Liew, K. Chen, Y . Shao, and H. Chen,
+“The power of large language models for wireless communica-
+tion system development: A case study on FPGA platforms,” 2023,
+arXiv:2307.07319.
+[32] X. Han, Q. Yang, X. Chen, Z. Cai, X. Chu, and M. Zhu, “AutoReward:
+Closed-loop reward design with large language models for autonomous
+driving,” IEEE Trans. Intell. V ehicles, early access, Oct. 24, 2024, doi:
+10.1109/TIV .2024.3485964.
+[33] Y . Liu et al., “Secure rate maximization for ISAC-UA V assisted com-
+munication amidst multiple eavesdroppers,” IEEE Trans. V eh. Technol.,
+vol. 73, no. 10, pp. 15843–15847, Oct. 2024.
+[34] K. Meng, Q. Wu, S. Ma, W. Chen, and T. Q. S. Quek, “UA V
+trajectory and beamforming optimization for integrated periodic sensing
+and communication,” IEEE Wireless Commun. Lett. , vol. 11, no. 6,
+pp. 1211–1215, Jun. 2022.
+[35] M. B. Salman, ¨O. T. Demir, and E. Bj ¨ornson, “When are sensing
+symbols required for ISAC?,” IEEE Trans. V eh. Technol. , vol. 73,
+no. 10, pp. 15709–15714, Oct. 2024.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 
+
+=== PAGE 15 ===
+YIN et al.: TRAJECTORY DESIGN AND BEAMFORMING IN UA V-ASSISTED WIRELESS NETWORKS 3657
+[36] H. Liu, C. Li, Q. Wu, and Y . J. Lee, “Visual instruction tuning,” 2023,
+arXiv:2304.08485.
+[37] M. Jin et al., “Time-LLM: Time series forecasting by reprogramming
+large language models,” in Proc. 12th Int. Conf. Learn. Represent., 2024.
+[Online]. Available: https://openreview.net/forum?id=Unb5CVPtae
+[38] B. Wang et al., “LLM-empowered state representation for reinforcement
+learning,” 2024, arXiv:2407.13237.
+[39] Y . Chang et al., “A survey on evaluation of large language models,”
+ACM Trans. Intell. Syst. Technol. , vol. 15, no. 3, pp. 1–45, Mar. 2024.
+[40] S. Shah, D. Dey, C. Lovett, and A. Kapoor, “AirSim: High-ﬁdelity visual
+and physical simulation for autonomous vehicles,” in Field and Service
+Robotics: Results of the 11th International Conference , Springer, 2017,
+pp. 621–635.
+[41] C. Deng, X. Fang, and X. Wang, “Beamforming design and trajec-
+tory optimization for UA V-empowered adaptable integrated sensing
+and communication,” IEEE Trans. Wireless Commun. , vol. 22, no. 11,
+pp. 8512–8526, Nov. 2023.
+Baolin Yin received the B.E. degree in communi-
+cation engineering from the Southwest University
+of Science and Technology, Mianyang, China, in
+2022, the master’s degree from the Key Laboratory
+of Information Coding and Transmission, School
+of Information Science and Technology, Southwest
+Jiaotong University, Chengdu, China, in 2024, where
+he is currently pursuing the Ph.D. degree. His current
+research interests include unmanned aerial vehicle
+communications, resource management for 5G/6G
+networks, and AI for integrated sensing, communi-
+cation and computation.
+Xuming Fang (Senior Member, IEEE) received
+the B.E. degree in electrical engineering, the
+M.E. degree in computer engineering, and the
+Ph.D. degree in communication engineering from
+Southwest Jiaotong University, Chengdu, China,
+in 1984, 1989, and 1999, respectively. He was a
+Faculty Member with the Department of Electrical
+Engineering, Tongji University, Shanghai, China, in
+1984. Then, he joined the School of Information
+Science and Technology, Southwest Jiaotong Uni-
+versity, where he has been a Professor since 2001,
+and the Chair of the Department of Communication Engineering since 2006.
+He held visiting positions with the Institute of Railway Technology, Technical
+University at Berlin, Berlin, Germany, from 1998 to 1999, and the Center for
+Advanced Telecommunication Systems and Services, The University of Texas
+at Dallas, Richardson, from 2000 to 2001. He has around 200 high-quality
+research papers in journals and conference publications to his credit. He has
+authored or co-authored ﬁve books or textbooks. His research interests include
+wireless broadband access control, radio resource management, multihop relay
+networks, and broadband wireless access for high speed railway. He was the
+Chair of the IEEE Vehicular Technology Society of Chengdu Chapter. He
+has been an Editor of several journals, including IEEE T RANSACTIONS ON
+VEHICULAR TECHNOLOGY .
+Xianbin Wang (Fellow, IEEE) received the Ph.D.
+degree in electrical and computer engineering from
+the National University of Singapore in 2001. Since
+2008, he has been with Western University, Canada,
+where he is currently a Distinguished University
+Professor and a Tier-1 Canada Research Chair in
+trusted communications and computing. Prior to
+joining Western University, he was with the Com-
+munications Research Centre, Canada, as a Research
+Scientist, and later a Senior Research Scientist from
+2002 to 2007. From 2001 to 2002, he was a System
+Designer with STMicroelectronics. He has over 600 highly cited journals and
+conference papers, over 30 granted and pending patents, and several standard
+contributions. His current research interests include 5G/6G technologies,
+the Internet of Things, machine learning, communications security, digital
+twin, and intelligent communications. He is a fellow of Canadian Academy
+of Engineering and the Engineering Institute of Canada. He has received
+many prestigious awards and recognitions, including the IEEE Canada
+R. A. Fessenden Award, the Canada Research Chair, the Engineering Research
+Excellence Award at Western University, the Canadian Federal Government
+Public Service Award, the Ontario Early Researcher Award, and ten best paper
+awards. He is a member of the Senate, the Senate Committee on Academic
+Policy, and the Senate Committee on University Planning at Western. He also
+serves on NSERC Discovery Grant Review Panel for Computer Science. He
+has been involved in many ﬂagship conferences, including IEEE GLOBE-
+COM, ICC, VTC, PIMRC, WCNC, CCECE, and ICNC, in different roles,
+such as the General Chair, the TPC Chair, the Symposium Chair, a Tutorial
+Instructor, the Track Chair, the Session Chair, and a Keynote Speaker. He
+was the Chair of the IEEE ComSoc Signal Processing and Computing for
+Communications (SPCC) Technical Committee. He is serving as the Central
+Area Chair for IEEE Canada. He has serves/served as the Editor-in-Chief, the
+Associate Editor-in-Chief, an area editor, and an editor/associate editor for
+over ten journals.
+Li Yan (Member, IEEE) received the B.E. degree
+in communication engineering and the Ph.D. degree
+in communication and information systems from
+Southwest Jiaotong University, China, in 2012 and
+2018, respectively. She is an Associate Profes-
+sor with Southwest Jiaotong University. She was
+a Visiting Student with the Department of Elec-
+trical and Computer Engineering, University of
+Florida, USA, from September 2017 to September
+2018. Her research interests include 5G communica-
+tions, mobility managements, network architecture,
+millimeter wave communications, and HSR wireless communications.
+Junjie Wu received the M.E. degree in software
+engineering from Nanchang University, Nanchang,
+China, in 2021. He is currently pursuing the Ph.D.
+degree with the Key Laboratory of Information
+Coding and Transmission, School of Information
+Science and Technology, Southwest Jiaotong Uni-
+versity, Chengdu, China. His research interests
+include deep reinforcement learning, AI for wireless
+communication resource management, Wi-Fi net-
+work technology, federated learning for distributed
+wireless communication, and generative AI.
+Jingyu Wang received the B.E. degree in commu-
+nication engineering from Chongqing University of
+Posts and Telecommunications, Chongqing, China,
+in 2020. He is currently pursuing the Ph.D.
+degree with the Key Laboratory of Information
+Coding and Transmission, School of Informa-
+tion Science and Technology, Southwest Jiaotong
+University, Chengdu, China. His current research
+interests include deep reinforcement learning, AI
+for unmanned aerial vehicle communications, and
+resource management for 5G/6G networks.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on July 21,2026 at 11:38:54 UTC from IEEE Xplore.  Restrictions apply. 

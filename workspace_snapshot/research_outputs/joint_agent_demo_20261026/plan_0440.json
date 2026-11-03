@@ -1,0 +1,30 @@
+{
+  "expected_tick": 440,
+  "source": "codex_joint",
+  "reason": "前中队基本到达，U1转护送最后返回的9号，U2继续跟10号；U0补扫西南[10,5]，U3补扫东北边缘[90,95]。撤离未完成的人员沿原任务继续。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        10,
+        5
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    },
+    {
+      "task": "explore",
+      "target": [
+        90,
+        95
+      ]
+    }
+  ],
+  "orders": []
+}

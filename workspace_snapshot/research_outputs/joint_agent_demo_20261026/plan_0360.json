@@ -1,0 +1,23 @@
+{
+  "expected_tick": 360,
+  "source": "codex_joint",
+  "reason": "U3电量200开始补给，满电U2接替8号后队中继。U1追上南路9号，U0保持中队。没有新火情，人员继续既定撤离任务。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    },
+    {
+      "task": "charge"
+    }
+  ],
+  "orders": []
+}

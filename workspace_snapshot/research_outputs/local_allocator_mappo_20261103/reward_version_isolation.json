@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "matched_initial_episodes": 16,
+  "physical_metrics_identical_before_first_update": true,
+  "coverage_reward_exactly_tenfold": true,
+  "note": "Cold-start v1 and v3 use identical initialization and independent per-agent action streams; reward change affects learning only, not the initial physical rollout or observation construction."
+}

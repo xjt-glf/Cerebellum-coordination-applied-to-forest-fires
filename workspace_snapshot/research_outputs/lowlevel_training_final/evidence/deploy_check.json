@@ -1,0 +1,9 @@
+{
+ "actor": "experiments/lowlevel_training/runs/P2BC_s1205/actor_final.pt",
+ "steps": 120,
+ "uav0_dist_to_explore_target": 0.0,
+ "uav0_dist_min": 0.0,
+ "explored": 0.287,
+ "n_depleted": 0,
+ "actions_valid": true
+}

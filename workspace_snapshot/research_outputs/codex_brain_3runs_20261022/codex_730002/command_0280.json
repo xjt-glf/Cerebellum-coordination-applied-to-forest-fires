@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 280, "plan": {"uavs": [{"task": "explore", "target": [40, 50]}, {"task": "explore", "target": [10, 65]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [70, 10]}]}, "reason": "合围后兼顾信息时效：满电东机回中央补图并覆盖中央人员，西机北移覆盖西侧三人，南机沿下边界补图并恢复四人链路，UAV2覆盖孤立人员6。"}

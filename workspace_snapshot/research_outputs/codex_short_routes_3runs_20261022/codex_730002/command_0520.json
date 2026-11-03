@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 520, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [88, 25]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "西侧机向中央交班，原中继暂时保持覆盖直到接班机到达。"}

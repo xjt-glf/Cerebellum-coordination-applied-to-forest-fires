@@ -1,0 +1,30 @@
+{
+  "expected_tick": 420,
+  "source": "codex_joint",
+  "reason": "3、4号已完成安全撤离，其余继续返回。U1护送中段、U2护送末队；U0满电后搜索西南[10,25]，U3继续东北搜索[85,75]。不把撤离完成误显示为未派任务。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        10,
+        25
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    },
+    {
+      "task": "explore",
+      "target": [
+        85,
+        75
+      ]
+    }
+  ],
+  "orders": []
+}

@@ -1,0 +1,11 @@
+{"kind":"deck","id":"pr/uddo3k","name":"Deck"}
+{"kind":"layout","id":"ly/u1g3mxkr","editable":false,"name":"Master","type":"master"}
+{"kind":"layout","id":"ly/1k7ux07y","editable":false,"name":"Title Slide","type":"title","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","id":"ly/36hozetw","editable":false,"name":"Section Header","type":"sectionHeader","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","id":"ly/3yxojilc","editable":false,"name":"Title and Body","type":"tx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","id":"ly/p8bmdcfm","editable":false,"name":"Title and Two Column","type":"twoColTx","placeholders":[{"name":"title","type":"title"},{"name":"Left column","type":"body"},{"name":"Right column","type":"body"}]}
+{"kind":"layout","id":"ly/gnmdkfed","editable":false,"name":"Title and One Column","type":"tx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","id":"ly/2twf2pgf","editable":false,"name":"Blank","type":"blank"}
+{"kind":"slide","id":"sl/38ve9o","slideIndex":0,"layout":{"id":"ly/2twf2pgf","name":"Blank"},"title":"Slide 1","textShapes":0,"backgroundColor":"rgba(255,255,255,1)"}
+{"kind":"table","id":"tb/dwry98r2","slideIndex":0,"position":{"left":56,"top":66,"width":1168,"height":588},"name":"","rows":10,"cols":4,"preview":"指标（均值 ± 标准差） | 启发式（n=3） | 千问 API（n=3） | Codex agent（n=3）"}
+{"kind":"notes","id":"nt/38ve9o","slideIndex":0,"text":"来源：research_outputs/comprehensive_comparison_3seeds_20261022/metrics_summary.csv、metrics_by_episode.csv、report.md。三组均使用种子730000—730002，每局600步，相同冻结Actor与每20步规划协议。显示各局指标的均值±样本标准差，比例指标的标准差也以百分数展示。加权人员火情认知率按真实燃烧格·步加权，各局先计算再跨局平均。AoI P95先在每局人员时间样本取95分位，再跨局取均值和标准差；单位为仿真步。青绿色加粗表示相应指标均值最优，并列均标示，不能作为统计显著性标记。Codex为带工具、持续上下文与既有Actor知识的agent方案，千问为API方案，有效信息组织与工具预算不相等。n=3为描述性配对结果，不能孤立归因为模型品牌或参数能力。选用原单航点Codex组，与完整三组报告一致，没有混入后续短航迹实验。页面按用户要求仅展示对比数据表，不添加标题、结论、来源说明等额外正文。"}

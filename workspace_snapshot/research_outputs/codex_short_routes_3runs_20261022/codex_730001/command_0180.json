@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 180, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 9}, {"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "东机回中央接替，低电中继去南站；西部保持分组覆盖。"}

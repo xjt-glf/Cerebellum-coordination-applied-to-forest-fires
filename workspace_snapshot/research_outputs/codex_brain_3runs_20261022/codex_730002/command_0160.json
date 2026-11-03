@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 160, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 3}]}, "reason": "北侧UAV2电量降至200，UAV1提前赶往北组接班；临时重叠只用于补给交接，南中两组保持已恢复的覆盖。"}

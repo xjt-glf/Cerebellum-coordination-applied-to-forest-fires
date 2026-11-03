@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 280, "plan": {"uavs": [{"task": "charge", "target": [90, 90]}, {"task": "explore", "target": [72, 91]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "东部中继交班后充电，北站机沿直线刷新火场西北侧。"}

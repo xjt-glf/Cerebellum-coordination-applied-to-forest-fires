@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 560, "plan": {"uavs": [{"task": "explore", "target": [95, 10]}, {"task": "relay", "target": [65, 58], "handover": false}, {"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 9}]}, "reason": "三个位置已稳定覆盖全部人员，释放满电UAV0完成最后40步东南地图补全；西南补给已完成，恢复中继。"}

@@ -1,0 +1,26 @@
+{
+  "version": "v4_balanced",
+  "created": "2026-11-03 21:09:06.379118",
+  "trigger": "Development-only v3 checkpoint128 had .94-.99 total coverage but more burned cells; no heldout accessed",
+  "uncovered_penalty": 0.035,
+  "exploration_per100": 0.02,
+  "parent_episodes": 512,
+  "maximum_new_episodes": 256,
+  "parent_checkpoints": {
+    "1103": {
+      "path": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_00512.pt",
+      "sha256": "2e89d8e838bc294e80e0a98bf71d5647db7990c8a25470d6a8c9fbc77e434a69"
+    },
+    "1104": {
+      "path": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/checkpoint_00512.pt",
+      "sha256": "b9098fa98c76b5505ef717332c96d3ec458fb2d3808e6039c7e45066f6b56392"
+    },
+    "1105": {
+      "path": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/checkpoint_00512.pt",
+      "sha256": "851409fc6b0518920b178f8b5bdfd7873e1cf35d0cc7f6151fc2d895b586b426"
+    }
+  },
+  "all_other_rewards": "v1_count",
+  "selection": "development-only midpoint/latest, 8 per N",
+  "comparison": "reward continuation fork, not cold-start equal-budget trial"
+}

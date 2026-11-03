@@ -1,0 +1,2044 @@
+
+=== PAGE 1 ===
+TYPE Original Research
+PUBLISHED 19 May 2026
+DOI 10.3389/fnbot.2026.1799054
+OPEN ACCESS
+EDITED BY
+Yonglin Tian,
+Chinese Academy of Sciences
+(CAS), China
+REVIEWED BY
+Fabrice O. Morin,
+Technical University of Munich, Germany
+Haoran Han,
+University of Electronic Science and
+Technology of China, China
+Zhouwei Lou,
+Southeast University, China
+*CORRESPONDENCE
+Yunqing Liu
+liuyq202420@163.com
+RECEIVED 29 January 2026
+REVISED 16 April 2026
+ACCEPTED 21 April 2026
+PUBLISHED 19 May 2026
+CITATION
+Wang L, Liu Y, Guo L, Zhang R, Cui Y,
+Cui Y and Xu C (2026) A cognitive
+synergetic hierarchical framework for
+UAV swarm combat via speculative
+inference and role-decoupled
+reinforcement learning.
+Front. Neurorobot. 20:1799054.
+doi: 10.3389/fnbot.2026.1799054
+COPYRIGHT
+© 2026 Wang, Liu, Guo, Zhang, Cui, Cui
+and Xu. This is an open-access article
+distributed under the terms of the
+Creative Commons Attribution License
+(CC BY). The use, distribution or
+reproduction in other forums is
+permitted, provided the original author(s)
+and the copyright owner(s) are credited
+and that the original publication in this
+journal is cited, in accordance with
+accepted academic practice. No use,
+distribution or reproduction is permitted
+which does not comply with these terms.
+A cognitive synergetic
+hierarchical framework for UAV
+swarm combat via speculative
+inference and role-decoupled
+reinforcement learning
+Lixa Wang1,2, Yunqing Liu1*, Linyang Guo3, Ran Zhang4, Yu Cui4,
+Yihan Cui4 and Chunlin Xu2
+1School of Electronics and Information Engineering, Changchun University of Science and Technology,
+Changchun, Jilin, China,2Jiangsu Shuguang Electro-Optics Co., LTD., Yangzhou, Jiangsu, China,
+3Yangzhou University, Yangzhou, Jiangsu, China,4Army Arms University of PLA, Changchun, Jilin,
+China
+In the high-stakes arena of aerial combat—a domain deﬁned by extreme
+dynamics and unforgiving physical constraints—UAV swarms are currently
+squeezedbetweentwoextremes:the“tacticalshort-sightedness”ofMulti-Agent
+Reinforcement Learning (MARL) and the “inference lag” of Large Language
+Models (LLMs). While MARL struggles to internalize the complex maneuverability
+priors required for expert ﬂight, LLMs are simply too heavy to meet millisecond-
+level control demands. We bridge this gap by introducing a cognitive synergetic
+hierarchical framework that decouples strategic reasoning from tactical
+execution. Our architecture splits the workload between a “Strategic Brain” and
+a “Tactical Torso.” For the Brain, we utilize a synergy between DeepSeek-R1
+(70B) and its 7B distilled counterpart to create a collaborative inference engine.
+By capitalizing on the inherent sparsity of tactical logic in air combat, we
+implementedaspeculativedecodingmechanismthatachievesaneffectiveboost
+in decision throughput while maintaining the deep logic of the full 70B model.
+For the Torso, we developed an enhanced MAPPO algorithm that processes
+relativeposegraphsviagraphattention.ByintegratingaKL-divergenceconstraint
+into the loss function, we essentially force agents with different payloads—like
+scouts and attackers—to evolve specialized tactical personalities within a shared
+latent space. Experimental results using the JSBSim high-ﬁdelity 6-DOF engine
+demonstrate that the swarm does more than just improve its exchange ratio.
+Further t-SNE manifold analysis and Chain-of-Thought visualizations conﬁrm
+that our architecture successfully aligns symbolic intent with raw physical
+control. Most notably, through our “decision-reﬂection-evolution” loop, the
+system proved it could diagnose its own failures, and iteratively reﬁne its own
+tactical instructions.
+KEYWORDS
+hierarchical reinforcement learning, large language models, speculative decoding,
+tacticaldecision-making, UAV swarm
+Frontiersin Neurorobotics 01 frontiersin.org
+
+=== PAGE 2 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+1 Introduction
+Modern aerial combat has pushed unmanned aerial vehicle
+(UAV) swarms past the point of being simple tools that just
+follow a script. We are seeing a shift where these clusters must
+act as autonomous tactical thinkers. In an arena deﬁned by split-
+second changes and lopsided information, a basic set of ﬂight
+commands just won’t cut it anymore. The real challenge for multi-
+agent systems (MAS) and embodied AI researchers is ﬁguring out
+how to let a swarm react to an enemy’s move in milliseconds
+while simultaneously maintaining a high-level grip on the entire
+battleﬁeldtoplanforthelonggame( Lietal.,2025 ).
+Currently, research is split into two distinct camps. On one
+side,wehaveend-to-endmethodslikeMulti-AgentReinforcement
+Learning(MARL).Thesearegreatathandlingcomplexsix-degree-
+of-freedom (6-DOF) maneuvers. For example,Zhengetal. (2024)
+used transfer learning to boost decision eﬃciency, andWangetal.
+(2024) looked at evolutionary operators to handle swarms that
+change size on the ﬂy. But these models often fall into a “short-
+sighted” trap. They lack a deep, conceptual understanding of air
+combat, such as Energy-Maneuverability theory. To make matters
+worse, newer generative models like MADiﬀ (Zhuetal., 2024 )
+create impressively smooth ﬂight paths but suﬀer from high
+denoising latency. In a 50Hz ﬂight control loop, that kind of delay
+isadealbreaker.
+On the other side, the academic world is testing Large
+Language Models (LLMs) as “strategic commanders” to give these
+agents more logical depth. Methods like Language Agent Tree
+Search (LATS; Luoetal., 2025 ) use Monte Carlo Tree Search
+(Swiechowskietal., 2023 ) to reach impressive levels of planning,
+and the Code-as-Policies approach (Liangetal., 2023 ) generates
+low-level code for ﬂexible task matching. However, these don’t
+translate well to the cockpit. A general LLM doesn’t “feel” the
+airframe;itcan’tintuitivelysenseastallboundaryora6-DOFlimit,
+whichleadstodisjointedmovements.Plus,waitingseveralseconds
+foranLLMtothinkduringahigh-speedchaseisatacticaldisaster.
+This massive gap between strategic depth and real-time
+executionisthemainthingholdingbackUAVswarmintelligencein
+the real world (Javedetal., 2024). We started wondering: could we
+buildanarchitecturethatkeepstheanalyticalpowerofamodellike
+DeepSeek-R1 but retains the lightning-fast agility of reinforcement
+learning for low-level control? We saw how speculative decoding
+(Chenetal., 2023) sped up text generation in NLP and realized we
+couldmovethatsameideaovertotheworldofembodiedgames.
+To bridge this divide, we developed a heterogeneous cognitive
+framework that pairs a “Strategic Brain” with a “Tactical Torso.”
+For the reasoning layer, we use a synergy between DeepSeek-
+R1 (70B) and its distilled 7B version. By applying speculative
+decoding, we’ve managed to cut down the wait time for
+semantic instructions enough to guide a live dogﬁght. For the
+execution layer, we built an enhanced MAPPO algorithm that
+decouples roles. By using a Graph Attention Network (GAT;
+Brodyetal., 2022 ) to read the Relative Pose Graph (RPG) and a
+heterogeneity penalty based on KL-divergence, we’ve encouraged
+drones to develop complementary ﬁghting styles in a shared
+latentspace.
+Ourmaincontributionsinclude:
+1. We decoupled high-level strategic planning from low-level
+physical control across diﬀerent time scales. This solves the
+problem of LLMs being “physically blind” and slow, while
+also ﬁxing the tactical short-sightedness found in most RL-
+onlysetups.
+2. Borrowing the idea of sampling alignment from recent studies
+(Chenetal.,2023 ;ZhangJ.etal.,2024 ),webuiltacloud-to-edge
+acceleration protocol. By letting the models work together, we
+hit a speedup ratio that ﬁnally allows LLMs to function in a
+high-stakes,high-speedenvironment.
+3. We introduced a topology representation based on the RPG
+and an unconventional loss function using KL-divergence
+constraints. This forces diﬀerent drones to pick up specialized
+roles—like scouts vs. attackers—within the same combat
+context, which directly improves the swarm’s overall
+exchangeratio.
+4. We utilized long-horizon reﬂection concepts from embodied
+AI (Luoetal., 2025 ; TziafasandKasaei, 2024 ) to let the LLM
+analyze failed ﬂight paths. By ﬁguring out the “why” behind
+a crash or a missed shot, the system automatically generates
+tactical corrections. We’ve shown that this helps drones teach
+themselves how to stay out of trouble in non-linear edge cases,
+likeavoidingdeepstalls.
+The remainder of this paper is organized as follows: Section
+2 reviews related work. Section 3 formulates the problem and
+environment. Section 4 details the proposed cognitive synergetic
+architecture. Section 5 presents the experimental results, and
+Section6concludesthepaper.
+2 Related works
+2.1 Multi-agent reinforcement learning and
+swarm games
+The landscape of UAV swarm games is currently shifting
+away from rigid, pre-programmed logic toward fully autonomous
+maneuvering and decision-making (XuandChen, 2022a ,b). In
+high-pressure, changing environments, traditional reinforcement
+learning for a single agent often fails because it can’t handle
+the dynamic nature of a group of drones. As a result, Multi-
+Agent Reinforcement Learning (MARL) has become the preferred
+method for researchers dealing with these challenging situations.
+To address the inherent non-stationarity and partial observability
+of these dynamic environments, the Centralized Training with
+Decentralized Execution (CTDE) paradigm has emerged as
+a foundational standard ( Loweetal., 2017 ). Under CTDE, a
+centralized critic leverages global state information during oﬄine
+training to stabilize learning, while decentralized actors rely
+strictly on local observations for real-time execution. Building
+upon this paradigm, Multi-Agent Proximal Policy Optimization
+(MAPPO;Yuetal., 2022) has proven to be an exceptionally robust
+baseline.Byextendingthestable,clippedpolicygradientupdatesof
+single-agent PPO into the multi-agent domain, MAPPO achieves
+superior sample eﬃciency and mitigates performance degradation
+incomplexcooperativetasks.Givenitsprovenstability,weselected
+Frontiersin Neurorobotics 02 frontiersin.org
+
+=== PAGE 3 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+MAPPO under the CTDE paradigm as the foundational reactive
+execution backbone for our architecture, subsequently enhancing
+it with graph attention and role-decoupling mechanisms to suit
+heterogeneousswarmcombat.
+Diﬀerent schools of thought have emerged to solve the
+coordination problem. For instance,Zhengetal. (2024) used an
+Actor architecture with three subnetworks to facilitate knowledge
+transfer from simple duels to complex swarm combat. To prevent
+agents from getting stuck in “strategic cycles” and to handle
+the inevitable loss or addition of drones,Wangetal. (2024) and
+Houetal. (2023) introduced evolutionary operators and attention
+mechanisms with death masking. While these tricks help, scaling
+up to truly large swarms still brings back the ghost of the
+“curse of dimensionality.” Mean ﬁeld theory has stepped in
+to mitigate this (Huetal., 2025 ; Wangetal., 2023 ) by treating
+individual interactions as a simpler game between one drone
+and the collective “average” of its neighbors, which eﬀectively
+squashes the state space. Bio-inspired grouping mechanisms
+(Chietal., 2023 ) and value decomposition networks (Gongetal.,
+2023) have also shown promise in getting drones to hunt as
+a pack. However, the robustness of MARL policies remains
+highly sensitive to the distribution of training opponents. To
+address this, Hanetal. (2025a) proposed Prioritized Population
+Play with Diversiﬁed Partners (P3DPs), a landmark method
+that augments policy robustness by training agents against a
+spectrum of diversiﬁed opponent strategies using prioritized
+historical sampling. While P3DPs excels at building empirical
+robustness through massive data diversity, our framework oﬀers
+a complementary, cognitive layer of defense: rather than relying
+solely on past exposure to diverse opponents, our Strategic
+Brain uses high-level reasoning to generalize counter-strategies
+against novel, unseen opponent behaviors in a zero-shot manner.
+Furthermore, to address the challenge of hybrid action spaces—
+where agents must simultaneously manage ﬂight maneuvers and
+ﬁrecontrol— Hanetal.(2025b) introducedasupervision-enhanced
+DRL framework. By utilizing a dual-head policy and supervised
+learning memory, this approach overcomes the limitations of
+sparse reward functions in BVR engagements. Our work shares
+this vision; while our Strategic Brain provides the macro-
+intent, the Tactical Torso’s Bernoulli trigger mechanism can be
+further enhanced by incorporating such supervision-enhanced
+memory buﬀers to maximize the probability of kill in long-range
+missileexchanges.
+2.2 Hierarchical decision-making and
+embodied intelligence
+Hierarchical Reinforcement Learning (HRL) uses a “divide
+and conquer” approach to connect strategic planning with quick
+reactions. The usual route is to decouple target allocation from
+the actual maneuver execution (Chenetal., 2025 ; Xuetal., 2026 ;
+Yueetal.,2022 ).AnotableexampleistheLeader-Followerstrategy
+proposedby Pangetal.(2025) ,wherewingmenestimatetheleader’s
+utilitytotightencoordinationwithina6-DOFspace.Inthebroader
+worldofEmbodiedAI,thereisagrowingpushtobakephysicallaws
+directly into the learning process (QueroandMartinez-Carranza,
+2024; ZhaoandLiu, 2021 ). We’ll see this in the use of Physics-
+InformedNeuralNetworks(PINNs)toestimateaUAV’snon-linear
+dynamics (Bianchietal., 2024 ) or indirect optimization methods
+for6-DOFdescentguidance( NurreandTaheri,2025 ).
+Structuring the decision-making this way helps drop the
+dimensionalityoftheproblem( Renetal.,2021 ;Wangetal.,2021 ),
+yet it often results in a “black box” strategic layer. These
+rigid macro-action setups often fail when the combat situation
+takes a sharp, unexpected turn. High-level planning needs to be
+as adaptable as the low-level controls, yet current hierarchical
+models often lack the cognitive ﬂexibility to rewrite their own
+playbookmid-ﬂight.
+2.3 Real-time cognitive engines driven by
+LLMS
+The recent explosion in LLMs has given us models that can
+reason and associate concepts with a common-sense logic that was
+previouslyunheardof.Naturally,usinganLLMasarobot’s“brain”
+is now the frontier of Embodied AI (KovalevandPanov, 2022 ;
+QiandJing, 2024 ). The “Code-as-Policies” approach (Liangetal.,
+2023) proved that LLMs can actually write the low-level control
+code themselves, and combining them with Monte Carlo Tree
+Search(MCTS)hasproducedagentswithremarkablelogicaldepth
+(Luoetal., 2025). But trying to put a large-parameter model in the
+cockpit of a ﬁghter drone is an engineering nightmare because of
+thelatency.
+Someresearchersareﬁne-tuningsmallerLLMsforclosed-loop
+control (Boyleetal., 2025 ), but even then, the delay is usually too
+high for millisecond-level aerial combat. This is where speculative
+decoding (Chenetal., 2023 ) changes the game. By letting a
+lightweight “draft” model sprint ahead and generate candidate
+tokens for a larger model to verify in parallel ( Chengetal.,
+2024; ZhangJ.etal., 2024 ), we can ﬁnally think about real-time
+reasoning. Combined with TensorRT acceleration (Xuetal., 2024)
+and collaborative edge computing (ZhangM.etal., 2024 ), it is
+becoming possible to run these cognitive engines on embedded
+platforms like the NVIDIA Orin (Tianetal., 2025 ). By leveraging
+these acceleration techniques, we can ﬁnally give a drone cluster
+the“strategicpause”itneedswithoutfallingoutofthesky.
+2.4 Research gaps and motivation
+If we look at the current literature, there is a persistent
+“contextual gap” between the two worlds, that is, MARL is getting
+better at generating fast actions, and LLMs are getting better
+at high-level reasoning, but they don’t talk to each other very
+well. Pure LLM setups often hallucinate “un-physical” commands
+because they don’t feel the airframe’s limits, while pure RL setups
+lack the tactical “intuition” found in Energy-Maneuverability
+theory. We believe the answer lies in a uniﬁed architecture that
+uses speculative decoding to keep the “Brain” fast and intent
+embeddingstogrounditsthoughtsinthe“Torso’s”physicalreality.
+Our goal is to see a swarm that doesn’t just react, but understands
+thephysicsofthehunt.
+Frontiersin Neurorobotics 03 frontiersin.org
+
+=== PAGE 4 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+3 Problem formulation
+In a high-stakes UAV swarm confrontation, the eﬀectiveness
+of any decision-making system rests on two pillars: high-level
+tactical logic and the unforgiving physical constraints of the ﬂight
+platform (Bjurling, 2025). We bridge these by coupling high-
+ﬁdelity maneuver models with topology-aware graphs, creating a
+mathematical representation of air combat that remains grounded
+inreal-worldaerodynamics.
+3.1 Heterogeneous swarm modeling and
+RPG representation
+Our combat arena is a 3D space where red (UR) and blue (UB)
+teams of drones clash. To simulate the fast-paced nature of the
+battle,wemodeleachdrone ui ∈U anditsmissilesusingacomplex
+6-DOFsystem.
+Atanytimestep t,adrone’sstate si,t isa12-dimensionalvector:
+si,t = [pT
+i,t, vT
+i,t, /Phi1T
+i,t, /Omega1T
+i,t]
+T
+∈R12
+Here, pi,t = [xi,t, yi,t, zi,t]T anchors the drone in 3D space,
+while vi,t tracks its linear velocity. The attitude Φ i,t=[ϕi,t, θi,t,
+ψi,t]T deﬁnes the roll, pitch, and yaw, and Ω i,t measures the
+angularvelocity.
+Wedeﬁnethephysicalexecutionlayerthroughahybridaction
+vector alow,i,t=[δa, δe, δr, δt, fﬁre]T. We’ll notice this includes both
+continuous aerodynamic controls—aileron (i.e., δa), elevator (i.e.,
+δe),rudder(i.e., δr),andthrottle(i.e., δt)—andadiscretetriggerfor
+weapons release (i.e.,fﬁre; which is subsequently optimized by the
+executionlayerdiscussedinSection4.3).
+To make sense of the swarm’s shifting topology, we use a RPG.
+Inthisgraph,nodes vi=[ctype, Efuel, Nmissile, Sradar]T storeindividual
+“identity” and status—role type (scout, attacker, or decoy via one-
+hot encoding), fuel, ammo, and radar state. The directed edgeseij,t
+arewheretheactualgamegeometrylives,encodingtherelationship
+betweenagent ianditstarget j:
+eij,t = [dij,t, qij,t, λij,t, /Delta1zij,t]T
+Inthisedgevector, dij,t istheEuclideandistance,whichdictates
+weapon feasibility. The aspect angleqij,t measures how accurately
+the nose is pointed at the enemy (0◦ being a dead-on lock).
+The antenna train angle λij,t tells us if the target is trying to
+run or heading for a face-to-face clash. Finally, /Delta1zij,t=zj,t–zi,t
+tracks the altitude gap, which is our primary metric for potential
+energyadvantage.
+We also found that static snapshots aren’t enough for high-
+speed intercepts, so we include temporal rates of change to catch
+transientfeatures.Therangerate ˙dij,tiscalculatedas:
+˙dij,t = rij,t ·(vj,t −vi,t)
+dij,t
+When this value is deeply negative, we know to watch out for
+overshooting the target. Crucially, we deﬁnerij,t = pj,t −pi,tas the
+relativepositionvector(Line-of-Sightvector)fromagent itotarget
+j. Similarly, the aspect angle rate˙qij,thelps us judge how stable our
+lockis,usingthefollowingderivative:
+˙qij,t = (vi,t × rij,t)·(˙vi,t × rij,t + vi,t × ˙rij,t)
+vi,t
+2
+2 ·
+rij,t
+2
+2 ·sin(qij,t)
+3.1.1 Partially observable markov game (POMG)
+modeling
+Air combat is messy, and no agent ever has the full picture.
+Because of this “fog of war,” we formalize the confrontation as a
+POMG,deﬁnedbythetuple
+⟨
+N, S, A, P,⃗R, O, Z, γ
+⟩
+.
+Withinthisframework,representsallactivedronesontheﬁeld.
+The global state st ={ s1,t,..., s|N|,t} contains every absolute
+position and hidden variable, but agents can’t see this directly.
+Instead, they rely on a local observation spaceO—essentially a
+partialRPGsubgraphlimitedbytheirsensorrange.Thejointaction
+space
+A = φAi maps high-level intent down to those 6-DOF
+controls we mentioned earlier. The transition functionP : S ×
+A → /Delta1(S) determines how the world evolves, ﬁltered through
+the laws of physics. We use Z as our observation function to
+model the probability of perceiving the environment given current
+signal-to-noise ratios, while the discount factorγε(0,1) helps us
+strike a balance between a quick tactical win and a long-term
+strategicadvantage.
+3.1.2 Multi-objective reward formulation
+Combat is essentially a balancing act between survival and
+lethality. To handle this, we deﬁne an individual reward as a
+three-dimensionalvector ⃗Ri,t = [Rsurv, Rkill, Rammo]T.
+(1) Survival Reward ( Rsurv): We penalize drones for being
+“painted” by enemy radar and for pushing the airframe
+toohard:
+Rsurv =−exp(−
+d2
+ij,t
+σs
+)· I(qji,t <α crit)−η
+/Omega1i,t
+
+2 (1)
+Here, σs scales the threat based on distance,αcrit marks
+the critical threat angle where an enemy missile could lock on,
+and ηisapenaltyforhighangularvelocity—keepingthedrone
+withinastableﬂightenvelopeandavoidingstructuralstress.
+(2) Kill Reward (Rkill): This is all about the “six o’clock” position.
+WeusetheRPGtoguidetheUAVintotheidealﬁringzone:
+Rkill =
+{
+cos(qij,t)·exp(−
+⏐⏐dij,t −dopt
+⏐⏐), if q ij,t ≤qmax
+−1, otherwise (2)
+Thevariable dopt representstheoptimalengagementrange
+distance for a missile launch, and qmax is the limit of our
+radar’sgimbal.
+(3) AmmoEﬃciency( Rammo):
+Todeterindiscriminateﬁring,wepenalizelow-probability
+weaponreleases:
+Rammo =−fﬁre,i,t ·(1−Pk(dij,t, qij,t)) (3)
+Frontiersin Neurorobotics 04 frontiersin.org
+
+=== PAGE 5 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+Inwhich, fﬁre,i,t isourtriggerbit,and Pk isthepredictedkill
+probabilityatthatspeciﬁcmoment.
+4 Methodology
+4.1 Cognitive synergetic hierarchical
+architecture
+To navigate the inherent tension between high-level tactical
+planning and high-frequency physical response, we propose a
+modularcognitiveframework.Theoveralldataﬂowandfunctional
+decomposition of this system are illustrated in Figure1.A s
+we can see, the architecture is stratiﬁed into four distinct yet
+interconnected layers: the environment input layer (purple), the
+strategic reasoning layer (blue), the instruction parsing module
+(black), and the tactical execution layer (green). One might notice
+that this design eﬀectively creates a dual-frequency control loop,
+wherestrategicintentsgeneratedat5Hzareprogressivelygrounded
+into 50Hz aerodynamic commands through a Zero-Order Hold
+(ZOH) buﬀer and hybrid action heads. Traditional end-to-end
+reinforcement learning often falls into a “short-sighted” trap when
+dealingwithlong-durationtacticalplanning.Conversely,pureLLM
+setupsstrugglewiththecomputationalweightandlatencyrequired
+for millisecond-level aerodynamic compensation. To bridge this
+gap,we’vedevelopeda“Brain-Torso”hierarchicaldecision-making
+system. By decoupling high-level strategic intent from low-level
+precisioncontrol,wemimicthecognitivepatternsofahumanpilot
+whilemanagingthecomputationalloadofheterogeneoustasks.
+4.1.1 “Brain-Torso” design and model selection
+The core logic here is a clean split between “cold cognition”
+(strategic planning) and “hot cognition” (reactive control). This
+cognitive oﬄoading is our way of sidestepping the curse of
+dimensionalityinherentinhigh-dimensionalstatespaces.
+4.1.2 Strategic reasoning layer (the brain):
+distributed cognitive hub
+For the high-level command center, we’ve tapped into
+DeepSeek-R1 (70B) and its distilled onboard counterpart.
+DeepSeek-R1′s intensive reinforcement learning background gives
+it a native Chain-of-Thought (CoT) capability. When it looks at
+the RPG from Section 3.1, it doesn’t just see numbers; it reasons
+through complex, non-linear gambits like “luring the enemy deep”
+or “kinetic energy compensation.” To keep things running in
+real-time, we use a “Chief Designer and Assistant” setup: the full
+70B model handles long-range planning and post-game review
+at the base station, while the DeepSeek-R1-Distill-Qwen-7B runs
+locally on the UAV’s edge platform (i.e., NVIDIA Orin). This
+FIGURE 1
+Overall architecture of the cognitive synergetic hierarchical
+framework for UAV swarm combat.
+Frontiersin Neurorobotics 05 frontiersin.org
+
+=== PAGE 6 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+ensures the swarm maintains strategic depth without sacriﬁcing
+second-by-secondtacticalresponsiveness.
+4.1.3 Tactical execution layer (the Torso): reactive
+control via enhanced MAPPO
+This layer acts as the reactive controller, built on an
+enhanced Multi-Agent Proximal Policy Optimization (MAPPO)
+algorithm. We’ve adopted the Centralized Training, Decentralized
+Execution(CTDE)frameworkandintegratedrole-basedparameter
+decoupling. Once the “Torso” receives compressed tactical
+primitives from the “Brain,” it uses a policy network to ﬁnd the
+physically optimal path within the 6-DOF constraints deﬁned in
+Section 3. By conﬁning RL exploration to the tactical subspace
+mappedoutbythestrategiclayer,we’veeﬀectivelysolvedthesparse
+rewardproblemtypicalinaerialcombat.
+4.2 Situational semantic mapping
+The situational transformer,ftext(.), is responsible for turning
+raw physical vectors s i,t and RPG features eij,t into symbolic
+descriptions that actually mean something tactically. We build
+this through a progression of feature diﬀerentiation, expert-led
+quantization,andﬁnally,semanticsynthesis.
+4.2.1 Dynamic feature encoding and derivatives
+We explicitly pull in temporal rates of change to identify high-
+level dynamic intents. For instance, we look at the range rate˙dij,t
+to judge if we’re losing our positional advantage or heading for an
+overshoot. We also track the aspect angle rate˙qij,tto evaluate how
+stableournose-to-targettrackingreallyis.
+4.2.2 Tactical quantization operatorMand
+semantic space
+We designed a quantization operator,M, to map continuous
+values into a discrete set of tactical labelsL. These thresholds are
+derived from representative performance envelopes of Medium-
+Altitude Long-Endurance (MALE) UAVs (Fahlstrometal., 2022 )
+and the foundational principles of Energy-Maneuverability (E-M)
+theory (Boyd, 2018), which dictates how energy state transitions
+inﬂuence combat potential. Following standard tactical air-to-
+air doctrine (NationalResearchCouncil, 2005 ; Shaw, 1985), the
+quantitiesaredeﬁnedtorepresentcriticaloperationalboundaries:
+Potential Energy Gradient (/Delta1z
+ij,t → L/Delta1z): /Delta1z ≥ 1000m
+indicatesanenergyadvantage;between( −1000,1000)misaneutral
+state;and ≤-1000misaseriousenergydeﬁcit.
+Attack Envelope (dij,t→ Ldist): Based on standard missile
+weaponengagementzones(WEZ)( Shaw,1985),(0,5) kmisWithin
+Visual Range (WVR) combat; (5,30)km is Medium Visual Range
+(MVR)engagement;and(30,80) kmistheedgeofradartracking.
+Pointing Accuracy ( qij,t→ Laspect): Representing the
+ﬁeld-of-view limits of typical radar and missile seekers
+(NationalResearchCouncil, 2005 ), (0,30 ◦) is an oﬀensive
+lock; (30◦,90◦) is a maneuvering approach; and ≥90◦ is a
+defensiveposture.
+Dynamic Trend (˙dij,t → Lrate): <-50m/s is rapid closure;
+[−50,50]m/sisrangemaintenance;and >50m/sisrapidseparation.
+4.3 Structured prompt templates and
+command generation
+TokeepDeepSeek-R1 ′sreasoningwithintheboundsofphysics,
+we developed a Dynamic Prompt Generation Engine. Instead of
+static text, this engine uses a real-time state machine to produce a
+compositeprompt
+Ptotal containingcognitiveanchoring,situational
+narratives,andhard-constrainedinstructions.
+4.3.1 System prompt architecture
+The system promptPsys builds the agent’s “tactical ego” using
+fourlockedmodules:
+ModuleI(RoleandPhysics):anchorsthemodelasa“Cognitive
+Commander”boundby6-DOFdynamicsandE-Mtheory.
+ModuleII(TacticalKnowledge):injectsspeciﬁcmaneuverslike
+the “Notch Maneuver” to break locks or “High-YoYo” to trade
+speedforaltitude.
+Module III (Multi-objective Logic): forces the model to weigh
+Survival,KillChain,andEnergyagainsteachother.
+Module IV (Output Protocol): strictly mandates a Reasoning
+TracefollowedbyabracketedCommandBlock.
+4.3.2 Contextual serialization
+LLMs aren’t naturally great with raw numbers, so we use
+a slot-ﬁlling algorithm to turn discrete labels L into a causal
+narrative Pctx. We might ﬁll a slot like: “Self-Unit 01 is in
+Severe_Energy_Deﬁcitstate.”Then,weaddlogicconnectorsbased
+onderivatives.Ifaltitudeisdroppingwhiletheenemyisclosingin,
+the engine might insert: “WARNING: This indicates an imminent
+high-energy dive attack.” This forces the model to focus on
+causal relationships rather than isolated data points. To enhance
+the reproducibility of our framework, we explicitly provide the
+architectural template of the integrated prompt generated at each
+decisionstep,asshownin Box1.
+4.3.3 Dual structure of Tout
+The strategic layer’s output, Tout, is formalized as an
+orderedtuple: ⟨SCoT, SCMD⟩
+Reasoning trace ( SCoT): this is the unstructured thinking
+process. It’s useful for us to look at, but its real job is providing the
+“why”forourreﬂectionmechanism.
+Structured command block (SCMD): this is the hard-coded
+interface at the end of the text. It is strictly constrained to
+a bracketed Key-Value protocol (e.g., [KEY]: Value) to ensure
+deterministic parsing by the execution layer. We’ll ﬁnd things like
+Frontiersin Neurorobotics 06 frontiersin.org
+
+=== PAGE 7 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+[TARGET] (which enemy to focus on), [ACTION] (a categorical
+variable such as Evade, Intercept, or Scout used for role-gating),
+and [STYLE] (a state parameter, such as High G, dictating how
+aggressivetheexecutionshouldbe).
+4.4 Instruction parsing and mapping
+The parsing layer, Parse(.), translates the text Toutinto a
+machine-readable input a high=[icluster,e task], which eventually
+drivesthephysicalcontrolsignals.
+4.4.1 Policy cluster indexing and safety validation
+We use regular expressions to grab the POLICY_CLUSTER
+and map it to a one-hot encoding icluster. To mitigate the inherent
+hallucinationrisksofgeneral-purposeLLMs,thisparsinglayeracts
+asahard-codedsafetyﬁlter.IftheLLMgeneratesanout-of-bounds
+action or an invalid format, the ﬁlter rejects the command, and
+the ZOH buﬀer sustains the previous valid intent. When valid, this
+index acts as a gate, activating the speciﬁc “Intercept” or “Scout”
+behaviorbranchintheunderlyingMAPPOnetwork.
+4.4.2 Task-conditioned embedding
+Topassalongsubtleintent(liketheRISK_BIAS),weextractthe
+hiddenstateh llm fromtheedgemodel.Thisvectorisprojectedinto
+alatentspace viaaMulti-LayerPerceptron(MLP):
+etask = σ(Wproj · hllm + bproj) (4)
+This embedding e task captures the nuanced execution
+characteristics of the maneuver, such as its aggressive posture and
+risktolerance.
+4.4.3 Execution and physical action generation
+These high-level components are fed into the MAPPO
+networkswheretheActornetworkfuseslocalobservationso i,t with
+thetaskembedding:
+alow,i,t ∼πi(·|oi,t ⊕etask, icluster) (5)
+Theresult,a low,i,t,isthe5-dimensionalhybridvector[ δa, δe, δr,
+δt, fﬁre]T deﬁned in Section 3.1. To handle this mixed action space,
+we implement a hybrid policy head architecture that branches
+from the Actor’s backbone to parameterize diﬀerent probability
+distributionssimultaneously.Speciﬁcally,forthefouraerodynamic
+control surfaces [δ
+a, δe, δr, δt], the network outputs the α and
+β parameters of independent Beta distributions. Unlike standard
+Gaussian distributions which require heuristic clipping, Beta
+distributions are naturally bounded within [0,1]. This ensures that
+generated commands never exceed the physical deﬂection limits
+of the airframe, preventing gradient bias during backpropagation.
+For the weapon trigger bit f
+ﬁre, the network outputs a single
+probability parameter for a Bernoulli distribution. This provides
+a mathematically rigorous way to model the binary nature of ﬁre
+control(0forhold,1forrelease)whilemaintainingdiﬀerentiability
+throughthepolicygradient( Yuetal.,2022 ).
+4.4.4 Asynchronous alignment
+There’s a signiﬁcant frequency mismatch here: the LLM thinks
+at roughly 5Hz, but the ﬂight controller needs 50Hz. We
+handle this with a Zero-Order Hold (ZOH) strategy. This speciﬁc
+architectural choice acts as a low-pass ﬁlter for intent, preventing
+the high-frequency control chattering that would inevitably occur
+if aerodynamic surfaces were continuously perturbed by the
+intermediate, token-by-token generation process of the LLM. The
+Actor network keeps using the most recent e
+task and icluster for its
+50Hzinferencesuntilthe“Brain”providesafreshstrategicupdate.
+Thiskeepstheﬂightstableevenwhilethe“Brain”isstillcrunching
+thenexttacticalmove.
+4.5 Strategic reasoning layer: a real-time
+cognitive engine via large-small model
+synergy
+Aerial combat moves at a breakneck pace, often leaving a
+decision window of only a few hundred milliseconds. While
+the DeepSeek-R1 (70B) model introduced in Section IV.A oﬀers
+formidable reasoning power, the time required to generate a full
+Chain-of-Thought (CoT) is simply too long for live engagement.
+We bridge this gap between “logical depth” and “inference
+speed” by introducing a real-time cognitive engine built on logic
+compressionandspeculativedecoding.
+4.5.1 Two-stage logic compression
+Tomakethesemodelsviableforresource-constrainedonboard
+systems, we condense verbose text into a high-density sequence of
+tacticalprimitivesthroughatwo-stagecompressionalgorithm.
+1. Sentence-levelsemanticmasking
+The ﬁrst step is to isolate “logic anchors”—sentences that
+actually drive the tactical conclusion. Given an original CoT
+sequenceC ={ s1, s2,..., sN}, we use an adversarial perturbation test
+toscoreeachsentence sk basedonitsimportance, Ω(sk):
+/Omega1(sk) = DKL(π(ahigh|C)||π(ahigh|C\{sk})) (6)
+Here, DKL is the Kullback-Leibler divergence, andπ(ahigh |.)
+is the action distribution output by the parsing layer. Basically,
+if removing a sentencesk causes a massive shift in the resulting
+action distribution (i.e., Ω(sk)>δth), that sentence contains core
+game logic—like “aborting pursuit due to low energy”—and must
+bekept.Everythingelseistreatedasredundantandpruned.
+2. Token-levelreﬁnementandmappingtemplates
+Frontiersin Neurorobotics 07 frontiersin.org
+
+=== PAGE 8 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+Once we have our key sentences, we use a slot-ﬁlling template
+toturnnaturallanguageintoacompactstructuralvectorc compressed.
+We’vedeﬁnedthreeindependentsemanticdimensions: ⟨O, D, U⟩
+O (Operation): tactical intent, selected from {‘Engage’, ‘Evade’,
+‘Flank’,‘Maintain’,‘Return’}.
+D(Directionality):spatialorientation,selectedfrom{‘Clock_2’,
+’Clock6’,‘Left/Right_Turn’,‘Climb/Dive’,‘Notch’}.
+U (Urgency): execution priority, selected from {‘High’,
+‘Medium’,‘Low’},whichmapstoenergyconsumptionpreferences.
+For instance, if the model says, “Enemy missile detected at 4
+o‘clock. Break right immediately and dive,”ourcompressor Ψ compress
+ﬁlls the slots: Break right becomes D= Right|Dive, Immediately
+becomes U= High, and missile triggers O=EvadeO=Evade.
+This outputs a vector c compressed=[OP:Evade,DIR:Right|Dive,
+URGENCY:High]. We’ll ﬁnd this reduces token usage by about
+60%, easing the load on the parser while keeping the causal chain
+intactforthereﬂectionmechanism.
+4.5.2 Speculative Inference Synergy
+To get 70B-level intelligence at 7B-level speeds on the
+edge, we’ve built a “cloud-to-edge” inference pipeline based on
+speculativedecoding.
+1. Heterogeneousdeployment
+Draft Model (M
+draft): Running on the UAV (i.e., an NVIDIA
+Orin), we use a DeepSeek-R1-Distill-Qwen-7B that has undergone
+full instruction tuning. It’s tuned to understand the complex
+Ptotal prompt structure from Section 4.1.3, ensuring it generates
+candidatetokensatahighrate.
+Target Model (Mtarget): The full DeepSeek-R1 (70B) sits at the
+groundstation.Insteadofgeneratingtextword-by-word,itveriﬁes
+thedraftsequencesinparallel.
+2. Speculativesamplingandveriﬁcation
+At each step t, the synergy follows a speciﬁc protocol. First,
+Mdraft “guesses”asequenceoflength L:
+ˆyi ∼Pdraft(yi|ˆy<i, Ptotal) (7)
+Then, Mdraft performs a single forward pass to verify these
+tokens. We use a rejection sampling scheme to decide if we accept
+eachtoken ˆy<i:
+r ∼U[0,1], Accept if r < min
+(
+1, Ptarget(ˆyi|ˆy<i, Ptotal)
+Pdraft(ˆyi|ˆy<i, Ptotal)
+)
+(8)
+As long as the small model’s logic aligns with the large model,
+we keep the tokens. If they diverge, we fall back to the 70B model
+to correct the sequence. It is crucial to emphasize that this entire
+process occurs internally within the cognitive engine. The “draft”
+decisionsgeneratedbythe7Bmodelarestrictlyspeculativeandare
+never directly transmitted to the UAV. Only the ﬁnal, fully veriﬁed
+sequence—guaranteed to match the 70B model’s distribution—is
+parsed and sent to the Tactical Torso. This strict “verify-before-
+execute” mechanism ensures that potentially ﬂawed logic from the
+smallermodelcannotcausecatastrophicﬂightconsequences.
+3. Theoreticalspeedup
+Thisworksbecauseaerialcombatlogichas“sparsecomplexity.”
+Most of the time, the moves are predictable and the 7B model
+handlesthemﬁne;the70Bmodelonlyneedstostepinduringhigh-
+stakes tactical shifts. If we letαbe the average acceptance rate, the
+expectedspeedupratio ηis:
+η= τ
+target
+τdraft +(1−α)τtarget/L (9)
+Where L is the speculative step length andτ represents the
+averagelatencyforasingletokenfromeachmodel.
+4.6 Tactical execution layer: swarm
+reinforcement learning and coordination
+If the strategic layer is the “Brain,” the tactical execution layer
+is the “Muscles.” We use a Role-Decoupled MAPPO framework
+paired with a sequential intention propagation mechanism to
+stop heterogeneous swarms from drifting into homogeneous,
+ineﬀectivebehaviors.
+4.6.1 Role-decoupled heterogeneous policy
+network
+Standard MARL often assumes agents are identical, but in a
+swarm comprising scouts and attackers, this leads to a suboptimal,
+generalizedstrategy.WeemploytheCTDEparadigmspeciﬁcallyto
+alleviate the non-stationarity of the environment while respecting
+the communication limits of a real battleﬁeld. During the training
+phase, CTDE permits a centralized Critic to access the global
+state s
+t—including all agents’ hidden states and the complete
+RPG topology—to accurately estimate the value function. During
+live execution, the decentralized Actors rely exclusively on their
+localized observations o
+i,t and the Brain’s instructions. This
+design choice guarantees operational viability even under severe
+communication latency or jamming, a necessity that is empirically
+validatedinoursupplementaryablationstudy(seeSection5.4.4).
+1. Globalcriticwithgraphattention
+To handle the non-stationarity of the environment, our Critic
+networkV
+φ(st, Gt)uses a Graph Attention Network (GAT). This
+allows the model to digest the RPG from Section 3.1, which
+is essential because drones might get shot down or damaged,
+changingthegraphsizedynamically.
+For any agent i, we calculate attention coeﬃcients αij for
+itsneighbors:
+αij = Softmaxj(LeakReLU(wT[Whi||Whj||eij,t])) (10)
+In which, W is our weight matrix andeij,t represents the edge
+features. After pooling these features via Max-Pooling to create
+Frontiersin Neurorobotics 08 frontiersin.org
+
+=== PAGE 9 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+a global state vector gt, the Critic outputs a value estimateVϕ
+=MLP(gt).
+2. Role-awareactor
+The Actor network πθ(alow,i,t |.) uses a “shared backbone,
+independentheads”design.
+SharedBackbone:AllagentsusethesameMLPencodertopull
+rawphysicalfeaturesfromtheirobservationso i,t.
+Role-Gating: Based on the POLICY_CLUSTER index icluster
+from the Brain, we activate speciﬁc policy heads. If the Brain says
+‘Intercept’, the drone uses a head trained for high-G maneuvers; if
+itsays‘Scout’,itswitchestoaheadoptimizedforsmooth,wide-area
+radarcoverage.
+Hybrid Outputs: We use Beta distributions for the 4-
+DOF control surfaces and a Bernoulli distribution for the
+weapon trigger ( f
+ﬁre), optimizing continuous and discrete
+actions together. The strategic choice of Beta distributions over
+standard Gaussians is critical here; Beta distributions provide
+strictly bounded continuous outputs, which perfectly map to
+the absolute physical deﬂection limits of aerodynamic control
+surfaces [e.g., (−1,1)], eﬀectively preventing the generation of
+un-physical out-of-bound control signals without requiring
+artiﬁcial gradient clipping. In extending this architecture to
+BVR engagements, we align our dual-head structure with the
+supervision-enhanced paradigm proposed by Hanetal. (2025a) .
+Speciﬁcally, the maneuvering head utilizes Beta distributions for
+continuous control, while the ﬁre control head can be optimized
+by integrating binary cross-entropy loss against historical missile
+hit outcomes. This paradigm allows the “Torso” to predict kill
+probabilities concurrently with maneuver generation, enabling
+the swarm to transition seamlessly from WVR dogﬁghts to BVR
+missileexchanges.
+4.6.2 Sequential intention propagation (SIP) and
+shared mental models
+The hardest part of swarm combat is making sure everyone is
+onthesamepage.WeuseSIPtobuildaSharedMentalModel.
+Insteadofeveryoneactingatonce,weusetheTARGET_IDand
+rolestosetacascadeddecisionsequence
+Sseq = (u(1), u(2),..., u(N)) that is resolved entirely within a
+single 20ms execution step (50Hz). To clarify the temporality,
+this is an auto-regressive process where agents compute actions
+sequentially to prevent conﬂicting maneuvers. The intra-swarm
+communicationlatencyforbroadcastingtheseembeddingsisatthe
+sub-millisecondlevel,ensuringtheentirechainiscompletedbefore
+physicalactuation.
+Topologically, the broadcasting follows a one-to-all
+cascaded graph: as shown in Equation(15), the ( k+1)-th
+agent does not merely listen to the “Leader,” but integrates
+the weighted sum of intentions from all k preceding agents
+in the sequence. The Leader ( u
+(1)) outputs its intention
+embedding m (1),t, which is broadcasted to all subsequent
+peers. Each following agent then updates the “Shared Mental
+Model” by adding its own intended vector to the pool. The
+(k+1)-th agent’s policy is then conditioned on this cumulative
+latentrepresentation:
+a
+low,k+1,t ∼πk+1
+⎛
+⎜⎜
+⎜
+⎜
+⎜⎝
+·|o
+k+1,t,
+k∑
+j=1
+αjm(j),t
+  
+Shared Mental Model
+⎞
+⎟⎟
+⎟
+⎟
+⎟⎠
+(11)
+4.6.3 Loss function and optimization
+Our composite loss function L(θ) balances performance,
+exploration,androle-speciﬁcbehavior:
+L(θ) = Et[LCLIP(θ)−c1LVF(φ)+ c2S(π)
+− λdivDKL(πintercept||πscout)] (12)
+It’s standard PPO at its core— LCLIP keeps updates stable
+and LVF trains the Critic. However, the crucial component is
+the regularization term:DKL. We use it as a “repulsive” force to
+maximize the diﬀerence between roles. This prevents non-combat
+units, such as scouts, from deviating into aggressive combat roles,
+thereby ensuring the swarm maintains optimal specialization and
+operationaleﬃciency.
+4.6.4 Decoupled hierarchical training procedure
+To clarify the learning dynamics of our hierarchical
+architecture, we explicitly adopt a decoupled, two-phase training
+procedure. The Strategic Brain and the Tactical Torso are not
+trainedend-to-endsimultaneously.
+Phase 1: strategic brain preparation (oﬄine). The large target
+model, DeepSeek-R1 (70B), is deployed in its pre-trained state
+withitsweightsremainingcompletelyfrozen.Topreparetheedge-
+deployeddraftmodel(DeepSeek-R1-Distill-Qwen-7B),weperform
+oﬄine Supervised Fine-Tuning (SFT) using a curated dataset of
+high-quality tactical reasoning trajectories previously generated by
+the 70B model. This oﬄine tuning ensures the 7B model strictly
+adheres to our structured prompt template (Box1) and JSON-like
+output formats. During the subsequent RL phase, the weights of
+bothLLMsarestrictlyfrozen.
+Phase 2: tactical Torso RL training (online). The MAPPO
+Actor and Critic networks (the Torso) are trained from scratch
+through direct interaction with the JSBSim environment. During
+this phase, the frozen Strategic Brain acts purely as a conditional
+intentgenerator:itprocessestheRPGat5Hzandoutputsthepolicy
+clusterindexi
+cluster andtaskembeddinge task.TheTorsotreatsthese
+LLM outputs as high-level environmental conditions. Operating at
+50Hz, the Torso collects experience trajectories (o
+i,t,e task,a low,i,t,
+ri,t) guided by the multi-objective rewards deﬁned in Section 3.3.
+The policy gradients are then calculated to update only the neural
+weights of the MAPPO Torso (θand ϕ) using the composite loss
+function L(θ) deﬁned in Equation16. This approach allows the
+Torso to master 6-DOF physical execution while being steadily
+guidedbytheinvariant,zero-shotlogicalpriorsoftheBrain.
+Frontiersin Neurorobotics 09 frontiersin.org
+
+=== PAGE 10 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+BOX 1 ExplicitPromptTemplateIntegratingScenarioInformation.
+[SYSTEM ROLE]
+You are the Tactical Brain of Blue_UAV_01. Your goal is to maximize the
+exchange ratio while ensuring survival. You are bound by 6-DOF dynamics
+andE-Mtheory.
+[ENVIRONMENT STATE (Slot-Filled from RPG)]
+Self Status: {Energy_State: [Insert Quantized /Delta1z fromL], Speed_Trend:
+[InsertRangeRatefrom L]}
+Target(Enemy_01):Distanceis{ d
+ij}km.A spectAngleis{ qij}degrees.
+[DYNAMIC WARNINGS]
+{IFRange_Rate < −50ANDAspect_Angle <30}:
+“WARNING: Enemy is closing rapidly with a nose-on lock. Immediate
+evasionrequired.”
+[KNOWLEDGE RETRIEV AL]
+{IFEnergy_Deﬁcit}:
+“ConsiderHorizontalS-turnstobreaklockwithoutlosingspeed.”
+[INSTRUCTION]
+Analyze the causal relationships above. Output your reasoning trace exactly
+as [THOUGHTS]: <text>, followed immediately by the command block
+usingtheexacttags:
+[ACTION]: <Evade/Intercept/Scout>
+[STYLE]: <HighG/Smooth/Maintain >
+4.7 Theoretical analysis
+We need to be sure that this framework isn’t just a
+collection of clever heuristics but is actually grounded in
+mathematical reality. To that end, we’ve analyzed the feasibility
+and convergence of the system from two angles: the hard
+limits of real-time computation and the stability of the policy
+optimizationitself.
+4.7.1 Inference latency and communication
+complexity
+In a “Brain-Torso” setup, the biggest risk is that the “Brain”
+takes too long to think, leaving the “Torso” to ﬂy blind. System
+stability eﬀectively boils down to whether our delays violate the
+Nyquistfrequencyconstraintsofthecontrolloop.
+Theorem 1 (Suﬃcient Conditions for Real-time Stability). Let
+Fctrl representtheminimumupdatefrequencyrequiredbythelow-
+level ﬂight controller, and letTdyn be the shortest time window
+in which the tactical situation undergoes a qualitative shift (for
+instance,atargetbreakingalock).Theclosed-loopsystemremains
+stableif:
+ExecutionLayerConstraint: τRL < 1
+Fctrl
+StrategicLayerConstraint: τLLM
+η + τcomm < Tdyn
+where τRL and τLLM are the single-step inference times
+for the tactical and strategic layers, respectively; τcomm is the
+communicationlatency;and ηisthespeedupratiofromspeculative
+decodingdeﬁnedinSection6.2.2.
+Proof:
+We can look at this through the lens of a dual-frequency loop.
+On the execution side—the high-frequency loop—our MAPPO
+policynetworkisastandardMLPwith Llayers,aninputdimension
+d
+in, and a hidden widthdh. If you run the numbers, the ﬂoating-
+pointoperations(FLOPs)areroughly:
+CRL = 2· L· d2
+h +2· din · dh (13)
+For a typical lightweight setup (L = 3, dh= 256) deployed on
+an NVIDIA Orin with a peak performance ofPpeak, the inference
+time τRL is around 0.5ms. Since a 50Hz ﬂight controller needs a
+20ms cycle, 0.5ms<< 20ms means the execution layer handles its
+workloadwithplentyofroomtospare.
+The low-frequency loop is where it gets tricky. The strategic
+layerisaTransformer,whichmeanswe’redealingwith O(N2)self-
+attention complexity. A raw 70B model might take over a second
+to generate a full tactical CoT (τ
+LLM). However, our speculative
+decoding slashes this toτ
+′
+=τLLM/η. In the physics of a dogﬁght,
+thesituationalcoherencetime Tdyn isessentiallytheratioofrelative
+distance D to relative velocity Vrel. At close range, say 500m at
+300m/s, Tdynis about 1.6s. If our speedupη ≥2.0 and we keep
+communication lag τcomm under 100ms, the total strategic delay
+stays around 1.1s. This is comfortably under 1.6s, ensuring the
+“Brain”sendsitsintentwhilethetacticalcontextisstillvalid.
+4.7.2 Monotonic improvement in heterogeneous
+policy optimization
+One might worry that adding a speciﬁc penalty for role
+similarity—our −λdivDKLterm—might prevent the agents from
+actually learning how to win. We can prove that the algorithm still
+guaranteesmonotonicpolicyimprovementundercertainbounds.
+Theorem 2 (Lower Bound for Heterogeneous PPO
+Improvement). Let J(π) be the expected cumulative reward
+for a policy π. For a heterogeneous MAPPO update step, the
+improvementofanewpolicy π
+new overanoldone πold satisﬁes:
+J(πnew)−J(πold) ≥E
+[πnew
+πold
+Aπold
+]
+−C· εKL
+  
+Standard PPO Bound
+−λdiv · /Delta1H (14)
+Here, Aπoldis the advantage function,C is a constant related to
+the value function,εKLis the upper bound on the KL divergence
+between new and old policies, and/Delta1H is the maximum shift in
+theheterogeneitypenalty.Monotonicconvergenceisguaranteedas
+long as the regularization coeﬃcientλdiv ≤ δadv
+/Delta1H , whereδadv is the
+minimumadvantagegainfromastrategicimprovement.
+Proof:
+Starting with the original PPO bound established by
+Schulmanetal. (2017) , we know that maximizing the surrogate
+objective is equivalent to optimizing a lower bound on the
+truereward:
+J(πnew) ≥J(πold)+ ∑
+s
+ρπold(s) ∑
+a
+πnewρπold(a|s)Aπold(s, a)
+−C·max
+s
+DKL(πold||πnew) (15)
+In this expression, ρπoldrepresents the state
+visitationdistribution.
+Our objective adds the heterogeneity term Ldiv =
+−λdivDKL(πintercept||πscout)]. If we deﬁn /Delta1H =
+Frontiersin Neurorobotics 10 frontiersin.org
+
+=== PAGE 11 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+⏐⏐Ldiv(πnew)−Ldiv(πold)
+⏐⏐as the change in this penalty during
+anupdate,wecanseethatthistermactsasaboundedperturbation.
+Wecanrewritethetotalexpectedrewardas:
+J
+total(πnew) ≥ JPPO_Bound −λdiv ·max
+θ
+∇θDKL(πint||πscout)
+
+· α (16)
+where α is the learning rate. For the total reward Jtotalto keep
+increasing, the primary push from the policy gradient must be
+stronger than the pull of the regularization:E[Aπold] >λ div · /Delta1H.
+As long as we keepλdiv small enough—or decay it over time—the
+heterogeneity constraint won’t derail the gradient direction. This
+mathematical safety net is why we use a dynamicλdiv decay in
+our actual experiments (parameter conﬁgurations are speciﬁed in
+Section 5.1.5), allowing the swarm to settle into distinct, optimal
+roleswithoutlosingsightofthemissiongoal.
+5 Experiment
+5.1 Experimental setup
+5.1.1 Simulation platform
+We moved away from simplistic point-mass models
+(Imadoetal., 2011 ; KinoshitaandImado, 2006 ) and instead
+built our environment on the JSBSim ﬂight dynamics engine
+to capture the true nuances of aerial combat. By loading non-
+linear 6-DOF aerodynamic data for the F-16, we can accurately
+simulate complex physical traits like aerodynamic coupling at
+high angles of attack, energy bleed during maneuvers, and throttle
+lag. Building on this core, we developed a Partially Observable
+Markov Game (POMG) interface that supports heterogeneous
+multi-agentsetups.Wealsointegratedline-of-sightradardetection
+models (PoD) and electronic jamming to replicate the friction of a
+real-worldbattleﬁeld.
+To test the “Brain-Torso” architecture on hardware people
+can actually buy, we used a split deployment: a high-performance
+workstation for the “Brain” and an embedded edge device for the
+“Torso.” For the Strategic Reasoning Layer (Brain), we handled
+themassivememoryneedsofDeepSeek-R1byusingaworkstation
+withdualNVIDIAGeForceRTX3090(24GB ×2)GPUs.Running
+the DeepSeek-R1-Distill-Llama-70B model required us to use 4-bit
+AWQquantization.Ontheotherend,theTacticalExecutionLayer
+(Torso) lived on an NVIDIA Jetson AGX Orin (64GB). This edge
+platform ran a quantized DeepSeek-R1-Distill-Qwen-7B alongside
+our MAPPO Actor network. We used the TensorRT engine to hit
+a 50Hz refresh rate, turning macro-level strategy into immediate
+control signals. To make things even more realistic, we modeled
+the communication between the cloud and the edge as a Gaussian
+distribution (mean 50ms, std 10ms), which lets us see how the
+swarmhandlesnetworkjittersandlag.
+The physical constraints, sensor specs, and game rules are all
+detailedin Table1 forthoseinterestedinreproducingtheseresults.
+TABLE 1 Key physical parameters and rules of the simulationenvironment.
+Category Parameter Value/Setting
+Dynamics Flightplatform F-16Falcon(Non-linear6-DOF)
+G-Loadlimits +9.0G/-3.0G
+Simulationfrequency 50Hz(Physics),10Hz(Decision)
+Fuelload 3200lbs(Standardinternal)
+Sensors Radarrange 80km(Lock),150km(Search)
+Radargimballimit ±60◦
+Visualrange 15km
+Rules Missilerange( Rmax) 30km(AIM-120Simulation)
+No-escapezone( Rne) 12km
+KillCondition Distance <50mandAspect <30◦
+5.1.2 Confrontation scenarios
+We tested the adaptability of our framework across three
+scenarios of increasing diﬃculty, as shown in Table2. In all
+cases, the “Blue” side uses a competitive Behavior Tree expert
+system. Its logic follows standard AFTTP 3-3 tactical manuals
+(AirForceSpaceCommand, 2016 ), making it a formidable
+opponent that moves like a seasoned human pilot. Furthermore,
+to address the potential limitation of evaluating against a single
+ﬁxed strategy, we established an “Adversarial Pool” for cross-play
+evaluation. In addition to the AFTTP expert system, this pool
+includes an RL-based opponent (a well-trained MAPPO swarm)
+and an Evolutionary-based opponent (Wangetal., 2024), covering
+diverseandunpredictabletacticalbehaviors.
+ScenarioA:1v1Within-Visual-Range(WVR)Dogﬁghtfocuses
+on the marriage of 6-DOF boundary control and energy-
+maneuverability theory. Drones start head-on at 10km. The goal
+is to perform high-G maneuvers like the High-YoYo to get into
+a ﬁring position without stalling. This acts as a stress test for our
+physicalcontrolstability.
+ScenarioB:2v2HeterogeneousCooperationchecksifourrole-
+gating actually works. The Red side has one “Attacker” (with
+missiles) and one “Scout” (high mobility, radar, but no weapons).
+The scout has to act as bait and share data, while the attacker takes
+the long-range shot. If they both try to do the same thing—like the
+scouttryingtodogﬁght—themissionusuallyfails.
+ScenarioC:ScaleSwarmCombatistheﬁnaltestforlong-range
+planning. This 6v6 ﬁght includes attackers, scouts, and jammers.
+We used “observation masking” where jammers kill radar PoD
+within 20km and applied our 50ms Gaussian network delay. It
+forces the “Brain” to act like a grandmaster, coordinating units
+whiledealingwithadegradednetwork.
+5.1.3 Baseline algorithms
+We compared our framework against six state-of-the-art
+methods across the Multi-Agent System (MAS) and Embodied AI
+spectrum,andspecializedUAVaircombatdomains:
+Frontiersin Neurorobotics 11 frontiersin.org
+
+=== PAGE 12 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+TABLE 2 Summary of conﬁgurationdetails for air combatscenarios.
+Scenario Scale Heterogeneous roles Complexity Key metric
+A.Dogﬁght 1vs.1 Homogeneous PhysicalLimits ηe, Jerk
+B.Hetero-Coop 2vs.2 Scout+Attacker RoleSymmetry ER,DKL
+C.Swarm-War 6vs.6 MixedRoles Jamming+Lag WR, η
+1. HAPPO (Kubaetal., 2021 ): A classic for credit assignment in
+heterogeneous groups. We use it to see if our role-gating adds
+anyrealvalue.
+2. MAT (Wenetal., 2022 ): This treats MARL as a sequence
+modeling problem. It’s powerful for dependencies but can get
+sluggishasswarmsgrowdueto O(N2)complexity.
+3. MADiﬀ (Zhuetal., 2024 ): Uses diﬀusion models for smooth
+trajectories.Itlooksgreatonpaperbutthe20-50denoisingsteps
+makeittooslowforthe50Hzloopsweneed.
+4. LATS (Zhouetal., 2023 ): Combines LLMs with Monte Carlo
+Tree Search. It’s the gold standard for logic but takes seconds to
+makeonedecision.WeuseittobenchmarkourStrategicLayer.
+5. CaP (Liangetal., 2023 ): The popular industry choice where
+LLMs write Python code to drive controllers. We want to show
+thatourneuralapproachismorerobustwhenthingsget“messy”
+(likedodgingmissiles)comparedtorigidgeneratedcode.
+6. Zhengetal. (2024) : A specialized MARL algorithm designed
+speciﬁcallyforUAVswarmaircombatmaneuversusingtransfer
+learning. We include this to benchmark our framework against
+domain-speciﬁcaircombatRLsolutions.
+5.1.4 Metrics
+We use three types of metrics to catch issues like physical
+instabilityorcomputationlag.
+1. Combat eﬀectiveness: We evaluate combat eﬀectiveness
+primarily through the Exchange Ratio (ER), a fundamental air
+combat metric deﬁned as the ratio of enemy units destroyed to
+friendlyunitslost:
+ER =
+¯N
+kill +1
+¯Nloss +1 (17)
+Where ¯Nkill and ¯Nloss areaveragekillsandlosses.Wealsotrack
+theMeanEngagementTime( Tavg):
+Tavg = 1
+Nwin
+Nwin∑
+k=1
+(t(k)
+end −t(k)
+start) (18)
+Small Tavg values tell us the Brain is being decisive and ﬁnding
+thekillwindowearly.
+2. Kinematicandenergyintegrity:High-ﬁdelity6-DOFmodelsare
+sensitive. We track Jerk to see if the execution layer is vibrating
+orﬁghtingthestrategiclayer:
+Jerk =
+√
+1
+T
+∫ T
+0
+(
+ˇx2 +ˇy2 +...z2)
+dt (19)
+A high Jerk usually means the RL is trying to ﬁx an unrealistic
+command. We also track Energy Eﬃciency (ηe) using Speciﬁc
+Energy( Es):
+{
+Es = h+ V2
+2g
+ηe =
+/Delta1Es,useful
+/Delta1Es,total
+(20)
+Here h is altitude,V is speed, and gg is 9.81m/s2. This tells us
+if the LLM actually understands maneuvers like the High-YoYo—
+tradingspeedforheight—orifit’sjustburningfueltostaylevel.
+3. System computational performance: For the speculative
+decoding,wetracktheAcceptanceRate( κ):
+κ= N
+accept
+Ndraft
+(21)
+This measures how often the 70B model agrees with the 7B
+“draft”model.Finally,theSpeedupRatio( η)is:
+η= τbase
+τspec
+(22)
+τbase is the latency of the raw 70B model, and τspecis our
+synergetic latency. To keep up with 50Hz control, we need to
+minimizeτspecso the intent vector etask stays synced with the
+physicalrealityofthedrone.
+5.1.5 Conﬁgurations
+To ensure the stability and reproducibility of the experimental
+results, the training process was standardized, with the detailed
+conﬁgurations summarized in Table3. The Actor network uses
+a 3-layer MLP (256 units per layer) with hybrid outputs:
+Beta distributions for the surfaces and Bernoulli for the
+trigger. The Critic uses a 2-layer GAT with 4 heads to track
+neighborinteractions.
+On the software side, we ran the 70B model on vLLM with
+PagedAttention (Kwonetal., 2023 ) and compiled the 7B model
+using TensorRT-LLM for INT4-AWQ precision. Everything was
+doneinPyTorch2.1onUbuntu22.04.Asdetailedinourdecoupled
+training procedure (Section 4.3.4), the LLMs were frozen during
+this phase, and the RL updates were applied exclusively to the
+MAPPOTorso.WeusedanAdamoptimizerwithalinearlearning
+ratedecaystartingat3e −4andlettheheterogeneitycoeﬃcient λ
+div
+slide from 0.05 down to 0.01 to let the roles settle in late in the
+trainingprocess.
+Frontiersin Neurorobotics 12 frontiersin.org
+
+=== PAGE 13 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+5.2 Contrast experiment
+5.2.1 Swarm combat effectiveness
+To see if our architecture actually gives a tactical edge, we ran
+our Brain-Torso setup against ﬁve baselines in Scenario B (2v2
+coordination) and Scenario C (6v6 scale combat; scenario speciﬁcs
+are outlined in Section 5.1.2).Table4 pulls together the averages
+from500independenttrials.
+The data shows a clear gap between our approach and
+traditional MARL or pure LLM methods in both win rate (WR)
+and exchange ratio (ER). In the 2v2 skirmishes, our framework hit
+a 0.88 win rate with anER of 4.12. We’ll notice that while HAPPO
+is solid at low-level control, it lacks the “vision” for asymmetric
+coordination—like using a scout drone to drag enemy ﬁre away.
+MAT holds its own in small groups, but its win rate slides down
+to 0.52± 0.07 once we scale up to 6v6. We suspect this is due to
+itsglobalattentionmechanismstrugglingwithcreditassignmentas
+thetopologygetsnoisier.Bycontrast,ourmethodusestheStrategic
+Layer to distill the big picture while the GAT-Critic handles local
+relationships,whichseemstoscalemuchbetter.
+TABLE 3 Algorithmimplementationand trainingparameters.
+Module Parameter Value
+Neuralarch Actor-Backbone 3×256(LeakyReLU)
+Critic-GAT
+Layers/Heads
+2Layers/4Heads
+FeatureDim( dmodel) 128
+LLMconﬁg Step L/Temperature 5/0.6
+Quantization AWQ4-bit(Cloud)/INT4(Edge)
+RLtraining LearningRate( αlr) 3×10−4 (LinearDecay)
+BatchSize 1024(Mini-batch:128)
+Clip ε/GAE λ 0.2/0.95
+DiversityWeight
+(λdiv)
+0.05→ 0.01
+DiscountFactor( γ) 0.99
+Software Library/CUDA PyTorch2.1/CUDA12.1
+Interface PythonC-API(JSBSimWrapper)
+When we look at the LLM-based competitors like LATS and
+CaP, the engagement time (Tavg) tells the real story. LATS is
+undoubtedly smart, but its long “thinking” cycles often mean the
+drone is just coasting while a tactical window (WEZ) opens and
+closes. Our “think-while-ﬁght” loop allows the Torso to make
+high-frequency adjustments, keeping us aggressive and decisive,
+resulting in a T
+avg of just 34.2s. Notably, while the specialized
+UAV combat RL method (Zhengetal., 2024 ) outperforms general
+MAS baselines like MAT, it still falls short of our framework in the
+complex 6v6 Scenario C, highlighting the necessity of combining
+strategicdepthwithtacticalexecution.
+A common vulnerability of end-to-end RL algorithms is that
+high win rates may simply result from exploiting the speciﬁc
+weaknesses of a ﬁxed opponent (e.g., the AFTTP expert system)
+rather than achieving true tactical superiority. To investigate this,
+we conducted a cross-play evaluation under Scenario C. We tested
+the top-performing baselines against our diverse Adversarial Pool:
+the standard Expert System, an unpredictable RL-trained Swarm,
+andanEvolutionarySwarm( Wangetal.,2024 ).Thecross-playwin
+ratesaresummarizedin Table5.
+As shown inTable5, traditional MARL algorithms (including
+the air-combat-speciﬁc Zheng et al.) experience a severe
+performance collapse—often dropping below 50%—when facing
+non-rule-based, unforeseen opponents. They struggle to adapt
+to strategies outside their training distribution. In contrast, our
+‘Brain-Torso’ architecture maintains a robust Average Win Rate
+(AWR) of 70.9%. The Strategic Brain utilizes zero-shot physical
+reasoning to analyze novel threats, preventing the catastrophic
+policy degradation seen in pure RL models. This conﬁrms that
+our framework’s superiority is grounded in genuine cognitive
+adaptability,notmerelyexploitingaweakbaseline.
+5.2.2 Scalability analysis across swarm sizes
+To explicitly evaluate the scalability of our architecture
+compared to state-of-the-art baselines, we expanded the multi-
+agent engagements to encompass varying swarm sizes: 2v2, 4v4,
+6v6, and a highly congested 8v8 conﬁguration. We benchmarked
+ourframeworkagainstMAT(representinggeneralMARLsequence
+modeling) and bib52Zhengetal. (2024; representing specialized
+domain-speciﬁc RL). Table6 presents the Win Rate (WR)
+degradationasswarmcomplexityincreases.
+TABLE 4 Combat performance statisticsin scenario B and C(mean±std).
+Algorithm Scenario B:WR/ER Scenario C:WR/ER Tavg (s)
+HAPPO 0.620±0.05/1.450±0.12 0.480±0.08/1.120±0.25 52.4
+MAT 0.710±0.04/1.980±0.15 0.520±0.07/1.340±0.18 48.6
+Zhengetal.(2024) 0.780±0.03/2.450±0.14 0.650±0.06/1.880±0.20 42.1
+MADiﬀ 0.680±0.03/1.620±0.09 0.450±0.06/1.050±0.22 65.3
+LATS 0.740±0.02/2.100±0.11 0.580±0.05/1.760±0.14 120.4
+CaP 0.650±0.05/1.550±0.10 0.410±0.09/1.100±0.30 95.8
+Ours 0.880±0.02/4.120±0.15 0.790±0.04/3.450±0.21 34.2
+Frontiersin Neurorobotics 13 frontiersin.org
+
+=== PAGE 14 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+TABLE 5 Cross-play win rates (%) in 6v6 combatagainst diverse adversarial policies.
+Evaluated policy vs.Expertsystem(%) vs. RL-trained
+swarm (%)
+vs. evolutionary
+swarm (%)
+Average win rate
+(AWR) (%)
+MAT 52.0 38.5 35.2 41.9
+Zhengetal.(2024) 65.0 46.8 44.5 52.1
+Ours 79.0 68.5 65.2 70.9
+TABLE 6 Scalabilitycomparison:winrate (WR)across varying swarm sizes.
+Algorithm 2v2 WR 4v4 WR 6v6 WR 8v8 WR
+MAT 0.71 0.60 0.52 0.35
+Zhengetal.
+(2024)
+0.78 0.72 0.65 0.51
+Ours 0.88 0.84 0.79 0.74
+As demonstrated in Table6, traditional MARL methods
+experience a severe performance collapse as the scale increases.
+MAT’s WR drops drastically to 0.35 in the 8v8 scenario; its
+global attention mechanism struggles with credit assignment and
+noise indense topologies.The domain-speciﬁcapproachby Zheng
+et al. maintains moderate performance but lacks the macro-
+level orchestration required for large-scale coordination, falling to
+0.51. In contrast, our hierarchical framework demonstrates robust
+scalability,maintaininga0.74WRevenat8v8.Thisresiliencestems
+from the Strategic Brain’s ability to abstract the massive state space
+into semantic intents, eﬀectively partitioning the battleﬁeld into
+manageable localized skirmishes, while the CTDE execution layer
+resolves local 6-DOF topologies without being overwhelmed by
+globalnoise.
+5.2.3 6-DOF physical boundary maneuvers
+In Scenario A, we wanted to see how the controller handles
+the physics of a 1v1 dogﬁght.Figure2 breaks down a High-YoYo
+maneuver, a classic move for managing energy during a high-
+speedintercept.
+In this case,our drone (blue line) executes a more aggressive
+pitch-up maneuver compared to MADiﬀ, characterized by a
+higher load factor (G-load) and more eﬃcient energy-to-height
+conversion. It hits the apex and rolls into a tight, gravity-assisted
+turn, whereas MADiﬀ exhibits radius expansion and suboptimal
+altitude gain, resulting in an ineﬃcient radius of turn.Figure2a
+really captures the energy swap: right at the 4-second mark, our
+velocity V drops to its minimum as altitudeh peaks. It’s exactly
+whattheEnergy-Maneuverabilitytheorypredicts.WhiletheExpert
+system follows a similar logic, our MAPho-based Torso recovers
+speed faster during the dive phase because it’s better at handling
+non-linear aero-compensation. By the time we get the lock at 10s,
+our speciﬁc energy E
+s is roughly 12.8% higher than the baseline
+(Figure2b). Thisextraenergy isadirect resultof smoothercontrol
+inputs and lower trim drag, giving us a massive advantage if the
+ﬁghtweretocontinue.
+FIGURE 2
+Speciﬁc energy (Es) retention and loss during the maneuver.(a)
+Comparison of velocity and altitude evolution over time.(b)
+Quantitative performance metrics.
+5.2.4 Evolution of heterogeneous behaviors
+Weusedt-distributedStochasticNeighborEmbedding(t-SNE)
+to visualize the Actor network’s hidden layers during Scenario B
+to understand how the drones actually learned their roles.Figure3
+showstheresultsafteramilliontrainingsteps.
+In the ablation group where we turned oﬀ theDKL penalty
+(Figure3a), the policy embeddings for scouts and attackers are
+basicallyontopofeachother.Withoutthatroleguidance,everyone
+triestobeanattacker,whichusuallygetsthescoutsshotdown.But
+in our full framework (Figure3b), the roles split into two distinct
+“islands” with aDKL value of 4.85. The “Scout” island is heavily
+associated with wide, sweeping yaw movements and maintaining
+a mid-range distance to keep the enemy in sight. The “Attacker”
+island,meanwhile,focusesonhigh-frequencypitchcorrectionsand
+Frontiersin Neurorobotics 14 frontiersin.org
+
+=== PAGE 15 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+maintainingasteadynose-onlock.Thisdivisionoflaborisn’thard-
+coded; it’s an emergent property of the loss function forcing the
+dronestospecializeforthesakeoftheexchangeratio.
+5.3 Real-time efficiency and speculative
+decoding
+We tested our speculative decoding setup to see if the cloud-
+based 3,090 and the edge-based Orin could work well together
+at50Hz.
+FIGURE 3
+t-SNE visualization of heterogeneous policy feature manifolds.(a)
+Policy convergence without heterogeneity regularization.(b) Role
+differentiation and policy decoupling emerged in our framework.
+5.3.1 Latency and speedup analysis
+We compared three ways of running the inference: a raw
+70B model, a 7B model alone, and our synergetic mode. To
+address the performance gap between models of diﬀerent scales,
+we evaluated their independent “Success Rates” (the probability of
+generatingatacticallysoundandaerodynamicallyvalidmaneuver).
+Asshownin Table7,theraw70Bmodelachievesahighsuccessrate
+of 92.4%, demonstrating exceptional zero-shot tactical reasoning.
+Conversely, using the 7B model alone only yields a 64.8% success
+rate. This vast disparity empirically justiﬁes assigning the highest
+decisionprioritytothe70Bmodelasthe“veriﬁer.”
+However, Table7 shows that running the full 70B model on
+the RTX 3090 creates a 1450ms lag. In a 6-DOF environment, that
+kind of phase lag makes the drone feel drunk—it reacts to where
+the enemy was, not where they are. Our synergetic setup cuts that
+down to about 520ms, giving us a speedup ratioηof 2.78 while
+maintaining a 91.1% success rate (nearly identical to the pure 70B
+baseline). Because of our asynchronous timing, the MAPPO Torso
+can keep chewing on that strategic intent at 50Hz, keeping the
+instructions“fresh”evenwhiletheBrainisstillcalculatingthenext
+bigmove.
+5.3.2 Acceptance rate and tactical complexity
+The synergy works because combat isn’t always complex.
+Figure4 trackstheacceptancerate κduringadogﬁght,andit’svery
+reactivetowhat’shappeninginthesimulation.Whenthedronesare
+justclosingthegap, κstayshigh(above0.9),meaningthe7Bmodel
+is calling the shots correctly. But when the enemy pulls a sudden
+“Notch” maneuver around the 11-second mark, the RPG topology
+ﬂips,and κκtanksto0.42.That’swhenthe70Bmodelstepsintoﬁx
+FIGURE 4
+Dynamic evolution of speculative acceptance rate relative to
+tactical complexity.
+TABLE 7 Latency and performance across inference modes.
+Mode Per-token latency (ms) Sequence latencyτ(ms) Speedup η Success rate (%)
+70B(Base) 9.8 1,450 1.00 92.4
+7B(Draft) 1.2 185 7.84 64.8
+Ours(Synergy) 3.5(equiv.) 520 2.78 91.1
+Frontiersin Neurorobotics 15 frontiersin.org
+
+=== PAGE 16 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+TABLE 8 Performance statisticsofthe logiccompressionmechanism across different swarm scales.
+Swarm scale Original traffic
+(KB/s)
+Compressed traffic
+(KB/s)
+Compression ratio
+(CR)( % )
+Parsing success rate
+1v1(ScenarioA) 4.5 1.2 73.3 100.0
+2v2(ScenarioB) 16.8 4.5 73.2 99.8
+6v6(ScenarioC) 45.2 11.4 74.8 99.5
+FIGURE 5
+Comparison of average bandwidth usage between Raw CoT and
+compressed tactical primitives under different cluster scales.
+the logic. This computation-on-demand approach keeps the logic
+sharpexactlywhenthestakesarehighest.
+5.3.3 Robustness to complex communication
+disruptions: delay, ﬂapping, and noise
+Finally,welookedathowmuchdatawe’reactuallypushingover
+the wire.Table8 shows that raw CoT traces are bandwidth hogs,
+hitting 45.2 KB/s in large swarms. Our compression drops that by
+over 73% while keeping the parsing success rate at 99.5%. We’ll
+notice inFigure5 that our bandwidth usage barely ﬂinches as the
+swarmgrows,whichisahugeplusforreal-worldtacticaldatalinks.
+Figure6 shows how this handles a bad connection. If we try to
+send raw text over a network with 20% packet loss, the “intent”
+gets scrambled because the LLM only gets half the story. But our
+“tactical primitives” are atomic and dense; even if we lose a few
+packets, the core intent gets through. We saw a 58% improvement
+in intent alignment variance compared to the baseline, proving
+that being brief is actually a survival trait in an electronic warfare
+environment.
+Furthermore, as tactical alignment between the Brain and
+Torso is central to our architecture, we conducted a deeper
+evaluation of the system’s robustness against three severe types
+of real-world communication disruptions: time delays (jitter),
+ﬂapping communications (intermittent link state transitions), and
+signal noise. We benchmarked our complete framework against a
+“Raw CoT” baseline (which transmits uncompressed text without
+asynchronous buﬀering) in Scenario C. The quantitative impacts
+ontheWinRate(WR)andintentparsingaredetailedin Table9.
+FIGURE 6
+Robustness analysis of intent alignment variance against network
+packet loss rate.
+Under highly variable latency (200 ± 50ms), the Raw
+CoT baseline’s performance collapses (WR 0.31) because the
+physical control loop stalls while waiting for delayed strategic
+tokens. Conversely, our architecture maintains a robust 0.72 WR.
+The Asynchronous Zero-Order Hold (ZOH) buﬀer eﬀectively
+decouples the execution frequency from the transmission
+frequency; the MAPPO Torso simply continues to execute the last
+known e
+task validly at 50Hz until the delayed packet fully arrives,
+neutralizingthedestabilizingeﬀectsofjitter.
+Flapping links—where the connection intermittently drops
+and recovers—are devastating to standard hierarchical models. To
+simulate this, we applied a Markov model causing complete link
+outages averaging 2s. The baseline suﬀered “cognitive paralysis”
+during these blind spots (WR 0.18). Our framework mitigates this
+via a built-in “Cognitive Fallback Mechanism”. When the cloud
+link ﬂaps, the system seamlessly drops to the ‘Autonomous-Edge’
+state. The onboard 7B distilled model continues local strategic
+generation, or in extreme sub-second outages, the localized
+MAPPO Actor navigates autonomously based on the ZOH intent
+memory. This layered redundancy preserves a 0.65 WR even when
+theswarmisperiodicallydisconnectedfromthe70Bveriﬁer.
+WeinjectedAdditiveWhiteGaussianNoise(AWGN)targeting
+a high Bit Error Rate (BER) of 10
+−3. In raw text transmission, a
+single bit ﬂip can catastrophically corrupt semantic meaning (e.g.,
+changing “dive” to unintelligible strings), causing a parsing failure.
+Ourframeworkresiststhisthroughthestructuraldensityoftactical
+primitives and deterministic Regex mapping. Even if the [STYLE]
+parameter is corrupted by noise, the independent [ACTION] tag
+is often still successfully parsed, allowing partial intent recovery
+(maintaining a 91.2% parsing success rate and 0.68 WR). This
+Frontiersin Neurorobotics 16 frontiersin.org
+
+=== PAGE 17 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+TABLE 9 Impactof severe communicationdisruptionson combatperformance (scenarioC).
+Communication condition Raw CoT baseline (WR) Ours (WR) Parsing success rate (ours) (%)
+Baseline(50msdelay,nodrop) 0.64 0.79 99.5
+HighDelayandJitter(200 ±50ms) 0.31 0.72 99.1
+FlappingComm.(2sout/5sin) 0.18 0.65 95.4
+HighSignalNoise(BER10 −3) 0.22 0.68 91.2
+TABLE 10 Performance comparisonof ablationvariants inscenario C.
+Conﬁguration Win rate (WR) Exchange ratio (ER) Latency τ(ms) Success rate (%)
+Fullarchitecture(Ours) 0.79 3.45 520 91.1
+w/ostrategicbrain 0.45 1.12 12(PureRL) 52.4
+w/ospeculativedecoding 0.58 2.15 1,450 44.2
+w/oheterogeneityreg 0.61 2.12 520 78.5
+w/ologiccompression 0.64 2.45 680 38.0
+conﬁrms that condensing logic into discrete, atomic primitives is
+highlyresilienttounstructurednoise.
+5.4 Ablation experiment
+To get a clear picture of how each piece of our Brain-Torso
+architecture actually pulls its weight, we put together four variants
+for Scenario C (the 6v6 swarm ﬁght). By stripping away key
+components one by one, we could track the fallout in terms of win
+rate (WR), inference latency (τ), and mission success. The results
+arelaidoutin Table10.
+5.4.1 Assessing the strategic brain
+In the w/o Strategic Brain (SB) variant, we removed
+the DeepSeek-R1 reasoning engine and let the underlying
+heterogeneous MAPPO ﬂy the mission end-to-end. The WR
+degraded signiﬁcantly, dropping from 0.79 to 0.45. Looking back
+at the ﬂight logs, it was obvious that without the “Brain” to
+handle macro-level coordination, the swarm fell right into the
+“luring deep” trap set by the Blue team’s experts. The drones
+became blindly aggressive, with every unit trying to grab an
+attack position and leaving the scouts wide open to being
+ﬂanked. It’s a strong reminder that high-level intent is what keeps
+reinforcement learning from getting stuck in its own “short-
+sighted”localoptima.
+5.4.2 The role of speculative decoding in
+real-time performance
+The w/o Speculative Decoding (SD) group kept the logic intact
+butranthefull70Bmodelserially.Thetacticaladvicewasstilltop-
+tier, but the 1450ms update lag created a massive “cognitive gap.”
+In a 6-DOF environment, a lot can happen in a second. By the
+time a drone received an evade command, it was often already too
+late.ThisperformancecliﬀhighlightsahardtruthinembodiedAI:
+logic depth means nothing if you lose temporal ﬁdelity. Without
+speculativedecodingtokeepthe“Brain”fast,itessentiallybecomes
+aheavyanchorforthe“Torso.”
+5.4.3 Specialization through heterogeneity
+regularization and compression
+Whenweremovedthe DKL constraintinthew/oHeterogeneity
+Regularization (HR) variant, the exchange ratio (ER) fell by 38.6%.
+Forcing roles to diverge is the only way to get advanced tactics like
+pincermovementstoemergenaturally.
+We also tested a group w/o Logic Compression (LC), sending
+the full CoT text over the wire. In the noisy 6v6 environment,
+successratesdroppedto0.38.Itwasn’tjustabandwidthbottleneck;
+itshowedthatredundantlanguagecreatesa“long-tailinterference”
+eﬀect when the channel is spotty. A truncated long sentence
+is far more damaging to a mission than a complete, dense
+tacticalprimitive.
+5.4.4 Empirical justiﬁcation for the CTDE
+paradigm
+To rigorously justify our selection of the Centralized Training,
+DecentralizedExecution(CTDE)paradigmoveralternativeMARL
+architectures, we conducted an additional ablation study in
+Scenario C (6v6 with 50ms latency and jamming). We compared
+our CTDE-based Torso against two baselines: Independent
+PPO (IPPO, purely decentralized training and execution) and
+Centralized Execution MAPPO (CE-MAPPO, where the global
+GAT Critic is actively utilized during live execution to dictate
+actions). The real-time communication bandwidth and tactical
+outcomesaresummarizedin Table11.
+The results empirically validate the necessity of CTDE. IPPO
+exhibited the lowest Win Rate (0.42) because purely decentralized
+training falls victim to environmental non-stationarity; agents
+Frontiersin Neurorobotics 17 frontiersin.org
+
+=== PAGE 18 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+TABLE 11 Performance comparisonof training/executionparadigms in scenarioC.
+Paradigm Training
+mode
+Execution
+mode
+Win rate
+(WR)
+Exchange ratio
+(ER)
+Comm. bandwidth
+(KB/s)
+Execution
+latency (ms)
+IPPO Decentralized Decentralized 0.42 0.95 4.2 0.4
+CE-MAPPO Centralized Centralized 0.55 1.40 85.6 18.5
+CTDE(Ours) Centralized Decentralized 0.79 3.45 11.4 0.5
+TABLE 12 Inﬂuence strategicupdate frequency on combat performance and kinematic
+stability.
+Frequency Win rate
+(WR)
+Average
+Jerk
+(m/s3)
+Strategic
+intent status
+1Hz 0.46 15.2 Stale/Lagging
+2Hz 0.65 18.5 ModerateDelay
+5Hz(Ours) 0.79 22.4 Optimal
+Equilibrium
+10Hz 0.68 58.7 High
+Chattering/Instability
+cannot stabilize their policies when teammates’ behaviors are
+constantlyshifting,leadingtodisjointedswarmtactics.Conversely,
+whileCE-MAPPOtheoreticallypossessesglobalawareness,itfailed
+catastrophically in the simulated real-world conditions of Scenario
+C. Relying on a centralized execution node requires constant,
+massive data synchronization (85.6 KB/s) across the entire swarm.
+Under the 50ms network delay and jamming conditions, this led
+to severe packet drops and an execution latency spike to 18.5ms,
+pushingtheﬂightcontrollerdangerouslyclosetoits20msNyquist
+limit. The CTDE paradigm represents the optimal structural
+compromise: it leverages global state data to solve non-stationarity
+during oﬄine training, but relies solely on local observations
+(requiring only 11.4 KB/s) for ultra-fast 0.5ms decentralized
+execution,directlyenablingthehigh0.79WinRate.
+5.4.5 Inﬂuence of strategic cognitive frequency
+To empirically justify the selected 5Hz update frequency for
+the Strategic Brain, we conducted an ablation study evaluating the
+reasoning layer’s output frequency at 1Hz, 2Hz, 5Hz, and 10Hz
+in Scenario C. We monitored both the combat Win Rate (WR)
+and kinematic stability, quantiﬁed by the average Jerk (to measure
+destructive control chattering). The results are summarized in
+Table12.
+The data reveals a clear performance constraint at both
+extremes. At low frequencies (1Hz and 2Hz), the strategic intent
+becomes “stale”; by the time the Tactical Torso executes an
+interception command, the adversary has often already altered
+its trajectory, resulting in a degraded WR (0.46 at 1Hz).
+Conversely, excessively increasing the frequency to 10Hz does
+not yield better responsiveness; rather, the WR drops to 0.68,
+accompanied by a massive spike in average Jerk to 58.7 m/s
+3.
+This physical instability occurs because 10Hz updates overwrite
+the Zero-Order Hold (ZOH) buﬀer too rapidly, interrupting
+the Torso’s continuous aerodynamic execution and causing
+severe control surface chattering and kinetic energy bleed. The
+5Hz frequency represents the optimal equilibrium—it provides
+suﬃciently refreshed tactical intent to track dynamic threats while
+allowing the lower-level MARL policy the necessary temporal
+windowtosmoothlyexecute6-DOFmaneuvers.
+5.5 Case studies
+5.5.1 Mapping thoughts to controls
+One of the biggest wins of this architecture is turning invisible
+neural weights into something a commander can actually read.
+Figure7 shows a high-speed intercept in Scenario A. We can see
+howDeepSeek-R1’sChain-of-ThoughtalignswiththeRPGandthe
+ﬁnalphysicalactions alow.
+In this speciﬁc case, the red UAV was stuck in a low-energy
+deﬁcit. To illustrate the exact output form of the upper-layer
+DeepSeek and its inﬂuence on the MARL execution layer, we
+extractedthedual-structuredoutput ⟨SCoT, SCMD⟩generatedatthis
+criticalmoment(aspartiallyshownin Figure7a):
+Reasoning Trace ( SCoT): “Detected enemy entering ﬁring
+envelope. Energy deﬁcit identiﬁed. Recommend aggressive break
+turntoforceovershoot.”
+StructuredCommandBlock(
+SCMD):
+[ACTION]:Evade
+[STYLE]:HighG
+This speciﬁc parsed block explicitly alters the MARL behavior
+through two structural pathways. First, the [ACTION]: Evade acts
+as a routing signal for our role-aware Actor network, dynamically
+switching the execution head to a high-mobility evasion mode.
+Second, the [STYLE]: High G parameter is fused into the task
+embedding e
+task (via Equation8), signaling the MARL policy to
+sample from the extreme tails of the continuous Beta distributions
+forcontrolsurfacemanipulation.
+As a result, the Torso responded perfectly. As observed in
+Figure7c at the “Command Grounding” mark (t = 15.0s), the
+intention embedding etask shifted instantly, driving the elevator
+(δe) and aileron (δa) deﬂections to extreme values. This directly
+triggered a massive 7G structural load, successfully executing the
+“aggressive break turn” to force the enemy (which was onlydij
+=1.2km away, as shown in Figure7b) into an overshoot. This
+“tactical intuition” gives us a level of explainability that pure RL
+just can’t match, removing the randomness often found in end-to-
+end models and ﬁrmly grounding symbolic reasoning in real-time
+aerodynamiccontrol.
+Frontiersin Neurorobotics 18 frontiersin.org
+
+=== PAGE 19 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+FIGURE 7
+End-to-end semantic grounding and temporal alignment from
+tactical intent to physical control.(a) Semantic reasoning trace and
+parsed command block generated by DeepSeek-R1.(b) Snapshot of
+the RPG at the critical maneuver moment.(c) Control surface
+deﬂection and G-load response curves after tactical
+command triggering.5.5.2 Evolution via reﬂection
+To see the “Decision-Storage-Reﬂection-Evolution” (DSRE)
+loop in action, we tracked a failed “Defensive Scissors” maneuver,
+labeledascase#042. Figure8 showsthe“beforeandafter.”
+Initially, the small 7B model tried to handle an enemy with
+a high closing rate by simply pulling up into a steep, symmetric
+climb. Because it didn’t grasp the non-linear stall limits of the F-
+16 airframe, it pushed too far and the drone fell into a deep stall.
+FIGURE 8
+Visualization of tactical evolution in air combat based on the
+Decision-Reﬂection-Evolution loop.(a) Initial failed trajectory due to
+stall from ignoring aerodynamic coupling.(b) Failure attribution and
+speciﬁc tactical correction log generated by the strategic layer.(c)
+Successful evolved trajectory with emergent slip compensation after
+incorporating reﬂection results.
+After the mission, the 70B model at the base station crunched the
+failure.Itsattributionlognoted:“Failurecausedbyignoringlateral
+coupling; drone should maintain 10
+◦slip-angle during the climb
+to keep control.” This lesson was baked into an updated System
+Promptandstoredinthesharedmemory.
+When we ran the same scenario again, the system pulled that
+lesson from memory via RAG. As you can see inFigure8c,t h e
+evolvedtrajectoryismuchmore“cunning.”Byintroducingthat10 ◦
+slip-angle,thedronekeptitsenergy,forcedtheenemytoovershoot,
+andswungaroundforacounter-lock.
+Frontiersin Neurorobotics 19 frontiersin.org
+
+=== PAGE 20 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+6C o n c l u s i o n
+The systematic construction and testing of this framework
+lead to a clear realization: the core bottleneck for embodied
+intelligence in complex games isn’t just a lack of raw compute,
+buta“cognitivegap”stemmingfromamassivemismatchincross-
+modal time scales. Our framework solves this by uncoupling long-
+range strategic reasoning from high-frequency physical responses.
+Speculative decoding, in this context, is far more than a speed
+hack; it functions as a “compute-on-demand” balancer. It allows
+the drone to rely on the rapid reactive baseline of a 7B model for
+90% of routine ﬂight, while reserving the 70B model’s heavy-duty
+logicforthecritical10%oftacticalpivots.Beyondsimplewinrates,
+thedatarevealshowaswarmcanself-organizeintocomplementary
+roles when guided by the speciﬁc term. Seeing the “Brain‘s”
+high-level intent translate into a precise load on the “Torso’s”
+control surfaces provides the kind of physical evidence needed to
+make AI-driven combat truly explainable. That said, the road to
+total swarm autonomy in real-world environments remains long.
+Regarding the challenge of unforeseen opponents, our framework
+approachesrobustnessfromadual-perspective.Whilethe“Tactical
+Torso” requires robust training—ideally through methodologies
+like Prioritized Population Play with Diversiﬁed Partners (P3DPs;
+Hanetal.,2025a )toensuretheexecutionlayerisexposedtoawide
+spectrum of adversarial strategies—the “Strategic Brain” provides
+a higher-order cognitive buﬀer. When an agent encounters an
+entirely novel opponent maneuver that falls outside the training
+distribution of P3DPs, the LLM-based reasoning engine analyzes
+the physical state vectors (e.g., energy bleed rates and relative pose
+stability) to derive a logical counter-measure. By combining the
+empiricalrobustnessgainedfrompopulation-playtrainingwiththe
+cognitive adaptability of LLMs, we provide a robust, multi-layered
+solutiontothe‘unforeseenopponent’problem.
+Furthermore, to ensure operational continuity in contested
+environments where communication may be disrupted, we have
+implemented a “Cognitive Fallback Mechanism”. When the
+communication latency exceeds a critical threshold or the signal-
+to-noiseratiodrops,theswarmtransitionsfroma“Cloud-Assisted”
+statetoan“Autonomous-Edge”state.Inthismode,theonboard7B
+distilled model continues to generate tactical logic independently,
+temporarily disabling the 70B “Chief Designer”. As demonstrated
+in our ablation studies, even without the 70B model, the “Torso”
+retains basic survival and engagement capabilities, conﬁrming the
+system’sfail-safedesign.
+We see three primary paths forward: ﬁrst, we need to look
+into semantic communication within decentralized architectures
+to further shrink the bandwidth needed for tactical alignment
+in noisy environments like our Scenario C. Furthermore, while
+our Sequential Intention Propagation (SIP) mechanism resolves
+within 20ms in simulation, real-world cascaded transmission
+across a large swarm will inevitably accumulate multi-hop
+latency that exceeds this 50Hz control window, potentially
+degradingaerodynamicstability.Tomitigatethisinfuturephysical
+deployments, we plan to introduce localized topology grouping—
+restricting the sequential chain to smaller tactical sub-squads
+(e.g., 3–4 UAVs) to strictly cap the cumulative delay. Second,
+we plan to integrate P3DPs into the training phase of our
+Tactical Torso to further sharpen the system’s resilience. Third,
+we plan to extend our framework to complex beyond-visual-range
+(BVR) engagements. By integrating the supervision-enhanced ﬁre
+control heads (Hanetal., 2025a ) into our existing “Brain-Torso”
+architecture, we can bridge the gap between high-level strategic
+intent and low-level missile engagement logic. This will enable our
+agents to perform concurrent maneuvering and weapon release
+optimization, providing a uniﬁed solution for both dogﬁghts and
+long-rangemissilecombat.
+Data availability statement
+The original contributions presented in the study are included
+in the article/supplementary material, further inquiries can be
+directedtothecorrespondingauthor.
+Author contributions
+LW: Software, Writing – original draft. YL: Methodology,
+Writing – review & editing. LG: Methodology, Writing – review
+& editing. RZ: Investigation, Formal analysis, Writing – original
+draft.YC:Methodology,Writing–originaldraft.YC:Methodology,
+Investigation, Writing – review & editing. CX: Writing – original
+draft,Software.
+Funding
+The author(s) declared that ﬁnancial support was received for
+this work and/or its publication. This research was funded by the
+Jilin Province Science and Technology Development Plan Item,
+GrantNo.20240304145SF.
+Conﬂict of interest
+Authors LW and CX were employed by Jiangsu Shuguang
+Electro-OpticsCo.,LTD.
+Theremainingauthor(s)declaredthatthisworkwasconducted
+in the absence of any commercial or ﬁnancial relationships that
+couldbeconstruedasapotentialconﬂictofinterest.
+Generative AI statement
+The author(s) declared that generative AI was not used in the
+creationofthismanuscript.
+Any alternative text (alt text) provided alongside ﬁgures in
+this article has been generated by Frontiers with the support of
+artiﬁcial intelligence and reasonable eﬀorts have been made to
+ensureaccuracy,includingreviewbytheauthorswhereverpossible.
+Ifyouidentifyanyissues,pleasecontactus.
+Frontiersin Neurorobotics 20 frontiersin.org
+
+=== PAGE 21 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+Publisher’s note
+All claims expressed in this article are solely those of the
+authors and do not necessarily represent those of their aﬃliated
+organizations, or those of the publisher, the editors and the
+reviewers. Any product that may be evaluated in this article, or
+claim that may be made by its manufacturer, is not guaranteed or
+endorsedbythepublisher.
+References
+Air Force Space Command (2016). AFSPCI 10-260: Tactics Development Program,
+Feb.23,2016(CertiﬁedCurrentApr.24,2018).
+Bianchi, D., Ferdinando, M. D., Gennaro, S. D., Pepe, P., and Epicoco, N. (2024).
+Physics-informed neural networks for unmanned aerial vehicle system estimation.
+Drones8:716.doi:10.3390/drones8120716
+Bjurling, O. (2025). Designing Human-Swarm Interaction Systems . Linköping,
+Sweden: Linköping University Electronic Press. doi: 10.3384/9789180
+759595
+Boyd,J.R.(2018). A Discourse on Winning and Losing.MaxwellAirForceBase,AL:Air
+UniversityPress,2018.
+Boyle,L.,Baumann,N.,Sivasothilingam,P.,etal.(2025).RobotxR1:enablingembodied
+robotic intelligence on large language models through closed-loop reinforcement
+learning. arXiv preprint arXiv:03238.
+Brody, S., Alon, U., and Yahav, E. (2022). How attentive are graph attention networks?
+Proc. Int. Conf. Learn. Represent. (ICLR).doi:10.48550/arXiv.2105.14491
+Chen, C., Borgeaud, S., Irving, G., Lespiau, J. B., Sifre, L., and Jumper, J. (2023).
+Accelerating large language model decoding with speculative sampling. arXiv
+preprint arXiv:01318.
+Chen,Y.,Yi,G.,andGeng,H.(2025).DynamictargetattackforUAVswarm:aMARL-
+based maneuver decision-making approach. IFAC-PapersOnLine 59, 2417–2422.
+doi:10.1016/j.ifacol.2025.11.521
+Cheng,Y.,Zhang,A.,Zhang,X.,Yi,W.,Pi,F.,Li,J.,etal.(2024).Recurrentdrafterfor
+fastspeculativedecodinginlargelanguagemodels. arXiv preprint arXiv:09919.
+Chi, P., Wei, J., Wu, K., Di, B., and Wang, Y. (2023). A bio-inspired
+decision-making method of UAV swarm for attack-defense confrontation via
+multi-agent reinforcement learning. Biomimetics 8:222. doi: 10.3390/biomimetics80
+20222
+Fahlstrom, P. G., Gleason, T. J., and Sadraey, M. H. (2022).Introduction to UA V
+Systems.Hoboken,NJ:JohnWileyandSons.doi:10.1002/9781119802631
+Gong, Z., Xu, Y., and Luo, D. (2023). UAV cooperative air combat maneuvering
+confrontation based on multi-agent reinforcement learning. Unmanned Syst. 11,
+273–286.doi:10.1142/S2301385023410029
+Han,H.,Cheng,J.,Lv,M.,andDuan,H.(2025a).Augmentingtherobustnessoftactical
+maneuver decision-making in unmanned aerial combat vehicles during dogﬁghts
+via prioritized population play with diversiﬁed partners.IEEE Transact. Aerospace
+Electron. Syst.61.doi:10.1109/TAES.2025.3578294
+Han, H., Cheng, J., Lv, M., and Mo, L. (2025b). Supervision-enhanced deep
+reinforcement learning for hybrid action in BVR engagement.IEEE Robot. Automat.
+Lett.11,1138–1145.doi:10.1109/LRA.2025.3641098
+Hou, Y., Zhao, J., Zhang, R., Cheng, X., and Yang, L. (2023). UAV swarm cooperative
+target search: A multi-agent reinforcement learning approach.IEEE Transact. Intell.
+Vehi.9,568–578.doi:10.1109/TIV.2023.3316196
+Hu, K., Zou, T., Yu, M., and Li, C. (2025). Unmanned aerial vehicle swarm
+confrontation based on mean ﬁeld Q-function reinforcement learning. IFAC-
+PapersOnLine59,2302–2307.doi:10.1016/j.ifacol.2025.11.503
+Imado, F., Heike, Y., and Kinoshita, T. (2011). Research on a new aircraft point-mass
+model. J. Aircraf.48,1121–1130.doi:10.2514/1.C000200
+Javed, S., Hassan, A., Ahmad, R., Ahmed, R., Saadat, A., Ahmed, W., et al. (2024).
+State-of-the-art and future research challenges in UAV swarms.IEEE Inter. Things J.
+11,19023–19045.doi:10.1109/JIOT.2024.3364230
+Kinoshita, T., and Imado, F. (2006). The application of an UAV ﬂight simulator—The
+development of a new point mass model for an aircraft.Proc. SICE–ICASE Int. Joint
+Conf.,9,4378–4383.doi:10.1109/SICE.2006.314658
+Kovalev, A. K., and Panov, A. I. (2022). Application of pretrained large language
+models in embodied artiﬁcial intelligence. Doklady Mathemat. 106, S85–S90.
+doi:10.1134/S1064562422060138
+Kuba, J. G., Chen, R., Wen, M., Wen, Y., Sun, F., Wang, J., et al. (2021). Trust
+region policy optimisation in multi-agent reinforcement learning. arXiv preprint
+arXiv:2109.11251.
+Kwon, W., Li, Z., Zhuang, S., Sheng, Y., Zheng, L., Gonzalez, J., et al. (2023).
+Eﬃcient memory managementfor large language modelserving with PagedAttention.
+Proc. Symp. Oper. Syst. Principles (SOSP) , 611–626. doi: 10.1145/3600006.36
+13165
+Li,Z.,Wu,W.,Guo,Y.,Sun,J.,andHan,Q.L.(2025).Embodiedmulti-agentsystems:
+ar e v i e w .IEEE/CAA J. Automat. Sinica
+12, 1095–1116. doi: 10.1109/JAS.2025.12
+5552
+Liang, J., Huang, W., Xia, F., Xu, P., Hausman, K., Ichter, B., et al. (2023).
+Code as policies: language model programs for embodied control. Proc. IEEE
+Int. Conf. Robot. Autom. (ICRA), 9493–9500. doi: 10.1109/ICRA48891.2023.101
+60591
+Lowe,R.,Wu,Y.I.,Tamar,A.,Harb,J.,Abbeel,P.,andMordatch,I.(2017).Multi-agent
+actor-critic for mixed cooperative-competitive environments. Advances in Neural
+InformationProcessingSystems,30,6379–6390.
+Luo, Y., Fan, C. K., Dong, M., et al. (2025). RoboBench: a comprehensive
+evaluationbenchmarkformultimodallargelanguagemodelsasembodiedbrain. arXiv
+preprint arXiv:17801.doi:10.48550/arXiv.2510.17801
+National Research Council, Division on Engineering, Physical Sciences, et al. (2005).
+Autonomous Vehicles in Support of Naval Operations . Wahington, DC: National
+AcademiesPress.doi:10.17226/11379
+Nurre, N. P., and Taheri, E. (2025). Constrained fuel and time optimal 6DOF
+powered descent guidance using indirect optimization.arXiv preprint arXiv:14173 .
+doi:10.2514/1.A36497
+Pang, J., He, J., Mohamed, N. M. A. A., Lin, C., Zhang, Z., and Hao, X. (2025). A
+hierarchical reinforcement learning framework for multi-UAV combat using leader–
+followerstrategy. Knowl.-Based Syst.316:113387.doi:10.1016/j.knosys.2025.113387
+Qi, Z., and Jing, X. (2024). Advances in large language models for
+robotics. Proc. Int. Conf. Mechatronics, Robot. Autom. (ICMRA) , 72–76.
+doi:10.1109/ICMRA62519.2024.10809099
+Quero,C.A.O.,andMartinez-Carranza,J.(2024).Physics-informedmachinelearning
+forUAVcontrol. Proc. Int. Conf. Electr. Eng., Comput. Sci. Autom. Control (CCE) ,1–6.
+doi:10.1109/CCE62852.2024.10770871
+Ren, T., Niu, J., Dai, B., Liu, X., Hu, Z., Xu, M., et al. (2021). Enabling
+eﬃcient scheduling in large-scale UAV-assisted mobile-edge computing via
+hierarchical reinforcement learning. IEEE Intern. Things J. 9, 7095–7109.
+doi:10.1109/JIOT.2021.3071531
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O. (2017). Proximal
+policyoptimizationalgorithms.arXivpreprintarXiv:1707.06347.
+Shaw,R.L.(1985).Fightercombat. Ta c ti c s Ma n e u v e r,62–97.
+Swiechowski, M., Godlewski, K., Sawicki, B., and Ma´ndziuk, J. (2023). Monte Carlo
+tree search: A review of recent modiﬁcations and applications.Artif. Intell. Rev. 56,
+2497–2562.doi:10.1007/s10462-022-10228-y
+Tian, C., Qin, X., Tam, K., et al. (2025). CLONE: customizing LLMs for
+eﬃcient latency-aware inference at the edge. arXiv preprint arXiv:02847 .
+doi:10.48550/arXiv.2506.02847
+Tziafas, G., and Kasaei, H. (2024). Lifelong robot library learning:
+Bootstrapping composable and generalizable skills for embodied control
+with language models. Proc. IEEE Int. Conf. Robot. Autom. (ICRA) , 515–522.
+doi:10.1109/ICRA57147.2024.10611448
+Wang, B., Gao, X., and Xie, T. (2024). An evolutionary multi-agent reinforcement
+learning algorithm for multi-UAV air combat. Knowl.-Based Syst. 299:112000.
+doi:10.1016/j.knosys.2024.112000
+Wang,B.,Li,S.,Gao,X.,Xie,T.,andShao,X.(2021).UAVswarmconfrontationusing
+hierarchical multiagent reinforcement learning.Int. J. Aerospace Eng. 2021:3360116.
+doi:10.1155/2021/3360116
+Wang, B., Li, S., Xie, T., and Gao, X. (2023). Weighted mean ﬁeld reinforcement
+learning for large-scale UAV swarm confrontation. Appl. Intell. 53, 5274–5289.
+doi:10.1007/s10489-022-03840-6
+Wen, M., Kuba, J., Lin, R., Zhang, W., Wen, Y., Wang, J., et al. (2022). “Multi-
+agent reinforcement learning is a sequence modeling problem,” in Advances in Neural
+InformationProcessingSystems,Vol.35,16509–16521.
+Xu, D., and Chen, G. (2022a). Autonomous and cooperative control of UA V
+cluster with multi-agent reinforcement learning. Aeronaut. J. 126, 932–951.
+doi:10.1017/aer.2021.112
+Frontiersin Neurorobotics 21 frontiersin.org
+
+=== PAGE 22 ===
+Wang et al. 10.3389/fnbot.2026.1799054
+Xu, D., and Chen, G. (2022b). The research on intelligent cooperative combat of
+UA V cluster with multi-agent reinforcement learning. Aerospace Syst. 5, 107–121.
+doi:10.1007/s42401-021-00105-x
+Xu, D., Yin, W., Jin, X., Zhang, Y., Liu, X., Zhang, H., et al. (2024). EdgeLLM: Fast on-
+device LLM inference with speculative decoding.I E E ET r a n s a c t .M o b .C o m p .24:457.
+doi:10.1109/TMC.2024.3513457
+Xu, Q., Zhang, Z., Li, J., and Qi, X. (2026). Hierarchical multi-agent reinforcement
+learning algorithm for multi-UAV roundup strategy.Appl. Mathemat. Model. 116728.
+doi:10.1016/j.apm.2025.116728
+Yu, C., Velu, A., Vinitsky, E., Gao, J., Wang, Y., Bayen, A., et al. (2022).
+“The surprising eﬀectiveness of PPO in cooperative multi-agent games,”
+in Advances in Neural Information Processing Systems, Vol. 35, 246
+11–24624.
+Yue, L., Yang, R., Zuo, J., Zhang, Y., Li, Q., and Zhang, Y. (2022). Unmanned aerial
+vehicle swarm cooperative decision-making for SEAD mission: a hierarchical
+multiagent reinforcement learning approach. IEEE Access 10, 92177–92191.
+doi:10.1109/ACCESS.2022.3202938
+Zhang, J., Wang, J., Li, H., Shou, L., Chen, K., Chen, G., et al. (2024).
+Draft and verify: lossless large language model acceleration via self-speculative
+decoding. Proc. 62nd Annu. Meet. Assoc. Comput. Linguist. (ACL), 1, 11263–11282.
+doi:10.18653/v1/2024.acl-long.607
+Zhang, M., Shen, X., Cao, J., Cui, Z., and Jiang, S. (2024).
+Edgeshard: eﬃcient LLM inference via collaborative edge computing.
+IEEE Intern. Things J. 12, 13119–13131. doi: 10.1109/JIOT.2024.352
+4255
+Zhao, P., and Liu, Y. (2021). Physics-informed deep reinforcement learning for
+aircraft conﬂict resolution. IEEE Transact. Intell. Transport. Syst. 23, 8288–8301.
+doi:10.1109/TITS.2021.3077572
+Zheng, Z., Wei, C., and Duan, H. (2024). UAV swarm air combat maneuver
+decision-making method based on multi-agent reinforcement learning and
+transferring. Sci. China Inform. Sci. 67:180204. doi: 10.1007/s11432-023-
+4088-2
+Zhou, A., Yan, K., Shlapentokh-Rothman, M., Peng, H., and Su, Y. (2023). Language
+agent tree search uniﬁes reasoning, acting, and planning in language models. arXiv
+preprintarXiv:2310.04406.
+Zhu,Z.,Liu,M.,Mao,L.,Kang,B.,Xu,M.,Yu,Y.,etal.(2024).“MADiﬀ:oﬄinemulti-
+agent learning with diﬀusion models,” in Advances in Neural Information Processing
+Systems,Vol.37,4177–4206.
+Frontiersin Neurorobotics 22 frontiersin.org

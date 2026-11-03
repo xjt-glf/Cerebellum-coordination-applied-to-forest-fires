@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 180, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [85, 35]}, {"task": "explore", "target": [10, 75]}]}, "reason": "UAV1改覆盖中部失联人员，前方人员将由接近东部火场的感知机顺带覆盖；西北感知机移出低收益已观测区。"}

@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 140, "plan": {"uavs": [{"task": "explore", "target": [74, 90]}, {"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [38, 35]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "东火西侧刷新，中央机显式前移解除追踪停滞。"}

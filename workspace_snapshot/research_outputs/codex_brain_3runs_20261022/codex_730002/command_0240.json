@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 240, "plan": {"uavs": [{"task": "explore", "target": [70, 90]}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [68, 7]}]}, "reason": "南侧观测刚恢复全部火情，继续换到南缘刷新；新满电机扩展东北大块未知区，两个中继保持交接后的人员链路。"}

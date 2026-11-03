@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 480, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [40, 10]}, {"task": "explore", "target": [10, 65]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "西南横向空白与西北纵向空白分别直飞补齐，保持双中继。"}

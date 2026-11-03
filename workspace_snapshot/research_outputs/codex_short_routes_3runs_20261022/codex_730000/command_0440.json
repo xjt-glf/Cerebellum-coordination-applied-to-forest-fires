@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 440, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [10, 25]}, {"task": "explore", "route": [[49, 96], [42, 96], [37, 91]]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "北缘继续补西侧缺口，调整上组中继中心兼顾第十人。"}

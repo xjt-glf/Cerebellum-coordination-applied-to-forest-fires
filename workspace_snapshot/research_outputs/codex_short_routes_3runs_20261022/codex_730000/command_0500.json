@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 500, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [65, 10]}, {"task": "explore", "route": [[13, 65], [19, 64], [24, 69]]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "南缘机直飞东侧空白，西中部用短折线扫相邻区域。"}

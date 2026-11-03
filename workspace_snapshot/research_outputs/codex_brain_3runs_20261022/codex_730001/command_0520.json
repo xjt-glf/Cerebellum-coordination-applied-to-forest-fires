@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 520, "plan": {"uavs": [{"task": "charge"}, {"task": "explore", "target": [66, 58]}, {"task": "explore", "target": [95, 85]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "旧中央机电量97立即补给，新中央机完成最后到位；东北满电机在仍可覆盖三人的小范围内补东缘地图，西南保持。"}

@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 240, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 10}, {"task": "explore", "route": [[79, 24], [83, 19], [89, 21]]}]}, "reason": "南站机接替西南脱网人员，东火局部弧线刷新同时保持另两组通信。"}

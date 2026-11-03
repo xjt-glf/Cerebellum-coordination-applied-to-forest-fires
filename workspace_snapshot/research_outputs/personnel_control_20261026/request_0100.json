@@ -1,0 +1,760 @@
+{
+  "status": "waiting_personnel",
+  "snapshot": {
+    "t": 100,
+    "communication": "existing_geometric_link; no rate/queue model",
+    "people": [
+      {
+        "id": 1,
+        "x": 5.29,
+        "y": 40.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            5.0,
+            40.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-40-11"
+      },
+      {
+        "id": 2,
+        "x": 13.71,
+        "y": 42.29,
+        "c": true,
+        "aoi": 0,
+        "task": "hold",
+        "state": "holding",
+        "target": null,
+        "waypoints": [
+          [
+            13.707106781186548,
+            42.292893218813454
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-40-12"
+      },
+      {
+        "id": 3,
+        "x": 23.71,
+        "y": 40.29,
+        "c": false,
+        "aoi": 1,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            24.0,
+            40.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-60-15"
+      },
+      {
+        "id": 4,
+        "x": 26.5,
+        "y": 55.0,
+        "c": false,
+        "aoi": 12,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          32
+        ],
+        "waypoints": [
+          [
+            85.0,
+            28.43
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-80-18"
+      },
+      {
+        "id": 5,
+        "x": 31.0,
+        "y": 55.0,
+        "c": false,
+        "aoi": 19,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          37
+        ],
+        "waypoints": [
+          [
+            85.0,
+            28.43
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-80-19"
+      },
+      {
+        "id": 6,
+        "x": 28.0,
+        "y": 55.0,
+        "c": false,
+        "aoi": 12,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          24
+        ],
+        "waypoints": [
+          [
+            85.0,
+            28.43
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-80-20"
+      },
+      {
+        "id": 7,
+        "x": 19.71,
+        "y": 59.71,
+        "c": false,
+        "aoi": 24,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            20.0,
+            60.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-60-17"
+      },
+      {
+        "id": 8,
+        "x": 13.71,
+        "y": 57.71,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            14.0,
+            58.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-8"
+      },
+      {
+        "id": 9,
+        "x": 15.71,
+        "y": 59.71,
+        "c": false,
+        "aoi": 43,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            16.0,
+            60.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-9"
+      },
+      {
+        "id": 10,
+        "x": 11.71,
+        "y": 61.71,
+        "c": false,
+        "aoi": 43,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            62.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-10"
+      }
+    ],
+    "known_fire_clusters": [
+      {
+        "center": [
+          85.0,
+          28.29787234042553
+        ],
+        "size": 94,
+        "contained": false,
+        "approach": [
+          [
+            81,
+            23
+          ],
+          [
+            81,
+            24
+          ],
+          [
+            81,
+            25
+          ],
+          [
+            81,
+            26
+          ],
+          [
+            81,
+            27
+          ],
+          [
+            81,
+            28
+          ],
+          [
+            81,
+            29
+          ],
+          [
+            81,
+            30
+          ],
+          [
+            81,
+            31
+          ],
+          [
+            81,
+            32
+          ],
+          [
+            81,
+            33
+          ],
+          [
+            81,
+            34
+          ],
+          [
+            81,
+            35
+          ],
+          [
+            81,
+            36
+          ],
+          [
+            81,
+            37
+          ],
+          [
+            82,
+            21
+          ],
+          [
+            82,
+            22
+          ],
+          [
+            82,
+            23
+          ],
+          [
+            82,
+            37
+          ],
+          [
+            82,
+            38
+          ],
+          [
+            83,
+            21
+          ],
+          [
+            83,
+            38
+          ],
+          [
+            84,
+            21
+          ],
+          [
+            85,
+            21
+          ]
+        ]
+      }
+    ],
+    "events": [
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-1",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-2",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-3",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-4",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-5",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-6",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-7",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-8",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-9",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-10",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-1",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-2",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-3",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-4",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-5",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-6",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-7",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-8",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-9",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-10",
+        "source": "codex"
+      },
+      {
+        "t": 22,
+        "person_id": 4,
+        "event": "completed",
+        "order_id": "p-0-4"
+      },
+      {
+        "t": 25,
+        "person_id": 5,
+        "event": "completed",
+        "order_id": "p-0-5"
+      },
+      {
+        "t": 26,
+        "person_id": 7,
+        "event": "completed",
+        "order_id": "p-0-7"
+      },
+      {
+        "t": 28,
+        "person_id": 1,
+        "event": "completed",
+        "order_id": "p-0-1"
+      },
+      {
+        "t": 29,
+        "person_id": 2,
+        "event": "completed",
+        "order_id": "p-0-2"
+      },
+      {
+        "t": 30,
+        "person_id": 6,
+        "event": "completed",
+        "order_id": "p-0-6"
+      },
+      {
+        "t": 30,
+        "person_id": 10,
+        "event": "completed",
+        "order_id": "p-0-10"
+      },
+      {
+        "t": 31,
+        "person_id": 8,
+        "event": "completed",
+        "order_id": "p-0-8"
+      },
+      {
+        "t": 32,
+        "person_id": 3,
+        "event": "completed",
+        "order_id": "p-0-3"
+      },
+      {
+        "t": 34,
+        "person_id": 9,
+        "event": "completed",
+        "order_id": "p-0-9"
+      },
+      {
+        "t": 40,
+        "person_id": 1,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex",
+        "order_id": "p-40-11",
+        "reason": "接近点已全部到达。P1回撤到后方、P2原地等待；P5沿折线向东北转场、P6向东建立下一接近点，其余保持现任务。验证分人控制、保持及连续航点。"
+      },
+      {
+        "t": 40,
+        "person_id": 2,
+        "event": "issued",
+        "task": "hold",
+        "source": "codex",
+        "order_id": "p-40-12",
+        "reason": "接近点已全部到达。P1回撤到后方、P2原地等待；P5沿折线向东北转场、P6向东建立下一接近点，其余保持现任务。验证分人控制、保持及连续航点。"
+      },
+      {
+        "t": 40,
+        "person_id": 5,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-40-13",
+        "reason": "接近点已全部到达。P1回撤到后方、P2原地等待；P5沿折线向东北转场、P6向东建立下一接近点，其余保持现任务。验证分人控制、保持及连续航点。"
+      },
+      {
+        "t": 40,
+        "person_id": 6,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-40-14",
+        "reason": "接近点已全部到达。P1回撤到后方、P2原地等待；P5沿折线向东北转场、P6向东建立下一接近点，其余保持现任务。验证分人控制、保持及连续航点。"
+      },
+      {
+        "t": 40,
+        "person_id": 1,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-40-11",
+        "source": "codex"
+      },
+      {
+        "t": 40,
+        "person_id": 2,
+        "event": "activated",
+        "task": "hold",
+        "order_id": "p-40-12",
+        "source": "codex"
+      },
+      {
+        "t": 40,
+        "person_id": 5,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-40-13",
+        "source": "codex"
+      },
+      {
+        "t": 40,
+        "person_id": 6,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-40-14",
+        "source": "codex"
+      },
+      {
+        "t": 40,
+        "person_id": 2,
+        "event": "completed",
+        "order_id": "p-40-12"
+      },
+      {
+        "t": 48,
+        "person_id": 5,
+        "event": "waypoint_reached",
+        "index": 0
+      },
+      {
+        "t": 48,
+        "person_id": 6,
+        "event": "completed",
+        "order_id": "p-40-14"
+      },
+      {
+        "t": 58,
+        "person_id": 1,
+        "event": "completed",
+        "order_id": "p-40-11"
+      },
+      {
+        "t": 60,
+        "person_id": 3,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-60-15",
+        "reason": "P1回撤与P2等待已经生效，P5折线尚在执行；将P3、P4继续向东推进，P7向东北转场，其余保持原任务。"
+      },
+      {
+        "t": 60,
+        "person_id": 4,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-60-16",
+        "reason": "P1回撤与P2等待已经生效，P5折线尚在执行；将P3、P4继续向东推进，P7向东北转场，其余保持原任务。"
+      },
+      {
+        "t": 60,
+        "person_id": 7,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-60-17",
+        "reason": "P1回撤与P2等待已经生效，P5折线尚在执行；将P3、P4继续向东推进，P7向东北转场，其余保持原任务。"
+      },
+      {
+        "t": 60,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-60-15",
+        "source": "codex"
+      },
+      {
+        "t": 60,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-60-16",
+        "source": "codex"
+      },
+      {
+        "t": 60,
+        "person_id": 7,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-60-17",
+        "source": "codex"
+      },
+      {
+        "t": 62,
+        "person_id": 5,
+        "event": "completed",
+        "order_id": "p-40-13"
+      },
+      {
+        "t": 80,
+        "person_id": 4,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex",
+        "order_id": "p-80-18",
+        "reason": "人员已收到东南火区情报。P4、P5、P6当前仍连通，分别负责该火区西、北、南侧；沿现有BFS转场至安全外围，失联后继续已收到任务。其余人员保持接近或待命。"
+      },
+      {
+        "t": 80,
+        "person_id": 5,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex",
+        "order_id": "p-80-19",
+        "reason": "人员已收到东南火区情报。P4、P5、P6当前仍连通，分别负责该火区西、北、南侧；沿现有BFS转场至安全外围，失联后继续已收到任务。其余人员保持接近或待命。"
+      },
+      {
+        "t": 80,
+        "person_id": 6,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex",
+        "order_id": "p-80-20",
+        "reason": "人员已收到东南火区情报。P4、P5、P6当前仍连通，分别负责该火区西、北、南侧；沿现有BFS转场至安全外围，失联后继续已收到任务。其余人员保持接近或待命。"
+      },
+      {
+        "t": 80,
+        "person_id": 4,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-80-18",
+        "source": "codex"
+      },
+      {
+        "t": 80,
+        "person_id": 5,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-80-19",
+        "source": "codex"
+      },
+      {
+        "t": 80,
+        "person_id": 6,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-80-20",
+        "source": "codex"
+      },
+      {
+        "t": 80,
+        "person_id": 3,
+        "event": "completed",
+        "order_id": "p-60-15"
+      },
+      {
+        "t": 80,
+        "person_id": 7,
+        "event": "completed",
+        "order_id": "p-60-17"
+      }
+    ]
+  }
+}

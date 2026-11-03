@@ -1,0 +1,4 @@
+seed,routes,completed,all_points_strict,switches,near_stall_points,terminal_hold_steps,mean_ideal_steps,max_ideal_steps
+730000,23,23,23,46,0,94,18.782608695652176,20.0
+730001,16,15,15,32,0,75,18.375,20.0
+730002,19,18,18,37,0,81,19.0,20.0

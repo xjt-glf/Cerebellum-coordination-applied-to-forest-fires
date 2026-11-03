@@ -1,0 +1,12 @@
+{
+  "seed": 976004,
+  "actorsha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "period": 20,
+  "delay_steps_B": 5,
+  "start": "identical initial plan at t=0; no initial delay",
+  "max_steps": 600,
+  "real_time_mapping": "none; fixed delay in simulated steps",
+  "planner": "Codex manually submits each explicit joint plan; no LLM API, no heuristic brain",
+  "state_scope": "observed summaries, known maps, orders and events; no truth-fire clusters or truth metrics in planner state",
+  "limitation": "one seed, same Codex session and common context across arms; exploratory; subjective planner differs per arm"
+}

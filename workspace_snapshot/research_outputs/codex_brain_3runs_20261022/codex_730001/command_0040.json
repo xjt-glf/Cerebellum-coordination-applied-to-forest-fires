@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 40, "plan": {"uavs": [{"task": "explore", "target": [82, 80]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [30, 65]}, {"task": "explore", "target": [15, 25]}]}, "reason": "西部两火场已充分发现，UAV2向北扩图，UAV3沿人员可能行进的西南走廊补图；远端机继续东北侦察。"}

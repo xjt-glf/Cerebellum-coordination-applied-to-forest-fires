@@ -1,0 +1,4 @@
+{"output": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/extrapolation_full_episode_smoke.jsonl", "completed": 1, "seed": 979301, "n": 7, "burned": 483, "seconds": 6.311432424990926}
+{"output": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/extrapolation_full_episode_smoke.jsonl", "completed": 2, "seed": 979341, "n": 8, "burned": 489, "seconds": 7.999676055973396}
+{"output": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/extrapolation_full_episode_smoke.jsonl", "completed": 3, "seed": 979340, "n": 8, "burned": 455, "seconds": 9.669459585973527}
+{"output": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/extrapolation_full_episode_smoke.jsonl", "completed": 4, "seed": 979300, "n": 7, "burned": 404, "seconds": 12.338731261959765}

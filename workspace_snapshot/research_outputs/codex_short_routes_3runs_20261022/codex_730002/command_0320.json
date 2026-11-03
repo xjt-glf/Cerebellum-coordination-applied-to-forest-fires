@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 320, "plan": {"uavs": [{"task": "explore", "target": [8, 50]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [35, 94]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "南侧机充电完成恢复通信，西侧探索机直飞邻近未知区并接近补能站。"}

@@ -1,0 +1,161 @@
+{"t": 0, "uav": 1, "event": "issued", "points": [[55.0, 35.0], [49.0, 35.0], [44.0, 30.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 6, "uav": 1, "event": "point_reached", "index": 0, "point": [55.0, 35.0], "distance": 2.0, "reason": "arrived"}
+{"t": 6, "uav": 1, "event": "target_switched", "index": 1, "target": [49.0, 35.0]}
+{"t": 12, "uav": 1, "event": "point_reached", "index": 1, "point": [49.0, 35.0], "distance": 2.0, "reason": "arrived"}
+{"t": 12, "uav": 1, "event": "target_switched", "index": 2, "target": [44.0, 30.0]}
+{"t": 17, "uav": 1, "event": "point_reached", "index": 2, "point": [44.0, 30.0], "distance": 2.0, "reason": "arrived"}
+{"t": 17, "uav": 1, "event": "completed", "elapsed": 17}
+{"t": 20, "uav": 1, "event": "issued", "points": [[45.0, 22.0], [53.0, 22.0], [57.0, 26.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 26, "uav": 1, "event": "point_reached", "index": 0, "point": [45.0, 22.0], "distance": 2.0, "reason": "arrived"}
+{"t": 26, "uav": 1, "event": "target_switched", "index": 1, "target": [53.0, 22.0]}
+{"t": 33, "uav": 1, "event": "point_reached", "index": 1, "point": [53.0, 22.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 33, "uav": 1, "event": "target_switched", "index": 2, "target": [57.0, 26.0]}
+{"t": 39, "uav": 1, "event": "point_reached", "index": 2, "point": [57.0, 26.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 39, "uav": 1, "event": "completed", "elapsed": 19}
+{"t": 40, "uav": 1, "event": "issued", "points": [[58.0, 32.0], [52.0, 36.0], [46.0, 35.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 40, "uav": 2, "event": "issued", "points": [[80.0, 37.0], [87.0, 37.0], [92.0, 32.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 40, "uav": 3, "event": "issued", "points": [[23.0, 52.0], [23.0, 45.0], [29.0, 41.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 44, "uav": 3, "event": "point_reached", "index": 0, "point": [23.0, 52.0], "distance": 2.0, "reason": "arrived"}
+{"t": 44, "uav": 3, "event": "target_switched", "index": 1, "target": [23.0, 45.0]}
+{"t": 45, "uav": 1, "event": "point_reached", "index": 0, "point": [58.0, 32.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 45, "uav": 1, "event": "target_switched", "index": 1, "target": [52.0, 36.0]}
+{"t": 46, "uav": 2, "event": "point_reached", "index": 0, "point": [80.0, 37.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 46, "uav": 2, "event": "target_switched", "index": 1, "target": [87.0, 37.0]}
+{"t": 49, "uav": 1, "event": "point_reached", "index": 1, "point": [52.0, 36.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 49, "uav": 1, "event": "target_switched", "index": 2, "target": [46.0, 35.0]}
+{"t": 49, "uav": 3, "event": "point_reached", "index": 1, "point": [23.0, 45.0], "distance": 2.0, "reason": "arrived"}
+{"t": 49, "uav": 3, "event": "target_switched", "index": 2, "target": [29.0, 41.0]}
+{"t": 53, "uav": 2, "event": "point_reached", "index": 1, "point": [87.0, 37.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 53, "uav": 2, "event": "target_switched", "index": 2, "target": [92.0, 32.0]}
+{"t": 54, "uav": 1, "event": "point_reached", "index": 2, "point": [46.0, 35.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 54, "uav": 1, "event": "completed", "elapsed": 14}
+{"t": 54, "uav": 3, "event": "point_reached", "index": 2, "point": [29.0, 41.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 54, "uav": 3, "event": "completed", "elapsed": 14}
+{"t": 57, "uav": 2, "event": "point_reached", "index": 2, "point": [92.0, 32.0], "distance": 2.0, "reason": "arrived"}
+{"t": 57, "uav": 2, "event": "completed", "elapsed": 17}
+{"t": 60, "uav": 2, "event": "issued", "points": [[92.0, 24.0], [85.0, 23.0], [79.0, 27.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 60, "uav": 3, "event": "issued", "points": [[34.0, 43.0], [36.0, 50.0], [31.0, 56.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 65, "uav": 2, "event": "point_reached", "index": 0, "point": [92.0, 24.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 65, "uav": 2, "event": "target_switched", "index": 1, "target": [85.0, 23.0]}
+{"t": 65, "uav": 3, "event": "point_reached", "index": 0, "point": [34.0, 43.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 65, "uav": 3, "event": "target_switched", "index": 1, "target": [36.0, 50.0]}
+{"t": 69, "uav": 2, "event": "point_reached", "index": 1, "point": [85.0, 23.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 69, "uav": 2, "event": "target_switched", "index": 2, "target": [79.0, 27.0]}
+{"t": 71, "uav": 3, "event": "point_reached", "index": 1, "point": [36.0, 50.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 71, "uav": 3, "event": "target_switched", "index": 2, "target": [31.0, 56.0]}
+{"t": 75, "uav": 2, "event": "point_reached", "index": 2, "point": [79.0, 27.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 75, "uav": 2, "event": "completed", "elapsed": 15}
+{"t": 77, "uav": 3, "event": "point_reached", "index": 2, "point": [31.0, 56.0], "distance": 2.0, "reason": "arrived"}
+{"t": 77, "uav": 3, "event": "completed", "elapsed": 17}
+{"t": 100, "uav": 1, "event": "issued", "points": [[49.0, 21.0], [56.0, 22.0], [57.0, 28.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 106, "uav": 1, "event": "point_reached", "index": 0, "point": [49.0, 21.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 106, "uav": 1, "event": "target_switched", "index": 1, "target": [56.0, 22.0]}
+{"t": 114, "uav": 1, "event": "point_reached", "index": 1, "point": [56.0, 22.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 114, "uav": 1, "event": "target_switched", "index": 2, "target": [57.0, 28.0]}
+{"t": 119, "uav": 1, "event": "point_reached", "index": 2, "point": [57.0, 28.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 119, "uav": 1, "event": "completed", "elapsed": 19}
+{"t": 140, "uav": 1, "event": "issued", "points": [[44.0, 31.0], [45.0, 24.0], [51.0, 21.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 144, "uav": 1, "event": "point_reached", "index": 0, "point": [44.0, 31.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 144, "uav": 1, "event": "target_switched", "index": 1, "target": [45.0, 24.0]}
+{"t": 150, "uav": 1, "event": "point_reached", "index": 1, "point": [45.0, 24.0], "distance": 2.0, "reason": "arrived"}
+{"t": 150, "uav": 1, "event": "target_switched", "index": 2, "target": [51.0, 21.0]}
+{"t": 154, "uav": 1, "event": "point_reached", "index": 2, "point": [51.0, 21.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 154, "uav": 1, "event": "completed", "elapsed": 14}
+{"t": 200, "uav": 2, "event": "issued", "points": [[78.0, 32.0], [84.0, 35.0], [88.0, 30.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 205, "uav": 2, "event": "point_reached", "index": 0, "point": [78.0, 32.0], "distance": 2.0, "reason": "arrived"}
+{"t": 205, "uav": 2, "event": "target_switched", "index": 1, "target": [84.0, 35.0]}
+{"t": 214, "uav": 2, "event": "point_reached", "index": 1, "point": [84.0, 35.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 214, "uav": 2, "event": "target_switched", "index": 2, "target": [88.0, 30.0]}
+{"t": 217, "uav": 2, "event": "point_reached", "index": 2, "point": [88.0, 30.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 217, "uav": 2, "event": "completed", "elapsed": 17}
+{"t": 240, "uav": 3, "event": "issued", "points": [[79.0, 24.0], [83.0, 19.0], [89.0, 21.0]], "ideal_steps": 15.0, "enabled": true}
+{"t": 242, "uav": 3, "event": "point_reached", "index": 0, "point": [79.0, 24.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 242, "uav": 3, "event": "target_switched", "index": 1, "target": [83.0, 19.0]}
+{"t": 249, "uav": 3, "event": "point_reached", "index": 1, "point": [83.0, 19.0], "distance": 2.0, "reason": "arrived"}
+{"t": 249, "uav": 3, "event": "target_switched", "index": 2, "target": [89.0, 21.0]}
+{"t": 256, "uav": 3, "event": "point_reached", "index": 2, "point": [89.0, 21.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 256, "uav": 3, "event": "completed", "elapsed": 16}
+{"t": 260, "uav": 3, "event": "issued", "points": [[93.0, 26.0], [91.0, 32.0], [85.0, 34.0]], "ideal_steps": 17.0, "enabled": true}
+{"t": 263, "uav": 3, "event": "point_reached", "index": 0, "point": [93.0, 26.0], "distance": 2.0, "reason": "arrived"}
+{"t": 263, "uav": 3, "event": "target_switched", "index": 1, "target": [91.0, 32.0]}
+{"t": 269, "uav": 3, "event": "point_reached", "index": 1, "point": [91.0, 32.0], "distance": 2.0, "reason": "arrived"}
+{"t": 269, "uav": 3, "event": "target_switched", "index": 2, "target": [85.0, 34.0]}
+{"t": 273, "uav": 3, "event": "point_reached", "index": 2, "point": [85.0, 34.0], "distance": 2.0, "reason": "arrived"}
+{"t": 273, "uav": 3, "event": "completed", "elapsed": 13}
+{"t": 320, "uav": 1, "event": "issued", "points": [[38.0, 67.0], [33.0, 73.0], [39.0, 79.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 324, "uav": 1, "event": "point_reached", "index": 0, "point": [38.0, 67.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 324, "uav": 1, "event": "target_switched", "index": 1, "target": [33.0, 73.0]}
+{"t": 330, "uav": 1, "event": "point_reached", "index": 1, "point": [33.0, 73.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 330, "uav": 1, "event": "target_switched", "index": 2, "target": [39.0, 79.0]}
+{"t": 335, "uav": 1, "event": "point_reached", "index": 2, "point": [39.0, 79.0], "distance": 2.0, "reason": "arrived"}
+{"t": 335, "uav": 1, "event": "completed", "elapsed": 15}
+{"t": 340, "uav": 2, "event": "issued", "points": [[94.0, 57.0], [93.0, 64.0], [87.0, 68.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 345, "uav": 2, "event": "point_reached", "index": 0, "point": [94.0, 57.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 345, "uav": 2, "event": "target_switched", "index": 1, "target": [93.0, 64.0]}
+{"t": 352, "uav": 2, "event": "point_reached", "index": 1, "point": [93.0, 64.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 352, "uav": 2, "event": "target_switched", "index": 2, "target": [87.0, 68.0]}
+{"t": 356, "uav": 2, "event": "point_reached", "index": 2, "point": [87.0, 68.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 356, "uav": 2, "event": "completed", "elapsed": 16}
+{"t": 380, "uav": 1, "event": "issued", "points": [[23.0, 82.0], [16.0, 82.0], [13.0, 87.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 380, "uav": 2, "event": "issued", "points": [[78.0, 95.0], [85.0, 95.0], [91.0, 90.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 385, "uav": 2, "event": "point_reached", "index": 0, "point": [78.0, 95.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 385, "uav": 2, "event": "target_switched", "index": 1, "target": [85.0, 95.0]}
+{"t": 386, "uav": 1, "event": "point_reached", "index": 0, "point": [23.0, 82.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 386, "uav": 1, "event": "target_switched", "index": 1, "target": [16.0, 82.0]}
+{"t": 391, "uav": 2, "event": "point_reached", "index": 1, "point": [85.0, 95.0], "distance": 2.0, "reason": "arrived"}
+{"t": 391, "uav": 2, "event": "target_switched", "index": 2, "target": [91.0, 90.0]}
+{"t": 392, "uav": 1, "event": "point_reached", "index": 1, "point": [16.0, 82.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 392, "uav": 1, "event": "target_switched", "index": 2, "target": [13.0, 87.0]}
+{"t": 396, "uav": 1, "event": "point_reached", "index": 2, "point": [13.0, 87.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 396, "uav": 1, "event": "completed", "elapsed": 16}
+{"t": 397, "uav": 2, "event": "point_reached", "index": 2, "point": [91.0, 90.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 397, "uav": 2, "event": "completed", "elapsed": 17}
+{"t": 440, "uav": 2, "event": "issued", "points": [[49.0, 96.0], [42.0, 96.0], [37.0, 91.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 445, "uav": 2, "event": "point_reached", "index": 0, "point": [49.0, 96.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 445, "uav": 2, "event": "target_switched", "index": 1, "target": [42.0, 96.0]}
+{"t": 453, "uav": 2, "event": "point_reached", "index": 1, "point": [42.0, 96.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 453, "uav": 2, "event": "target_switched", "index": 2, "target": [37.0, 91.0]}
+{"t": 457, "uav": 2, "event": "point_reached", "index": 2, "point": [37.0, 91.0], "distance": 2.0, "reason": "arrived"}
+{"t": 457, "uav": 2, "event": "completed", "elapsed": 17}
+{"t": 460, "uav": 1, "event": "issued", "points": [[8.0, 20.0], [14.0, 17.0], [20.0, 20.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 460, "uav": 2, "event": "issued", "points": [[30.0, 96.0], [23.0, 96.0], [17.0, 92.0]], "ideal_steps": 19.0, "enabled": true}
+{"t": 465, "uav": 1, "event": "point_reached", "index": 0, "point": [8.0, 20.0], "distance": 2.0, "reason": "arrived"}
+{"t": 465, "uav": 1, "event": "target_switched", "index": 1, "target": [14.0, 17.0]}
+{"t": 465, "uav": 2, "event": "point_reached", "index": 0, "point": [30.0, 96.0], "distance": 1.4142135623730951, "reason": "arrived"}
+{"t": 465, "uav": 2, "event": "target_switched", "index": 1, "target": [23.0, 96.0]}
+{"t": 469, "uav": 1, "event": "point_reached", "index": 1, "point": [14.0, 17.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 469, "uav": 1, "event": "target_switched", "index": 2, "target": [20.0, 20.0]}
+{"t": 471, "uav": 2, "event": "point_reached", "index": 1, "point": [23.0, 96.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 471, "uav": 2, "event": "target_switched", "index": 2, "target": [17.0, 92.0]}
+{"t": 475, "uav": 1, "event": "point_reached", "index": 2, "point": [20.0, 20.0], "distance": 2.0, "reason": "arrived"}
+{"t": 475, "uav": 1, "event": "completed", "elapsed": 15}
+{"t": 477, "uav": 2, "event": "point_reached", "index": 2, "point": [17.0, 92.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 477, "uav": 2, "event": "completed", "elapsed": 17}
+{"t": 500, "uav": 2, "event": "issued", "points": [[13.0, 65.0], [19.0, 64.0], [24.0, 69.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 505, "uav": 2, "event": "point_reached", "index": 0, "point": [13.0, 65.0], "distance": 2.0, "reason": "arrived"}
+{"t": 505, "uav": 2, "event": "target_switched", "index": 1, "target": [19.0, 64.0]}
+{"t": 509, "uav": 2, "event": "point_reached", "index": 1, "point": [19.0, 64.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 509, "uav": 2, "event": "target_switched", "index": 2, "target": [24.0, 69.0]}
+{"t": 514, "uav": 2, "event": "point_reached", "index": 2, "point": [24.0, 69.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 514, "uav": 2, "event": "completed", "elapsed": 14}
+{"t": 520, "uav": 1, "event": "issued", "points": [[64.0, 6.0], [71.0, 8.0], [74.0, 14.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 523, "uav": 1, "event": "point_reached", "index": 0, "point": [64.0, 6.0], "distance": 2.0, "reason": "arrived"}
+{"t": 523, "uav": 1, "event": "target_switched", "index": 1, "target": [71.0, 8.0]}
+{"t": 530, "uav": 1, "event": "point_reached", "index": 1, "point": [71.0, 8.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 530, "uav": 1, "event": "target_switched", "index": 2, "target": [74.0, 14.0]}
+{"t": 535, "uav": 1, "event": "point_reached", "index": 2, "point": [74.0, 14.0], "distance": 2.0, "reason": "arrived"}
+{"t": 535, "uav": 1, "event": "completed", "elapsed": 15}
+{"t": 540, "uav": 2, "event": "issued", "points": [[50.0, 78.0], [56.0, 78.0], [62.0, 74.0]], "ideal_steps": 18.0, "enabled": true}
+{"t": 544, "uav": 2, "event": "point_reached", "index": 0, "point": [50.0, 78.0], "distance": 2.0, "reason": "arrived"}
+{"t": 544, "uav": 2, "event": "target_switched", "index": 1, "target": [56.0, 78.0]}
+{"t": 550, "uav": 2, "event": "point_reached", "index": 1, "point": [56.0, 78.0], "distance": 2.0, "reason": "arrived"}
+{"t": 550, "uav": 2, "event": "target_switched", "index": 2, "target": [62.0, 74.0]}
+{"t": 556, "uav": 2, "event": "point_reached", "index": 2, "point": [62.0, 74.0], "distance": 2.0, "reason": "arrived"}
+{"t": 556, "uav": 2, "event": "completed", "elapsed": 16}
+{"t": 560, "uav": 2, "event": "issued", "points": [[65.0, 67.0], [72.0, 65.0], [78.0, 69.0]], "ideal_steps": 20.0, "enabled": true}
+{"t": 565, "uav": 2, "event": "point_reached", "index": 0, "point": [65.0, 67.0], "distance": 2.0, "reason": "arrived"}
+{"t": 565, "uav": 2, "event": "target_switched", "index": 1, "target": [72.0, 65.0]}
+{"t": 570, "uav": 2, "event": "point_reached", "index": 1, "point": [72.0, 65.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 570, "uav": 2, "event": "target_switched", "index": 2, "target": [78.0, 69.0]}
+{"t": 576, "uav": 2, "event": "point_reached", "index": 2, "point": [78.0, 69.0], "distance": 2.23606797749979, "reason": "arrived"}
+{"t": 576, "uav": 2, "event": "completed", "elapsed": 16}

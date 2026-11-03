@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 200, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "charge", "target": [90, 50]}, {"task": "charge", "target": [50, 90]}, {"task": "relay", "rescuer_id": 8}]}, "reason": "维持充电直到真正到站，中央机向西偏移兼顾孤立人员。"}

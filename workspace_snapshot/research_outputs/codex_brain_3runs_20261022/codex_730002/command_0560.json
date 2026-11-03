@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 560, "plan": {"uavs": [{"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 3}]}, "reason": "南侧机已补满，改追该组最西侧人员3，让其充分靠近四人组而不是停在最东侧通信边缘；其余三组保持。"}

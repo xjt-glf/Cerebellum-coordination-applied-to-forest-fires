@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 440, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [22, 22]}, {"task": "explore", "target": [90, 30]}, {"task": "explore", "target": [3, 45]}]}, "reason": "两机占位冲突已解除，UAV2恢复东行，UAV1再补原未知块；中继等替补接近后再充电，西机完成当前航程。"}

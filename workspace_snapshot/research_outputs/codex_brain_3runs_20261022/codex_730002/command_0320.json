@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 320, "plan": {"uavs": [{"task": "explore", "target": [40, 50]}, {"task": "explore", "target": [10, 65]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [70, 10]}]}, "reason": "中央机继续到位；西、南感知机回到各自人员附近重置信息时效，避免合围后长期断链，保留南中部中继。"}

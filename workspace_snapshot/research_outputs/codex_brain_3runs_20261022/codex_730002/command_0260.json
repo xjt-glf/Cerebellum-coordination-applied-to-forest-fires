@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 260, "plan": {"uavs": [{"task": "explore", "target": [90, 90]}, {"task": "explore", "target": [10, 50]}, {"task": "relay", "rescuer_id": 8}, {"task": "explore", "target": [90, 10]}]}, "reason": "三个真实火场已全部合围，转向地图补全和补给；保留一架中继恢复中央人员，其他机分赴真实站点附近扩图。"}

@@ -1,0 +1,3714 @@
+{
+  "1103": [
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1103/checkpoint_00656.pt",
+      "guard_pass": false,
+      "score": 0.09150598490015424,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.061808118081180814,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 575.5,
+              "h3_mean": 542.0,
+              "paired_mean": 33.5,
+              "paired_median": 50.0,
+              "paired_95ci": [
+                -14.375,
+                70.87812499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.125,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.375
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.606875,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.003187499999999961,
+              "paired_median": -0.04950000000000013,
+              "paired_95ci": [
+                -0.09255468750000005,
+                0.10521510416666628
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.439125,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": -0.11447916666666669,
+              "paired_median": -0.1375,
+              "paired_95ci": [
+                -0.2088140625,
+                -0.009502083333333433
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 118.13750000000005,
+              "h3_mean": 72.625,
+              "paired_mean": 45.512500000000045,
+              "paired_median": 48.0,
+              "paired_95ci": [
+                5.372187500000002,
+                83.01578125000003
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 197.0,
+              "h3_mean": 137.25,
+              "paired_mean": 59.75,
+              "paired_median": 71.0,
+              "paired_95ci": [
+                10.9875,
+                107.25
+              ]
+            },
+            "explored": {
+              "model_mean": 0.726875,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.07453750000000003,
+              "paired_median": -0.0479,
+              "paired_95ci": [
+                -0.14371625000000005,
+                -0.017354687500000087
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 116.0,
+              "h3_mean": 83.75,
+              "paired_mean": 32.25,
+              "paired_median": 57.5,
+              "paired_95ci": [
+                -37.7625,
+                79.87812499999998
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 214.25,
+              "h3_mean": 205.25,
+              "paired_mean": 9.0,
+              "paired_median": 3.5,
+              "paired_95ci": [
+                3.875,
+                14.875
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 245.25,
+              "h3_mean": 253.0,
+              "paired_mean": -7.75,
+              "paired_median": -16.5,
+              "paired_95ci": [
+                -34.375,
+                25.131249999999966
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 139860.5,
+              "h3_mean": 121894.75,
+              "paired_mean": 17965.75,
+              "paired_median": 26191.0,
+              "paired_95ci": [
+                -3080.375,
+                36043.659374999996
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.40277777777777773,
+              "h3_mean": 0.0,
+              "paired_mean": 0.40277777777777773,
+              "paired_median": 0.3333333333333333,
+              "paired_95ci": [
+                0.3055555555555556,
+                0.5069444444444444
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986002,
+              "burned_delta": 42
+            },
+            {
+              "seed": 986000,
+              "burned_delta": 55
+            },
+            {
+              "seed": 986006,
+              "burned_delta": 45
+            },
+            {
+              "seed": 986007,
+              "burned_delta": 99
+            },
+            {
+              "seed": 986001,
+              "burned_delta": 75
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 83
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.13727034120734907,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 541.625,
+              "h3_mean": 476.25,
+              "paired_mean": 65.375,
+              "paired_median": 68.0,
+              "paired_95ci": [
+                32.11875,
+                102.125
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.875,
+              "h3_mean": 0.0,
+              "paired_mean": 0.875,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.125,
+                1.875
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8083333333333333,
+              "h3_mean": 0.7148541666666667,
+              "paired_mean": 0.09347916666666671,
+              "paired_median": 0.11408333333333343,
+              "paired_95ci": [
+                -0.008916666666666684,
+                0.19054270833333345
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.6899375000000001,
+              "h3_mean": 0.6841458333333333,
+              "paired_mean": 0.005791666666666674,
+              "paired_median": -0.03158333333333335,
+              "paired_95ci": [
+                -0.08339583333333336,
+                0.10264583333333341
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 52.625,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": 9.737499999999955,
+              "paired_median": -9.0,
+              "paired_95ci": [
+                -15.506250000000023,
+                41.237499999999955
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 100.625,
+              "h3_mean": 98.625,
+              "paired_mean": 2.0,
+              "paired_median": -1.0,
+              "paired_95ci": [
+                -23.5,
+                26.878124999999983
+              ]
+            },
+            "explored": {
+              "model_mean": 0.69215,
+              "h3_mean": 0.8488625000000001,
+              "paired_mean": -0.1567125,
+              "paired_median": -0.13595000000000002,
+              "paired_95ci": [
+                -0.20815437499999995,
+                -0.11657218750000004
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 87.5,
+              "h3_mean": 31.625,
+              "paired_mean": 55.875,
+              "paired_median": 58.5,
+              "paired_95ci": [
+                19.496875,
+                92.75
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 213.875,
+              "h3_mean": 205.5,
+              "paired_mean": 8.375,
+              "paired_median": 9.0,
+              "paired_95ci": [
+                0.5,
+                17.125
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 240.25,
+              "h3_mean": 239.125,
+              "paired_mean": 1.125,
+              "paired_median": 20.0,
+              "paired_95ci": [
+                -27.125,
+                25.753124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 117546.0,
+              "h3_mean": 89127.25,
+              "paired_mean": 28418.75,
+              "paired_median": 22970.5,
+              "paired_95ci": [
+                12746.021875,
+                47688.621875
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.53125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.53125,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.42708333333333337,
+                0.6510416666666666
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986040,
+              "burned_delta": 71
+            },
+            {
+              "seed": 986041,
+              "burned_delta": 112
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 159
+            },
+            {
+              "seed": 986042,
+              "burned_delta": 65
+            },
+            {
+              "seed": 986043,
+              "burned_delta": 11
+            },
+            {
+              "seed": 986044,
+              "burned_delta": 30
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 81
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.11325237592397043,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 527.125,
+              "h3_mean": 473.5,
+              "paired_mean": 53.625,
+              "paired_median": 61.5,
+              "paired_95ci": [
+                13.621875,
+                92.5
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.25,
+              "h3_mean": 0.0,
+              "paired_mean": 0.25,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.625
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8383750000000001,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.2535625,
+              "paired_median": 0.2448333333333333,
+              "paired_95ci": [
+                0.1737166666666667,
+                0.3279583333333333
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7246874999999999,
+              "h3_mean": 0.5452708333333333,
+              "paired_mean": 0.17941666666666667,
+              "paired_median": 0.16291666666666682,
+              "paired_95ci": [
+                0.10319583333333336,
+                0.2530625
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 44.5,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -37.262500000000045,
+              "paired_median": -23.0,
+              "paired_95ci": [
+                -75.90609375000007,
+                -0.49703125000001674
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 103.25,
+              "h3_mean": 150.75,
+              "paired_mean": -47.5,
+              "paired_median": -24.0,
+              "paired_95ci": [
+                -91.025,
+                -7.25
+              ]
+            },
+            "explored": {
+              "model_mean": 0.7627875,
+              "h3_mean": 0.8576874999999999,
+              "paired_mean": -0.09490000000000003,
+              "paired_median": -0.09585000000000005,
+              "paired_95ci": [
+                -0.12276250000000001,
+                -0.061037500000000036
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 62.5,
+              "h3_mean": 23.125,
+              "paired_mean": 39.375,
+              "paired_median": 29.5,
+              "paired_95ci": [
+                11.36875,
+                73.75
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 205.75,
+              "h3_mean": 201.5,
+              "paired_mean": 4.25,
+              "paired_median": 8.5,
+              "paired_95ci": [
+                -7.5,
+                12.5
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 258.875,
+              "h3_mean": 248.875,
+              "paired_mean": 10.0,
+              "paired_median": 9.0,
+              "paired_95ci": [
+                -5.375,
+                23.75
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 108610.625,
+              "h3_mean": 85662.5,
+              "paired_mean": 22948.125,
+              "paired_median": 28382.0,
+              "paired_95ci": [
+                5976.51875,
+                37960.32812499998
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.475,
+              "h3_mean": 0.0,
+              "paired_mean": 0.475,
+              "paired_median": 0.45,
+              "paired_95ci": [
+                0.4125,
+                0.5375
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986082,
+              "burned_delta": 1
+            },
+            {
+              "seed": 986083,
+              "burned_delta": 96
+            },
+            {
+              "seed": 986080,
+              "burned_delta": 54
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 127
+            },
+            {
+              "seed": 986085,
+              "burned_delta": 69
+            },
+            {
+              "seed": 986086,
+              "burned_delta": 115
+            },
+            {
+              "seed": 986087,
+              "burned_delta": 8
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.053693104388116655,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 483.25,
+              "h3_mean": 458.625,
+              "paired_mean": 24.625,
+              "paired_median": 3.5,
+              "paired_95ci": [
+                -10.75625,
+                60.6437499999999
+              ]
+            },
+            "depleted": {
+              "model_mean": 1.0,
+              "h3_mean": 0.0,
+              "paired_mean": 1.0,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.25,
+                2.0
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8792291666666667,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.21316666666666662,
+              "paired_median": 0.18941666666666673,
+              "paired_95ci": [
+                0.16484218750000001,
+                0.2698609374999999
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7808333333333333,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.1396458333333333,
+              "paired_median": 0.14125,
+              "paired_95ci": [
+                0.06280260416666665,
+                0.20530208333333327
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 29.0,
+              "h3_mean": 40.625,
+              "paired_mean": -11.625,
+              "paired_median": -17.5,
+              "paired_95ci": [
+                -33.253125,
+                18.25
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 79.75,
+              "h3_mean": 80.125,
+              "paired_mean": -0.375,
+              "paired_median": -18.0,
+              "paired_95ci": [
+                -31.503125,
+                48.5
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6980875,
+              "h3_mean": 0.879625,
+              "paired_mean": -0.18153750000000002,
+              "paired_median": -0.16559999999999997,
+              "paired_95ci": [
+                -0.21872687500000004,
+                -0.14442468750000004
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 48.375,
+              "h3_mean": 18.875,
+              "paired_mean": 29.5,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                -9.753125,
+                81.50312499999998
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 201.0,
+              "h3_mean": 196.5,
+              "paired_mean": 4.5,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                -3.375,
+                14.5
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 233.875,
+              "h3_mean": 243.25,
+              "paired_mean": -9.375,
+              "paired_median": -1.0,
+              "paired_95ci": [
+                -32.625,
+                9.634374999999949
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 88493.875,
+              "h3_mean": 77403.75,
+              "paired_mean": 11090.125,
+              "paired_median": 2418.0,
+              "paired_95ci": [
+                -3904.478125,
+                26507.14687499999
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5694444444444444,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5694444444444444,
+              "paired_median": 0.5555555555555556,
+              "paired_95ci": [
+                0.5173611111111112,
+                0.6215277777777778
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986123,
+              "burned_delta": 117
+            },
+            {
+              "seed": 986121,
+              "burned_delta": 93
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 50
+            },
+            {
+              "seed": 986126,
+              "burned_delta": 27
+            }
+          ]
+        }
+      }
+    },
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1103/checkpoint_00768.pt",
+      "guard_pass": false,
+      "score": 0.08514610047912341,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.06872693726937269,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 579.25,
+              "h3_mean": 542.0,
+              "paired_mean": 37.25,
+              "paired_median": 39.5,
+              "paired_95ci": [
+                -18.125,
+                88.25937499999995
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.25,
+              "h3_mean": 0.0,
+              "paired_mean": 0.25,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.625
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.6961875,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.0925,
+              "paired_median": 0.15225,
+              "paired_95ci": [
+                -0.04075000000000002,
+                0.20718645833333324
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.5441458333333333,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": -0.009458333333333346,
+              "paired_median": 0.04250000000000001,
+              "paired_95ci": [
+                -0.14666666666666667,
+                0.11756249999999997
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 92.5,
+              "h3_mean": 72.625,
+              "paired_mean": 19.875,
+              "paired_median": 24.0,
+              "paired_95ci": [
+                -25.0,
+                66.38749999999993
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 145.625,
+              "h3_mean": 137.25,
+              "paired_mean": 8.375,
+              "paired_median": 24.5,
+              "paired_95ci": [
+                -46.13125,
+                63.631249999999966
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6691625,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.13225,
+              "paired_median": -0.11840000000000006,
+              "paired_95ci": [
+                -0.211213125,
+                -0.05965000000000001
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 130.125,
+              "h3_mean": 83.75,
+              "paired_mean": 46.375,
+              "paired_median": 54.0,
+              "paired_95ci": [
+                -41.125,
+                123.76562499999991
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 215.5,
+              "h3_mean": 205.25,
+              "paired_mean": 10.25,
+              "paired_median": 11.0,
+              "paired_95ci": [
+                5.375,
+                15.25
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 233.625,
+              "h3_mean": 253.0,
+              "paired_mean": -19.375,
+              "paired_median": -9.5,
+              "paired_95ci": [
+                -60.2625,
+                21.50937499999995
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 140085.25,
+              "h3_mean": 121894.75,
+              "paired_mean": 18190.5,
+              "paired_median": 26250.0,
+              "paired_95ci": [
+                -5269.09375,
+                38542.85625
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.45138888888888884,
+              "h3_mean": 0.0,
+              "paired_mean": 0.45138888888888884,
+              "paired_median": 0.4444444444444444,
+              "paired_95ci": [
+                0.35416666666666663,
+                0.5416666666666667
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986003,
+              "burned_delta": 87
+            },
+            {
+              "seed": 986000,
+              "burned_delta": 21
+            },
+            {
+              "seed": 986002,
+              "burned_delta": 42
+            },
+            {
+              "seed": 986006,
+              "burned_delta": 37
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 156
+            },
+            {
+              "seed": 986007,
+              "burned_delta": 89
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.12598425196850394,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 536.25,
+              "h3_mean": 476.25,
+              "paired_mean": 60.0,
+              "paired_median": 57.5,
+              "paired_95ci": [
+                25.875,
+                98.75312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.125,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.375
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8297083333333333,
+              "h3_mean": 0.7148541666666667,
+              "paired_mean": 0.11485416666666662,
+              "paired_median": 0.12491666666666668,
+              "paired_95ci": [
+                0.008469791666666523,
+                0.215584375
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.72325,
+              "h3_mean": 0.6841458333333333,
+              "paired_mean": 0.03910416666666662,
+              "paired_median": 0.029249999999999887,
+              "paired_95ci": [
+                -0.05964218750000014,
+                0.14340520833333326
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 47.375,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": 4.4874999999999545,
+              "paired_median": -9.025000000000091,
+              "paired_95ci": [
+                -26.25015625,
+                38.88390624999995
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 103.875,
+              "h3_mean": 98.625,
+              "paired_mean": 5.25,
+              "paired_median": 8.5,
+              "paired_95ci": [
+                -21.0125,
+                27.875
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6448125,
+              "h3_mean": 0.8488625000000001,
+              "paired_mean": -0.20404999999999998,
+              "paired_median": -0.21089999999999998,
+              "paired_95ci": [
+                -0.25792499999999996,
+                -0.14544812500000004
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 102.0,
+              "h3_mean": 31.625,
+              "paired_mean": 70.375,
+              "paired_median": 27.5,
+              "paired_95ci": [
+                14.496875,
+                133.125
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 214.25,
+              "h3_mean": 205.5,
+              "paired_mean": 8.75,
+              "paired_median": 6.0,
+              "paired_95ci": [
+                -0.125,
+                19.253124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 220.0,
+              "h3_mean": 239.125,
+              "paired_mean": -19.125,
+              "paired_median": 5.0,
+              "paired_95ci": [
+                -52.625,
+                10.256249999999966
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 116523.5,
+              "h3_mean": 89127.25,
+              "paired_mean": 27396.25,
+              "paired_median": 22704.0,
+              "paired_95ci": [
+                5243.146875,
+                53005.45312499999
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.6041666666666667,
+              "h3_mean": 0.0,
+              "paired_mean": 0.6041666666666667,
+              "paired_median": 0.6666666666666666,
+              "paired_95ci": [
+                0.515625,
+                0.6822916666666667
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986041,
+              "burned_delta": 22
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 158
+            },
+            {
+              "seed": 986042,
+              "burned_delta": 1
+            },
+            {
+              "seed": 986046,
+              "burned_delta": 90
+            },
+            {
+              "seed": 986040,
+              "burned_delta": 81
+            },
+            {
+              "seed": 986044,
+              "burned_delta": 34
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 99
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.1158922914466737,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 528.375,
+              "h3_mean": 473.5,
+              "paired_mean": 54.875,
+              "paired_median": 65.5,
+              "paired_95ci": [
+                20.115625,
+                80.37812499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.625,
+              "h3_mean": 0.0,
+              "paired_mean": 0.625,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.125,
+                1.125
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8845000000000001,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.2996875,
+              "paired_median": 0.29558333333333325,
+              "paired_95ci": [
+                0.23687447916666668,
+                0.35822656249999985
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7905833333333334,
+              "h3_mean": 0.5452708333333334,
+              "paired_mean": 0.24531250000000007,
+              "paired_median": 0.25216666666666665,
+              "paired_95ci": [
+                0.17990416666666675,
+                0.30315572916666667
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 29.25,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -52.512500000000045,
+              "paired_median": -49.0,
+              "paired_95ci": [
+                -81.40312500000007,
+                -23.872031250000017
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 82.5,
+              "h3_mean": 150.75,
+              "paired_mean": -68.25,
+              "paired_median": -82.5,
+              "paired_95ci": [
+                -103.625,
+                -25.618750000000034
+              ]
+            },
+            "explored": {
+              "model_mean": 0.5994375000000001,
+              "h3_mean": 0.8576874999999999,
+              "paired_mean": -0.25825,
+              "paired_median": -0.24364999999999998,
+              "paired_95ci": [
+                -0.34545437500000004,
+                -0.18071250000000005
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 89.125,
+              "h3_mean": 23.125,
+              "paired_mean": 66.0,
+              "paired_median": 48.5,
+              "paired_95ci": [
+                20.871875,
+                111.50624999999997
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 209.5,
+              "h3_mean": 201.5,
+              "paired_mean": 8.0,
+              "paired_median": 13.0,
+              "paired_95ci": [
+                -4.25,
+                16.125
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 229.75,
+              "h3_mean": 248.875,
+              "paired_mean": -19.125,
+              "paired_median": -2.0,
+              "paired_95ci": [
+                -50.875,
+                10.625
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 112021.625,
+              "h3_mean": 85662.5,
+              "paired_mean": 26359.125,
+              "paired_median": 30263.0,
+              "paired_95ci": [
+                8075.134375,
+                41094.118749999994
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5875,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5875,
+              "paired_median": 0.6166666666666667,
+              "paired_95ci": [
+                0.5291666666666667,
+                0.6416666666666666
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986082,
+              "burned_delta": 85
+            },
+            {
+              "seed": 986086,
+              "burned_delta": 109
+            },
+            {
+              "seed": 986085,
+              "burned_delta": 62
+            },
+            {
+              "seed": 986083,
+              "burned_delta": 41
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 79
+            },
+            {
+              "seed": 986080,
+              "burned_delta": 69
+            },
+            {
+              "seed": 986087,
+              "burned_delta": 44
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.02998092123194331,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 472.375,
+              "h3_mean": 458.625,
+              "paired_mean": 13.75,
+              "paired_median": -12.0,
+              "paired_95ci": [
+                -18.125,
+                51.131249999999966
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.625,
+              "h3_mean": 0.0,
+              "paired_mean": 0.625,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.25,
+                1.125
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.9050833333333332,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.2390208333333333,
+              "paired_median": 0.2790833333333333,
+              "paired_95ci": [
+                0.17048072916666662,
+                0.3032755208333331
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.8218541666666667,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.18066666666666664,
+              "paired_median": 0.2078333333333332,
+              "paired_95ci": [
+                0.09058333333333331,
+                0.2641343749999999
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 21.512500000000045,
+              "h3_mean": 40.625,
+              "paired_mean": -19.112499999999955,
+              "paired_median": -19.5,
+              "paired_95ci": [
+                -30.752499999999998,
+                -8.224999999999909
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 87.75,
+              "h3_mean": 80.125,
+              "paired_mean": 7.625,
+              "paired_median": -5.0,
+              "paired_95ci": [
+                -18.375,
+                38.25937499999995
+              ]
+            },
+            "explored": {
+              "model_mean": 0.630675,
+              "h3_mean": 0.879625,
+              "paired_mean": -0.24895000000000006,
+              "paired_median": -0.26550000000000007,
+              "paired_95ci": [
+                -0.28891500000000003,
+                -0.20573250000000007
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 53.0,
+              "h3_mean": 18.875,
+              "paired_mean": 34.125,
+              "paired_median": -6.0,
+              "paired_95ci": [
+                -9.75,
+                91.89062499999991
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 196.75,
+              "h3_mean": 196.5,
+              "paired_mean": 0.25,
+              "paired_median": -2.0,
+              "paired_95ci": [
+                -6.0,
+                7.003124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 222.625,
+              "h3_mean": 243.25,
+              "paired_mean": -20.625,
+              "paired_median": -12.5,
+              "paired_95ci": [
+                -46.75625,
+                0.0
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 86287.75,
+              "h3_mean": 77403.75,
+              "paired_mean": 8884.0,
+              "paired_median": -3638.0,
+              "paired_95ci": [
+                -5203.76875,
+                25317.281249999993
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.625,
+              "h3_mean": 0.0,
+              "paired_mean": 0.625,
+              "paired_median": 0.6111111111111112,
+              "paired_95ci": [
+                0.59375,
+                0.6597222222222222
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986121,
+              "burned_delta": 47
+            },
+            {
+              "seed": 986123,
+              "burned_delta": 126
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 50
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "1104": [
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1104/checkpoint_00656.pt",
+      "guard_pass": false,
+      "score": 0.11007504017902318,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.0643450184501845,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 576.875,
+              "h3_mean": 542.0,
+              "paired_mean": 34.875,
+              "paired_median": 64.0,
+              "paired_95ci": [
+                -8.271874999999998,
+                71.0
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.0,
+              "h3_mean": 0.0,
+              "paired_mean": 0.0,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8430208333333333,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.23933333333333334,
+              "paired_median": 0.2169166666666667,
+              "paired_95ci": [
+                0.16608593750000006,
+                0.3042041666666666
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.6725833333333333,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": 0.11897916666666666,
+              "paired_median": 0.18649999999999994,
+              "paired_95ci": [
+                0.003955208333333348,
+                0.2141895833333332
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 49.25625000000002,
+              "h3_mean": 72.625,
+              "paired_mean": -23.368749999999977,
+              "paired_median": -28.0,
+              "paired_95ci": [
+                -49.628125,
+                4.646718750000051
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 107.375,
+              "h3_mean": 137.25,
+              "paired_mean": -29.875,
+              "paired_median": -36.0,
+              "paired_95ci": [
+                -70.625,
+                10.003124999999983
+              ]
+            },
+            "explored": {
+              "model_mean": 0.5950375,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.20637500000000003,
+              "paired_median": -0.23260000000000003,
+              "paired_95ci": [
+                -0.29221687500000004,
+                -0.11012500000000003
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 144.875,
+              "h3_mean": 83.75,
+              "paired_mean": 61.125,
+              "paired_median": 76.5,
+              "paired_95ci": [
+                -4.875,
+                118.875
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 214.25,
+              "h3_mean": 205.25,
+              "paired_mean": 9.0,
+              "paired_median": 5.5,
+              "paired_95ci": [
+                2.375,
+                16.75
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 217.75,
+              "h3_mean": 253.0,
+              "paired_mean": -35.25,
+              "paired_median": -29.0,
+              "paired_95ci": [
+                -74.628125,
+                5.628124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 137457.25,
+              "h3_mean": 121894.75,
+              "paired_mean": 15562.5,
+              "paired_median": 23141.5,
+              "paired_95ci": [
+                -534.3624999999998,
+                29658.83124999999
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5833333333333334,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5833333333333334,
+              "paired_median": 0.5833333333333334,
+              "paired_95ci": [
+                0.5,
+                0.6597222222222222
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986006,
+              "burned_delta": 74
+            },
+            {
+              "seed": 986002,
+              "burned_delta": 41
+            },
+            {
+              "seed": 986007,
+              "burned_delta": 54
+            },
+            {
+              "seed": 986000,
+              "burned_delta": 75
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 75
+            },
+            {
+              "seed": 986001,
+              "burned_delta": 84
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.1931758530183727,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 568.25,
+              "h3_mean": 476.25,
+              "paired_mean": 92.0,
+              "paired_median": 91.5,
+              "paired_95ci": [
+                63.49375,
+                122.50312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.125,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.375
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8933541666666667,
+              "h3_mean": 0.7148541666666667,
+              "paired_mean": 0.17849999999999996,
+              "paired_median": 0.14691666666666642,
+              "paired_95ci": [
+                0.08274999999999998,
+                0.2699921875
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7755833333333334,
+              "h3_mean": 0.6841458333333333,
+              "paired_mean": 0.0914375,
+              "paired_median": 0.03349999999999986,
+              "paired_95ci": [
+                -0.0010213541666666513,
+                0.19456874999999985
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 18.0,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": -24.887500000000045,
+              "paired_median": -17.52500000000009,
+              "paired_95ci": [
+                -45.75015625,
+                -5.137500000000102
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 83.875,
+              "h3_mean": 98.625,
+              "paired_mean": -14.75,
+              "paired_median": -6.5,
+              "paired_95ci": [
+                -70.003125,
+                39.00312499999998
+              ]
+            },
+            "explored": {
+              "model_mean": 0.5854250000000001,
+              "h3_mean": 0.8488625000000001,
+              "paired_mean": -0.2634375,
+              "paired_median": -0.26985,
+              "paired_95ci": [
+                -0.31105375,
+                -0.20570250000000007
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 161.5,
+              "h3_mean": 31.625,
+              "paired_mean": 129.875,
+              "paired_median": 156.5,
+              "paired_95ci": [
+                73.86875,
+                178.87812499999998
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 215.5,
+              "h3_mean": 205.5,
+              "paired_mean": 10.0,
+              "paired_median": 10.0,
+              "paired_95ci": [
+                2.375,
+                18.253124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 191.25,
+              "h3_mean": 239.125,
+              "paired_mean": -47.875,
+              "paired_median": -75.0,
+              "paired_95ci": [
+                -82.50625,
+                -6.996875000000017
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 131311.25,
+              "h3_mean": 89127.25,
+              "paired_mean": 42184.0,
+              "paired_median": 39461.5,
+              "paired_95ci": [
+                26317.246875,
+                60084.399999999994
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5989583333333333,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5989583333333333,
+              "paired_median": 0.6666666666666666,
+              "paired_95ci": [
+                0.47916666666666663,
+                0.703125
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986040,
+              "burned_delta": 97
+            },
+            {
+              "seed": 986041,
+              "burned_delta": 47
+            },
+            {
+              "seed": 986042,
+              "burned_delta": 86
+            },
+            {
+              "seed": 986046,
+              "burned_delta": 68
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 178
+            },
+            {
+              "seed": 986044,
+              "burned_delta": 129
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 99
+            },
+            {
+              "seed": 986043,
+              "burned_delta": 32
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.11246040126715945,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 526.75,
+              "h3_mean": 473.5,
+              "paired_mean": 53.25,
+              "paired_median": 54.5,
+              "paired_95ci": [
+                16.875,
+                89.38124999999997
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.875,
+              "h3_mean": 0.0,
+              "paired_mean": 0.875,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.125,
+                1.875
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8498958333333333,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.26508333333333334,
+              "paired_median": 0.3249166666666665,
+              "paired_95ci": [
+                0.16093750000000007,
+                0.35629322916666656
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7470208333333332,
+              "h3_mean": 0.5452708333333334,
+              "paired_mean": 0.20174999999999998,
+              "paired_median": 0.2758333333333334,
+              "paired_95ci": [
+                0.08553854166666663,
+                0.3028583333333333
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 61.51875000000007,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -20.243749999999977,
+              "paired_median": -55.0,
+              "paired_95ci": [
+                -73.89406250000002,
+                43.031250000000114
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 136.625,
+              "h3_mean": 150.75,
+              "paired_mean": -14.125,
+              "paired_median": -62.0,
+              "paired_95ci": [
+                -92.25,
+                70.375
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6272625000000001,
+              "h3_mean": 0.8576874999999999,
+              "paired_mean": -0.230425,
+              "paired_median": -0.24755,
+              "paired_95ci": [
+                -0.29595,
+                -0.15971125
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 91.25,
+              "h3_mean": 23.125,
+              "paired_mean": 68.125,
+              "paired_median": 39.0,
+              "paired_95ci": [
+                21.121875,
+                121.88124999999997
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 204.5,
+              "h3_mean": 201.5,
+              "paired_mean": 3.0,
+              "paired_median": 8.0,
+              "paired_95ci": [
+                -6.378125,
+                9.753124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 231.0,
+              "h3_mean": 248.875,
+              "paired_mean": -17.875,
+              "paired_median": -5.5,
+              "paired_95ci": [
+                -49.884375,
+                10.128124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 111224.5,
+              "h3_mean": 85662.5,
+              "paired_mean": 25562.0,
+              "paired_median": 33320.5,
+              "paired_95ci": [
+                8261.95,
+                41528.8125
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5416666666666667,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5416666666666667,
+              "paired_median": 0.5333333333333333,
+              "paired_95ci": [
+                0.47500000000000003,
+                0.6124999999999999
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986080,
+              "burned_delta": 9
+            },
+            {
+              "seed": 986083,
+              "burned_delta": 108
+            },
+            {
+              "seed": 986086,
+              "burned_delta": 112
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 117
+            },
+            {
+              "seed": 986082,
+              "burned_delta": 53
+            },
+            {
+              "seed": 986087,
+              "burned_delta": 56
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.07031888798037612,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 490.875,
+              "h3_mean": 458.625,
+              "paired_mean": 32.25,
+              "paired_median": 15.5,
+              "paired_95ci": [
+                -2.3812499999999996,
+                69.50312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.75,
+              "h3_mean": 0.0,
+              "paired_mean": 0.75,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                0.375,
+                1.125
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8994166666666666,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.23335416666666658,
+              "paired_median": 0.2275833333333332,
+              "paired_95ci": [
+                0.1600968749999999,
+                0.29935416666666653
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.8043958333333332,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.16320833333333326,
+              "paired_median": 0.18033333333333323,
+              "paired_95ci": [
+                0.07107499999999996,
+                0.24668854166666646
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 28.5,
+              "h3_mean": 40.625,
+              "paired_mean": -12.125,
+              "paired_median": -17.5,
+              "paired_95ci": [
+                -29.0,
+                7.125
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 97.75,
+              "h3_mean": 80.125,
+              "paired_mean": 17.625,
+              "paired_median": -2.0,
+              "paired_95ci": [
+                -15.5,
+                55.62812499999998
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6380250000000001,
+              "h3_mean": 0.879625,
+              "paired_mean": -0.24160000000000004,
+              "paired_median": -0.25125000000000003,
+              "paired_95ci": [
+                -0.27861250000000004,
+                -0.20746031250000002
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 71.625,
+              "h3_mean": 18.875,
+              "paired_mean": 52.75,
+              "paired_median": 12.5,
+              "paired_95ci": [
+                1.0,
+                116.5
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 198.5,
+              "h3_mean": 196.5,
+              "paired_mean": 2.0,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                -5.625,
+                10.5
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 220.75,
+              "h3_mean": 243.25,
+              "paired_mean": -22.5,
+              "paired_median": -5.5,
+              "paired_95ci": [
+                -56.003125,
+                6.0
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 92904.625,
+              "h3_mean": 77403.75,
+              "paired_mean": 15500.875,
+              "paired_median": 12858.5,
+              "paired_95ci": [
+                -1443.028125,
+                32123.875
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.59375,
+              "h3_mean": 0.0,
+              "paired_mean": 0.59375,
+              "paired_median": 0.5833333333333334,
+              "paired_95ci": [
+                0.5590277777777778,
+                0.625
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986123,
+              "burned_delta": 117
+            },
+            {
+              "seed": 986122,
+              "burned_delta": 88
+            },
+            {
+              "seed": 986121,
+              "burned_delta": 74
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 33
+            }
+          ]
+        }
+      }
+    },
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1104/checkpoint_00768.pt",
+      "guard_pass": false,
+      "score": 0.0939585895619882,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.02190959409594096,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 553.875,
+              "h3_mean": 542.0,
+              "paired_mean": 11.875,
+              "paired_median": 16.5,
+              "paired_95ci": [
+                -34.003125,
+                59.62812499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.0,
+              "h3_mean": 0.0,
+              "paired_mean": 0.0,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.819375,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.21568749999999998,
+              "paired_median": 0.2169166666666667,
+              "paired_95ci": [
+                0.14985416666666662,
+                0.28081354166666667
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.648625,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": 0.09502083333333333,
+              "paired_median": 0.15099999999999997,
+              "paired_95ci": [
+                -0.008253125000000014,
+                0.18721354166666668
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 46.75625000000002,
+              "h3_mean": 72.625,
+              "paired_mean": -25.868749999999977,
+              "paired_median": -36.5,
+              "paired_95ci": [
+                -47.0,
+                -1.862343749999955
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 124.25,
+              "h3_mean": 137.25,
+              "paired_mean": -13.0,
+              "paired_median": -45.0,
+              "paired_95ci": [
+                -48.625,
+                32.75312499999998
+              ]
+            },
+            "explored": {
+              "model_mean": 0.598875,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.20253750000000004,
+              "paired_median": -0.20755000000000007,
+              "paired_95ci": [
+                -0.27981656250000003,
+                -0.12186062500000013
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 106.375,
+              "h3_mean": 83.75,
+              "paired_mean": 22.625,
+              "paired_median": 38.5,
+              "paired_95ci": [
+                -53.759375,
+                93.0
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 212.25,
+              "h3_mean": 205.25,
+              "paired_mean": 7.0,
+              "paired_median": 5.5,
+              "paired_95ci": [
+                1.375,
+                12.75
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 235.25,
+              "h3_mean": 253.0,
+              "paired_mean": -17.75,
+              "paired_median": -22.5,
+              "paired_95ci": [
+                -57.8875,
+                25.625
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 127888.25,
+              "h3_mean": 121894.75,
+              "paired_mean": 5993.5,
+              "paired_median": 5366.0,
+              "paired_95ci": [
+                -13553.56875,
+                25948.671874999975
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5486111111111112,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5486111111111112,
+              "paired_median": 0.5555555555555556,
+              "paired_95ci": [
+                0.45833333333333337,
+                0.6388888888888888
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986000,
+              "burned_delta": 75
+            },
+            {
+              "seed": 986007,
+              "burned_delta": 65
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 75
+            },
+            {
+              "seed": 986001,
+              "burned_delta": 84
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.15643044619422572,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 550.75,
+              "h3_mean": 476.25,
+              "paired_mean": 74.5,
+              "paired_median": 77.0,
+              "paired_95ci": [
+                39.246875,
+                114.50312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.25,
+              "h3_mean": 0.0,
+              "paired_mean": 0.25,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.625
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8833541666666667,
+              "h3_mean": 0.7148541666666668,
+              "paired_mean": 0.16849999999999998,
+              "paired_median": 0.14691666666666642,
+              "paired_95ci": [
+                0.07882864583333321,
+                0.26348958333333333
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7641041666666666,
+              "h3_mean": 0.6841458333333333,
+              "paired_mean": 0.07995833333333333,
+              "paired_median": 0.03091666666666648,
+              "paired_95ci": [
+                -0.021268229166666656,
+                0.1917713541666666
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 20.5,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": -22.387500000000045,
+              "paired_median": -17.52500000000009,
+              "paired_95ci": [
+                -42.87515625,
+                -4.393750000000068
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 95.625,
+              "h3_mean": 98.625,
+              "paired_mean": -3.0,
+              "paired_median": -6.5,
+              "paired_95ci": [
+                -55.4,
+                43.37812499999998
+              ]
+            },
+            "explored": {
+              "model_mean": 0.5893625,
+              "h3_mean": 0.8488625,
+              "paired_mean": -0.2595,
+              "paired_median": -0.2641,
+              "paired_95ci": [
+                -0.30852500000000005,
+                -0.19713375000000005
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 139.0,
+              "h3_mean": 31.625,
+              "paired_mean": 107.375,
+              "paired_median": 138.0,
+              "paired_95ci": [
+                46.115625,
+                160.50624999999997
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 214.125,
+              "h3_mean": 205.5,
+              "paired_mean": 8.625,
+              "paired_median": 10.0,
+              "paired_95ci": [
+                0.5,
+                18.253124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 197.625,
+              "h3_mean": 239.125,
+              "paired_mean": -41.5,
+              "paired_median": -39.5,
+              "paired_95ci": [
+                -74.134375,
+                -4.871875000000017
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 123402.5,
+              "h3_mean": 89127.25,
+              "paired_mean": 34275.25,
+              "paired_median": 30518.5,
+              "paired_95ci": [
+                14434.303125,
+                58238.99687499999
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5833333333333333,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5833333333333333,
+              "paired_median": 0.6666666666666666,
+              "paired_95ci": [
+                0.4583333333333333,
+                0.6875
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986040,
+              "burned_delta": 97
+            },
+            {
+              "seed": 986041,
+              "burned_delta": 47
+            },
+            {
+              "seed": 986046,
+              "burned_delta": 68
+            },
+            {
+              "seed": 986042,
+              "burned_delta": 86
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 178
+            },
+            {
+              "seed": 986043,
+              "burned_delta": 32
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 99
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.1293558606124604,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 534.75,
+              "h3_mean": 473.5,
+              "paired_mean": 61.25,
+              "paired_median": 36.0,
+              "paired_95ci": [
+                13.625,
+                115.13124999999997
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.75,
+              "h3_mean": 0.0,
+              "paired_mean": 0.75,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.125,
+                1.875
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8241041666666666,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.23929166666666668,
+              "paired_median": 0.2675,
+              "paired_95ci": [
+                0.12132187500000004,
+                0.3350864583333333
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7098333333333333,
+              "h3_mean": 0.5452708333333334,
+              "paired_mean": 0.16456250000000003,
+              "paired_median": 0.22708333333333344,
+              "paired_95ci": [
+                0.01775885416666664,
+                0.28129166666666666
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 78.52500000000009,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -3.2374999999999545,
+              "paired_median": -49.5,
+              "paired_95ci": [
+                -58.362499999999955,
+                66.90000000000009
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 158.625,
+              "h3_mean": 150.75,
+              "paired_mean": 7.875,
+              "paired_median": -56.0,
+              "paired_95ci": [
+                -67.76875,
+                100.26249999999993
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6318,
+              "h3_mean": 0.8576875,
+              "paired_mean": -0.2258875,
+              "paired_median": -0.24269999999999997,
+              "paired_95ci": [
+                -0.29473812499999996,
+                -0.15482875000000007
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 100.125,
+              "h3_mean": 23.125,
+              "paired_mean": 77.0,
+              "paired_median": 36.0,
+              "paired_95ci": [
+                22.996875,
+                134.75
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 204.375,
+              "h3_mean": 201.5,
+              "paired_mean": 2.875,
+              "paired_median": 7.0,
+              "paired_95ci": [
+                -5.753125,
+                9.125
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 230.25,
+              "h3_mean": 248.875,
+              "paired_mean": -18.625,
+              "paired_median": -5.5,
+              "paired_95ci": [
+                -47.75,
+                9.0
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 113758.125,
+              "h3_mean": 85662.5,
+              "paired_mean": 28095.625,
+              "paired_median": 22268.0,
+              "paired_95ci": [
+                5370.934375,
+                53277.378124999996
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5041666666666667,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5041666666666667,
+              "paired_median": 0.5166666666666666,
+              "paired_95ci": [
+                0.425,
+                0.5791666666666666
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986083,
+              "burned_delta": 108
+            },
+            {
+              "seed": 986086,
+              "burned_delta": 112
+            },
+            {
+              "seed": 986082,
+              "burned_delta": 16
+            },
+            {
+              "seed": 986080,
+              "burned_delta": 9
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 220
+            },
+            {
+              "seed": 986087,
+              "burned_delta": 56
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.0681384573453257,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 489.875,
+              "h3_mean": 458.625,
+              "paired_mean": 31.25,
+              "paired_median": 7.5,
+              "paired_95ci": [
+                -2.503125,
+                66.37812499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.75,
+              "h3_mean": 0.0,
+              "paired_mean": 0.75,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                0.375,
+                1.25
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8830625000000001,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.21699999999999994,
+              "paired_median": 0.2275833333333332,
+              "paired_95ci": [
+                0.15770833333333328,
+                0.2711588541666665
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7873333333333332,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.14614583333333328,
+              "paired_median": 0.14174999999999993,
+              "paired_95ci": [
+                0.07270833333333333,
+                0.22108437499999994
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 28.625,
+              "h3_mean": 40.625,
+              "paired_mean": -12.0,
+              "paired_median": -17.5,
+              "paired_95ci": [
+                -28.375,
+                6.628124999999983
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 100.75,
+              "h3_mean": 80.125,
+              "paired_mean": 20.625,
+              "paired_median": 10.0,
+              "paired_95ci": [
+                -13.5,
+                62.13437499999995
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6596625,
+              "h3_mean": 0.8796250000000001,
+              "paired_mean": -0.2199625,
+              "paired_median": -0.23135,
+              "paired_95ci": [
+                -0.27122562499999997,
+                -0.16692187500000005
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 69.0,
+              "h3_mean": 18.875,
+              "paired_mean": 50.125,
+              "paired_median": 11.5,
+              "paired_95ci": [
+                -1.25,
+                114.38437499999995
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 199.875,
+              "h3_mean": 196.5,
+              "paired_mean": 3.375,
+              "paired_median": 1.5,
+              "paired_95ci": [
+                -4.878125,
+                12.5
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 221.0,
+              "h3_mean": 243.25,
+              "paired_mean": -22.25,
+              "paired_median": -4.5,
+              "paired_95ci": [
+                -57.25625,
+                5.628124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 92283.75,
+              "h3_mean": 77403.75,
+              "paired_mean": 14880.0,
+              "paired_median": 7503.5,
+              "paired_95ci": [
+                -767.9374999999999,
+                30645.731249999953
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.6111111111111112,
+              "h3_mean": 0.0,
+              "paired_mean": 0.6111111111111112,
+              "paired_median": 0.5972222222222223,
+              "paired_95ci": [
+                0.579861111111111,
+                0.6493055555555556
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986121,
+              "burned_delta": 78
+            },
+            {
+              "seed": 986123,
+              "burned_delta": 117
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 27
+            },
+            {
+              "seed": 986122,
+              "burned_delta": 88
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "1105": [
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1105/checkpoint_00656.pt",
+      "guard_pass": false,
+      "score": 0.0629625665450418,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.05096863468634686,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 569.625,
+              "h3_mean": 542.0,
+              "paired_mean": 27.625,
+              "paired_median": 20.0,
+              "paired_95ci": [
+                -32.0,
+                88.625
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.125,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.375
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.7422708333333332,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.13858333333333328,
+              "paired_median": 0.16608333333333325,
+              "paired_95ci": [
+                0.04759947916666664,
+                0.21062552083333327
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.578625,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": 0.025020833333333325,
+              "paired_median": 0.008500000000000008,
+              "paired_95ci": [
+                -0.06032395833333333,
+                0.10462187499999993
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 65.88750000000005,
+              "h3_mean": 72.625,
+              "paired_mean": -6.7374999999999545,
+              "paired_median": -14.474999999999909,
+              "paired_95ci": [
+                -43.61874999999998,
+                35.64375000000007
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 130.75,
+              "h3_mean": 137.25,
+              "paired_mean": -6.5,
+              "paired_median": -28.5,
+              "paired_95ci": [
+                -33.253125,
+                28.003124999999983
+              ]
+            },
+            "explored": {
+              "model_mean": 0.6940625,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.10735000000000003,
+              "paired_median": -0.09715000000000007,
+              "paired_95ci": [
+                -0.1569134375,
+                -0.059686562500000026
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 129.375,
+              "h3_mean": 83.75,
+              "paired_mean": 45.625,
+              "paired_median": 12.0,
+              "paired_95ci": [
+                -41.878125,
+                129.12812499999998
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 214.875,
+              "h3_mean": 205.25,
+              "paired_mean": 9.625,
+              "paired_median": 10.5,
+              "paired_95ci": [
+                3.75,
+                15.253124999999983
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 225.375,
+              "h3_mean": 253.0,
+              "paired_mean": -27.625,
+              "paired_median": -50.5,
+              "paired_95ci": [
+                -59.253125,
+                9.506249999999966
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 136660.75,
+              "h3_mean": 121894.75,
+              "paired_mean": 14766.0,
+              "paired_median": 9788.0,
+              "paired_95ci": [
+                -9677.8125,
+                41432.999999999985
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.47916666666666663,
+              "h3_mean": 0.0,
+              "paired_mean": 0.47916666666666663,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.3680555555555555,
+                0.5833333333333333
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986007,
+              "burned_delta": 20
+            },
+            {
+              "seed": 986000,
+              "burned_delta": 78
+            },
+            {
+              "seed": 986002,
+              "burned_delta": 20
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 148
+            },
+            {
+              "seed": 986001,
+              "burned_delta": 139
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.11233595800524934,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 529.75,
+              "h3_mean": 476.25,
+              "paired_mean": 53.5,
+              "paired_median": 32.5,
+              "paired_95ci": [
+                25.25,
+                88.125
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.5,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                1.5
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8506458333333333,
+              "h3_mean": 0.7148541666666667,
+              "paired_mean": 0.13579166666666664,
+              "paired_median": 0.14466666666666655,
+              "paired_95ci": [
+                0.032993229166666575,
+                0.22589583333333338
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7321041666666667,
+              "h3_mean": 0.6841458333333333,
+              "paired_mean": 0.04795833333333331,
+              "paired_median": 0.049916666666666776,
+              "paired_95ci": [
+                -0.06174270833333339,
+                0.1598984375
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 29.131250000000023,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": -13.756250000000023,
+              "paired_median": -27.02500000000009,
+              "paired_95ci": [
+                -32.38765625000005,
+                9.512187499999989
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 75.875,
+              "h3_mean": 98.625,
+              "paired_mean": -22.75,
+              "paired_median": -17.5,
+              "paired_95ci": [
+                -53.125,
+                4.7781249999998465
+              ]
+            },
+            "explored": {
+              "model_mean": 0.709225,
+              "h3_mean": 0.8488625000000001,
+              "paired_mean": -0.1396375,
+              "paired_median": -0.12209999999999999,
+              "paired_95ci": [
+                -0.187525,
+                -0.0975375
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 84.375,
+              "h3_mean": 31.625,
+              "paired_mean": 52.75,
+              "paired_median": 20.5,
+              "paired_95ci": [
+                14.5,
+                97.75
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 213.25,
+              "h3_mean": 205.5,
+              "paired_mean": 7.75,
+              "paired_median": 7.0,
+              "paired_95ci": [
+                -0.625,
+                16.5
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 232.125,
+              "h3_mean": 239.125,
+              "paired_mean": -7.0,
+              "paired_median": 5.5,
+              "paired_95ci": [
+                -38.253125,
+                15.253124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 110780.375,
+              "h3_mean": 89127.25,
+              "paired_mean": 21653.125,
+              "paired_median": 10673.5,
+              "paired_95ci": [
+                9752.3375,
+                39480.584374999984
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.44791666666666663,
+              "h3_mean": 0.0,
+              "paired_mean": 0.44791666666666663,
+              "paired_median": 0.4375,
+              "paired_95ci": [
+                0.359375,
+                0.546875
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986041,
+              "burned_delta": 19
+            },
+            {
+              "seed": 986044,
+              "burned_delta": 24
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 153
+            },
+            {
+              "seed": 986046,
+              "burned_delta": 24
+            },
+            {
+              "seed": 986040,
+              "burned_delta": 5
+            },
+            {
+              "seed": 986043,
+              "burned_delta": 41
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 76
+            },
+            {
+              "seed": 986042,
+              "burned_delta": 86
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.051478352692713836,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 497.875,
+              "h3_mean": 473.5,
+              "paired_mean": 24.375,
+              "paired_median": 23.0,
+              "paired_95ci": [
+                -0.8781249999999998,
+                50.25312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.0,
+              "h3_mean": 0.0,
+              "paired_mean": 0.0,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8581666666666666,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.2733541666666667,
+              "paired_median": 0.28049999999999997,
+              "paired_95ci": [
+                0.20093385416666668,
+                0.33960416666666665
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7581875,
+              "h3_mean": 0.5452708333333334,
+              "paired_mean": 0.2129166666666667,
+              "paired_median": 0.22133333333333335,
+              "paired_95ci": [
+                0.1421661458333333,
+                0.2774333333333333
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 24.381250000000023,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -57.38125000000002,
+              "paired_median": -47.52500000000009,
+              "paired_95ci": [
+                -88.88125000000002,
+                -26.259531250000062
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 87.0,
+              "h3_mean": 150.75,
+              "paired_mean": -63.75,
+              "paired_median": -66.5,
+              "paired_95ci": [
+                -117.0,
+                -6.375
+              ]
+            },
+            "explored": {
+              "model_mean": 0.7482,
+              "h3_mean": 0.8576875,
+              "paired_mean": -0.1094875,
+              "paired_median": -0.1149,
+              "paired_95ci": [
+                -0.12829999999999997,
+                -0.0911609375
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 36.0,
+              "h3_mean": 23.125,
+              "paired_mean": 12.875,
+              "paired_median": 7.0,
+              "paired_95ci": [
+                -3.875,
+                31.375
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 205.875,
+              "h3_mean": 201.5,
+              "paired_mean": 4.375,
+              "paired_median": 6.5,
+              "paired_95ci": [
+                -6.625,
+                12.125
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 256.0,
+              "h3_mean": 248.875,
+              "paired_mean": 7.125,
+              "paired_median": 7.0,
+              "paired_95ci": [
+                -1.7562499999999996,
+                16.128124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 95293.5,
+              "h3_mean": 85662.5,
+              "paired_mean": 9631.0,
+              "paired_median": 9724.5,
+              "paired_95ci": [
+                -2400.75,
+                22475.715624999997
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5208333333333333,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5208333333333333,
+              "paired_median": 0.5333333333333333,
+              "paired_95ci": [
+                0.47072916666666664,
+                0.5666666666666667
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986083,
+              "burned_delta": 21
+            },
+            {
+              "seed": 986080,
+              "burned_delta": 87
+            },
+            {
+              "seed": 986085,
+              "burned_delta": 48
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 62
+            },
+            {
+              "seed": 986082,
+              "burned_delta": 25
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.03706732079585718,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 475.625,
+              "h3_mean": 458.625,
+              "paired_mean": 17.0,
+              "paired_median": 9.5,
+              "paired_95ci": [
+                -7.625,
+                46.75
+              ]
+            },
+            "depleted": {
+              "model_mean": 1.0,
+              "h3_mean": 0.0,
+              "paired_mean": 1.0,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                0.5,
+                1.5
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8891875,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.22312499999999996,
+              "paired_median": 0.25741666666666657,
+              "paired_95ci": [
+                0.17174947916666664,
+                0.26108333333333333
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7962916666666667,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.15510416666666665,
+              "paired_median": 0.17574999999999996,
+              "paired_95ci": [
+                0.07276145833333329,
+                0.2233151041666666
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 17.506250000000023,
+              "h3_mean": 40.625,
+              "paired_mean": -23.118749999999977,
+              "paired_median": -22.0,
+              "paired_95ci": [
+                -30.493906249999977,
+                -15.487656250000011
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 72.0,
+              "h3_mean": 80.125,
+              "paired_mean": -8.125,
+              "paired_median": -12.0,
+              "paired_95ci": [
+                -25.753125,
+                8.378124999999983
+              ]
+            },
+            "explored": {
+              "model_mean": 0.726475,
+              "h3_mean": 0.8796250000000001,
+              "paired_mean": -0.15315,
+              "paired_median": -0.1557,
+              "paired_95ci": [
+                -0.19494531250000002,
+                -0.11571218750000001
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 42.875,
+              "h3_mean": 18.875,
+              "paired_mean": 24.0,
+              "paired_median": 4.5,
+              "paired_95ci": [
+                -6.878125,
+                74.875
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 203.125,
+              "h3_mean": 196.5,
+              "paired_mean": 6.625,
+              "paired_median": 2.5,
+              "paired_95ci": [
+                1.25,
+                13.625
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 229.625,
+              "h3_mean": 243.25,
+              "paired_mean": -13.625,
+              "paired_median": -4.0,
+              "paired_95ci": [
+                -45.25,
+                10.375
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 86632.0,
+              "h3_mean": 77403.75,
+              "paired_mean": 9228.25,
+              "paired_median": 3896.0,
+              "paired_95ci": [
+                -1852.25,
+                22951.159375
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5659722222222222,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5659722222222222,
+              "paired_median": 0.5416666666666667,
+              "paired_95ci": [
+                0.5173611111111112,
+                0.6180555555555556
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986121,
+              "burned_delta": 68
+            },
+            {
+              "seed": 986126,
+              "burned_delta": 6
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 13
+            },
+            {
+              "seed": 986122,
+              "burned_delta": 82
+            },
+            {
+              "seed": 986123,
+              "burned_delta": 28
+            }
+          ]
+        }
+      }
+    },
+    {
+      "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v4_balanced_s1105/checkpoint_00768.pt",
+      "guard_pass": false,
+      "score": 0.05607664794158264,
+      "report": {
+        "3": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": 0.0036900369003690036,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 540.0,
+              "h3_mean": 542.0,
+              "paired_mean": -2.0,
+              "paired_median": -4.0,
+              "paired_95ci": [
+                -41.378125,
+                36.75
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.25,
+              "h3_mean": 0.0,
+              "paired_mean": 0.25,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.625
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.7086666666666667,
+              "h3_mean": 0.6036874999999999,
+              "paired_mean": 0.10497916666666665,
+              "paired_median": 0.1355833333333334,
+              "paired_95ci": [
+                0.03212135416666665,
+                0.17595937499999986
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.5455416666666666,
+              "h3_mean": 0.5536041666666667,
+              "paired_mean": -0.008062499999999993,
+              "paired_median": -0.00566666666666657,
+              "paired_95ci": [
+                -0.08093749999999998,
+                0.07116718749999985
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 89.625,
+              "h3_mean": 72.625,
+              "paired_mean": 17.0,
+              "paired_median": 15.5,
+              "paired_95ci": [
+                -22.5,
+                54.25
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 159.375,
+              "h3_mean": 137.25,
+              "paired_mean": 22.125,
+              "paired_median": 19.0,
+              "paired_95ci": [
+                -6.0,
+                49.00312499999998
+              ]
+            },
+            "explored": {
+              "model_mean": 0.716175,
+              "h3_mean": 0.8014125000000001,
+              "paired_mean": -0.08523750000000005,
+              "paired_median": -0.08365000000000006,
+              "paired_95ci": [
+                -0.13256625000000005,
+                -0.04298750000000004
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 83.75,
+              "h3_mean": 83.75,
+              "paired_mean": 0.0,
+              "paired_median": 5.0,
+              "paired_95ci": [
+                -61.625,
+                56.01249999999993
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 212.25,
+              "h3_mean": 205.25,
+              "paired_mean": 7.0,
+              "paired_median": 4.5,
+              "paired_95ci": [
+                2.375,
+                12.25
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 244.0,
+              "h3_mean": 253.0,
+              "paired_mean": -9.0,
+              "paired_median": -26.5,
+              "paired_95ci": [
+                -38.253125,
+                25.125
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 121118.125,
+              "h3_mean": 121894.75,
+              "paired_mean": -776.625,
+              "paired_median": -3709.5,
+              "paired_95ci": [
+                -18259.440625,
+                16714.265624999996
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.4791666666666667,
+              "h3_mean": 0.0,
+              "paired_mean": 0.4791666666666667,
+              "paired_median": 0.4722222222222222,
+              "paired_95ci": [
+                0.39583333333333337,
+                0.5694444444444444
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986000,
+              "burned_delta": 53
+            },
+            {
+              "seed": 986007,
+              "burned_delta": 51
+            },
+            {
+              "seed": 986004,
+              "burned_delta": 24
+            },
+            {
+              "seed": 986001,
+              "burned_delta": 74
+            }
+          ]
+        },
+        "4": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.1251968503937008,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 535.875,
+              "h3_mean": 476.25,
+              "paired_mean": 59.625,
+              "paired_median": 43.5,
+              "paired_95ci": [
+                16.0,
+                105.12812499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.125,
+              "h3_mean": 0.0,
+              "paired_mean": 0.125,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.375
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8387291666666667,
+              "h3_mean": 0.7148541666666666,
+              "paired_mean": 0.12387500000000004,
+              "paired_median": 0.10600000000000015,
+              "paired_95ci": [
+                0.041129687500000005,
+                0.21866093749999996
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7207916666666667,
+              "h3_mean": 0.6841458333333335,
+              "paired_mean": 0.03664583333333332,
+              "paired_median": -0.012416666666666742,
+              "paired_95ci": [
+                -0.04595833333333342,
+                0.13777187500000002
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 37.375,
+              "h3_mean": 42.887500000000045,
+              "paired_mean": -5.5125000000000455,
+              "paired_median": -10.0,
+              "paired_95ci": [
+                -33.878125,
+                24.118593749999864
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 106.25,
+              "h3_mean": 98.625,
+              "paired_mean": 7.625,
+              "paired_median": 8.5,
+              "paired_95ci": [
+                -34.009375,
+                42.5
+              ]
+            },
+            "explored": {
+              "model_mean": 0.741625,
+              "h3_mean": 0.8488625,
+              "paired_mean": -0.10723750000000001,
+              "paired_median": -0.0857,
+              "paired_95ci": [
+                -0.13988781249999996,
+                -0.07732093750000008
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 80.875,
+              "h3_mean": 31.625,
+              "paired_mean": 49.25,
+              "paired_median": 15.5,
+              "paired_95ci": [
+                5.3656250000000005,
+                97.00312499999998
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 213.25,
+              "h3_mean": 205.5,
+              "paired_mean": 7.75,
+              "paired_median": 7.0,
+              "paired_95ci": [
+                0.8718750000000002,
+                15.875
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 241.75,
+              "h3_mean": 239.125,
+              "paired_mean": 2.625,
+              "paired_median": 1.5,
+              "paired_95ci": [
+                -7.875,
+                14.503124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 113446.25,
+              "h3_mean": 89127.25,
+              "paired_mean": 24319.0,
+              "paired_median": 20173.0,
+              "paired_95ci": [
+                1055.8000000000002,
+                50279.52499999998
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.4114583333333333,
+              "h3_mean": 0.0,
+              "paired_mean": 0.4114583333333333,
+              "paired_median": 0.39583333333333337,
+              "paired_95ci": [
+                0.3541666666666667,
+                0.46875
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986044,
+              "burned_delta": 20
+            },
+            {
+              "seed": 986040,
+              "burned_delta": 2
+            },
+            {
+              "seed": 986047,
+              "burned_delta": 179
+            },
+            {
+              "seed": 986041,
+              "burned_delta": 117
+            },
+            {
+              "seed": 986046,
+              "burned_delta": 67
+            },
+            {
+              "seed": 986045,
+              "burned_delta": 108
+            }
+          ]
+        },
+        "5": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.07418162618796198,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 508.625,
+              "h3_mean": 473.5,
+              "paired_mean": 35.125,
+              "paired_median": 21.0,
+              "paired_95ci": [
+                13.625,
+                61.50312499999998
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.5,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.125,
+                1.0
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.8700625,
+              "h3_mean": 0.5848125,
+              "paired_mean": 0.28525,
+              "paired_median": 0.25399999999999995,
+              "paired_95ci": [
+                0.2252213541666667,
+                0.34485520833333333
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7713749999999999,
+              "h3_mean": 0.5452708333333334,
+              "paired_mean": 0.2261041666666667,
+              "paired_median": 0.19616666666666668,
+              "paired_95ci": [
+                0.16835624999999996,
+                0.2820005208333334
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 28.256250000000023,
+              "h3_mean": 81.76250000000005,
+              "paired_mean": -53.50625000000002,
+              "paired_median": -47.52500000000009,
+              "paired_95ci": [
+                -79.64046875000003,
+                -31.868749999999977
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 81.25,
+              "h3_mean": 150.75,
+              "paired_mean": -69.5,
+              "paired_median": -63.5,
+              "paired_95ci": [
+                -116.25625,
+                -23.25
+              ]
+            },
+            "explored": {
+              "model_mean": 0.7647875,
+              "h3_mean": 0.8576874999999999,
+              "paired_mean": -0.0929,
+              "paired_median": -0.09820000000000001,
+              "paired_95ci": [
+                -0.11740343749999999,
+                -0.06933625000000002
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 50.75,
+              "h3_mean": 23.125,
+              "paired_mean": 27.625,
+              "paired_median": 8.5,
+              "paired_95ci": [
+                4.625,
+                58.375
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 204.25,
+              "h3_mean": 201.5,
+              "paired_mean": 2.75,
+              "paired_median": 6.5,
+              "paired_95ci": [
+                -3.378125,
+                7.25
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 253.625,
+              "h3_mean": 248.875,
+              "paired_mean": 4.75,
+              "paired_median": 8.5,
+              "paired_95ci": [
+                -7.753125,
+                13.628124999999983
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 102520.25,
+              "h3_mean": 85662.5,
+              "paired_mean": 16857.75,
+              "paired_median": 17588.0,
+              "paired_95ci": [
+                3805.525,
+                31925.753125
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.49166666666666664,
+              "h3_mean": 0.0,
+              "paired_mean": 0.49166666666666664,
+              "paired_median": 0.5,
+              "paired_95ci": [
+                0.42916666666666664,
+                0.5458333333333334
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986083,
+              "burned_delta": 6
+            },
+            {
+              "seed": 986081,
+              "burned_delta": 87
+            },
+            {
+              "seed": 986085,
+              "burned_delta": 8
+            },
+            {
+              "seed": 986082,
+              "burned_delta": 11
+            },
+            {
+              "seed": 986080,
+              "burned_delta": 31
+            },
+            {
+              "seed": 986087,
+              "burned_delta": 93
+            },
+            {
+              "seed": 986086,
+              "burned_delta": 45
+            }
+          ]
+        },
+        "6": {
+          "episodes": 8,
+          "provisional": true,
+          "burn_reduction": -0.028618152085036794,
+          "engineering_thresholds_passed": false,
+          "metrics": {
+            "burned_cells": {
+              "model_mean": 471.75,
+              "h3_mean": 458.625,
+              "paired_mean": 13.125,
+              "paired_median": 4.5,
+              "paired_95ci": [
+                -15.253125,
+                43.0
+              ]
+            },
+            "depleted": {
+              "model_mean": 0.375,
+              "h3_mean": 0.0,
+              "paired_mean": 0.375,
+              "paired_median": 0.0,
+              "paired_95ci": [
+                0.0,
+                0.875
+              ]
+            },
+            "cov_mean": {
+              "model_mean": 0.879,
+              "h3_mean": 0.6660625,
+              "paired_mean": 0.21293749999999995,
+              "paired_median": 0.22649999999999992,
+              "paired_95ci": [
+                0.16012499999999996,
+                0.2626317708333332
+              ]
+            },
+            "uav_cov_mean": {
+              "model_mean": 0.7868958333333333,
+              "h3_mean": 0.6411875,
+              "paired_mean": 0.14570833333333333,
+              "paired_median": 0.15416666666666667,
+              "paired_95ci": [
+                0.06586041666666666,
+                0.2211124999999998
+              ]
+            },
+            "aoi_p95": {
+              "model_mean": 27.125,
+              "h3_mean": 40.625,
+              "paired_mean": -13.5,
+              "paired_median": -11.0,
+              "paired_95ci": [
+                -29.003125,
+                2.5
+              ]
+            },
+            "longest_disconnect": {
+              "model_mean": 90.5,
+              "h3_mean": 80.125,
+              "paired_mean": 10.375,
+              "paired_median": 6.5,
+              "paired_95ci": [
+                -11.75625,
+                36.125
+              ]
+            },
+            "explored": {
+              "model_mean": 0.7367375,
+              "h3_mean": 0.879625,
+              "paired_mean": -0.1428875,
+              "paired_median": -0.13724999999999998,
+              "paired_95ci": [
+                -0.1757375,
+                -0.11246187500000004
+              ]
+            },
+            "burning_cells": {
+              "model_mean": 29.375,
+              "h3_mean": 18.875,
+              "paired_mean": 10.5,
+              "paired_median": 1.0,
+              "paired_95ci": [
+                -5.375,
+                27.375
+              ]
+            },
+            "burned_out_cells": {
+              "model_mean": 199.5,
+              "h3_mean": 196.5,
+              "paired_mean": 3.0,
+              "paired_median": 2.0,
+              "paired_95ci": [
+                -3.375,
+                10.0
+              ]
+            },
+            "extinguished_cells": {
+              "model_mean": 242.875,
+              "h3_mean": 243.25,
+              "paired_mean": -0.375,
+              "paired_median": 5.0,
+              "paired_95ci": [
+                -13.875,
+                11.756249999999966
+              ]
+            },
+            "uncontained_exposure": {
+              "model_mean": 83221.5,
+              "h3_mean": 77403.75,
+              "paired_mean": 5817.75,
+              "paired_median": -588.0,
+              "paired_95ci": [
+                -7524.409375,
+                20084.5
+              ]
+            },
+            "override_per_100_uav_steps": {
+              "model_mean": 0.5798611111111112,
+              "h3_mean": 0.0,
+              "paired_mean": 0.5798611111111112,
+              "paired_median": 0.5694444444444444,
+              "paired_95ci": [
+                0.5347222222222222,
+                0.6319444444444444
+              ]
+            }
+          },
+          "failures": [
+            {
+              "seed": 986121,
+              "burned_delta": 85
+            },
+            {
+              "seed": 986123,
+              "burned_delta": 53
+            },
+            {
+              "seed": 986126,
+              "burned_delta": 16
+            },
+            {
+              "seed": 986127,
+              "burned_delta": 53
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

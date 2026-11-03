@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 40, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[58, 32], [52, 36], [46, 35]]}, {"task": "explore", "route": [[80, 37], [87, 37], [92, 32]]}, {"task": "explore", "route": [[23, 52], [23, 45], [29, 41]]}]}, "reason": "各火区剩余侧面补扫，避免到点等待；保持人员知识刷新。"}

@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 320, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "explore", "route": [[38, 67], [33, 73], [39, 79]]}, {"task": "explore", "target": [90, 70]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "中央北部用短折线扩展邻近未知带，东北直线继续。"}

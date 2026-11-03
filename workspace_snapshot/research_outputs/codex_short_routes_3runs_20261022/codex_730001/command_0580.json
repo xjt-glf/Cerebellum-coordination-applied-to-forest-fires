@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 580, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "route": [[56, 96], [63, 93], [66, 87]]}, {"task": "explore", "target": [60, 54]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "最后窗口北缘短弧补图，中央两机接近群组恢复AoI。"}

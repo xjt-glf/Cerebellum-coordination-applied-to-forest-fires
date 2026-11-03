@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 480, "plan": {"uavs": [{"task": "charge", "target": [90, 50]}, {"task": "explore", "target": [95, 95]}, {"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [3, 95]}]}, "reason": "替补UAV2已抵达人群附近，改为中继消除南侧漏链；旧中继完成最后补给距离，另外两架继续未完成角落补图。"}

@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 480, "plan": {"uavs": [{"task": "explore", "target": [66, 58]}, {"task": "explore", "target": [90, 30]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央替补还差8格，保持到位；已满电UAV1补东南大块未知图，东北和西南组不变。"}

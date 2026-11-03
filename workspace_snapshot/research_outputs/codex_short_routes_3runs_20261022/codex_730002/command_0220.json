@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 220, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 8}]}, "reason": "北侧充电完成的两机返回失联人员，南侧和中央保持现有链路。"}

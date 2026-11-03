@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 260, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "charge"}, {"task": "explore", "target": [95, 30]}, {"task": "explore", "target": [70, 95]}]}, "reason": "刚补满的UAV0接替北侧灭火队，电量102的UAV1立即就近补给；感知机刷新火场东缘并顺带覆盖人员，另一机拓展北边界。"}

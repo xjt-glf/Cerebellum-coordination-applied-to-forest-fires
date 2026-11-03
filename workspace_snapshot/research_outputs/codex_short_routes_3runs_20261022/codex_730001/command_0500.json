@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 500, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "route": [[14, 50], [20, 53], [22, 60]]}, {"task": "explore", "target": [8, 8]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "西中部短弧覆盖遗漏地图，西南角继续直飞探索。"}

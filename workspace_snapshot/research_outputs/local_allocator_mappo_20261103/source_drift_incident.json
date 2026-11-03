@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-11-03 21:55:25.031845",
+  "unexpected_mtime": "2026-11-03 21:37:18.497544",
+  "file": "/workspace/hrl_dqn_improve/experiments/local_allocator/model.py",
+  "difference": "Actor.act had reverted from tensor_obs(stack_obs([local_observation])) to tensor_obs(local_observation)",
+  "drift_sha256": "4ec6a3fe12f19e5e54df5804baee377dafb00d49fd2e493f62fa03dee18bf0e0",
+  "restored_sha256": "a1ef600e29b3fcbeda18e5597ebed96ccb38c4d5c62501293ed05497003bd0d5",
+  "evidence_archive": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/source_drift_model_213718.tar.gz",
+  "cause": "Unknown; no intended source edits at that timestamp. Earlier editor timeouts are recorded separately; causation not established.",
+  "evaluation_impact": "The change only affected independent Actor.act padding wrapper. All1800 main/v3/v4 evaluation episodes use Actor.forward on stacked inputs; forward and weights were unchanged. Robustness had finished before drift. Empty-set deployment act rechecked after exact archive restoration.",
+  "empty_set_actor_recheck": true,
+  "frozen_source_hashes_match": {
+    "frozen_manifest.json": true,
+    "v3_frozen_manifest.json": true,
+    "v4_frozen_manifest.json": true
+  }
+}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 220, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [73, 14]}]}, "reason": "南侧活火仍未合围，UAV3到火场东缘实测更新，而非只停在旧中继点；UAV2继续南下接恢复人员6的通信。"}

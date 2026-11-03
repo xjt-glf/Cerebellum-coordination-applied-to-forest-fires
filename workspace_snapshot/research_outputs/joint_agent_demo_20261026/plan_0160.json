@@ -1,0 +1,23 @@
+{
+  "expected_tick": 160,
+  "source": "codex_joint",
+  "reason": "三队均在执行扑救或接近火线，保持全部人员任务。U2先补给，满电U1前往东南接替U3，U3再维持一个窗口保障远端队的交接，U0随中南北侧人员前进。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 2
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    }
+  ],
+  "orders": []
+}

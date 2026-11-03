@@ -1,0 +1,83 @@
+[
+  {
+    "seed": 1103,
+    "old_pid": 1146,
+    "new_pid": 1732,
+    "command": [
+      "/opt/sglang/bin/python3",
+      "-u",
+      "-m",
+      "experiments.local_allocator.train",
+      "--seed",
+      "1103",
+      "--index",
+      "0",
+      "--workers",
+      "16",
+      "--batch-episodes",
+      "16",
+      "--seconds",
+      "3422",
+      "--device",
+      "cuda:0",
+      "--resume",
+      "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/latest.pt"
+    ],
+    "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/latest.pt",
+    "resumed_at": "2026-11-03 20:53:57.456652"
+  },
+  {
+    "seed": 1104,
+    "old_pid": 1192,
+    "new_pid": 1733,
+    "command": [
+      "/opt/sglang/bin/python3",
+      "-u",
+      "-m",
+      "experiments.local_allocator.train",
+      "--seed",
+      "1104",
+      "--index",
+      "1",
+      "--workers",
+      "16",
+      "--batch-episodes",
+      "16",
+      "--seconds",
+      "3422",
+      "--device",
+      "cuda:1",
+      "--resume",
+      "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/latest.pt"
+    ],
+    "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/latest.pt",
+    "resumed_at": "2026-11-03 20:53:57.457015"
+  },
+  {
+    "seed": 1105,
+    "old_pid": 1239,
+    "new_pid": 1734,
+    "command": [
+      "/opt/sglang/bin/python3",
+      "-u",
+      "-m",
+      "experiments.local_allocator.train",
+      "--seed",
+      "1105",
+      "--index",
+      "2",
+      "--workers",
+      "16",
+      "--batch-episodes",
+      "16",
+      "--seconds",
+      "3422",
+      "--device",
+      "cuda:2",
+      "--resume",
+      "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/latest.pt"
+    ],
+    "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/latest.pt",
+    "resumed_at": "2026-11-03 20:53:57.457346"
+  }
+]

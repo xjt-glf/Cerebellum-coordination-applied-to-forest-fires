@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 580, "plan": {"uavs": [{"task": "explore", "target": [60, 6]}, {"task": "relay", "rescuer_id": 10}, {"task": "explore", "route": [[94, 33], [94, 40], [88, 44]]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "最后窗口补南缘与东缘小片空白，人员双中继保持。"}

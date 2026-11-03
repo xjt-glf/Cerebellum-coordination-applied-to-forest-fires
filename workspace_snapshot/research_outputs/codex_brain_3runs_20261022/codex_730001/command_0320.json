@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 320, "plan": {"uavs": [{"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [60, 52]}, {"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [5, 12]}]}, "reason": "北部满电机接回东北三人；中央机沿两名行进人员的中间走廊提供覆盖，西南一架维持链路、一架补火场西侧。"}

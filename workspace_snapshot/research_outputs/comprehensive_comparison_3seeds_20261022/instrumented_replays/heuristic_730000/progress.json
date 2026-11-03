@@ -1,0 +1,8 @@
+{
+  "arm": "heuristic",
+  "seed": 730000,
+  "t": 600,
+  "elapsed_seconds": 13.23843879099877,
+  "api_calls": 30,
+  "api_fallbacks": 0
+}

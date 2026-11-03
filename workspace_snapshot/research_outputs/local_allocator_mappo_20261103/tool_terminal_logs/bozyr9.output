@@ -1,0 +1,19 @@
+status:   completed
+cwd: /ssd3/xiangjutao
+command description: Execute persisted contracts and simulator smoke checks
+started_at: 2026-11-03 20:06:57
+---
+{"n": 1, "seconds": 2.3258503589895554, "passed": true}
+{"n": 3, "seconds": 2.2025258039939217, "passed": true}
+{"n": 4, "seconds": 2.259633230045438, "passed": true}
+{"n": 5, "seconds": 2.1969674909487367, "passed": true}
+{"n": 6, "seconds": 2.276130866026506, "passed": true}
+{"n": 7, "seconds": 2.211755135038402, "passed": true}
+{"n": 8, "seconds": 2.2909510799800046, "passed": true}
+ALL_CONTRACTS_PASSED
+
+---
+exit_code: 0
+elapsed_ms: 129232
+ended_reason: Task has been completed
+ended_at: 2026-11-03 20:09:07

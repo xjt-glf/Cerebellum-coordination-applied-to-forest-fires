@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 300, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 8}, {"task": "charge"}, {"task": "explore", "target": [15, 18]}]}, "reason": "两架低电机分别就近补给；UAV3在西南火场东北缘刷新地图并覆盖周边人员，UAV1继续恢复中央孤立人员。"}

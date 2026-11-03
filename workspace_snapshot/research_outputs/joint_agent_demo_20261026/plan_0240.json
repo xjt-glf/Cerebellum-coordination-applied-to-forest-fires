@@ -1,0 +1,44 @@
+{
+  "expected_tick": 240,
+  "source": "codex_joint",
+  "reason": "全部火情已发现且已传给人员。3、4、10号原定扇区已无可作业位置，改为不限方向追踪东南残余火线。U0轮换补给；U1覆盖增援队，U3刷新最后火区，U2扩展东北搜索排查遗漏。",
+  "uavs": [
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        75,
+        70
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        85,
+        25
+      ]
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        3,
+        4,
+        10
+      ],
+      "task": "contain",
+      "target": [
+        86,
+        27
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

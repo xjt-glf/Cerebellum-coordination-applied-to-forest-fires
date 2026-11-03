@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 420, "plan": {"uavs": [{"task": "explore", "target": [70, 10]}, {"task": "relay", "target": [66, 58], "handover": false}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央探索任务被目标管理器自动改点，已离开人员；明确改为固定点中继，检验低层能否在两名静止人员之间保持位置，其余覆盖保持。"}

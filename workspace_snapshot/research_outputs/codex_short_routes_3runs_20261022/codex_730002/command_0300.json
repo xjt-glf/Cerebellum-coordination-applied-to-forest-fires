@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 300, "plan": {"uavs": [{"task": "explore", "route": [[14, 24], [14, 31], [20, 35]]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[12, 77], [12, 84], [18, 88]]}, {"task": "charge", "target": [90, 10]}]}, "reason": "西侧两机采用20步内折线扫相邻未知带，南侧中继近站补能。"}

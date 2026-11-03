@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 440, "plan": {"uavs": [{"task": "explore", "target": [66, 58]}, {"task": "charge"}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央固定点机已低电，立即补给；UAV0从南侧接替中央位置，下一轮核对真实到位和人员覆盖，不假设固定点指令必然精确。"}

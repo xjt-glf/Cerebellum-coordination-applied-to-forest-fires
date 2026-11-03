@@ -1,0 +1,12 @@
+# local environments and outputs
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+!.env.example
+research_outputs/
+runs/
+*.log

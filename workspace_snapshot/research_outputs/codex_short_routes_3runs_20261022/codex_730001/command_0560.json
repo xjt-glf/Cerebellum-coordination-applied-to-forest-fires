@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 560, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [50, 95]}, {"task": "explore", "target": [50, 45]}, {"task": "charge", "target": [90, 50]}]}, "reason": "北缘横向补图，中央直飞继续，东站机必须实际到站再离开。"}

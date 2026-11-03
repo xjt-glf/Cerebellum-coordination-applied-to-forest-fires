@@ -1,0 +1,40 @@
+{
+  "expected_tick": 180,
+  "source": "codex_joint",
+  "reason": "中南北侧已无可用火线，1、2号转向东南区增援，3—7号继续处理中南残余；8—10号保持东南三面作业。U3低电返航补给，U1接管东队通信，U0覆盖中南队，U2刷新中南西侧残余火情。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 4
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "explore",
+      "target": [
+        46,
+        25
+      ]
+    },
+    {
+      "task": "charge"
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2
+      ],
+      "task": "contain",
+      "target": [
+        86,
+        30
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

@@ -40,4 +40,14 @@ python -m unittest discover -s webapp/tests -v
 python lowlevel/train_lowlevel.py --help
 ```
 
-训练权重、课程与超参需另行配置。本仓库不含原始实验数据、训练运行目录、虚拟环境或早期“高层强化学习 + 底层启发式”版本。
+训练权重、课程与超参需另行配置。原始实验数据、训练运行目录和早期代码另见以下研究归档；本仓库不包含本机虚拟环境。
+
+
+## 研究工作区与历史资料（2026-11-03）
+
+- [研究工作区快照](workspace_snapshot/README.md)：实验源码、研究报告、数据、模型、最新 MAPPO 训练和评测记录；目录结构保持原工作区相对关系。
+- [历史启发式与强化学习代码](legacy/heuristic_rl/README.md)：早期代码、结果及原交付材料。
+- [旧版交付包](legacy/release_packages/)：历史发布包快照，不含嵌套 Git 元数据。
+- [研究图表、演示和参考资料](resources/README.md)：按主题分开放置文献、图表、幻灯片和素材。
+
+仓库根目录保留原有演示版。研究快照包含大量模型 checkpoint 和轨迹，文件体积较大；不同实验的配置、表现与局限请以各自报告为准。

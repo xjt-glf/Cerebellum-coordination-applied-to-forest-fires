@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 360, "plan": {"uavs": [{"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [74, 66]}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 6}]}, "reason": "西南火的开放边界已缩到南缘，保留东西两侧人员链路让队伍继续推进；中央机继续沿两名行进人员中点前移，东北机跟随。"}

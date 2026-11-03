@@ -1,0 +1,38 @@
+[
+  {
+    "name": "01-experiment.png",
+    "size": [
+      1672,
+      941
+    ],
+    "aspect": 1.7768331562167907,
+    "sha256": "4eec0aab3d546617fa53eff8fb9e16cc53ef81eefdb7a9976ce1cd39bbe9b3dc"
+  },
+  {
+    "name": "02-architecture.png",
+    "size": [
+      1672,
+      941
+    ],
+    "aspect": 1.7768331562167907,
+    "sha256": "185c36f81a3bac7eb44d55ac0b9f311175893995de79b6f627a1b1bf10f28387"
+  },
+  {
+    "name": "03-gap.png",
+    "size": [
+      1672,
+      941
+    ],
+    "aspect": 1.7768331562167907,
+    "sha256": "a9dcb1402e3b6136582ea1bd41e78343e3e9c5b174d3ef2debf159e7d543f307"
+  },
+  {
+    "name": "04-method.png",
+    "size": [
+      1672,
+      941
+    ],
+    "aspect": 1.7768331562167907,
+    "sha256": "2e51f4150075da7c022947fcc53c0cc9754b931033c2f871cc90c6147b801ccf"
+  }
+]

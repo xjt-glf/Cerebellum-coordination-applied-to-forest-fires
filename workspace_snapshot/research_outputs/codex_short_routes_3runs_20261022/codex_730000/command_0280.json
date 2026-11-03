@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 280, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "explore", "target": [45, 65]}, {"task": "charge", "target": [90, 10]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "火区全部合围，保留两机通信并释放一机大范围直线探索，另一机轮充。"}

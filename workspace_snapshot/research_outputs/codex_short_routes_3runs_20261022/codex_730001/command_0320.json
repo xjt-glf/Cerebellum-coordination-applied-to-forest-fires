@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 320, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "route": [[80, 94], [74, 94], [69, 89]]}, {"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [60, 52]}]}, "reason": "活火西北侧补扫，中央中继明确前移避免停在覆盖边缘。"}

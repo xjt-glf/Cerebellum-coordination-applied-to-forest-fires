@@ -1,0 +1,2 @@
+{"policy_loss": -0.013591742738046579, "entropy": 1.0966005722681682, "actor_grad_norm": 0.11931784223351213, "clip_fraction": 0.02797929114765591, "value_loss": 3.7993533611297607, "team_transitions": 480, "agent_samples": 2160, "episodes": 32, "updates": 2, "seconds": 95.11790168704465, "mean_burned": 547.1875}
+TRAINING_FINISHED episodes=32 updates=2

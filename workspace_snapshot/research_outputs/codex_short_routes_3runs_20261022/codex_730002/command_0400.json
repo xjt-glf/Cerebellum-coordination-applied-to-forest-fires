@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 400, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "charge", "target": [50, 10]}, {"task": "explore", "target": [90, 65]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "中央中继完成交班，低电机去南站；东机扫描右侧未知纵带。"}

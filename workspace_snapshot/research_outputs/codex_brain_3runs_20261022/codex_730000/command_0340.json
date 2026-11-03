@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 340, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [30, 30]}, {"task": "explore", "target": [30, 10]}, {"task": "charge"}]}, "reason": "东部单中继已覆盖全体，保持；西北低电机补给，中北满电机转向中央偏西大块未知区域，南机继续原航程。"}

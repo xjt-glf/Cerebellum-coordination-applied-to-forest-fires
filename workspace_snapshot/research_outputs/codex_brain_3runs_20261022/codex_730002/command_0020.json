@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 20, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [51, 50]}, {"task": "explore", "target": [38, 68]}, {"task": "explore", "target": [56, 15]}]}, "reason": "人员已获得首批地图；维持一架中继，让两架已完成的感知机补看各自火场另一侧，UAV3继续抵达南侧火场。"}

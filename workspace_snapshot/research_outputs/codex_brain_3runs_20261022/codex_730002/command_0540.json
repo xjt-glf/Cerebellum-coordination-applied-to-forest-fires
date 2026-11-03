@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 540, "plan": {"uavs": [{"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 6}, {"task": "charge"}]}, "reason": "南侧机电量200且离站14格，提前补给并计划下周期返回，另外三处分散人员覆盖保持，避免电量归零。"}

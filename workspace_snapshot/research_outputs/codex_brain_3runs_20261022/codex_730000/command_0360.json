@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 360, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [30, 30]}, {"task": "explore", "target": [10, 10]}, {"task": "explore", "target": [10, 30]}]}, "reason": "中继覆盖稳定，三架感知机补西南、中央西部和西边界，目标均来自当前未知分布。"}

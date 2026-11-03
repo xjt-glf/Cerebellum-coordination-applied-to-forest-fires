@@ -1,0 +1,37 @@
+/usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[eval] actor=experiments/lowlevel_training/runs/REL_s1303/actor_snap2.pt sha256=27f2a2c640d294de... split=quick workers=6
+{
+ "explore_arrival": 0.9940476190476191,
+ "explore_region_own": 0.9761904761904762,
+ "explore_n": 168,
+ "explore_arrival_near": 1.0,
+ "explore_arrival_mid": 1.0,
+ "explore_arrival_far": 0.9821428571428571,
+ "patrol_arrival": 0.9477611940298507,
+ "patrol_inband_after": 0.6694882393877392,
+ "patrol_n": 134,
+ "patrol_sectors_mean": 2.373134328358209,
+ "patrol_arrival_normal": 0.967391304347826,
+ "patrol_arrival_scarce": 0.9047619047619048,
+ "relay_arrival": 0.9226190476190477,
+ "relay_own_after": 0.7877354723659772,
+ "relay_team_after": 0.9853372434017594,
+ "relay_n": 168,
+ "charge_success": 1.0,
+ "charge_n": 56,
+ "exp_arrival_uav0": 1.0,
+ "pat_arrival_uav0": 0.918918918918919,
+ "relay_arrival_uav0": 0.875,
+ "exp_arrival_uav1": 1.0,
+ "pat_arrival_uav1": 0.972972972972973,
+ "relay_arrival_uav1": 0.9166666666666666,
+ "exp_arrival_uav2": 1.0,
+ "pat_arrival_uav2": 0.972972972972973,
+ "relay_arrival_uav2": 0.9375,
+ "exp_arrival_uav3": 0.9583333333333334,
+ "pat_arrival_uav3": 0.9130434782608695,
+ "relay_arrival_uav3": 1.0,
+ "n_errors": 0,
+ "n_records": 526
+}

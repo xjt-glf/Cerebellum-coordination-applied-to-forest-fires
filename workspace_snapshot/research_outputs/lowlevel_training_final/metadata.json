@@ -1,0 +1,118 @@
+{
+ "actor_file": "actor_selected.pt",
+ "actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+ "architecture": {
+  "obs_dim": 355,
+  "n_actions": 9,
+  "hidden": 384,
+  "n_layers": 2,
+  "global_dim": 8,
+  "note": "与 deliverable/model/actor_best.pt 同结构"
+ },
+ "contract_version": 2,
+ "contract_note": "UavOrder.to_vector 优先编码 resolve_order_target 的解析目标（rescuer_id 优先）",
+ "derived_from": {
+  "baseline_actor": "deliverable/model/actor_best.pt",
+  "baseline_sha256": "e70e3f6169704b7b4027974049d3505a9113e2d6cfd38ceef93e46b460271168"
+ },
+ "training": {
+  "trial_id": "P2BC_s1205",
+  "reward_version": "P2",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1205,
+  "actor_lr": 0.0001,
+  "ppo": {
+   "rollout": 128,
+   "clip": 0.15,
+   "ppo_epochs": 4,
+   "entropy_start": 0.02,
+   "entropy_final": 0.01,
+   "gamma": 0.99,
+   "gae_lambda": 0.95
+  },
+  "sampler": {
+   "replan_every": 20,
+   "role_randomized": true,
+   "focus_probs": {
+    "S1": [
+     0.35,
+     0.35,
+     0.15,
+     0.15
+    ],
+    "S2": [
+     0.3,
+     0.3,
+     0.2,
+     0.2
+    ]
+   },
+   "stage_steps": {
+    "S1": 2000000.0,
+    "S2": 5000000.0
+   }
+  },
+  "scope": {
+   "num_uavs": [
+    4
+   ],
+   "num_rescuers": [
+    10,
+    14
+   ],
+   "grid": "100x100",
+   "target_distance": "8-90 格（课程分档）",
+   "note": "训练分布 N=4；scarce(N=3) 通过参数共享外推，验收含 scarce"
+  }
+ },
+ "eval_protocol": {
+  "split": "quick 510000-510007 / final 520000+",
+  "metrics": "纯 Actor argmax，无 waypoint_assist/教师接管； relay=本机链路； explore=合法目标分层； patrol=每步解析环半径"
+ },
+ "resumable_ckpt": "ckpt_resumable.pt",
+ "final_acceptance": {
+  "split": "final holdout 520000-520019 x normal/scarce",
+  "n_records": 2510,
+  "n_errors": 0,
+  "vs_baseline": {
+   "explore_arrival": [
+    0.23,
+    1.0
+   ],
+   "explore_region_own_80pct": [
+    0.156,
+    0.974
+   ],
+   "patrol_arrival": [
+    0.402,
+    0.955
+   ],
+   "patrol_inband_after": [
+    0.398,
+    0.742
+   ],
+   "patrol_sectors_mean": [
+    1.297,
+    3.06
+   ],
+   "relay_arrival": [
+    0.658,
+    0.914
+   ],
+   "relay_own_after": [
+    0.699,
+    0.734
+   ],
+   "charge_success": [
+    1.0,
+    1.0
+   ]
+  },
+  "verdict": "provisional: 6/8 skill thresholds passed; patrol sectors and relay sustained coverage below threshold; mission guardrails partially failed (burned +56.8, rknown -7.1pp, AoI tail)",
+  "selected_trial": "P2BC_s1205",
+  "selected_actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "second_seed": "P2BC_s1204 (1317888 steps, quick split consistent)"
+ },
+ "delivery_time": "2026-10-14 06:20 CST"
+}

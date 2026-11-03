@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 360, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [10, 30]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [90, 50]}]}, "reason": "全场合围保持不变，西侧机向西南未知区推进，东侧机完成原补图与补给航程，中央两机维持分散人员通信。"}

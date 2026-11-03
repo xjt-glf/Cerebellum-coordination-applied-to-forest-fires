@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 220, "plan": {"uavs": [{"task": "explore", "target": [76, 79]}, {"task": "charge", "target": [50, 90]}, {"task": "explore", "target": [42, 40]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "唯一活火远端需要新观测；低电中央机去北站，南站机接替探索。"}

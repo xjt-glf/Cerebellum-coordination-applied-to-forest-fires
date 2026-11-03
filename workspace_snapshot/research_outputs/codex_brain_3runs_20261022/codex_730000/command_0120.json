@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 120, "plan": {"uavs": [{"task": "relay", "rescuer_id": 10}, {"task": "explore", "target": [70, 70]}, {"task": "explore", "target": [90, 75]}, {"task": "charge"}]}, "reason": "中继追北侧领头人员以居中覆盖主群和孤立人员；低电北侧机提前补给，其余两架分开拓展东北未知区。"}

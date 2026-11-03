@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 120, "plan": {"uavs": [{"task": "explore", "target": [90, 65]}, {"task": "relay", "rescuer_id": 6}, {"task": "charge"}, {"task": "relay", "rescuer_id": 2}]}, "reason": "满电东侧机向南扩图，UAV2就近北侧补给；两个中继保持已恢复的人员分组覆盖。"}

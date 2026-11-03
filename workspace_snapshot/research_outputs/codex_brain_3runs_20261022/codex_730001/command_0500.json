@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 500, "plan": {"uavs": [{"task": "relay", "target": [67, 58], "handover": false}, {"task": "explore", "target": [66, 58]}, {"task": "charge"}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央机已在可同时覆盖两人的位置，改固定点中继防止目标管理器再自动改点；UAV1提前赶来接替低电中央机，东北机近站补给。"}

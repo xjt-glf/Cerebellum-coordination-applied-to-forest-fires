@@ -1,0 +1,184 @@
+{
+  "paired_seeds": [
+    730000,
+    730001,
+    730002,
+    730003,
+    730004,
+    730005,
+    730006,
+    730007,
+    730008,
+    730009
+  ],
+  "stats": [
+    {
+      "metric": "burned_cells",
+      "label": "最终累计过火格数",
+      "direction": "lower",
+      "heuristic_mean": 543.4,
+      "llm_mean": 586.9,
+      "delta_mean": 43.5,
+      "bootstrap95": [
+        6.5,
+        78.2
+      ],
+      "signflip_two_sided_p": 0.060546875,
+      "llm_wins": 2,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "extinguished_cells",
+      "label": "最终已扑灭格数",
+      "direction": "higher",
+      "heuristic_mean": 242.6,
+      "llm_mean": 186.7,
+      "delta_mean": -55.9,
+      "bootstrap95": [
+        -85.2,
+        -27.3
+      ],
+      "signflip_two_sided_p": 0.0078125,
+      "llm_wins": 1,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "rknown",
+      "label": "最终人员火情认知率",
+      "direction": "higher",
+      "heuristic_mean": 0.8934678139305184,
+      "llm_mean": 0.5023085818775008,
+      "delta_mean": -0.39115923205301756,
+      "bootstrap95": [
+        -0.640369376649599,
+        -0.14470959053932475
+      ],
+      "signflip_two_sided_p": 0.046875,
+      "llm_wins": 1,
+      "ties": 3,
+      "pairs": 10
+    },
+    {
+      "metric": "explored",
+      "label": "最终探索率",
+      "direction": "higher",
+      "heuristic_mean": 0.84694,
+      "llm_mean": 0.6300899999999999,
+      "delta_mean": -0.21685,
+      "bootstrap95": [
+        -0.27676999999999996,
+        -0.16163
+      ],
+      "signflip_two_sided_p": 0.001953125,
+      "llm_wins": 0,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "mean_coverage",
+      "label": "全程平均通信覆盖率",
+      "direction": "higher",
+      "heuristic_mean": 0.7293499999999999,
+      "llm_mean": 0.7802333333333333,
+      "delta_mean": 0.05088333333333336,
+      "bootstrap95": [
+        -0.04558416666666668,
+        0.15241833333333316
+      ],
+      "signflip_two_sided_p": 0.361328125,
+      "llm_wins": 6,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "p95_person_aoi",
+      "label": "人员×时间 AoI 的 P95",
+      "direction": "lower",
+      "heuristic_mean": 27.2,
+      "llm_mean": 53.710000000000036,
+      "delta_mean": 26.510000000000037,
+      "bootstrap95": [
+        -6.895124999999982,
+        67.41512500000003
+      ],
+      "signflip_two_sided_p": 0.234375,
+      "llm_wins": 4,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "max_blackout_steps",
+      "label": "最长连续未覆盖步数",
+      "direction": "lower",
+      "heuristic_mean": 63.3,
+      "llm_mean": 103.2,
+      "delta_mean": 39.9,
+      "bootstrap95": [
+        -3.9,
+        89.8
+      ],
+      "signflip_two_sided_p": 0.1640625,
+      "llm_wins": 3,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "depleted_ever",
+      "label": "曾耗尽的无人机数",
+      "direction": "lower",
+      "heuristic_mean": 0.0,
+      "llm_mean": 0.2,
+      "delta_mean": 0.2,
+      "bootstrap95": [
+        0.0,
+        0.5
+      ],
+      "signflip_two_sided_p": 0.5,
+      "llm_wins": 0,
+      "ties": 8,
+      "pairs": 10
+    },
+    {
+      "metric": "instruction_changes",
+      "label": "指令改变次数（逐机）",
+      "direction": "descriptive",
+      "heuristic_mean": 71.0,
+      "llm_mean": 51.9,
+      "delta_mean": -19.1,
+      "bootstrap95": [
+        -25.3,
+        -11.9
+      ],
+      "signflip_two_sided_p": 0.005859375,
+      "llm_wins": 1,
+      "ties": 0,
+      "pairs": 10
+    }
+  ],
+  "api": {
+    "logical_calls": 300,
+    "successful_llm_decisions": 300,
+    "fallback_decisions": 0,
+    "prompt_tokens": 42623793,
+    "completion_tokens": 27382,
+    "latency_median_s": 17.620963166504225,
+    "latency_p95_s": 26.437032877111054,
+    "accounting": "Formal 300 decision responses, including already-paid replay prefix; see api_accounting.json for all actual expenditure"
+  },
+  "recovery_http_api_only": {
+    "logical_calls": 300,
+    "successful_llm_decisions": 300,
+    "fallback_decisions": 0,
+    "http_attempts": 91,
+    "failed_attempts": 0,
+    "latency_median_s": 0.00683716700586956,
+    "latency_p95_s": 17.701097464896158,
+    "prompt_tokens": 12759652,
+    "completion_tokens": 7937,
+    "returned_models": [
+      "qwen-plus"
+    ]
+  }
+}

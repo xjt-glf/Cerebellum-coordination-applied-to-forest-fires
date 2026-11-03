@@ -1,0 +1,132 @@
+[
+ {
+  "id": "P1_s1101",
+  "env_steps": 552960,
+  "reward": "P1",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1101,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P1_s1102",
+  "env_steps": 532480,
+  "reward": "P1",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1102,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P2_s1201",
+  "env_steps": 1310720,
+  "reward": "P2",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1201,
+  "actor_lr": 0.0002,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P2_s1202",
+  "env_steps": 1290240,
+  "reward": "P2",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1202,
+  "actor_lr": 0.0002,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P3_s1301",
+  "env_steps": 1024000,
+  "reward": "P1",
+  "roles": "randomized",
+  "init": "bc",
+  "seed": 1301,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P3_s1302",
+  "env_steps": 1024000,
+  "reward": "P1",
+  "roles": "randomized",
+  "init": "bc",
+  "seed": 1302,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "A_roles_s1401",
+  "env_steps": 512000,
+  "reward": "original",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1401,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "A_reward_s1501",
+  "env_steps": 532480,
+  "reward": "P1",
+  "roles": "legacy_fixed",
+  "init": "actor_only",
+  "seed": 1501,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "REL_s1303",
+  "env_steps": 1382400,
+  "reward": "P1R",
+  "roles": "randomized",
+  "init": "resume_exact",
+  "seed": 1303,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "REL_s1304",
+  "env_steps": 1291776,
+  "reward": "P1R",
+  "roles": "randomized",
+  "init": "resume_exact",
+  "seed": 1304,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P2_s1203",
+  "env_steps": 337920,
+  "reward": "P2",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1203,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P2BC_s1204",
+  "env_steps": 1317888,
+  "reward": "P2",
+  "roles": "randomized",
+  "init": "resume_exact",
+  "seed": 1204,
+  "actor_lr": 0.0001,
+  "status": "stopped_at_gate"
+ },
+ {
+  "id": "P2BC_s1205",
+  "env_steps": 1105920,
+  "reward": "P2",
+  "roles": "randomized",
+  "init": "actor_only",
+  "seed": 1205,
+  "actor_lr": 0.0001,
+  "status": "selected"
+ }
+]

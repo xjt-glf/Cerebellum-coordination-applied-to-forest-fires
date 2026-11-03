@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 540, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "target": [65, 58], "handover": false}, {"task": "relay", "rescuer_id": 2}, {"task": "charge"}]}, "reason": "中央机就地保持已验证能覆盖两人的实际位置；西南低电机在仍覆盖人群的近站补给，东北机改回人员中继，旧中央机完成返航。"}

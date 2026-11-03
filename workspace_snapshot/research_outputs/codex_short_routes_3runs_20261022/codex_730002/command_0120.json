@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 120, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 9}, {"task": "charge", "target": [50, 10]}]}, "reason": "三组通信保持，南侧机就近补能准备后续远程扫描。"}

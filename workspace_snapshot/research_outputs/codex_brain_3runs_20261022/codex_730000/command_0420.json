@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 420, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [30, 42]}, {"task": "explore", "target": [90, 30]}, {"task": "explore", "target": [3, 45]}]}, "reason": "UAV1与UAV2连续20步位置未变且均blocked，是相邻占位冲突；让UAV1先北移解锁通道，再让UAV2继续东行，西机补最西侧中段。"}

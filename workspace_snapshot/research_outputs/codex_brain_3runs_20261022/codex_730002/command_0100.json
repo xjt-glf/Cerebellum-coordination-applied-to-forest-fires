@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 100, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [90, 50]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [50, 10]}]}, "reason": "主中继改追南侧失联人员以覆盖分叉前线，北侧中继保持；两感知机分别经过东西真实补给点扩图与回充。"}

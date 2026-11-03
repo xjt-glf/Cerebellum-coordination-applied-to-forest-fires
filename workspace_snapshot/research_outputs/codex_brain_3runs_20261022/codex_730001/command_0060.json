@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 60, "plan": {"uavs": [{"task": "explore", "target": [82, 93]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [30, 65]}, {"task": "relay", "rescuer_id": 8}]}, "reason": "人员已分成两群，UAV3为西侧落后组接替覆盖，避免主中继东移后断链；UAV0补东北火场北侧，UAV2继续北侧扩图。"}

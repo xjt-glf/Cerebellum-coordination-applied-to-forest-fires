@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 60, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [68, 10]}, {"task": "explore", "target": [85, 24]}, {"task": "explore", "target": [30, 41]}]}, "reason": "东、西火场仍有未发现边界，分别换到未观测侧；满电UAV1沿南侧扩图，保持一架跟随人员。"}

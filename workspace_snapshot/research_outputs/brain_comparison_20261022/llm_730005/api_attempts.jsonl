@@ -1,0 +1,30 @@
+{"t": 0, "attempt": 1, "ok": true, "seconds": 16.97767754200322, "usage": {"prompt_tokens": 141271, "total_tokens": 141362, "completion_tokens": 91, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 20, "attempt": 1, "ok": true, "seconds": 17.967523291998077, "usage": {"prompt_tokens": 141775, "total_tokens": 141866, "completion_tokens": 91, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 40, "attempt": 1, "ok": true, "seconds": 17.999650582991308, "usage": {"prompt_tokens": 145047, "total_tokens": 145144, "completion_tokens": 97, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 60, "attempt": 1, "ok": true, "seconds": 18.042973208008334, "usage": {"prompt_tokens": 144982, "total_tokens": 145080, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 80, "attempt": 1, "ok": true, "seconds": 32.52409149998857, "usage": {"prompt_tokens": 145526, "total_tokens": 145624, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 100, "attempt": 1, "ok": true, "seconds": 17.792642542000976, "usage": {"prompt_tokens": 145458, "total_tokens": 145556, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 120, "attempt": 1, "ok": true, "seconds": 17.68015962500067, "usage": {"prompt_tokens": 144970, "total_tokens": 145068, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 140, "attempt": 1, "ok": true, "seconds": 17.86602508299984, "usage": {"prompt_tokens": 144919, "total_tokens": 145017, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 160, "attempt": 1, "ok": true, "seconds": 17.831966292011202, "usage": {"prompt_tokens": 144361, "total_tokens": 144459, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 180, "attempt": 1, "ok": true, "seconds": 17.740981040988117, "usage": {"prompt_tokens": 143677, "total_tokens": 143775, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 200, "attempt": 1, "ok": true, "seconds": 20.711782166996272, "usage": {"prompt_tokens": 143812, "total_tokens": 143910, "completion_tokens": 98, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 220, "attempt": 1, "ok": true, "seconds": 17.474319375003688, "usage": {"prompt_tokens": 143110, "total_tokens": 143207, "completion_tokens": 97, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 240, "attempt": 1, "ok": true, "seconds": 17.531130999996094, "usage": {"prompt_tokens": 143024, "total_tokens": 143121, "completion_tokens": 97, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 260, "attempt": 1, "ok": true, "seconds": 18.315999124999507, "usage": {"prompt_tokens": 142935, "total_tokens": 143011, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 280, "attempt": 1, "ok": true, "seconds": 17.306695999999647, "usage": {"prompt_tokens": 142878, "total_tokens": 142954, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 300, "attempt": 1, "ok": true, "seconds": 17.370517624993226, "usage": {"prompt_tokens": 142930, "total_tokens": 143006, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 320, "attempt": 1, "ok": true, "seconds": 29.894857416002196, "usage": {"prompt_tokens": 142903, "total_tokens": 142979, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 340, "attempt": 1, "ok": true, "seconds": 18.138888624991523, "usage": {"prompt_tokens": 142946, "total_tokens": 143022, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 360, "attempt": 1, "ok": true, "seconds": 17.742069707994233, "usage": {"prompt_tokens": 142670, "total_tokens": 142746, "completion_tokens": 76, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 380, "attempt": 1, "ok": true, "seconds": 17.7227117500006, "usage": {"prompt_tokens": 142487, "total_tokens": 142570, "completion_tokens": 83, "prompt_tokens_details": {"cached_tokens": 0}}, "returned_model": "qwen-plus"}
+{"t": 400, "attempt": 1, "ok": false, "seconds": 1.0343302919936832, "error": "HTTP Error 403: Forbidden"}
+{"t": 420, "attempt": 1, "ok": false, "seconds": 0.29151766700670123, "error": "HTTP Error 403: Forbidden"}
+{"t": 440, "attempt": 1, "ok": false, "seconds": 0.5048935000086203, "error": "HTTP Error 403: Forbidden"}
+{"t": 460, "attempt": 1, "ok": false, "seconds": 0.2913031670032069, "error": "HTTP Error 403: Forbidden"}
+{"t": 480, "attempt": 1, "ok": false, "seconds": 0.26126558298710734, "error": "HTTP Error 403: Forbidden"}
+{"t": 500, "attempt": 1, "ok": false, "seconds": 0.301078749995213, "error": "HTTP Error 403: Forbidden"}
+{"t": 520, "attempt": 1, "ok": false, "seconds": 0.3500588339957176, "error": "HTTP Error 403: Forbidden"}
+{"t": 540, "attempt": 1, "ok": false, "seconds": 0.7535648330085678, "error": "HTTP Error 403: Forbidden"}
+{"t": 560, "attempt": 1, "ok": false, "seconds": 0.36869762500282377, "error": "HTTP Error 403: Forbidden"}
+{"t": 580, "attempt": 1, "ok": false, "seconds": 0.5072183750016848, "error": "HTTP Error 403: Forbidden"}

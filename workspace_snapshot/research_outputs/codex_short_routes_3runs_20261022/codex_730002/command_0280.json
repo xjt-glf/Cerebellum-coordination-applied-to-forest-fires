@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 280, "plan": {"uavs": [{"task": "explore", "target": [20, 20]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "target": [20, 75]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "双中继保持全覆盖，两条直线继续探索，暂不强行生成航迹。"}

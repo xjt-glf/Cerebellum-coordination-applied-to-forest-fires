@@ -1,0 +1,67 @@
+{
+  "expected_tick": 60,
+  "source": "codex_joint",
+  "reason": "第三片火区[85,30]已发现，8—10号立即领受东南火区扑救任务，分别从西、南、北接近。至此10人全部获得明确扑救分工：1—4西区、5—7中南区、8—10东南区。U1/U3分别随中队及东队中继，U0/U2补全两端边界。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        33,
+        53
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        88,
+        34
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        8
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        30
+      ],
+      "approach_sector": "west",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        9
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        30
+      ],
+      "approach_sector": "south",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        10
+      ],
+      "task": "contain",
+      "target": [
+        85,
+        30
+      ],
+      "approach_sector": "north",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

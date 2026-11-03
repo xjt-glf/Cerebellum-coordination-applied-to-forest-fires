@@ -1,0 +1,4 @@
+[init] device=cuda obs_dim=105 n_actions=9 N=4 global=6 envs=40
+[    5/250] steps=    40000 ret/upd=   1434.4 pg=-0.0026 v=0.4430 ent=2.146 kl=+0.0021 | eval ret=nan cov=nan exp=nan depl=nan | 208 sps | 2.1 min
+[   10/250] steps=    80000 ret/upd=   4066.1 pg=-0.0026 v=0.1824 ent=2.004 kl=+0.0018 | eval ret=67.8 cov=0.833 exp=0.428 depl=4.0 | 177 sps | 6.1 min
+[   15/250] steps=   120000 ret/upd=   4438.7 pg=-0.0020 v=0.0816 ent=1.960 kl=+0.0039 | eval ret=nan cov=nan exp=nan depl=nan | 184 sps | 9.9 min

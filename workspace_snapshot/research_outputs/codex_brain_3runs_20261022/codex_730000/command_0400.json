@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 400, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [22, 22]}, {"task": "explore", "target": [90, 30]}, {"task": "explore", "target": [3, 5]}]}, "reason": "补中央西南角与最西南角遗漏；东向机继续为单中继补给准备接替，不因火场合围提前停止。"}

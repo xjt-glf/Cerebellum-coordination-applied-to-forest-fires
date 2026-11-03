@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 540, "plan": {"uavs": [{"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 10}, {"task": "charge", "target": [90, 10]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "中央交班完成后原机安全返南站，东机亦就近补能，双中继保留。"}

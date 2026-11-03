@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 80, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [49, 20]}, {"task": "explore", "target": [92, 15]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "人员开始分流，双中继分别覆盖两组，中央火区刷新，东南扩展。"}

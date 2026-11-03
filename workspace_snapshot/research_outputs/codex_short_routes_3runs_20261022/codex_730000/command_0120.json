@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 120, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [50, 36]}, {"task": "charge", "target": [90, 10]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "东机顺路补能，中央机向人员前方补图，其余中继不断。"}

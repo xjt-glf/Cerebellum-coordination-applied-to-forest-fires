@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 60, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [63, 56]}, {"task": "explore", "target": [44, 75]}, {"task": "explore", "target": [69, 15]}]}, "reason": "火情发现已超过九成，未完成局部观测继续执行；UAV2补北部火场东缘，暂不为重叠人员增加第二架中继。"}

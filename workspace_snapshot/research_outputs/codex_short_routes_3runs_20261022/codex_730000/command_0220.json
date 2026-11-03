@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 220, "plan": {"uavs": [{"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [80, 21]}]}, "reason": "西部低电机返南站，西组交班；东机补遗漏人员，充电完成机刷新唯一活火。"}

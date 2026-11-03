@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 240, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [87, 19]}, {"task": "explore", "target": [50, 95]}]}, "reason": "南侧低电机先补给，另一中继继续支持东部灭火队；感知机刷新东火场南缘，北侧机继续扩图。"}

@@ -1,0 +1,174 @@
+{
+  "paired_seeds": [
+    730000,
+    730001,
+    730002,
+    730003,
+    730004,
+    730005,
+    730006,
+    730007,
+    730008,
+    730009
+  ],
+  "stats": [
+    {
+      "metric": "burned_cells",
+      "label": "最终累计过火格数",
+      "direction": "lower",
+      "heuristic_mean": 543.4,
+      "llm_mean": 588.8,
+      "delta_mean": 45.4,
+      "bootstrap95": [
+        7.6975000000000025,
+        80.9
+      ],
+      "signflip_two_sided_p": 0.056640625,
+      "llm_wins": 2,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "extinguished_cells",
+      "label": "最终已扑灭格数",
+      "direction": "higher",
+      "heuristic_mean": 242.6,
+      "llm_mean": 189.7,
+      "delta_mean": -52.9,
+      "bootstrap95": [
+        -80.8,
+        -26.0
+      ],
+      "signflip_two_sided_p": 0.009765625,
+      "llm_wins": 1,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "rknown",
+      "label": "最终人员火情认知率",
+      "direction": "higher",
+      "heuristic_mean": 0.8934678139305184,
+      "llm_mean": 0.7059917647281109,
+      "delta_mean": -0.1874760492024076,
+      "bootstrap95": [
+        -0.3926478469327338,
+        -0.020224428662837295
+      ],
+      "signflip_two_sided_p": 0.09375,
+      "llm_wins": 2,
+      "ties": 3,
+      "pairs": 10
+    },
+    {
+      "metric": "explored",
+      "label": "最终探索率",
+      "direction": "higher",
+      "heuristic_mean": 0.84694,
+      "llm_mean": 0.69483,
+      "delta_mean": -0.15210999999999997,
+      "bootstrap95": [
+        -0.19995,
+        -0.10556975000000005
+      ],
+      "signflip_two_sided_p": 0.001953125,
+      "llm_wins": 0,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "mean_coverage",
+      "label": "全程平均通信覆盖率",
+      "direction": "higher",
+      "heuristic_mean": 0.7293499999999999,
+      "llm_mean": 0.7949833333333334,
+      "delta_mean": 0.06563333333333335,
+      "bootstrap95": [
+        -0.017451666666666667,
+        0.15351749999999992
+      ],
+      "signflip_two_sided_p": 0.19140625,
+      "llm_wins": 6,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "p95_person_aoi",
+      "label": "人员×时间 AoI 的 P95",
+      "direction": "lower",
+      "heuristic_mean": 27.2,
+      "llm_mean": 44.70500000000002,
+      "delta_mean": 17.505000000000017,
+      "bootstrap95": [
+        -12.494999999999981,
+        56.80500000000002
+      ],
+      "signflip_two_sided_p": 0.46875,
+      "llm_wins": 5,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "max_blackout_steps",
+      "label": "最长连续未覆盖步数",
+      "direction": "lower",
+      "heuristic_mean": 63.3,
+      "llm_mean": 93.6,
+      "delta_mean": 30.3,
+      "bootstrap95": [
+        -11.2,
+        79.30249999999978
+      ],
+      "signflip_two_sided_p": 0.265625,
+      "llm_wins": 5,
+      "ties": 0,
+      "pairs": 10
+    },
+    {
+      "metric": "depleted_ever",
+      "label": "曾耗尽的无人机数",
+      "direction": "lower",
+      "heuristic_mean": 0.0,
+      "llm_mean": 0.3,
+      "delta_mean": 0.3,
+      "bootstrap95": [
+        0.0,
+        0.6
+      ],
+      "signflip_two_sided_p": 0.25,
+      "llm_wins": 0,
+      "ties": 7,
+      "pairs": 10
+    },
+    {
+      "metric": "instruction_changes",
+      "label": "指令改变次数（逐机）",
+      "direction": "descriptive",
+      "heuristic_mean": 71.0,
+      "llm_mean": 57.4,
+      "delta_mean": -13.6,
+      "bootstrap95": [
+        -19.3,
+        -7.3
+      ],
+      "signflip_two_sided_p": 0.005859375,
+      "llm_wins": 1,
+      "ties": 0,
+      "pairs": 10
+    }
+  ],
+  "api": {
+    "logical_calls": 300,
+    "successful_llm_decisions": 222,
+    "fallback_decisions": 78,
+    "http_attempts": 305,
+    "failed_attempts": 83,
+    "latency_median_s": 17.522426854498917,
+    "latency_p95_s": 26.437032877111054,
+    "prompt_tokens": 31682470,
+    "completion_tokens": 20541,
+    "returned_models": [
+      "qwen-plus"
+    ]
+  }
+}

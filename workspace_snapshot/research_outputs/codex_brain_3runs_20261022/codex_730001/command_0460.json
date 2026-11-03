@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 460, "plan": {"uavs": [{"task": "explore", "target": [66, 58]}, {"task": "charge"}, {"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 9}]}, "reason": "中央替补尚未到位，继续原航程；旧中央机完成最后7格返航后才能重新分配，另两组保持稳定链路。"}

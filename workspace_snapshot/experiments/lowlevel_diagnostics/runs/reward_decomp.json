@@ -1,0 +1,1178 @@
+[
+ {
+  "regime": "normal",
+  "seed": 60000,
+  "uav": 0,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 75.0,
+  "d_end_actor": 34.9,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.5394823311918937,
+   "sense": 25.520000000000003,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "greedy_parts": {
+   "shape": 0.6531940291572679,
+   "sense": 3.36,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "actor_total": 25.499482331191896,
+  "greedy_total": 3.453194029157268
+ },
+ {
+  "regime": "normal",
+  "seed": 60000,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 50.9,
+  "d_end_actor": 88.1,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.04226189316267681,
+   "sense": 11.88,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "greedy_parts": {
+   "shape": 0.4103485281374239,
+   "sense": 18.52,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "actor_total": 11.362261893162676,
+  "greedy_total": 18.370348528137423
+ },
+ {
+  "regime": "normal",
+  "seed": 60000,
+  "uav": 2,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 65.1,
+  "d_end_actor": 54.6,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.3069922520311375,
+   "sense": 0.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "greedy_parts": {
+   "shape": 0.5428134529320373,
+   "sense": 2.76,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.33999999999999997
+  },
+  "actor_total": -0.25300774796886255,
+  "greedy_total": 2.6628134529320375
+ },
+ {
+  "regime": "normal",
+  "seed": 60000,
+  "uav": 3,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 73.6,
+  "d_end_actor": 92.7,
+  "d_end_greedy": 3.0,
+  "actor_parts": {
+   "shape": 0.22852215328499226,
+   "sense": 14.58,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "greedy_parts": {
+   "shape": 0.6481798631962365,
+   "sense": 7.4799999999999995,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.26
+  },
+  "actor_total": 14.248522153284993,
+  "greedy_total": 7.568179863196236
+ },
+ {
+  "regime": "normal",
+  "seed": 60001,
+  "uav": 0,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 91.2,
+  "d_end_actor": 77.3,
+  "d_end_greedy": 6.4,
+  "actor_parts": {
+   "shape": 0.40472984780057625,
+   "sense": 0.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "greedy_parts": {
+   "shape": 0.7874271636152577,
+   "sense": 0.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "actor_total": 0.30472984780057616,
+  "greedy_total": 0.6874271636152576
+ },
+ {
+  "regime": "normal",
+  "seed": 60001,
+  "uav": 1,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 78.7,
+  "d_end_actor": 82.1,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.2949371200442591,
+   "sense": 0.28,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "greedy_parts": {
+   "shape": 0.7123442411227923,
+   "sense": 0.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "actor_total": -0.005062879955740963,
+  "greedy_total": 0.13234424112279222
+ },
+ {
+  "regime": "normal",
+  "seed": 60001,
+  "uav": 2,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 55.2,
+  "d_end_actor": 42.0,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.2522703898575121,
+   "sense": 7.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "greedy_parts": {
+   "shape": 0.44539592646142495,
+   "sense": 0.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "actor_total": 6.672270389857513,
+  "greedy_total": -0.13460407353857512
+ },
+ {
+  "regime": "normal",
+  "seed": 60001,
+  "uav": 3,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 63.6,
+  "d_end_actor": 63.4,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.2289517453686467,
+   "sense": 1.32,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "greedy_parts": {
+   "shape": 0.5280946176130837,
+   "sense": 12.719999999999999,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.28
+  },
+  "actor_total": 0.9689517453686467,
+  "greedy_total": 12.668094617613084
+ },
+ {
+  "regime": "normal",
+  "seed": 60002,
+  "uav": 0,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 65.5,
+  "d_end_actor": 63.8,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.27823651202340743,
+   "sense": 0.4,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "greedy_parts": {
+   "shape": 0.567093372349154,
+   "sense": 13.8,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "actor_total": 0.058236512023407405,
+  "greedy_total": 13.747093372349154
+ },
+ {
+  "regime": "normal",
+  "seed": 60002,
+  "uav": 1,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 42.2,
+  "d_end_actor": 46.6,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.15409617801754572,
+   "sense": 5.5600000000000005,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "greedy_parts": {
+   "shape": 0.33224177847069025,
+   "sense": 2.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "actor_total": 5.094096178017546,
+  "greedy_total": 2.3522417784706904
+ },
+ {
+  "regime": "normal",
+  "seed": 60002,
+  "uav": 2,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 92.6,
+  "d_end_actor": 66.6,
+  "d_end_greedy": 7.8,
+  "actor_parts": {
+   "shape": 0.4670260988891731,
+   "sense": 3.6,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "greedy_parts": {
+   "shape": 0.7933744066300072,
+   "sense": 1.8800000000000001,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "actor_total": 3.447026098889173,
+  "greedy_total": 2.0533744066300073
+ },
+ {
+  "regime": "normal",
+  "seed": 60002,
+  "uav": 3,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 92.6,
+  "d_end_actor": 36.1,
+  "d_end_greedy": 7.8,
+  "actor_parts": {
+   "shape": 0.6288548025081842,
+   "sense": 5.6000000000000005,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "greedy_parts": {
+   "shape": 0.7933744066300072,
+   "sense": 10.6,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.32
+  },
+  "actor_total": 5.608854802508184,
+  "greedy_total": 10.773374406630008
+ },
+ {
+  "regime": "normal",
+  "seed": 60003,
+  "uav": 0,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 71.4,
+  "d_end_actor": 80.0,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.23049438023234647,
+   "sense": 0.16,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "greedy_parts": {
+   "shape": 0.6084263296785603,
+   "sense": 7.8,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "actor_total": -0.08950561976765357,
+  "greedy_total": 7.92842632967856
+ },
+ {
+  "regime": "normal",
+  "seed": 60003,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 69.6,
+  "d_end_actor": 85.1,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.20215928935468597,
+   "sense": 9.28,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "greedy_parts": {
+   "shape": 0.6030083140402078,
+   "sense": 5.16,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "actor_total": 9.002159289354687,
+  "greedy_total": 5.283008314040208
+ },
+ {
+  "regime": "normal",
+  "seed": 60003,
+  "uav": 2,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 91.9,
+  "d_end_actor": 74.0,
+  "d_end_greedy": 7.1,
+  "actor_parts": {
+   "shape": 0.4285387016186923,
+   "sense": 16.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "greedy_parts": {
+   "shape": 0.7906000000000002,
+   "sense": 10.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "actor_total": 16.42853870161869,
+  "greedy_total": 10.7906
+ },
+ {
+  "regime": "normal",
+  "seed": 60003,
+  "uav": 3,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 79.1,
+  "d_end_actor": 92.3,
+  "d_end_greedy": 5.0,
+  "actor_parts": {
+   "shape": 0.26154719388028647,
+   "sense": 13.76,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "greedy_parts": {
+   "shape": 0.6732583403939774,
+   "sense": 5.96,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.18
+  },
+  "actor_total": 13.541547193880287,
+  "greedy_total": 6.153258340393977
+ },
+ {
+  "regime": "normal",
+  "seed": 60004,
+  "uav": 0,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 67.6,
+  "d_end_actor": 38.3,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.436349614061955,
+   "sense": 6.94,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "greedy_parts": {
+   "shape": 0.5730687708486006,
+   "sense": 1.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "actor_total": 6.396349614061955,
+  "greedy_total": 1.0730687708486006
+ },
+ {
+  "regime": "normal",
+  "seed": 60004,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 54.6,
+  "d_end_actor": 45.5,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.255398594477056,
+   "sense": 0.84,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "greedy_parts": {
+   "shape": 0.4449463046586986,
+   "sense": 1.8,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "actor_total": 0.11539859447705592,
+  "greedy_total": 1.2649463046586986
+ },
+ {
+  "regime": "normal",
+  "seed": 60004,
+  "uav": 2,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 63.2,
+  "d_end_actor": 80.8,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.22912677682201316,
+   "sense": 21.36,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "greedy_parts": {
+   "shape": 0.5532095041282283,
+   "sense": 6.28,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "actor_total": 20.549126776822014,
+  "greedy_total": 5.713209504128229
+ },
+ {
+  "regime": "normal",
+  "seed": 60004,
+  "uav": 3,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 70.0,
+  "d_end_actor": 70.4,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.29475904078903437,
+   "sense": 30.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "greedy_parts": {
+   "shape": 0.6006476603952716,
+   "sense": 3.3200000000000003,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.68
+  },
+  "actor_total": 29.314759040789035,
+  "greedy_total": 2.9406476603952716
+ },
+ {
+  "regime": "normal",
+  "seed": 60005,
+  "uav": 0,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 77.1,
+  "d_end_actor": 82.7,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.30672903146963093,
+   "sense": 1.36,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "greedy_parts": {
+   "shape": 0.6686840012570511,
+   "sense": 7.28,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "actor_total": 0.886729031469631,
+  "greedy_total": 7.168684001257051
+ },
+ {
+  "regime": "normal",
+  "seed": 60005,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 70.0,
+  "d_end_actor": 35.2,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.4492167695733498,
+   "sense": 11.48,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "greedy_parts": {
+   "shape": 0.5942883821268369,
+   "sense": 3.88,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "actor_total": 11.14921676957335,
+  "greedy_total": 3.694288382126837
+ },
+ {
+  "regime": "normal",
+  "seed": 60005,
+  "uav": 2,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 74.6,
+  "d_end_actor": 72.4,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.3298365661955016,
+   "sense": 0.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "greedy_parts": {
+   "shape": 0.6523031654820977,
+   "sense": 3.08,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "actor_total": -0.4501634338044984,
+  "greedy_total": 2.9523031654820975
+ },
+ {
+  "regime": "normal",
+  "seed": 60005,
+  "uav": 3,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 75.3,
+  "d_end_actor": 83.0,
+  "d_end_greedy": 11.0,
+  "actor_parts": {
+   "shape": 0.2809908939310889,
+   "sense": 16.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "greedy_parts": {
+   "shape": 0.6147269955938052,
+   "sense": 0.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48
+  },
+  "actor_total": 16.14099089393109,
+  "greedy_total": -0.1652730044061948
+ },
+ {
+  "regime": "scarce",
+  "seed": 60000,
+  "uav": 0,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 60.4,
+  "d_end_actor": 59.6,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.260140745024126,
+   "sense": 0.16,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "greedy_parts": {
+   "shape": 0.49888269364710564,
+   "sense": 3.88,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "actor_total": -0.23985925497587407,
+  "greedy_total": 3.7188826936471058
+ },
+ {
+  "regime": "scarce",
+  "seed": 60000,
+  "uav": 1,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 74.1,
+  "d_end_actor": 60.1,
+  "d_end_greedy": 3.0,
+  "actor_parts": {
+   "shape": 0.4193739977245715,
+   "sense": 14.040000000000001,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "greedy_parts": {
+   "shape": 0.6379577441382178,
+   "sense": 5.84,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "actor_total": 13.79937399772457,
+  "greedy_total": 5.8179577441382175
+ },
+ {
+  "regime": "scarce",
+  "seed": 60000,
+  "uav": 2,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 61.5,
+  "d_end_actor": 80.8,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.1671977931248938,
+   "sense": 15.200000000000001,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "greedy_parts": {
+   "shape": 0.5138617616442501,
+   "sense": 1.76,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.36
+  },
+  "actor_total": 14.707197793124895,
+  "greedy_total": 1.61386176164425
+ },
+ {
+  "regime": "scarce",
+  "seed": 60001,
+  "uav": 0,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 90.5,
+  "d_end_actor": 80.2,
+  "d_end_greedy": 5.7,
+  "actor_parts": {
+   "shape": 0.4135972022184661,
+   "sense": 3.0,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "greedy_parts": {
+   "shape": 0.7847000000000001,
+   "sense": 6.92,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "actor_total": 2.813597202218466,
+  "greedy_total": 7.1047
+ },
+ {
+  "regime": "scarce",
+  "seed": 60001,
+  "uav": 1,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 52.4,
+  "d_end_actor": 66.5,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.07972842475375252,
+   "sense": 25.6,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "greedy_parts": {
+   "shape": 0.4349653789127149,
+   "sense": 7.5600000000000005,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "actor_total": 25.079728424753753,
+  "greedy_total": 7.394965378912715
+ },
+ {
+  "regime": "scarce",
+  "seed": 60001,
+  "uav": 2,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 82.1,
+  "d_end_actor": 74.6,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.3790462419796693,
+   "sense": 1.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "greedy_parts": {
+   "shape": 0.725418183837682,
+   "sense": 10.16,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.3
+  },
+  "actor_total": 1.4190462419796692,
+  "greedy_total": 10.285418183837683
+ },
+ {
+  "regime": "scarce",
+  "seed": 60002,
+  "uav": 0,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 62.2,
+  "d_end_actor": 13.9,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.465820866110277,
+   "sense": 30.360000000000003,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.86
+  },
+  "greedy_parts": {
+   "shape": 0.514187030714757,
+   "sense": 6.12,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.86
+  },
+  "actor_total": 29.66582086611028,
+  "greedy_total": 5.4741870307147575
+ },
+ {
+  "regime": "scarce",
+  "seed": 60002,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 75.8,
+  "d_end_actor": 51.4,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.38608052690752803,
+   "sense": 36.96,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.82
+  },
+  "greedy_parts": {
+   "shape": 0.6631408809924569,
+   "sense": 16.880000000000003,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.82
+  },
+  "actor_total": 36.22608052690753,
+  "greedy_total": 16.42314088099246
+ },
+ {
+  "regime": "scarce",
+  "seed": 60002,
+  "uav": 2,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 79.5,
+  "d_end_actor": 73.5,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.368676100463067,
+   "sense": 5.760000000000001,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.82
+  },
+  "greedy_parts": {
+   "shape": 0.6988441881045472,
+   "sense": 27.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.88
+  },
+  "actor_total": 5.0086761004630675,
+  "greedy_total": 27.15884418810455
+ },
+ {
+  "regime": "scarce",
+  "seed": 60003,
+  "uav": 0,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 82.9,
+  "d_end_actor": 50.8,
+  "d_end_greedy": 2.0,
+  "actor_parts": {
+   "shape": 0.5278804761415448,
+   "sense": 15.32,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.46
+  },
+  "greedy_parts": {
+   "shape": 0.7270578359551539,
+   "sense": 7.24,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.46
+  },
+  "actor_total": 15.087880476141546,
+  "greedy_total": 7.207057835955154
+ },
+ {
+  "regime": "scarce",
+  "seed": 60003,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 69.2,
+  "d_end_actor": 48.7,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.39665363926110464,
+   "sense": 12.92,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.46
+  },
+  "greedy_parts": {
+   "shape": 0.5908382127095335,
+   "sense": 5.5600000000000005,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.46
+  },
+  "actor_total": 12.556653639261105,
+  "greedy_total": 5.390838212709534
+ },
+ {
+  "regime": "scarce",
+  "seed": 60003,
+  "uav": 2,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 65.3,
+  "d_end_actor": 66.3,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.23988565473576023,
+   "sense": 18.28,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.52
+  },
+  "greedy_parts": {
+   "shape": 0.5544392381654363,
+   "sense": 0.04,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.48000000000000004
+  },
+  "actor_total": 17.699885654735763,
+  "greedy_total": -0.18556076183456383
+ },
+ {
+  "regime": "scarce",
+  "seed": 60004,
+  "uav": 0,
+  "target": [
+   25.0,
+   25.0
+  ],
+  "d_init": 54.9,
+  "d_end_actor": 63.6,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.21223472170156854,
+   "sense": 4.4,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.42000000000000004
+  },
+  "greedy_parts": {
+   "shape": 0.4696121009439808,
+   "sense": 6.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.58
+  },
+  "actor_total": 3.8922347217015685,
+  "greedy_total": 6.229612100943981
+ },
+ {
+  "regime": "scarce",
+  "seed": 60004,
+  "uav": 1,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 71.4,
+  "d_end_actor": 57.3,
+  "d_end_greedy": 0.0,
+  "actor_parts": {
+   "shape": 0.35186672313071293,
+   "sense": 2.96,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.54
+  },
+  "greedy_parts": {
+   "shape": 0.6161363755498999,
+   "sense": 3.2,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.52
+  },
+  "actor_total": 2.0118667231307126,
+  "greedy_total": 2.8961363755499
+ },
+ {
+  "regime": "scarce",
+  "seed": 60004,
+  "uav": 2,
+  "target": [
+   25.0,
+   75.0
+  ],
+  "d_init": 49.7,
+  "d_end_actor": 72.2,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.08219254037603069,
+   "sense": 5.92,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.54
+  },
+  "greedy_parts": {
+   "shape": 0.4006491586593616,
+   "sense": 6.8,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.54
+  },
+  "actor_total": 5.162192540376031,
+  "greedy_total": 6.360649158659362
+ },
+ {
+  "regime": "scarce",
+  "seed": 60005,
+  "uav": 0,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 38.9,
+  "d_end_actor": 47.1,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.09766950300880514,
+   "sense": 9.36,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "greedy_parts": {
+   "shape": 0.29378954873169344,
+   "sense": 2.56,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "actor_total": 8.377669503008805,
+  "greedy_total": 1.7737895487316935
+ },
+ {
+  "regime": "scarce",
+  "seed": 60005,
+  "uav": 1,
+  "target": [
+   75.0,
+   25.0
+  ],
+  "d_init": 66.5,
+  "d_end_actor": 47.0,
+  "d_end_greedy": 1.0,
+  "actor_parts": {
+   "shape": 0.3750022939198036,
+   "sense": 7.96,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "greedy_parts": {
+   "shape": 0.5582603588735542,
+   "sense": 13.8,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "actor_total": 7.255002293919803,
+  "greedy_total": 13.278260358873554
+ },
+ {
+  "regime": "scarce",
+  "seed": 60005,
+  "uav": 2,
+  "target": [
+   75.0,
+   75.0
+  ],
+  "d_init": 69.6,
+  "d_end_actor": 27.5,
+  "d_end_greedy": 5.0,
+  "actor_parts": {
+   "shape": 0.45863014772953703,
+   "sense": 24.18,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "greedy_parts": {
+   "shape": 0.5924252915595359,
+   "sense": 18.64,
+   "refresh": 0.0,
+   "time": -0.3,
+   "team": -0.78
+  },
+  "actor_total": 23.558630147729538,
+  "greedy_total": 18.152425291559535
+ }
+]

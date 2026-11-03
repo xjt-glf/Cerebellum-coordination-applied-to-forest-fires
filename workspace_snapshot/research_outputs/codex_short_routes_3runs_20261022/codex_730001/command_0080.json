@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 80, "plan": {"uavs": [{"task": "explore", "route": [[75, 91], [75, 84], [81, 79]]}, {"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [32, 30]}, {"task": "relay", "rescuer_id": 8}]}, "reason": "东部补火场西侧，西部两组人员分别保证通信。"}

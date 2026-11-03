@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 340, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [15, 50]}, {"task": "relay", "rescuer_id": 6}, {"task": "explore", "target": [90, 50]}]}, "reason": "中央机到位后改中继保持两人链路，西机向人群中心附近补图消除漏覆盖；南侧机暂拓展东部未知区域并经过充电点。"}

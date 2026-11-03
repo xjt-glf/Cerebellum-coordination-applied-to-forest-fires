@@ -1,0 +1,11 @@
+{
+  "actor": "actor_selected.pt",
+  "sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+  "obs_dim": 355,
+  "n_actions": 9,
+  "hidden": 384,
+  "n_layers": 2,
+  "contract_version": 2,
+  "status": "provisional",
+  "note": "当前新Actor；保留模型原始权重，未包含训练数据或优化器checkpoint。"
+}

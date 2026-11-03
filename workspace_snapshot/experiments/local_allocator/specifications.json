@@ -1,0 +1,26 @@
+{
+  "observation_version": "obs_v2",
+  "self_and_teammate_fields": ["absolute_x/map_height", "absolute_y/map_width", "energy/e_max", "clip((energy-cost*ChargeProtocol.steps_to_pad)/e_max,-1,1)", "nearest_pad_steps/max_map_extent", "actual_task_explore", "actual_task_relay", "actual_task_charge", "resolved_target_dx/map_height", "resolved_target_dy/map_width", "has_resolved_target", "clip(task_and_target_age/100,0,1)", "goal_invalid_or_complete", "last_step_task_overridden_by_charge_protection", "last_10_steps_stalled_outside_station", "energy_positive_or_at_station"],
+  "persons_fields": ["absolute_x/map_height", "absolute_y/map_width", "base_or_uav_covered", "clip(current_AoI/100,0,1)", "chebyshev_distance_to_base/max_map_extent", "chebyshev_nearest_uav_distance/max_map_extent", "known_fire_flag_zero_unavailable_per_person", "exists"],
+  "summary_fields": ["time/600", "remaining_time/600", "known_map_explored_fraction", "uav_coverage", "base_or_uav_coverage", "mean_current_AoI/100", "max_current_AoI/100", "uncovered_person_fraction", "known_uncontained_clusters/25", "known_burning_cell_fraction", "unknown_cell_fraction", "actual_explore_fraction", "actual_relay_fraction", "actual_charge_fraction", "min_energy/e_max", "mean_energy/e_max", "last_window_exploration_delta/map_cells", "last_window_total_coverage_mean", "last_window_uncovered_mean", "last_window_task_override_rate", "num_uavs/16", "num_persons/32"],
+  "map_fields": "25 tiles in row-major order, each unknown fraction then known burning fraction; 50 dimensions",
+  "normalization": "fixed physical scales, clip shared 72-dimensional context to [-1,1], no train/development/heldout fitting",
+  "set_masking": "sets padded per minibatch; mean and max exclude padding; empty pools zero; counts/16 and empty indicators; self excluded from teammates",
+  "critic": "all UAV entities once plus persons/map/summary; no repeated self; one scalar/team-time, no privileged truth",
+  "communication_version": "distributed_allocator_v1",
+  "broadcast_assumption": "two rounds, reliable synchronous common status/maps/persons then all task actions; ideal simulated exchange, no network delay claim",
+  "target_snapshot_fields": ["version", "t", "seed", "uavs(id,pos,energy,task,order,valid)", "persons(id,pos,covered,aoi)", "regions(id,center,unknown_count,known_fire_count)"],
+  "goal_validity": "explore target exists, age<100, not reached within Chebyshev2, its tile has unknown cells; relay ID exists; charge valid; duplicate preserved claims broken by ascending UAV ID",
+  "fallback": "unknown exhausted: known fire tiles else all tiles, rotate by t//20, no trustworthy timestamps assumed",
+  "reward_v1_count": {"burn_increment": -0.020, "uncontained_burning_per100": -0.002, "uncovered_fraction": -0.010, "new_explored_per100": 0.005, "first_offstation_depletion": -5.0, "requested_task_switch_excluding_t0": -0.020},
+  "reward_v2_normalized": "same coefficients, divide depletion and switch by number of active UAVs at window start; independent output run",
+  "known_limitations": [
+    "message_bytes measures JSON target-protocol snapshot and task map only; excludes extra raw status history/observation broadcasts and recipient fanout, so it is not complete wire traffic",
+    "protection_active is last physical-step task transition override, not a persistent protection latch",
+    "task age resets on effective goal changes as well as task changes",
+    "no explicit radio packet timestamp/checksum validation beyond common snapshot version, UAV ID set and three-action validity",
+    "goal duplicate fallback and no-timestamp fallback are deterministic but not separately counted in episode metrics",
+    "frozen movement Actor retains historical input design; new allocator and critic are isolated from truth",
+    "full guide acceptance includes further tests and evaluations; contracts.json alone is not overall acceptance"
+  ]
+}

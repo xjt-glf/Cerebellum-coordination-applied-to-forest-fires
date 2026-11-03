@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 520, "plan": {"uavs": [{"task": "explore", "target": [95, 55]}, {"task": "explore", "target": [95, 95]}, {"task": "relay", "target": [90, 28], "handover": false}, {"task": "explore", "target": [30, 95]}]}, "reason": "东部替补已精确到位，改固定点中继保持全员覆盖，释放另一架补东边界；东北低电机再完成最后一段后回充，西北机补上边界。"}

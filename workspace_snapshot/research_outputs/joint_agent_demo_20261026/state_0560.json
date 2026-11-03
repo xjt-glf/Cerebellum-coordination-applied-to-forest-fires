@@ -1,0 +1,1077 @@
+{
+  "status": "waiting_personnel",
+  "snapshot": {
+    "t": 560,
+    "communication": "existing_geometric_link; no rate/queue model",
+    "people": [
+      {
+        "id": 1,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-57"
+      },
+      {
+        "id": 2,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-58"
+      },
+      {
+        "id": 3,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-59"
+      },
+      {
+        "id": 4,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-60"
+      },
+      {
+        "id": 5,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-61"
+      },
+      {
+        "id": 6,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-62"
+      },
+      {
+        "id": 7,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-63"
+      },
+      {
+        "id": 8,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-64"
+      },
+      {
+        "id": 9,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-65"
+      },
+      {
+        "id": 10,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-66"
+      }
+    ],
+    "known_fire_clusters": [
+      {
+        "center": [
+          29.676470588235293,
+          46.0
+        ],
+        "size": 34,
+        "contained": true,
+        "approach": []
+      },
+      {
+        "center": [
+          49.12903225806452,
+          24.419354838709676
+        ],
+        "size": 31,
+        "contained": true,
+        "approach": []
+      },
+      {
+        "center": [
+          85.5,
+          25.733333333333334
+        ],
+        "size": 30,
+        "contained": true,
+        "approach": []
+      },
+      {
+        "center": [
+          88.0,
+          33.5
+        ],
+        "size": 2,
+        "contained": true,
+        "approach": []
+      }
+    ],
+    "events": [
+      {
+        "t": 180,
+        "person_id": 1,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-180-42",
+        "reason": "中南北侧已无可用火线，1、2号转向东南区增援，3—7号继续处理中南残余；8—10号保持东南三面作业。U3低电返航补给，U1接管东队通信，U0覆盖中南队，U2刷新中南西侧残余火情。"
+      },
+      {
+        "t": 180,
+        "person_id": 2,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-180-43",
+        "reason": "中南北侧已无可用火线，1、2号转向东南区增援，3—7号继续处理中南残余；8—10号保持东南三面作业。U3低电返航补给，U1接管东队通信，U0覆盖中南队，U2刷新中南西侧残余火情。"
+      },
+      {
+        "t": 180,
+        "person_id": 1,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-180-42",
+        "source": "codex_joint"
+      },
+      {
+        "t": 180,
+        "person_id": 2,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-180-43",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 3,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-44",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 4,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-45",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 5,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-46",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 6,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-47",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 7,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-48",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 8,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-200-49",
+        "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。"
+      },
+      {
+        "t": 200,
+        "person_id": 3,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-44",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 4,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-45",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 5,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-46",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 6,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-47",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 7,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-48",
+        "source": "codex_joint"
+      },
+      {
+        "t": 200,
+        "person_id": 8,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-200-49",
+        "source": "codex_joint"
+      },
+      {
+        "t": 220,
+        "person_id": 5,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-220-50",
+        "reason": "东南区南缘已清理，5—7、9号取消南向约束继续追踪残余；其他人保持增援或火线作业。U2继续北部搜索，其余三机维持人员覆盖，暂不重复派往已合围区域。"
+      },
+      {
+        "t": 220,
+        "person_id": 6,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-220-51",
+        "reason": "东南区南缘已清理，5—7、9号取消南向约束继续追踪残余；其他人保持增援或火线作业。U2继续北部搜索，其余三机维持人员覆盖，暂不重复派往已合围区域。"
+      },
+      {
+        "t": 220,
+        "person_id": 7,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-220-52",
+        "reason": "东南区南缘已清理，5—7、9号取消南向约束继续追踪残余；其他人保持增援或火线作业。U2继续北部搜索，其余三机维持人员覆盖，暂不重复派往已合围区域。"
+      },
+      {
+        "t": 220,
+        "person_id": 9,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-220-53",
+        "reason": "东南区南缘已清理，5—7、9号取消南向约束继续追踪残余；其他人保持增援或火线作业。U2继续北部搜索，其余三机维持人员覆盖，暂不重复派往已合围区域。"
+      },
+      {
+        "t": 220,
+        "person_id": 5,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-220-50",
+        "source": "codex_joint"
+      },
+      {
+        "t": 220,
+        "person_id": 6,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-220-51",
+        "source": "codex_joint"
+      },
+      {
+        "t": 220,
+        "person_id": 7,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-220-52",
+        "source": "codex_joint"
+      },
+      {
+        "t": 220,
+        "person_id": 9,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-220-53",
+        "source": "codex_joint"
+      },
+      {
+        "t": 240,
+        "person_id": 3,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-240-54",
+        "reason": "全部火情已发现且已传给人员。3、4、10号原定扇区已无可作业位置，改为不限方向追踪东南残余火线。U0轮换补给；U1覆盖增援队，U3刷新最后火区，U2扩展东北搜索排查遗漏。"
+      },
+      {
+        "t": 240,
+        "person_id": 4,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-240-55",
+        "reason": "全部火情已发现且已传给人员。3、4、10号原定扇区已无可作业位置，改为不限方向追踪东南残余火线。U0轮换补给；U1覆盖增援队，U3刷新最后火区，U2扩展东北搜索排查遗漏。"
+      },
+      {
+        "t": 240,
+        "person_id": 10,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-240-56",
+        "reason": "全部火情已发现且已传给人员。3、4、10号原定扇区已无可作业位置，改为不限方向追踪东南残余火线。U0轮换补给；U1覆盖增援队，U3刷新最后火区，U2扩展东北搜索排查遗漏。"
+      },
+      {
+        "t": 240,
+        "person_id": 3,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-240-54",
+        "source": "codex_joint"
+      },
+      {
+        "t": 240,
+        "person_id": 4,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-240-55",
+        "source": "codex_joint"
+      },
+      {
+        "t": 240,
+        "person_id": 10,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-240-56",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 1,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-57",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 2,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-58",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 3,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-59",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 4,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-60",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 5,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-61",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 6,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-62",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 7,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-63",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 8,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-64",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 9,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-65",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 10,
+        "event": "issued",
+        "task": "retreat",
+        "source": "codex_joint",
+        "order_id": "p-260-66",
+        "reason": "全部已知火区已完成合围，但不宣称残余燃烧格归零。全员撤往西部安全集结点[12,50]，避免任务完成后滞留火场。3、4号暂失联，U1优先靠近交付撤离令；U0/U3护送东队，U2继续东北排查。"
+      },
+      {
+        "t": 260,
+        "person_id": 1,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-57",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 2,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-58",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 5,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-61",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 6,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-62",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 7,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-63",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 8,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-64",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 9,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-65",
+        "source": "codex_joint"
+      },
+      {
+        "t": 260,
+        "person_id": 10,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-66",
+        "source": "codex_joint"
+      },
+      {
+        "t": 266,
+        "person_id": 3,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-59",
+        "source": "codex_joint"
+      },
+      {
+        "t": 266,
+        "person_id": 4,
+        "event": "activated",
+        "task": "retreat",
+        "order_id": "p-260-60",
+        "source": "codex_joint"
+      },
+      {
+        "t": 410,
+        "person_id": 3,
+        "event": "completed",
+        "order_id": "p-260-59"
+      },
+      {
+        "t": 410,
+        "person_id": 4,
+        "event": "completed",
+        "order_id": "p-260-60"
+      },
+      {
+        "t": 437,
+        "person_id": 6,
+        "event": "completed",
+        "order_id": "p-260-62"
+      },
+      {
+        "t": 438,
+        "person_id": 1,
+        "event": "completed",
+        "order_id": "p-260-57"
+      },
+      {
+        "t": 438,
+        "person_id": 2,
+        "event": "completed",
+        "order_id": "p-260-58"
+      },
+      {
+        "t": 442,
+        "person_id": 7,
+        "event": "completed",
+        "order_id": "p-260-63"
+      },
+      {
+        "t": 443,
+        "person_id": 5,
+        "event": "completed",
+        "order_id": "p-260-61"
+      },
+      {
+        "t": 473,
+        "person_id": 8,
+        "event": "completed",
+        "order_id": "p-260-64"
+      },
+      {
+        "t": 483,
+        "person_id": 10,
+        "event": "completed",
+        "order_id": "p-260-66"
+      },
+      {
+        "t": 493,
+        "person_id": 9,
+        "event": "completed",
+        "order_id": "p-260-65"
+      }
+    ],
+    "situation": {
+      "t": 560,
+      "H": 100,
+      "W": 100,
+      "charging_stations": [
+        [
+          10.0,
+          10.0
+        ],
+        [
+          10.0,
+          90.0
+        ],
+        [
+          90.0,
+          90.0
+        ],
+        [
+          90.0,
+          10.0
+        ],
+        [
+          10.0,
+          50.0
+        ],
+        [
+          50.0,
+          10.0
+        ],
+        [
+          50.0,
+          90.0
+        ],
+        [
+          90.0,
+          50.0
+        ]
+      ],
+      "base_pos": [
+        0.0,
+        50.0
+      ],
+      "explored": 0.829,
+      "discovery": 1.0,
+      "burned": 0.0393,
+      "coverage": 0.0,
+      "rescuer_known": 1.0,
+      "max_aoi": 39,
+      "clusters": [],
+      "rescuers": [
+        {
+          "id": 1,
+          "pos": [
+            12.3,
+            46.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 2,
+          "pos": [
+            12.3,
+            46.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 3,
+          "pos": [
+            12.3,
+            46.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 4,
+          "pos": [
+            12.3,
+            46.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 5,
+          "pos": [
+            12.3,
+            50.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 6,
+          "pos": [
+            12.3,
+            50.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 7,
+          "pos": [
+            12.3,
+            50.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 8,
+          "pos": [
+            12.3,
+            54.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 9,
+          "pos": [
+            12.3,
+            54.3
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 10,
+          "pos": [
+            12.3,
+            54.3
+          ],
+          "covered": true,
+          "aoi": 0
+        }
+      ],
+      "uavs": [
+        {
+          "id": 0,
+          "pos": [
+            70,
+            15
+          ],
+          "e": 358,
+          "margin": 306
+        },
+        {
+          "id": 1,
+          "pos": [
+            29,
+            74
+          ],
+          "e": 452,
+          "margin": 390
+        },
+        {
+          "id": 2,
+          "pos": [
+            4,
+            75
+          ],
+          "e": 500,
+          "margin": 460
+        },
+        {
+          "id": 3,
+          "pos": [
+            65,
+            54
+          ],
+          "e": 362,
+          "margin": 299
+        }
+      ]
+    },
+    "current_uav_orders": [
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          70.0,
+          15.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          30.0,
+          75.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          8.0,
+          65.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          65.0,
+          55.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      }
+    ],
+    "unknown_tiles": [
+      [
+        0,
+        0,
+        114
+      ],
+      [
+        0,
+        20,
+        107
+      ],
+      [
+        0,
+        40,
+        24
+      ],
+      [
+        0,
+        60,
+        64
+      ],
+      [
+        0,
+        80,
+        62
+      ],
+      [
+        20,
+        0,
+        108
+      ],
+      [
+        20,
+        20,
+        93
+      ],
+      [
+        20,
+        40,
+        0
+      ],
+      [
+        20,
+        60,
+        1
+      ],
+      [
+        20,
+        80,
+        148
+      ],
+      [
+        40,
+        0,
+        2
+      ],
+      [
+        40,
+        20,
+        0
+      ],
+      [
+        40,
+        40,
+        0
+      ],
+      [
+        40,
+        60,
+        5
+      ],
+      [
+        40,
+        80,
+        90
+      ],
+      [
+        60,
+        0,
+        10
+      ],
+      [
+        60,
+        20,
+        0
+      ],
+      [
+        60,
+        40,
+        10
+      ],
+      [
+        60,
+        60,
+        3
+      ],
+      [
+        60,
+        80,
+        200
+      ],
+      [
+        80,
+        0,
+        127
+      ],
+      [
+        80,
+        20,
+        114
+      ],
+      [
+        80,
+        40,
+        119
+      ],
+      [
+        80,
+        60,
+        148
+      ],
+      [
+        80,
+        80,
+        159
+      ]
+    ]
+  }
+}

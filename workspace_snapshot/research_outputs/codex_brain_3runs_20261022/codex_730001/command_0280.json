@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 280, "plan": {"uavs": [{"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 8}, {"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [10, 23]}]}, "reason": "中央远离主队的人员8已失联31步，UAV1前去恢复；西南感知机改看北缘并覆盖落后人员9/10，其余保持主要灭火队链路。"}

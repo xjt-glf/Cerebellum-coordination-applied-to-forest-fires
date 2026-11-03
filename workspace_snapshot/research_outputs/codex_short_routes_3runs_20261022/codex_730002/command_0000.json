@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 0, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[62, 45], [62, 52], [56, 57]]}, {"task": "explore", "target": [38, 81]}, {"task": "explore", "target": [56, 15]}]}, "reason": "一机靠近人员，三机感知不同火区，中央火区用19步局部弧线。"}

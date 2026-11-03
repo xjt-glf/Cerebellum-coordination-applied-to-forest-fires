@@ -1,0 +1,7 @@
+{
+  "seed": 730002,
+  "all_600_transitions_identical": true,
+  "actions_orders_metrics_positions_energy_aoi_identical": true,
+  "external_api_calls": 0,
+  "not_a_new_policy_trial": true
+}

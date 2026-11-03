@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 20, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[49, 55], [49, 48], [54, 44]]}, {"task": "explore", "route": [[31, 79], [31, 72], [37, 68]]}, {"task": "explore", "route": [[58, 9], [65, 9], [69, 15]]}]}, "reason": "三个火区分别执行20步内侧面扫描，保留人员中继。"}

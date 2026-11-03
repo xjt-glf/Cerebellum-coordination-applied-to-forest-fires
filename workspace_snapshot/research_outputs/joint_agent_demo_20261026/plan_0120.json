@@ -1,0 +1,53 @@
+{
+  "expected_tick": 120,
+  "source": "codex_joint",
+  "reason": "西区已合围，1—4号不是原地待命，全部转增援中南火区：1、2号从北侧，3、4号从东侧，5—7号继续西侧。东南队继续。U0先补给避免全队同时低电，U1保持中队通信，U2刷新中南南缘，U3移向东队8号补足覆盖。",
+  "uavs": [
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        50,
+        24
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2
+      ],
+      "task": "contain",
+      "target": [
+        50,
+        28
+      ],
+      "approach_sector": "north",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        3,
+        4
+      ],
+      "task": "contain",
+      "target": [
+        50,
+        28
+      ],
+      "approach_sector": "east",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

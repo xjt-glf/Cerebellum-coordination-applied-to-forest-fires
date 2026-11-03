@@ -1,0 +1,291 @@
+{
+  "seed": 730001,
+  "t": 580,
+  "metrics": {
+    "explored": 0.719,
+    "discovery": 1.0,
+    "rescuer_known": 1.0,
+    "coverage": 1.0,
+    "burned": 0.0498
+  },
+  "true_clusters": [
+    {
+      "xy": [
+        10.7,
+        12.9
+      ],
+      "size": 38,
+      "contained": true,
+      "unknown_boundary": 0
+    },
+    {
+      "xy": [
+        75.1,
+        85.6
+      ],
+      "size": 14,
+      "contained": true,
+      "unknown_boundary": 0
+    },
+    {
+      "xy": [
+        83.5,
+        82.0
+      ],
+      "size": 4,
+      "contained": true,
+      "unknown_boundary": 0
+    }
+  ],
+  "known_clusters": [],
+  "uavs": [
+    {
+      "id": 0,
+      "xy": [
+        87.0,
+        30.0
+      ],
+      "E": 550.0,
+      "task": "explore",
+      "target": [
+        95.0,
+        10.0
+      ],
+      "d": 21.5,
+      "done": false,
+      "arrived": false,
+      "roi": 0.0,
+      "link": []
+    },
+    {
+      "id": 1,
+      "xy": [
+        65.0,
+        58.0
+      ],
+      "E": 350.0,
+      "task": "comm_relay",
+      "target": [
+        65.0,
+        58.0
+      ],
+      "d": 0,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": 2,
+      "xy": [
+        89.0,
+        87.0
+      ],
+      "E": 452.5,
+      "task": "comm_relay",
+      "target": [
+        89.0,
+        87.5
+      ],
+      "d": 0.5,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "xy": [
+        11.0,
+        9.0
+      ],
+      "E": 600.0,
+      "task": "comm_relay",
+      "target": [
+        12.5,
+        8.0
+      ],
+      "d": 1.8,
+      "done": false,
+      "arrived": true,
+      "roi": 0,
+      "link": [
+        4,
+        6,
+        7,
+        9,
+        10
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": 1,
+      "xy": [
+        89.0,
+        90.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        2
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 2,
+      "xy": [
+        89.0,
+        87.5
+      ],
+      "aoi": 0.0,
+      "link": [
+        2
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 3,
+      "xy": [
+        89.0,
+        82.5
+      ],
+      "aoi": 0.0,
+      "link": [
+        2
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 4,
+      "xy": [
+        21.3,
+        8.3
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 5,
+      "xy": [
+        59.6,
+        50.6
+      ],
+      "aoi": 0.0,
+      "link": [
+        1
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 6,
+      "xy": [
+        5.5,
+        9.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 7,
+      "xy": [
+        6.7,
+        8.3
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 8,
+      "xy": [
+        72.6,
+        65.6
+      ],
+      "aoi": 0.0,
+      "link": [
+        1
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 9,
+      "xy": [
+        12.5,
+        8.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    },
+    {
+      "id": 10,
+      "xy": [
+        17.5,
+        7.0
+      ],
+      "aoi": 0.0,
+      "link": [
+        3
+      ],
+      "status": "idle"
+    }
+  ],
+  "unknown_tiles_x_rows_y_cols_centers_10_30_50_70_90": [
+    [
+      56,
+      41,
+      60,
+      220,
+      265
+    ],
+    [
+      104,
+      0,
+      85,
+      142,
+      171
+    ],
+    [
+      127,
+      1,
+      34,
+      46,
+      76
+    ],
+    [
+      183,
+      119,
+      0,
+      1,
+      141
+    ],
+    [
+      400,
+      208,
+      122,
+      128,
+      83
+    ]
+  ],
+  "wind": {
+    "wind_speed": 12,
+    "wind_direction_radians": 3.6036355894651146
+  }
+}

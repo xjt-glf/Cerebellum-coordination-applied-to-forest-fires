@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 380, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [15, 50]}, {"task": "charge"}, {"task": "explore", "target": [75, 15]}]}, "reason": "南中部低电机立即近站回充；西机返回三人群附近，东机返回南组附近补图和恢复AoI，中央中继保持。"}

@@ -1,0 +1,431 @@
+{
+  "seed": 941101,
+  "boundary": 20,
+  "object_links": {
+    "personnel_env_is_running_env": false,
+    "goals_env_is_running_env": false,
+    "charging_wrapper_is_running_env": false,
+    "charging_goals_is_active_goals": false,
+    "env_controller_is_personnel": true
+  },
+  "source_cases": {
+    "manual_main_session": {
+      "requested": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "actual": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      }
+    },
+    "joint_heuristic": {
+      "requested": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "actual": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      }
+    },
+    "codex_joint": {
+      "requested": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "actual": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      }
+    },
+    "shared_model": {
+      "requested": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "actual": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          25.0,
+          25.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      }
+    }
+  },
+  "counterexamples": [
+    {
+      "candidate": "uav_relay_target",
+      "requested": {
+        "task": "relay",
+        "rescuer_id": 1,
+        "handover": true
+      },
+      "running_env_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "goal_copy_order": {
+        "task": "comm_relay",
+        "mode": "explore",
+        "target": null,
+        "ring_radius": null,
+        "rescuer_id": 1,
+        "proactive_handover": true
+      },
+      "delta": {
+        "explored": -0.0025000000000000022
+      },
+      "execution_label": "overridden"
+    },
+    {
+      "candidate": "uav_explore_target",
+      "requested": {
+        "task": "explore",
+        "target": [
+          25.0,
+          25.0
+        ]
+      },
+      "running_env_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "goal_copy_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "delta": {},
+      "execution_label": "overridden"
+    },
+    {
+      "candidate": "uav_charge",
+      "requested": {
+        "task": "charge"
+      },
+      "running_env_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "goal_copy_order": {
+        "task": "recharge",
+        "mode": "explore",
+        "target": null,
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "delta": {
+        "explored": -0.0011000000000000176
+      },
+      "execution_label": "overridden"
+    },
+    {
+      "candidate": "person_retreat",
+      "requested": {
+        "task": "explore",
+        "target": [
+          25.0,
+          25.0
+        ]
+      },
+      "running_env_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "goal_copy_order": {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          86.0,
+          93.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      "delta": {
+        "explored": -0.0018000000000000238
+      },
+      "execution_label": "delivered"
+    }
+  ],
+  "data_counts": {
+    "noop_h20": {
+      "n": 738,
+      "all_zero": 738,
+      "zero_ext": 738,
+      "zero_cov": 738,
+      "overridden": 0
+    },
+    "noop_h60": {
+      "n": 738,
+      "all_zero": 738,
+      "zero_ext": 738,
+      "zero_cov": 738,
+      "overridden": 0
+    },
+    "noop_h120": {
+      "n": 738,
+      "all_zero": 738,
+      "zero_ext": 738,
+      "zero_cov": 738,
+      "overridden": 0
+    },
+    "person_approach_sector_h20": {
+      "n": 440,
+      "all_zero": 435,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_approach_sector_h60": {
+      "n": 440,
+      "all_zero": 436,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_approach_sector_h120": {
+      "n": 440,
+      "all_zero": 437,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_contain_target_h20": {
+      "n": 440,
+      "all_zero": 440,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_contain_target_h60": {
+      "n": 440,
+      "all_zero": 440,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_contain_target_h120": {
+      "n": 440,
+      "all_zero": 440,
+      "zero_ext": 440,
+      "zero_cov": 440,
+      "overridden": 0
+    },
+    "person_retreat_h20": {
+      "n": 738,
+      "all_zero": 731,
+      "zero_ext": 738,
+      "zero_cov": 737,
+      "overridden": 0
+    },
+    "person_retreat_h60": {
+      "n": 738,
+      "all_zero": 730,
+      "zero_ext": 736,
+      "zero_cov": 736,
+      "overridden": 0
+    },
+    "person_retreat_h120": {
+      "n": 738,
+      "all_zero": 729,
+      "zero_ext": 736,
+      "zero_cov": 735,
+      "overridden": 0
+    },
+    "uav_charge_h20": {
+      "n": 678,
+      "all_zero": 263,
+      "zero_ext": 676,
+      "zero_cov": 645,
+      "overridden": 619
+    },
+    "uav_charge_h60": {
+      "n": 678,
+      "all_zero": 206,
+      "zero_ext": 670,
+      "zero_cov": 624,
+      "overridden": 619
+    },
+    "uav_charge_h120": {
+      "n": 678,
+      "all_zero": 216,
+      "zero_ext": 660,
+      "zero_cov": 629,
+      "overridden": 619
+    },
+    "uav_explore_target_h20": {
+      "n": 738,
+      "all_zero": 535,
+      "zero_ext": 737,
+      "zero_cov": 711,
+      "overridden": 733
+    },
+    "uav_explore_target_h60": {
+      "n": 738,
+      "all_zero": 514,
+      "zero_ext": 736,
+      "zero_cov": 706,
+      "overridden": 733
+    },
+    "uav_explore_target_h120": {
+      "n": 738,
+      "all_zero": 517,
+      "zero_ext": 734,
+      "zero_cov": 703,
+      "overridden": 733
+    },
+    "uav_relay_target_h20": {
+      "n": 738,
+      "all_zero": 413,
+      "zero_ext": 737,
+      "zero_cov": 718,
+      "overridden": 644
+    },
+    "uav_relay_target_h60": {
+      "n": 738,
+      "all_zero": 380,
+      "zero_ext": 735,
+      "zero_cov": 706,
+      "overridden": 644
+    },
+    "uav_relay_target_h120": {
+      "n": 738,
+      "all_zero": 385,
+      "zero_ext": 727,
+      "zero_cov": 712,
+      "overridden": 644
+    }
+  },
+  "test_samples": 1509,
+  "f1": {
+    "execution": {
+      "class_counts": {
+        "1": 519,
+        "2": 686,
+        "0": 304
+      },
+      "training_candidate_and_horizon_majority_f1": 0.5667547115453956,
+      "model_f1": 0.867531158612095
+    },
+    "maturity": {
+      "class_counts": {
+        "0": 1175,
+        "2": 99,
+        "1": 132,
+        "3": 103
+      },
+      "training_candidate_and_horizon_majority_f1": 0.37786048949350887,
+      "model_f1": 0.5497969766603514
+    }
+  },
+  "corrected_ranks": {
+    "burned_cells": {
+      "zero_fraction": 0.9920477137176938,
+      "spearman_tie_aware": 0.007376133083355345
+    },
+    "extinguished_cells": {
+      "zero_fraction": 0.9887342611000662,
+      "spearman_tie_aware": -0.0016832337293360916
+    },
+    "coverage": {
+      "zero_fraction": 0.9622266401590457,
+      "spearman_tie_aware": -0.057943967756034144
+    }
+  },
+  "model_hashes": {
+    "checkpoint_2.pt": "99b43d773ab01d796d925a9d67d0792fb05384e26d1354fb85b9a99e6a1cd809",
+    "checkpoint_0.pt": "4a9d80e5b0dbde455d3e385c82d2a0bad6d96868bbe1fc6bf4df0168da9b48d5",
+    "checkpoint_1.pt": "886875b6ef1929cc06fee3664fd0a0dbc41f3ff57d7cad12e79f583d5ad04928"
+  }
+}

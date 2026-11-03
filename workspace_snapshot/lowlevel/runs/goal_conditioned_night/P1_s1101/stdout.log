@@ -1,0 +1,31 @@
+/usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[init] actor_only <- /ssd3/xiangjutao/hrl_dqn_improve/deliverable/model/actor_best.pt (hidden=384)
+[train] P1_s1101 device=cuda:0 envs=32 workers=16 steps/update=4096 resume_steps=0
+[P1_s1101      5] steps=     20480 ret=  1271.0 pg=+0.0000 v=0.3413 ent=0.847 kl=+0.0000 cf=0.000 gn=0.00 | E/P/R/C=0.31/0.17/0.41/0.11 arr(x/p/r/c)=0.14/0.28/0.58/0.33 | 212 sps | 3min
+[P1_s1101     10] steps=     40960 ret=   934.0 pg=-0.0044 v=0.2159 ent=0.774 kl=+0.0021 cf=0.024 gn=0.33 | E/P/R/C=0.30/0.17/0.41/0.12 arr(x/p/r/c)=0.13/0.33/0.58/0.37 | 215 sps | 5min
+[P1_s1101     15] steps=     61440 ret=  1213.6 pg=-0.0041 v=0.2902 ent=0.671 kl=+0.0013 cf=0.041 gn=0.33 | E/P/R/C=0.29/0.17/0.42/0.12 arr(x/p/r/c)=0.12/0.27/0.56/0.37 | 460 sps | 7min
+[P1_s1101     20] steps=     81920 ret=  1344.5 pg=-0.0049 v=0.1816 ent=0.737 kl=+0.0022 cf=0.030 gn=0.36 | E/P/R/C=0.27/0.20/0.43/0.10 arr(x/p/r/c)=0.15/0.26/0.59/0.34 | 430 sps | 9min
+[P1_s1101     25] steps=    102400 ret=  1472.9 pg=-0.0054 v=0.1667 ent=0.823 kl=+0.0016 cf=0.025 gn=0.36 | E/P/R/C=0.28/0.18/0.42/0.12 arr(x/p/r/c)=0.16/0.31/0.58/0.32 | 234 sps | 12min
+[P1_s1101     30] steps=    122880 ret=  1197.6 pg=-0.0058 v=0.1248 ent=0.792 kl=+0.0017 cf=0.032 gn=0.35 | E/P/R/C=0.31/0.19/0.39/0.12 arr(x/p/r/c)=0.17/0.31/0.59/0.37 | 179 sps | 14min
+[P1_s1101     35] steps=    143360 ret=  1112.5 pg=-0.0047 v=0.1234 ent=0.863 kl=+0.0018 cf=0.021 gn=0.33 | E/P/R/C=0.28/0.20/0.41/0.12 arr(x/p/r/c)=0.16/0.29/0.58/0.37 | 103 sps | 17min
+[P1_s1101     40] steps=    163840 ret=  1237.1 pg=-0.0049 v=0.1520 ent=0.896 kl=+0.0011 cf=0.019 gn=0.35 | E/P/R/C=0.28/0.18/0.43/0.11 arr(x/p/r/c)=0.17/0.31/0.58/0.38 | 100 sps | 19min
+[P1_s1101     45] steps=    184320 ret=  1482.7 pg=-0.0054 v=0.1560 ent=0.997 kl=+0.0023 cf=0.033 gn=0.35 | E/P/R/C=0.27/0.17/0.45/0.12 arr(x/p/r/c)=0.20/0.33/0.58/0.34 | 123 sps | 22min
+[P1_s1101     50] steps=    204800 ret=  1391.6 pg=-0.0049 v=0.1215 ent=1.062 kl=+0.0021 cf=0.035 gn=0.36 | E/P/R/C=0.27/0.15/0.46/0.12 arr(x/p/r/c)=0.20/0.35/0.61/0.35 | 108 sps | 24min
+[P1_s1101     55] steps=    225280 ret=  1655.2 pg=-0.0054 v=0.1412 ent=1.071 kl=+0.0020 cf=0.035 gn=0.36 | E/P/R/C=0.27/0.18/0.43/0.12 arr(x/p/r/c)=0.20/0.33/0.59/0.37 | 112 sps | 26min
+[P1_s1101     60] steps=    245760 ret=  1747.9 pg=-0.0043 v=0.1665 ent=1.095 kl=+0.0016 cf=0.025 gn=0.34 | E/P/R/C=0.27/0.18/0.44/0.12 arr(x/p/r/c)=0.25/0.38/0.63/0.35 | 157 sps | 29min
+[P1_s1101     65] steps=    266240 ret=  1986.9 pg=-0.0044 v=0.1845 ent=1.102 kl=+0.0023 cf=0.039 gn=0.35 | E/P/R/C=0.29/0.14/0.45/0.11 arr(x/p/r/c)=0.22/0.39/0.63/0.36 | 100 sps | 31min
+[P1_s1101     70] steps=    286720 ret=  1640.7 pg=-0.0041 v=0.1416 ent=1.152 kl=+0.0018 cf=0.028 gn=0.33 | E/P/R/C=0.28/0.18/0.43/0.12 arr(x/p/r/c)=0.23/0.39/0.61/0.37 | 122 sps | 33min
+[P1_s1101     75] steps=    307200 ret=  1986.1 pg=-0.0051 v=0.1826 ent=1.189 kl=+0.0018 cf=0.028 gn=0.35 | E/P/R/C=0.27/0.17/0.45/0.11 arr(x/p/r/c)=0.23/0.44/0.62/0.37 | 142 sps | 36min
+[P1_s1101     80] steps=    327680 ret=  1770.5 pg=-0.0042 v=0.1820 ent=0.986 kl=+0.0011 cf=0.024 gn=0.30 | E/P/R/C=0.28/0.14/0.46/0.12 arr(x/p/r/c)=0.24/0.43/0.59/0.38 | 141 sps | 38min
+[P1_s1101     85] steps=    348160 ret=  1632.7 pg=-0.0045 v=0.1752 ent=0.850 kl=+0.0021 cf=0.029 gn=0.30 | E/P/R/C=0.27/0.15/0.46/0.12 arr(x/p/r/c)=0.26/0.42/0.62/0.38 | 264 sps | 40min
+[P1_s1101     90] steps=    368640 ret=  1430.7 pg=-0.0046 v=0.1813 ent=0.788 kl=+0.0013 cf=0.027 gn=0.31 | E/P/R/C=0.24/0.19/0.45/0.11 arr(x/p/r/c)=0.28/0.44/0.61/0.38 | 271 sps | 42min
+[P1_s1101     95] steps=    389120 ret=  1768.6 pg=-0.0050 v=0.1580 ent=0.902 kl=+0.0021 cf=0.028 gn=0.34 | E/P/R/C=0.26/0.18/0.44/0.11 arr(x/p/r/c)=0.30/0.50/0.65/0.37 | 230 sps | 44min
+[P1_s1101    100] steps=    409600 ret=  1771.7 pg=-0.0051 v=0.1589 ent=0.895 kl=+0.0015 cf=0.027 gn=0.34 | E/P/R/C=0.24/0.19/0.45/0.12 arr(x/p/r/c)=0.29/0.49/0.63/0.35 | 346 sps | 46min
+[P1_s1101    105] steps=    430080 ret=  1914.6 pg=-0.0052 v=0.1631 ent=0.938 kl=+0.0024 cf=0.027 gn=0.34 | E/P/R/C=0.25/0.18/0.44/0.12 arr(x/p/r/c)=0.31/0.47/0.65/0.38 | 161 sps | 48min
+[P1_s1101    110] steps=    450560 ret=  1484.4 pg=-0.0043 v=0.1216 ent=0.955 kl=+0.0014 cf=0.019 gn=0.33 | E/P/R/C=0.27/0.17/0.44/0.12 arr(x/p/r/c)=0.29/0.51/0.65/0.36 | 130 sps | 50min
+[P1_s1101    115] steps=    471040 ret=  1518.8 pg=-0.0038 v=0.1575 ent=1.022 kl=+0.0019 cf=0.024 gn=0.34 | E/P/R/C=0.26/0.14/0.48/0.12 arr(x/p/r/c)=0.28/0.49/0.58/0.38 | 118 sps | 53min
+[P1_s1101    120] steps=    491520 ret=  1858.5 pg=-0.0045 v=0.1259 ent=1.178 kl=+0.0017 cf=0.025 gn=0.33 | E/P/R/C=0.22/0.16/0.50/0.12 arr(x/p/r/c)=0.32/0.51/0.64/0.35 | 99 sps | 55min
+[P1_s1101    125] steps=    512000 ret=  1689.1 pg=-0.0050 v=0.1124 ent=1.179 kl=+0.0017 cf=0.018 gn=0.33 | E/P/R/C=0.24/0.15/0.49/0.12 arr(x/p/r/c)=0.32/0.49/0.65/0.35 | 93 sps | 57min
+[P1_s1101    130] steps=    532480 ret=  1901.2 pg=-0.0044 v=0.1273 ent=1.188 kl=+0.0013 cf=0.021 gn=0.31 | E/P/R/C=0.24/0.18/0.45/0.12 arr(x/p/r/c)=0.29/0.52/0.65/0.35 | 100 sps | 60min
+[P1_s1101    135] steps=    552960 ret=  2293.0 pg=-0.0036 v=0.2107 ent=1.116 kl=+0.0022 cf=0.028 gn=0.30 | E/P/R/C=0.24/0.15/0.48/0.13 arr(x/p/r/c)=0.33/0.51/0.65/0.35 | 204 sps | 62min

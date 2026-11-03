@@ -1,0 +1,399 @@
+{
+  "created": "2026-11-03 21:38:57.008612",
+  "report": {
+    "1103": {
+      "groups": {
+        "3": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            2700,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.2082133333333333,
+          "depleted_mean": 0.26666666666666666
+        },
+        "4": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            3600,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.25011333333333335,
+          "depleted_mean": 0.8333333333333334
+        },
+        "5": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            4500,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.27690000000000003,
+          "depleted_mean": 2.2
+        },
+        "6": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            5400,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.32394000000000006,
+          "depleted_mean": 2.6
+        },
+        "7": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            6300,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.36380333333333337,
+          "depleted_mean": 3.1333333333333333
+        },
+        "8": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            7200,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.37782666666666664,
+          "depleted_mean": 4.133333333333334
+        }
+      },
+      "worst_cases": [
+        {
+          "n": 5,
+          "seed": 987092,
+          "burned_delta": 464,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1103/n5_s987092.jsonl.gz"
+        },
+        {
+          "n": 7,
+          "seed": 988005,
+          "burned_delta": 425,
+          "depleted": 6,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1103/n7_s988005.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987123,
+          "burned_delta": 382,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1103/n6_s987123.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987142,
+          "burned_delta": 379,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1103/n6_s987142.jsonl.gz"
+        },
+        {
+          "n": 4,
+          "seed": 987046,
+          "burned_delta": 378,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1103/n4_s987046.jsonl.gz"
+        }
+      ]
+    },
+    "1104": {
+      "groups": {
+        "3": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            2700,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.2082133333333333,
+          "depleted_mean": 0.26666666666666666
+        },
+        "4": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            3600,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.25011333333333335,
+          "depleted_mean": 0.8333333333333334
+        },
+        "5": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            4500,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.2769,
+          "depleted_mean": 2.2
+        },
+        "6": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            5400,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.32394,
+          "depleted_mean": 2.6
+        },
+        "7": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            6300,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.36380333333333337,
+          "depleted_mean": 3.1333333333333333
+        },
+        "8": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            7200,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.3778266666666666,
+          "depleted_mean": 4.133333333333334
+        }
+      },
+      "worst_cases": [
+        {
+          "n": 5,
+          "seed": 987092,
+          "burned_delta": 464,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1104/n5_s987092.jsonl.gz"
+        },
+        {
+          "n": 7,
+          "seed": 988005,
+          "burned_delta": 425,
+          "depleted": 6,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1104/n7_s988005.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987123,
+          "burned_delta": 382,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1104/n6_s987123.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987142,
+          "burned_delta": 379,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1104/n6_s987142.jsonl.gz"
+        },
+        {
+          "n": 4,
+          "seed": 987046,
+          "burned_delta": 378,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1104/n4_s987046.jsonl.gz"
+        }
+      ]
+    },
+    "1105": {
+      "groups": {
+        "3": {
+          "episodes": 30,
+          "requested_action_counts": [
+            4,
+            2696,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0014814814814814814,
+            0.9985185185185185,
+            0.0
+          ],
+          "explored_mean": 0.21112999999999996,
+          "depleted_mean": 0.23333333333333334
+        },
+        "4": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            3600,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.25011333333333335,
+          "depleted_mean": 0.8333333333333334
+        },
+        "5": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            4500,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.27690000000000003,
+          "depleted_mean": 2.2
+        },
+        "6": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            5400,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.32393999999999995,
+          "depleted_mean": 2.6
+        },
+        "7": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            6300,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.3638033333333334,
+          "depleted_mean": 3.1333333333333333
+        },
+        "8": {
+          "episodes": 30,
+          "requested_action_counts": [
+            0,
+            7200,
+            0
+          ],
+          "requested_action_fraction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "explored_mean": 0.3778266666666666,
+          "depleted_mean": 4.133333333333334
+        }
+      },
+      "worst_cases": [
+        {
+          "n": 5,
+          "seed": 987092,
+          "burned_delta": 464,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1105/n5_s987092.jsonl.gz"
+        },
+        {
+          "n": 7,
+          "seed": 988005,
+          "burned_delta": 425,
+          "depleted": 6,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1105/n7_s988005.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987123,
+          "burned_delta": 382,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1105/n6_s987123.jsonl.gz"
+        },
+        {
+          "n": 6,
+          "seed": 987142,
+          "burned_delta": 379,
+          "depleted": 1,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1105/n6_s987142.jsonl.gz"
+        },
+        {
+          "n": 4,
+          "seed": 987046,
+          "burned_delta": 378,
+          "depleted": 0,
+          "trace": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/evaluation/heldout_v3_s1105/n4_s987046.jsonl.gz"
+        }
+      ]
+    }
+  },
+  "note": "Requested action counts include outputs for depleted vehicles; actual protected orders and reasons remain in physical traces."
+}

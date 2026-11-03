@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 440, "plan": {"uavs": [{"task": "charge", "target": [90, 90]}, {"task": "charge", "target": [10, 90]}, {"task": "explore", "target": [50, 20]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "两机各在近站短暂轮充，南机扩展南部未知横带。"}

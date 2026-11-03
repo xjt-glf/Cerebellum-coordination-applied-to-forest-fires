@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 60, "plan": {"uavs": [{"task": "explore", "route": [[92, 84], [89, 91], [82, 93]]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [40, 53]}, {"task": "explore", "target": [8, 30]}]}, "reason": "优先补足东部火区信息，西部两机扩展未观测区。"}

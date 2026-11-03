@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 100, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [70, 50]}, {"task": "explore", "target": [90, 50]}, {"task": "explore", "target": [45, 65]}]}, "reason": "扩展中东部未知区，UAV2经过真实补给点兼顾回充；UAV3保持未完成北向航程，中继继续追随人员。"}

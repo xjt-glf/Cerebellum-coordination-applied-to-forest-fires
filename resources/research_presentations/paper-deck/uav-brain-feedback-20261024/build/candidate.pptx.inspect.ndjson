@@ -1,0 +1,20 @@
+{"kind":"deck","id":"pr/y2p0j8","name":"Deck"}
+{"kind":"layout","id":"ly/jitgjato","editable":false,"name":"Master","type":"master"}
+{"kind":"layout","id":"ly/507id0je","editable":false,"name":"Title Slide","type":"title","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","id":"ly/2947a1gf","editable":false,"name":"Section Header","type":"sectionHeader","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","id":"ly/je18jy9w","editable":false,"name":"Title and Body","type":"tx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","id":"ly/xcz6pwbq","editable":false,"name":"Title and Two Column","type":"twoColTx","placeholders":[{"name":"title","type":"title"},{"name":"Left column","type":"body"},{"name":"Right column","type":"body"}]}
+{"kind":"layout","id":"ly/fexkzih0","editable":false,"name":"Title and One Column","type":"tx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","id":"ly/d4ji10rm","editable":false,"name":"Blank","type":"blank"}
+{"kind":"slide","id":"sl/xbj1nh","slideIndex":0,"layout":{"id":"ly/d4ji10rm","name":"Blank"},"title":"Slide 1","textShapes":0,"backgroundColor":"rgba(255,255,255,1)"}
+{"kind":"image","id":"im/0vyx0ny1","slideIndex":0,"position":{"left":0,"top":0,"width":1280,"height":720},"fit":"contain","name":"","alt":"01-experiment"}
+{"kind":"notes","id":"nt/xbj1nh","slideIndex":0,"text":"1 实验与上下文问题\n数据为同三个历史种子的启发式、千问与Codex单航点方案，并非最新短航迹组。过火均值553.6667/533/445.3333；445.3333相对553.6667降低19.5665%。同Actor argmax、目标/充电协议、600步，Codex每20步自行决策。3种子为探索性结果。千问也有全量快照和最近5次决策，不能称其无上下文。完整10对中千问反而较差，不能推广所有大模型胜过启发式。\n来源：research_outputs/comprehensive_comparison_3seeds_20261022/analysis.json、report.md；research_outputs/brain_comparison_20261022_recovered/report.md。"}
+{"kind":"slide","id":"sl/ehxpi5","slideIndex":1,"layout":{"id":"ly/d4ji10rm","name":"Blank"},"title":"Slide 2","textShapes":0,"backgroundColor":"rgba(255,255,255,1)"}
+{"kind":"image","id":"im/mto3u507","slideIndex":1,"position":{"left":0,"top":0,"width":1280,"height":720},"fit":"contain","name":"","alt":"02-architecture"}
+{"kind":"notes","id":"nt/ehxpi5","slideIndex":1,"text":"2 系统结构\n现有task_spec确定性编码目标条件，与状态构成355维观测，Actor输出9种离散动作。评分LLM和RAG闭环为拟研究内容，非已部署功能。底层权重冻结；不采用参考图的任务嵌入网络与双Q结构。充电保护依然有效。\n来源：lowlevel/task_spec.py、obs_builder.py、webapp/route_converter.py、charge_protocol.py。"}
+{"kind":"slide","id":"sl/ndz1aq","slideIndex":2,"layout":{"id":"ly/d4ji10rm","name":"Blank"},"title":"Slide 3","textShapes":0,"backgroundColor":"rgba(255,255,255,1)"}
+{"kind":"image","id":"im/ory9srit","slideIndex":2,"position":{"left":0,"top":0,"width":1280,"height":720},"fit":"contain","name":"","alt":"03-gap"}
+{"kind":"notes","id":"nt/ndz1aq","slideIndex":2,"text":"3 反馈误判\n充电示例是机制示意，无实测分数或曲线。前后变化不自动是决策因果贡献；记录实际轨迹、抢占和执行时间。20步内未到远目标不等于失败。"}
+{"kind":"slide","id":"sl/wsyh6y","slideIndex":3,"layout":{"id":"ly/d4ji10rm","name":"Blank"},"title":"Slide 4","textShapes":0,"backgroundColor":"rgba(255,255,255,1)"}
+{"kind":"image","id":"im/pgru5wvu","slideIndex":3,"position":{"left":0,"top":0,"width":1280,"height":720},"fit":"contain","name":"","alt":"04-method"}
+{"kind":"notes","id":"nt/wsyh6y","slideIndex":3,"text":"4 候选机制\n本页为待验证方案，不宣称双LLM、RAG、反思或反事实验证本身原创。\n相关工作：Reflexion https://arxiv.org/abs/2303.11366；ACE https://arxiv.org/abs/2510.04618；COUNTERMEM https://arxiv.org/abs/2609.31874；FRAMe https://arxiv.org/abs/2607.06964。\n设计来源：research_outputs/llm_critic_memory_novelty_20261024.md。\n"}

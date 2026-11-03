@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 40, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [50, 10]}, {"task": "explore", "target": [85, 37]}, {"task": "explore", "target": [23, 47]}]}, "reason": "中部火场已基本看全，UAV1扩展南侧地图；UAV3补西部火场西缘，UAV2完成东部接近，中继随人员移动。"}

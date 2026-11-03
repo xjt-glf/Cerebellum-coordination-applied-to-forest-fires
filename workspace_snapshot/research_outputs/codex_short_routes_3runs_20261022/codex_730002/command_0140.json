@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 140, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "route": [[40, 43], [45, 51]]}, {"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [67, 19]}]}, "reason": "中央机短折线覆盖孤立人员再回主群，北机回补中央人员，南火刷新。"}

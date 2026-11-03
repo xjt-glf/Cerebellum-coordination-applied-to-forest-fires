@@ -1,0 +1,38 @@
+{
+  "expected_tick": 140,
+  "source": "codex_joint",
+  "reason": "5—7号西侧已清出通道但固定扇区限制了继续扑救，改为不限方向追踪中南剩余火线。1—4号继续包抄。U0满电后接替中队中继并覆盖暂时失联的3、4号；U1轮换补给；U2贴近6号；U3跟9号东进。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 3
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        5,
+        6,
+        7
+      ],
+      "task": "contain",
+      "target": [
+        50,
+        26
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

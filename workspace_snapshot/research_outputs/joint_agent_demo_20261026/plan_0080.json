@@ -1,0 +1,44 @@
+{
+  "expected_tick": 80,
+  "source": "codex_joint",
+  "reason": "1、2号西侧已无可用作业点，解除方向限制，让其转到当前最近有效火线继续作业，不在已清理边界停住。其他队继续原火区。U0从南侧刷新西火线，U1/U3随队，U2刷新中南火区以免人员追逐陈旧边界。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        30,
+        42
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "explore",
+      "target": [
+        52,
+        31
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2
+      ],
+      "task": "contain",
+      "target": [
+        30,
+        47
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

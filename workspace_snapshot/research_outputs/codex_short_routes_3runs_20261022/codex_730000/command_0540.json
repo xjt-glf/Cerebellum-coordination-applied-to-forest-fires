@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 540, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [66, 72]}, {"task": "explore", "route": [[50, 78], [56, 78], [62, 74]]}, {"task": "charge", "target": [90, 50]}]}, "reason": "两探索机分别直线和短弧补东北内侧空白，上组中继最后轮充。"}

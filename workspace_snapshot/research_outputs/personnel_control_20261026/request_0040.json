@@ -1,0 +1,432 @@
+{
+  "status": "waiting_personnel",
+  "snapshot": {
+    "t": 40,
+    "communication": "existing_geometric_link; no rate/queue model",
+    "people": [
+      {
+        "id": 1,
+        "x": 11.71,
+        "y": 40.29,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            40.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-1"
+      },
+      {
+        "id": 2,
+        "x": 13.71,
+        "y": 42.29,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            14.0,
+            42.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-2"
+      },
+      {
+        "id": 3,
+        "x": 15.71,
+        "y": 44.29,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            16.0,
+            44.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-3"
+      },
+      {
+        "id": 4,
+        "x": 11.5,
+        "y": 48.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            48.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-4"
+      },
+      {
+        "id": 5,
+        "x": 13.5,
+        "y": 50.0,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            14.0,
+            50.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-5"
+      },
+      {
+        "id": 6,
+        "x": 15.71,
+        "y": 51.71,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            16.0,
+            52.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-6"
+      },
+      {
+        "id": 7,
+        "x": 11.71,
+        "y": 55.71,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            56.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-7"
+      },
+      {
+        "id": 8,
+        "x": 13.71,
+        "y": 57.71,
+        "c": false,
+        "aoi": 10,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            14.0,
+            58.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-8"
+      },
+      {
+        "id": 9,
+        "x": 15.71,
+        "y": 59.71,
+        "c": true,
+        "aoi": 0,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            16.0,
+            60.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-9"
+      },
+      {
+        "id": 10,
+        "x": 11.71,
+        "y": 61.71,
+        "c": false,
+        "aoi": 13,
+        "task": "move",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            62.0
+          ]
+        ],
+        "source": "codex",
+        "pending": null,
+        "order_id": "p-0-10"
+      }
+    ],
+    "known_fire_clusters": [],
+    "events": [
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-1",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-2",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-3",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-4",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-5",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-6",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-7",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-8",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-9",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex",
+        "order_id": "p-0-10",
+        "reason": "先将十名人员按南、中、北三组分散到基站东侧接近点；不同作业点避免重叠，等待无人机确认火区后再分配扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-1",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-2",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-3",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-4",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-5",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-6",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-7",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-8",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-9",
+        "source": "codex"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-10",
+        "source": "codex"
+      },
+      {
+        "t": 22,
+        "person_id": 4,
+        "event": "completed",
+        "order_id": "p-0-4"
+      },
+      {
+        "t": 25,
+        "person_id": 5,
+        "event": "completed",
+        "order_id": "p-0-5"
+      },
+      {
+        "t": 26,
+        "person_id": 7,
+        "event": "completed",
+        "order_id": "p-0-7"
+      },
+      {
+        "t": 28,
+        "person_id": 1,
+        "event": "completed",
+        "order_id": "p-0-1"
+      },
+      {
+        "t": 29,
+        "person_id": 2,
+        "event": "completed",
+        "order_id": "p-0-2"
+      },
+      {
+        "t": 30,
+        "person_id": 6,
+        "event": "completed",
+        "order_id": "p-0-6"
+      },
+      {
+        "t": 30,
+        "person_id": 10,
+        "event": "completed",
+        "order_id": "p-0-10"
+      },
+      {
+        "t": 31,
+        "person_id": 8,
+        "event": "completed",
+        "order_id": "p-0-8"
+      },
+      {
+        "t": 32,
+        "person_id": 3,
+        "event": "completed",
+        "order_id": "p-0-3"
+      },
+      {
+        "t": 34,
+        "person_id": 9,
+        "event": "completed",
+        "order_id": "p-0-9"
+      }
+    ]
+  }
+}

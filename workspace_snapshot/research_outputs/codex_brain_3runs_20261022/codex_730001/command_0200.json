@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 200, "plan": {"uavs": [{"task": "explore", "target": [50, 30]}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 2}, {"task": "charge"}]}, "reason": "前方交接已完成，中部满电机南向补地图，低电机继续返航至真实站点，不提前取消补给。"}

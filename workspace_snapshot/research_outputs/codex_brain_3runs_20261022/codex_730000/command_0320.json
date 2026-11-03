@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 320, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [70, 90]}, {"task": "explore", "target": [30, 10]}, {"task": "explore", "target": [10, 70]}]}, "reason": "东部人员已停止移动，改以位于人群中间的人员3为中继目标，避免追极端位置漏掉另一侧；其余继续补图。"}

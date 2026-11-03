@@ -1,0 +1,17 @@
+{
+  "version": "v3_coverage",
+  "created": "2026-11-03 20:58:27.615093",
+  "trigger": "Development communication guard failed in v1_count; no heldout results accessed",
+  "change": "uncovered penalty increases from .010 to .100 per physical step; all other components unchanged",
+  "train_seeds": [
+    1103,
+    1104,
+    1105
+  ],
+  "training_scene_pools": "same as v1, paired reward branch",
+  "budget_seconds_per_seed": 1100,
+  "workers": 16,
+  "development_count_per_fleet": 8,
+  "heldout_count_per_fleet": 30,
+  "main_v1_preserved": true
+}

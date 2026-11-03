@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 460, "plan": {"uavs": [{"task": "charge"}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [50, 30]}, {"task": "relay", "rescuer_id": 1}]}, "reason": "中央低电机去西站补给并顺路恢复西侧人员，北站满电机南下接替中央；孤立人员6附近小范围补图，南组覆盖保持。"}

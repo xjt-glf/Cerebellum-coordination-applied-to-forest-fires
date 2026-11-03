@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 560, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [85, 95]}, {"task": "relay", "target": [90, 28], "handover": false}, {"task": "charge"}]}, "reason": "提前让满电UAV0接班，旧中继下周期即可补给；北侧低电机走最近真实站点，东北机补尚未覆盖的上角区域。"}

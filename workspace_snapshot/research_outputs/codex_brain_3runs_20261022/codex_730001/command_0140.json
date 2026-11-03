@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 140, "plan": {"uavs": [{"task": "explore", "target": [90, 65]}, {"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [30, 90]}, {"task": "relay", "rescuer_id": 2}]}, "reason": "西南人员4的AoI已升高，西侧中继改追该人员；北侧已补能机向西北扩图，前方中继保持。"}

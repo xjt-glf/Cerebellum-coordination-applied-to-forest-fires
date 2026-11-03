@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {Presentation,PresentationFile} from '@oai/artifact-tool';
+import {author} from './nature.mjs';
+const base=path.resolve(process.argv[2]);
+const rev=process.argv[3]||'v1';
+const skill='/Users/xiangjutao/.codex/plugins/cache/openai-primary-runtime/presentations/26.1022.11436/skills/presentations';
+const p=Presentation.create({slideSize:{width:1280,height:720}});
+const slide=author(p);
+const img=await p.export({slide,format:'png',scale:3});
+await fs.writeFile(path.join(base,'output','Nature风_详细架构图.png'),new Uint8Array(await img.arrayBuffer()));
+const candidatePath=path.join(base,'build',`candidate-${rev}.pptx`);
+await(await PresentationFile.exportPptx(p)).save(candidatePath);
+const {finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools','artifact_tool_utils.mjs')).href);
+const result=await finalizePresentation({workspaceDir:base,candidatePath,finalPath:path.join(base,'output',`无人机大小脑协同_Nature风_详细设计_${rev}.pptx`),pythonExecutable:'/Users/xiangjutao/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3',integrityValidatorPath:path.join(skill,'container_tools','inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(skill,'container_tools','inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000'],explicitTotalSlideCount:1,requiredNativeTableOwnerSlides:[],requiredNativeChartOwnerSlides:[],fontPolicy:{basis:'design',families:['PingFang SC']},verifyArtifactToolImport:true,receiptPath:path.join(base,'build',`validation-${rev}.json`)});
+console.log(JSON.stringify({file:result.finalPath,sha256:result.finalSha256,package:result.packageIntegrity.status,layout:result.presentationLayout.finding_count,import:result.firstPartyImport.passed}));

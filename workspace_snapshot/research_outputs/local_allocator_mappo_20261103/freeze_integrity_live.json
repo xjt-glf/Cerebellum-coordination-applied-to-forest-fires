@@ -1,0 +1,46 @@
+{
+  "frozen_manifest.json": {
+    "frozen_at": "2026-11-03 21:26:16.444257",
+    "verified_files": 22,
+    "all_match": true,
+    "selected": {
+      "1103": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1103/checkpoint_01088.pt",
+        "development_guard_pass": false,
+        "development_score": 0.08245329623969548
+      },
+      "1104": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1104/checkpoint_01008.pt",
+        "development_guard_pass": false,
+        "development_score": 0.06356264508091077
+      },
+      "1105": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v1_count_s1105/checkpoint_00896.pt",
+        "development_guard_pass": false,
+        "development_score": 0.07113323146885732
+      }
+    }
+  },
+  "v3_frozen_manifest.json": {
+    "frozen_at": "2026-11-03 21:25:00.891529",
+    "verified_files": 22,
+    "all_match": true,
+    "selected": {
+      "1103": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v3_coverage_s1103/checkpoint_00192.pt",
+        "development_guard_pass": false,
+        "development_score": 0.3436122565457139
+      },
+      "1104": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v3_coverage_s1104/checkpoint_00176.pt",
+        "development_guard_pass": false,
+        "development_score": 0.3436122565457139
+      },
+      "1105": {
+        "checkpoint": "/workspace/hrl_dqn_improve/research_outputs/local_allocator_mappo_20261103/v3_coverage_s1105/checkpoint_00192.pt",
+        "development_guard_pass": false,
+        "development_score": 0.33069712739442236
+      }
+    }
+  }
+}

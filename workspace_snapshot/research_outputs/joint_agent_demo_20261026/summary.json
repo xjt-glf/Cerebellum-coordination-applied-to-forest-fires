@@ -1,0 +1,269 @@
+{
+  "sid": "d16867f23d2b",
+  "result": {
+    "explored": 0.8358,
+    "discovery": 1.0,
+    "rescuer_known": 1.0,
+    "coverage": 0.74,
+    "burned": 0.0393,
+    "extinguished": 222,
+    "contained": 3,
+    "active_fires": 0,
+    "max_aoi": 0,
+    "ret": 537.3,
+    "depleted": 0,
+    "min_energy": 262.5,
+    "active_cells": 0,
+    "burning_cells": 2,
+    "people_burning_cells": 95,
+    "steps": 600,
+    "stop_options": {
+      "stop_when_clear": false,
+      "stop_when_depleted": false
+    },
+    "end_reason": "跑满步数上限"
+  },
+  "people": [
+    {
+      "id": 1,
+      "first_contain_tick": 41,
+      "moved_distance": 183.7394159213548,
+      "final": {
+        "id": 1,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-57"
+      }
+    },
+    {
+      "id": 2,
+      "first_contain_tick": 41,
+      "moved_distance": 184.08279124792816,
+      "final": {
+        "id": 2,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-58"
+      }
+    },
+    {
+      "id": 3,
+      "first_contain_tick": 41,
+      "moved_distance": 152.04148554124163,
+      "final": {
+        "id": 3,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-59"
+      }
+    },
+    {
+      "id": 4,
+      "first_contain_tick": 41,
+      "moved_distance": 152.40447205500118,
+      "final": {
+        "id": 4,
+        "x": 12.29,
+        "y": 46.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-60"
+      }
+    },
+    {
+      "id": 5,
+      "first_contain_tick": 21,
+      "moved_distance": 183.32255952585095,
+      "final": {
+        "id": 5,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-61"
+      }
+    },
+    {
+      "id": 6,
+      "first_contain_tick": 21,
+      "moved_distance": 180.89894217528237,
+      "final": {
+        "id": 6,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-62"
+      }
+    },
+    {
+      "id": 7,
+      "first_contain_tick": 21,
+      "moved_distance": 182.58841838263237,
+      "final": {
+        "id": 7,
+        "x": 12.29,
+        "y": 50.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            50.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-63"
+      }
+    },
+    {
+      "id": 8,
+      "first_contain_tick": 61,
+      "moved_distance": 214.8534904510953,
+      "final": {
+        "id": 8,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-64"
+      }
+    },
+    {
+      "id": 9,
+      "first_contain_tick": 61,
+      "moved_distance": 221.79375919776953,
+      "final": {
+        "id": 9,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-65"
+      }
+    },
+    {
+      "id": 10,
+      "first_contain_tick": 61,
+      "moved_distance": 210.48824905111542,
+      "final": {
+        "id": 10,
+        "x": 12.29,
+        "y": 54.29,
+        "c": true,
+        "aoi": 0,
+        "task": "retreat",
+        "state": "completed",
+        "target": null,
+        "waypoints": [
+          [
+            12.0,
+            54.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-260-66"
+      }
+    }
+  ],
+  "joint_windows": 30
+}

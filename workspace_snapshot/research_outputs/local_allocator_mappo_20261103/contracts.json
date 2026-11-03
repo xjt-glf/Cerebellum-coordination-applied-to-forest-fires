@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "smoke": [
+    {
+      "n": 1,
+      "seconds": 2.3258503589895554,
+      "passed": true
+    },
+    {
+      "n": 3,
+      "seconds": 2.2025258039939217,
+      "passed": true
+    },
+    {
+      "n": 4,
+      "seconds": 2.259633230045438,
+      "passed": true
+    },
+    {
+      "n": 5,
+      "seconds": 2.1969674909487367,
+      "passed": true
+    },
+    {
+      "n": 6,
+      "seconds": 2.276130866026506,
+      "passed": true
+    },
+    {
+      "n": 7,
+      "seconds": 2.211755135038402,
+      "passed": true
+    },
+    {
+      "n": 8,
+      "seconds": 2.2909510799800046,
+      "passed": true
+    }
+  ],
+  "deterministic_replay": true,
+  "true_terminal": true,
+  "leakage": true,
+  "multiprocess_targets": true,
+  "padding": true,
+  "lowlevel_hash": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e"
+}

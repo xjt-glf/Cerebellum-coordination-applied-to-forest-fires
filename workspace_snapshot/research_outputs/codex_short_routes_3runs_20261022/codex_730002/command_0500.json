@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 500, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[14, 26], [21, 25], [25, 31]]}, {"task": "explore", "target": [88, 25]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "西中部空白短折线补齐，东部机直线向右下大片未知区推进。"}

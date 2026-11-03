@@ -1,0 +1,36 @@
+{
+  "expected_tick": 560,
+  "source": "codex_joint",
+  "reason": "人员任务全部完成，继续维持安全驻留。U0补扫南部中段[65,28]，U1扫中央偏北[35,65]，U2扫西边缘[5,55]，U3扫中部[55,55]，确认没有遗漏失控火区。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        65,
+        28
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        35,
+        65
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        5,
+        55
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        55,
+        55
+      ]
+    }
+  ],
+  "orders": []
+}

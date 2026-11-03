@@ -1,0 +1,53 @@
+{
+  "description": "Both manually submitted plan sequences replayed.",
+  "same_seed": 975003,
+  "delay_steps": 5,
+  "verified_A_replay": true,
+  "verified_B_replay": true,
+  "results": {
+    "A": {
+      "t": 600,
+      "explored": 0.8263,
+      "burned_cells": 623,
+      "burning_cells": 122,
+      "extinguished_cells": 269,
+      "contained": 2,
+      "active_clusters": 1,
+      "discovery": 0.9754098360655737,
+      "rknown": 0.9754098360655737,
+      "coverage": 0.9,
+      "mean_aoi": 1.5,
+      "max_aoi": 15,
+      "depleted": 0,
+      "min_energy": 307.5,
+      "n_true_burning": 122.0,
+      "n_delivered": 0,
+      "cov_mean": 0.6865,
+      "aoi_mean": 5.247666666666667,
+      "steps_run": 600,
+      "charge_rewrites": 17
+    },
+    "B": {
+      "t": 600,
+      "explored": 0.7976,
+      "burned_cells": 639,
+      "burning_cells": 183,
+      "extinguished_cells": 221,
+      "contained": 0,
+      "active_clusters": 4,
+      "discovery": 0.33879781420765026,
+      "rknown": 0.33879781420765026,
+      "coverage": 0.9,
+      "mean_aoi": 0.1,
+      "max_aoi": 1,
+      "depleted": 0,
+      "min_energy": 262.5,
+      "n_true_burning": 183.0,
+      "n_delivered": 0,
+      "cov_mean": 0.7883333333333333,
+      "aoi_mean": 4.602833333333333,
+      "steps_run": 600,
+      "charge_rewrites": 18
+    }
+  }
+}

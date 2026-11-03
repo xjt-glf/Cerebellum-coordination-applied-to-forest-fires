@@ -1,0 +1,32 @@
+{
+  "expected_tick": 500,
+  "source": "codex_joint",
+  "reason": "全员已安全返回，人员保持已完成的撤离任务，等待新火情而非再次派往合围区。U0排查南部[70,5]，U1排查西北[30,90]，U2补给，U3排查东部[90,40]。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        70,
+        5
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        30,
+        90
+      ]
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "explore",
+      "target": [
+        90,
+        40
+      ]
+    }
+  ],
+  "orders": []
+}

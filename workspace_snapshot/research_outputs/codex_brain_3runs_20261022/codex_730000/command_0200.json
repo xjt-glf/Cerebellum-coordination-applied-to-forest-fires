@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 200, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [80, 36]}, {"task": "explore", "target": [10, 95]}]}, "reason": "东部主队失联，UAV1随主队前进；UAV2移至火场西北缘同时刷新火情和接近人员，西北机继续补角落。"}

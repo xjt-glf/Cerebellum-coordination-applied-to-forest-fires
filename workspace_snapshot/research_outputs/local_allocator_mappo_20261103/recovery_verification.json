@@ -1,0 +1,10 @@
+{
+  "exact": true,
+  "max_abs_difference": {
+    "actor": 0.0,
+    "critic": 0.0
+  },
+  "reference_sha256": "92c7b6f7e2e8b7263e4b5978131bba78936f076f8e9dd56a89ab6f55435c8709",
+  "recovered_sha256": "0d21646e3ce8a7f60bd4318d661f8979912bcf6b3f84fe57bd53e488bdf268ff",
+  "note": "Resumed from episode16, repeated next 16 complete scenes with 4 workers versus original8; compared actor and critic after PPO update32. CUDA RNG restored as CPU ByteTensor."
+}

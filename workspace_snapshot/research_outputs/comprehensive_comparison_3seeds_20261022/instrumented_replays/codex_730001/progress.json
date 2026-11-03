@@ -1,0 +1,8 @@
+{
+  "arm": "codex",
+  "seed": 730001,
+  "t": 600,
+  "elapsed_seconds": 11.269837125000777,
+  "api_calls": 30,
+  "api_fallbacks": 0
+}

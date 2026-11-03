@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 380, "plan": {"uavs": [{"task": "explore", "target": [44, 41]}, {"task": "relay", "rescuer_id": 9}, {"task": "explore", "route": [[75, 94], [82, 94], [88, 89]]}, {"task": "relay", "rescuer_id": 5}]}, "reason": "中央交班机再接近人员，北缘短折线覆盖东北角。"}

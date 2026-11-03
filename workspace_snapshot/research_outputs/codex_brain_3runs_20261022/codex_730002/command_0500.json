@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 500, "plan": {"uavs": [{"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [50, 15]}, {"task": "explore", "target": [80, 8]}]}, "reason": "西站满电机覆盖西组最北人员以消除最后漏链；南部两机在各自人群通信半径附近小幅补图，避免长距离离开造成AoI积累。"}

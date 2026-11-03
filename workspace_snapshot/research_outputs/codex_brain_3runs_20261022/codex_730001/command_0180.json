@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 180, "plan": {"uavs": [{"task": "explore", "target": [50, 50]}, {"task": "relay", "rescuer_id": 4}, {"task": "relay", "rescuer_id": 2}, {"task": "charge"}]}, "reason": "低电UAV3立即补给，UAV2接替前方；UAV0向中部扩图并在交接途中顺带提供人员链路。"}

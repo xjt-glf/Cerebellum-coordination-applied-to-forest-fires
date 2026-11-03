@@ -1,0 +1,49 @@
+{
+  "expected_tick": 40,
+  "source": "codex",
+  "reason": "接近点已全部到达。P1回撤到后方、P2原地等待；P5沿折线向东北转场、P6向东建立下一接近点，其余保持现任务。验证分人控制、保持及连续航点。",
+  "orders": [
+    {
+      "person_ids": [
+        1
+      ],
+      "task": "retreat",
+      "target": [
+        5,
+        40
+      ]
+    },
+    {
+      "person_ids": [
+        2
+      ],
+      "task": "hold"
+    },
+    {
+      "person_ids": [
+        5
+      ],
+      "task": "move",
+      "waypoints": [
+        [
+          18,
+          50
+        ],
+        [
+          22,
+          55
+        ]
+      ]
+    },
+    {
+      "person_ids": [
+        6
+      ],
+      "task": "move",
+      "target": [
+        20,
+        52
+      ]
+    }
+  ]
+}

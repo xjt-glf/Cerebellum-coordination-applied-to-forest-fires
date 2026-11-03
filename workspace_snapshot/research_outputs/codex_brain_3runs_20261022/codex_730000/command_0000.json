@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 0, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [49, 34]}, {"task": "explore", "target": [85, 37]}, {"task": "explore", "target": [30, 55]}]}, "reason": "优先快速发现三个真实火场，感知机分别从邻近边缘进入；UAV0为出发人员提供中继，避免两架重复守同一人群。"}

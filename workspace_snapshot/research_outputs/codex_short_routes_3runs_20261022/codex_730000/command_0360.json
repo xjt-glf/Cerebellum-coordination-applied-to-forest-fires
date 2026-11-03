@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 360, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "explore", "target": [12, 85]}, {"task": "explore", "target": [75, 90]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "北部两机向东西未扫描带直线推进，中继维持。"}

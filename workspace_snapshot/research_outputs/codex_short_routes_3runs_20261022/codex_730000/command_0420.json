@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 420, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "target": [10, 25]}, {"task": "explore", "target": [55, 92]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "充电完成恢复底部人员链路，两条长直线继续推进。"}

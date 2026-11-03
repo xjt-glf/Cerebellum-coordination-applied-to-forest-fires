@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 220, "plan": {"uavs": [{"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [92, 27]}, {"task": "explore", "target": [30, 95]}]}, "reason": "东部火场仍扩散，UAV2转东缘刷新感知；两中继继续支持正在接近火场的队伍，北机拓展上边界。"}

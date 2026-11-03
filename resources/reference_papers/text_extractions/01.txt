@@ -1,0 +1,1311 @@
+
+=== PAGE 1 ===
+Contents lists available at ScienceDirect
+Aerospace Science and Technology
+journal homepage: www.elsevier.com/locate/aescte
+Original article
+Hierarchical decision-making for UAVs’ game via LLM enhanced 
+multi-agent reinforcement learning 
+Xinyu Dong
+ a,b, Bo Li
+ a,b,∗, Guangyu Zhang b,c,∗, Bing Xiao d, Yuanshun Wang a
+a Institute of Logistics Science and Engineering, Shanghai Maritime University, Shanghai, China
+b State Key Laboratory of Robotics and Intelligent Systems, Shenyang, Liaoning, China
+c Shenyang Institute of Automation, Chinese Academy of Sciences, Shenyang, Liaoning, China
+d School of Automation, Northwestern Polytechnical University, Xi’an, China
+a r t i c l e  i n f o
+Communicated by Chaoyong Li
+Keywords:
+Large language model (LLM)
+Multi-agent reinforcement learning
+UAV game
+Hierarchical decision making
+ a b s t r a c t
+For the multi-UAV game missions, intelligent agents face challenges in high-dimensional state processing, dy-
+namic situational awareness, and cooperative decision-making that conventional methods cannot address eﬀec-
+tively. This paper proposes a novel Large Language Model-enhanced Multi-agent Deep Reinforcement Learning 
+scheme (LLM-MATD3) with a hierarchical decision-making architecture comprising an environment modeling 
+layer, LLM task planner, and task-enhanced MATD3 network. The scheme ﬁrst employs a hierarchical task decom-
+position mechanism that transforms high-level game directives from LLMs into continuous embedding vectors 
+through task embedding techniques. Then, the LLM task planner analyzes global game situations and assigns 
+diﬀerentiated tasks to UAVs, overcoming the limitation of traditional MATD3 frameworks that rely solely on 
+local observations. Simulation results show signiﬁcant improvements in win rate, remaining rate, and collabo-
+rative eﬃciency  for UAVs, providing a innovative reference approach for multi-agent systems in complex game 
+environments.
+1.  Introduction
+Recently, rapid advances in Unmanned Aerial Vehicle (UAV) tech-
+nology have emerged in aerospace ﬁeld, and the performances of au-
+tonomous ﬂight control and collaborative decision-making in complex 
+environments directly determine the systems’ comprehensive capabil-
+ity [1]. Modern UAV systems face numerous technical challenges, with 
+actuator fault and anti-disturbance control issues being particularly 
+prominent, requiring intelligent tracking control strategies for ﬂight 
+safety [2]. Moreover, modern electromagnetic environments, charac-
+terized by strong electromagnetic pulses and intentional interference, 
+severely impact UAVs’ sensor modules and communication links [3]. 
+In highly dynamic aerial game scenarios, external disturbances includ-
+ing gusts and turbulence continuously threaten ﬂight stability, where 
+integrating ﬁxed-time observers with sliding mode control provides an 
+eﬀective solution [4]. However, the challenges of real-time cooperative 
+decision-making, dynamic task allocation, and intelligent game strate-
+gies become critical problems when multiple UAVs work collaboratively 
+in such complex game environments.
+Multi-UAV cooperative systems enhance operational eﬀectiveness 
+through distributed architectures. For example, context-aware feature 
+∗ Corresponding authors.
+ E-mail addresses: 17751112562@163.com (X. Dong), nemo127@163.com (B. Li), zhangguangyu@sia.cn (G. Zhang), xiaobing@nwpu.edu.cn (B. Xiao), 
+wys_1171@163.com (Y. Wang).
+fusion [5] improves situational awareness but suﬀers from computa-
+tional latency in dynamic environments; the asymptotically stable for-
+mation control [6] ensures convergence but exhibits slow transient re-
+sponses, and intelligent task planning [7,8] excels in static scenarios 
+but lacks real-time replanning capabilities. As agent numbers increase, 
+the complexity of decision and control grows exponentially. In [9], Ex-
+pert rule-based systems achieve high eﬃciency  but limited generaliza-
+tion. The game-theoretic methods [10] provide rigorous frameworks but 
+incur prohibitive computational costs for Nash equilibrium solutions. 
+In addition, traditional optimization algorithms struggle with real-time 
+constraints, high-dimensional spaces, and convergence in dynamic en-
+vironments [11–13]. Position-weight schemes [14] lack stability under 
+disturbances, while robust reinforcement learning [15] shows limited 
+adaptability to unseen task scenarios. These bottlenecks hinder multi-
+UAV cooperative systems deployment.
+With the advancement of artiﬁcial intelligence, Deep Reinforce-
+ment Learning (DRL) has been extensively applied to UAV decision-
+making [16], evolving from DQN [17] for discrete actions to DDPG [18] 
+for continuous control and PPO’s CTDE framework [19]. However, 
+there are still some limitations: Wang et al. [20] combined SAC with 
+HER for path planning but faced high-dimensional computational bur-
+https://doi.org/10.1016/j.ast.2026.112218
+Received 16 January 2026; Received in revised form 24 February 2026; Accepted 23 March 2026
+Aerospace Science and Technology 177 (2026) 112218 
+Available online 26 March 2026 
+1270-9638/© 2026 Elsevier Masson SAS. All rights are reserved, including those for text and data mining, AI training, and similar technologies. 
+
+=== PAGE 2 ===
+X. Dong, B. Li, G. Zhang et al.
+den; Liu et al. [21] proposed a ﬁxed-time ADP framework for multi-
+quadrotor coordination but primarily addressed formation tasks rather 
+than game scenarios; TD3 [22] improved stability through twin Q-
+networks but struggled with multi-agent coordination. Multi-agent Re-
+inforcement Learning now faces environmental non-stationarity, credit 
+assignment, and dimensionality challenges [23]. Value decomposition 
+methods like QMIX [24] and QTRAN [25] enable coordination but 
+assume discrete action spaces. Recent advances show mixed results: 
+it should be noted that some integrated results has been presented. 
+For example, MAHPG [26] achieves policy diversity but scales poorly 
+with agent count; ME-MADDPG [27] requires expert-designed potential 
+ﬁelds, limiting adaptability; MATD3 [28] inherits TD3’s stability but 
+lacks global coordination in game scenarios. These constraints highlight 
+the gap between theoretical advances and practical multi-UAV deploy-
+ment requirements.
+On the other hand, the breakthrough advances in Large Language 
+Models (LLMs) oﬀer novel solutions to address the mentioned limita-
+tions [29]. LLMs possess robust capabilities in contextual understanding, 
+logical reasoning, and knowledge synthesis, enabling task comprehen-
+sion from high-level semantic perspectives to global policy generation. 
+Notably, LLMs oﬀer advantages over rule-based methods through con-
+textual reasoning and adaptive strategy generation in complex game 
+scenarios. Recent studies demonstrate that integrating LLMs with rein-
+forcement learning signiﬁcantly enhances sample eﬃciency  and gen-
+eralization capabilities [30]. Zhu et al. proposed the LAMARL frame-
+work [31], which leverages LLMs to automatically generate prior poli-
+cies and reward functions for MARL, achieving cooperative policy gen-
+eration without manual design while signiﬁcantly improving sample ef-
+ﬁciency through prior policy integration. Liu et al. introduced the LGPF 
+framework [32], utilizing LLMs’ few-shot generalization to transform 
+natural language descriptions into formation patterns, combined with 
+CTDE architecture for precise swarm robotics control. However, it is also 
+an open problem to eﬀectively integrate LLMs’ high-level cognitive ca-
+pabilities with MARL’s real-time decision-making abilities, particularly 
+in highly dynamic and aerial game environments.
+It should be noted that the existing approaches for multi-UAV game 
+decision-making still suﬀer from three following limitations: (1) tradi-
+tional RL frameworks (such as MATD3) rely solely on local observa-
+tions without global situational awareness [33]; (2) a semantic gap ex-
+ists between LLM-generated high-level directives and continuous policy 
+learning in reinforcement learning [31,32]; (3) an eﬀective integration 
+mechanism between LLMs’ cognitive reasoning and MARL’s real-time 
+decision-making remains absent [34]. To solve the above limitations, 
+this work proposes a LLM-MATD3 scheme that constructs a hierarchical 
+decision-making framework bridging global game planning and local 
+execution through LLM-MARL integration. The main contributions in-
+clude:
+(1) A large language model-based game analysis and task planning 
+framework is proposed to comprehensively analyze complex game 
+situations and assign task types to each UAV, enabling hierarchical 
+decision-making control from macro game perspectives to micro 
+execution.
+(2) A hierarchical task decomposition mechanism is proposed, whereby 
+a specialized game reward function decomposes abstract task labels 
+into state-dependent continuous subgoal completion scores. It en-
+hances the semantic expressiveness of task embeddings, enabling 
+the transformation from discrete task assignments to continuous be-
+havioral guidance.
+(3) A task-aware Actor-Critic network structure is proposed that inte-
+grates enhanced task embeddings into both policy and value net-
+works. The actor network generates task-conditioned actions by 
+combining state observations with task-speciﬁc guidance, while 
+the critic network learns task-dependent value functions that ac-
+count for task label transitions. It also enables an adaptive decision-
+making performance across diverse task types.
+2.  Preliminaries and problem formulations
+2.1.  UAV’s motion model
+The UAVs are assumed to maintain a ﬁxed altitude while performing 
+inertially coordinated maneuvers. Based on this assumption, the kine-
+matic model for a single UAV is formulated as follows [35]:
+̇𝒑𝑖 = 𝑽 𝑖 =
+[𝑣𝑖 cos 𝜃𝑖
+𝑣𝑖 sin 𝜃𝑖
+]
+𝜃𝑖 = arctan 2( 𝑣𝑖
+𝑦, 𝑣𝑖
+𝑥)
+(1)
+where 𝒑𝑖 = [𝑥𝑖, 𝑦𝑖]⊤ denotes the position vector of the ith UAV, and 
+the heading angle 𝜃𝑖 ∈ (−𝜋, 𝜋] is deﬁned relative to the X-axis of the 
+inertial coordinate system. The control forces generate accelerations 
+according to ̇ 𝑣𝑖
+𝑥 = 𝐹 𝑖
+𝑥∕𝑚uav and ̇ 𝑣𝑖
+𝑦 = 𝐹 𝑖
+𝑦∕𝑚uav, which subsequently up-
+date the UAV’s velocity and position. The system’s control input vec-
+tor is deﬁned as 𝒖𝑖 = [𝐹 𝑖
+𝑥, 𝐹 𝑖
+𝑦]⊤, where the control forces are bounded by 
+𝐹 𝑖
+𝑥, 𝐹 𝑖
+𝑦 ∈ [𝐹min, 𝐹max] to respect actuator limitations. In the multi-UAV co-
+operative system, 𝑽 𝑖 = (𝑣𝑖 cos 𝜃𝑖, 𝑣𝑖 sin 𝜃𝑖)⊤ and 𝑽 𝑗 = (𝑣𝑗 cos 𝜃𝑗 , 𝑣𝑗 sin 𝜃𝑗 )⊤
+represent the velocity vectors of UAVs from the A-team and B-team re-
+spectively.
+The Blue UAVs (A-team) consists of 𝑖 UAVs, while the Black UAVs 
+(B-team) consists of 𝑗 UAVs. Each UAV is equipped with sensors to 
+collect situational information, and the target for both teams is to 
+maximize damage inﬂicted on the opposing force while minimizing 
+their own losses. For a given task space Ω = {( 𝑥, 𝑦) ∣ 𝑥 ∈ [𝑥min, 𝑥max], 𝑦 ∈
+[𝑦min, 𝑦max]}, the relative distance 𝐷𝑖𝑗 between UAVs from A-team and 
+B-team is deﬁned as follows:
+𝐷𝑖𝑗 = ‖𝒅𝑖𝑗 ‖ =
+√
+(𝑥𝑗 − 𝑥𝑖)2 + (𝑦𝑗 − 𝑦𝑖)2 (2)
+Then, we introduce the following two key geometric parameters:
+(1) Target aspect angle 𝜑𝑖𝑗 is deﬁned as:
+𝜑𝑖𝑗 = arccos
+( 𝒅𝑖𝑗 ⋅ 𝑽 𝑖
+‖𝒅𝑖𝑗 ‖‖𝑽 𝑖‖
+)
+, 𝜑 𝑖𝑗 ∈ [0, 𝜋] (3)
+which represents the angle between the velocity vector 𝑽 𝑖 of UAV 
+𝑖, and the relative position vector 𝒅𝑖𝑗 points toward UAV 𝑗.
+(2) Target entry angle 𝑞𝑖𝑗 is deﬁned as:
+𝑞𝑖𝑗 = arccos
+( −𝒅𝑖𝑗 ⋅ 𝑽 𝑗
+‖𝒅𝑖𝑗 ‖‖𝑽 𝑗 ‖
+)
+, 𝑞 𝑖𝑗 ∈ [0, 𝜋] (4)
+which represents the angle between the velocity vector 𝑽 𝑗 of UAV 
+𝑗, and the relative position vector −𝒅𝑖𝑗 points toward UAV 𝑖.
+As illustrated in Fig. 1, the task capability of UAVs is characterised 
+by sector-shaped approach zones centred at each UAV and extending 
+along their velocity vector directions. 𝐿𝑖 and 𝐿𝑗 represent the approach 
+zone of A and B teams respectively. Eﬀective execution of tasks can be 
+conducted when UAVs enter these sector zones (𝐷𝑖𝑗 ≤ 𝐿𝑖 or 𝐷𝑖𝑗 ≤ 𝐿𝑗 ).
+2.2.  UAV’s sensor
+The UAVs in both A team and B team use an 11-element sensor ar-
+ray to detect obstacles. Each sensor measures distance up to a maximum 
+range 𝑙max. The sensors give values 𝑙𝑖 ∈ [0, 𝑙max], and 𝑙𝑖 = 0 means that 
+no obstacle is detected. The sensor array output is expressed by the fol-
+lowing formula:
+𝒅obs = [𝑙1, 𝑙2, 𝑙𝑖, … , 𝑙11
+], 𝑙 𝑖 ∈ [0, 𝑙max
+] (5)
+2.3.  Relative scenario classiﬁcation
+In a one-to-one UAV game, the geometric interaction model is illus-
+trated in Fig. 2. This model establishes the relationships 𝜑𝑗𝑖 = 𝜋 − 𝑞𝑗𝑖
+and 𝑞𝑗𝑖 = 𝜋 − 𝜑𝑖𝑗 between target aspect and entry angles. These param-
+eters enable the classiﬁcation of game scenarios into four fundamental 
+conﬁgurations.
+Aerospace Science and Technology 177 (2026) 112218 
+2 
+
+=== PAGE 3 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 1. UAV’s model and approach zones.
+(1) Balanced situation: When 𝜑𝑖𝑗 ≥ 𝜋∕2 and 𝑞𝑖𝑗 ≥ 𝜋∕2, both UAVs are 
+positioned in each other’s rear area, with velocities either diverging 
+or parallel.
+(2) B-team advantageous situation: When 𝜑𝑖𝑗 < 𝜋 ∕2 and 𝑞𝑖𝑗 < 𝜋 ∕2, the 
+A-team is located in the B-team’s forward area, and its velocity di-
+rection is directed away from the B-team.
+(3) A-team advantageous situation: When 𝜑𝑖𝑗 ≥ 𝜋∕2 and 𝑞𝑖𝑗 < 𝜋 ∕2, the 
+B-team is located in the A-team’s forward area, and its velocity di-
+rection is deviating away from the A-team.
+(4) Mutually disadvantageous situation: When 𝜑𝑖𝑗 < 𝜋 ∕2 and 𝑞𝑖𝑗 ≥ 𝜋∕2, 
+both UAVs are located in each other’s forward area, placing them 
+in a state of mutual risk.
+In the close-range game environment, the damage inﬂicted by each en-
+gagement on the opposing UAV is dynamic and limited. Each UAV is 
+assumed to have an initial health 𝐻, when it suﬀers a loss in a task, it 
+reduces its health by Δ𝐻. When its health drops to 0, it is regarded as 
+to be failed.
+2.4.  Markov game
+The multi-UAV game system can be formalized as a Markov game, 
+described by the tuple (𝑁, 𝑺, 𝑨, 𝜞 , 𝑅, 𝛾). Speciﬁcally, 𝑁 represents the 
+number of UAVs in the system, and 𝑺 = [𝑺1, … , 𝑺𝑁 ] refers to the collec-
+tive state space. Here, 𝑺𝑖 represents the state space of the 𝑖th UAV, and 
+𝒔𝑡
+𝑖 ∈ 𝑺𝑖 indicates the situational information observed by UAV 𝑖 at time 
+𝑡. Correspondingly, 𝑨 = [𝑨1, … , 𝑨𝑁 ] is the joint action space, where 𝑨𝑖
+represents the set of executable actions for the 𝑖th UAV. Based on the ob-
+served states, each UAV adopts a stochastic policy 𝜋𝑖 ∶ 𝑺𝑖 × 𝑨𝑖 → [0, 1] to 
+select actions. The state transition function 𝜞 ∶ 𝑺 × 𝑨1 × ⋯ × 𝑨𝑁 → 𝑺′
+governs how the system evolves from one state to another based on joint 
+actions. Upon executing an action, UAV 𝑖 receives an immediate reward 
+𝑟𝑖 ∶ 𝑺 × 𝑨𝑖 → ℝ. The objective of each UAV is to maximize its expected 
+cumulative reward: 𝑅𝑖 = ∑𝑇
+𝑡=0 𝛾 𝑡𝑟𝑡
+𝑖. The variable 𝛾 ∈ [0, 1] denotes the 
+discount factor that balances immediate and future rewards.
+2.5.  State and action space
+In a multi-UAV game scenario, the A-team is the defender with its ac-
+tion decision-making trained using the proposed LLM-enhanced MATD3 
+scheme, which will be presented in the next section. For UAV 𝑖, its state 
+space 𝑺𝑖 consists of three components: instantaneous state information 
+𝑺𝑖
+uav, task information 𝑺𝑖
+task , and detection information 𝑺𝑖
+detect . Accord-
+ingly, the state space can be represented in the form of:
+𝑺𝑖 = [𝑺𝑖
+uav, 𝑺𝑖
+task , 𝑺𝑖
+detect
+] (6)
+By deﬁning two maximum position boundary parameters 𝑥max, 𝑦max, 
+and the maximum velocity constraint 𝑣max, the instantaneous state in-
+formation 𝑺𝑖
+uav is normalized as follows:
+𝑺𝑖
+uav =
+[
+𝑥𝑖
+𝑥max
+, 𝑦𝑖
+𝑦max
+,
+𝑣𝑖
+𝑥
+𝑣max
+,
+𝑣𝑖
+𝑦
+𝑣max
+, 𝐻𝑖
+]
+(7)
+where (𝑥𝑖, 𝑦𝑖) denotes the spatial position coordinates of the UAV, and 
+(𝑣𝑖
+𝑥, 𝑣𝑖
+𝑦) represents its velocity components in the Cartesian coordinate 
+system. Additionally, 𝐻𝑖 denotes the UAV’s current health status.
+During task execution, the relative position information of the target 
+needs to be integrated into the state space, as shown in the form of:
+𝑺𝑖
+task = [𝐷𝑖𝑗 , 𝜑𝑖𝑗 , 𝑞𝑖𝑗
+] (8)
+To ensure formation stability and obstacle avoidance capability dur-
+ing the game, the detection information is integrated into the state 
+space:
+𝑺𝑖
+detect =
+[ 𝑙1
+𝑙max
+, 𝑙2
+𝑙max
+, 𝑙3
+𝑙max
+, … , 𝑙11
+𝑙max
+]
+(9)
+where 𝑙1, 𝑙2, …,  𝑙11 represent the distances between the UAV and de-
+tected targets in diﬀerent directions.
+The action space of each UAV is deﬁned as:
+𝑨𝑖 =
+[
+𝐹 𝑖
+𝑥, 𝐹 𝑖
+𝑦
+]⊤
+(10)
+where 𝐹 𝑖
+𝑥 and 𝐹 𝑖
+𝑦 represent the control forces along the x-axis and y-axis 
+respectively.
+3.  LLM-enhanced MATD3 framework and methods
+In view of the existing LLM-enhanced reinforcement learning meth-
+ods, they typically provide one-time guidance during pre-training or 
+cold-start phases, such as LLM-guided exploration [34], prior policy gen-
+eration [36], formation pattern description [37], and action distribution 
+guidance [38]. Compared with the above results, the proposed LLM-
+MATD3 continuously integrates LLM instructions into the Actor-Critic 
+network through the hierarchical task embedding mechanism, enabling 
+real-time policy modulation across multi-agent coordination, continu-
+ous action spaces, and dynamic task allocation in game scenarios. In 
+this section, we will present a novel LLM-enhanced MATD3 framework 
+that integrates the game planning capabilities of large language models 
+with the autonomous decision-making of deep reinforcement learning. 
+As shown in Fig. 3, the framework comprises four components: the en-
+vironment modeling layer, the LLM task planner, the task embedding 
+network, and the task-enhanced MATD3 network. The LLM task planner 
+analyzes situational dynamics and assigns speciﬁc tasks to each agent. 
+Subsequently, the hierarchical task decomposition mechanism, guided 
+by a specialized task game reward function, transforms abstract task 
+labels into enhanced embedding vectors. These embeddings provide se-
+mantic guidance for reinforcement learning-based action generation.
+3.1.  Reward function
+To guide eﬀective agent behavior in a multi-UAV game, we design 
+a hierarchical reward structure comprising components for task execu-
+tion, safety enforcement, team coordination, and terminal evaluation.
+(1) Task reward 𝑅task assesses task execution performance through 
+three components.
+(i) The angular advantage reward 𝑟angle assesses the geometric re-
+lationship based on the aspect angles 𝜑𝑖𝑗 and target angles 𝑞𝑖𝑗 . 
+Aerospace Science and Technology 177 (2026) 112218 
+3 
+
+=== PAGE 4 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 2. 1 vs 1 scenario.
+Fig. 3. LLM-enhanced MATD3 framework for multi-UAV coordinated decision making.
+It is deﬁned as:
+𝑟angle =
+⎧
+⎪
+⎨
+⎪⎩
+5.0, if |𝜑𝑖𝑗 | < 𝜋 ∕4 and |𝑞𝑖𝑗 | > 3𝜋∕4
+2.5, if |𝜑𝑖𝑗 | < 𝜋 ∕2 and |𝑞𝑖𝑗 | > 𝜋 ∕2
+0.5, otherwise
+(11)
+(ii) The distance reward 𝑟distance encourages UAVs to maintain opti-
+mal engagement distance and it is formulated as:
+𝑟distance =
+⎧
+⎪
+⎪
+⎨
+⎪
+⎪⎩
+𝐷𝑖𝑗
+𝑑min
+− 1, if 𝐷𝑖𝑗 < 𝑑 min
+1.5(1 −
+|𝐷𝑖𝑗 −𝑑id|
+𝑑max−𝑑min
+), if 𝑑min ≤ 𝐷𝑖𝑗 ≤ 𝑑max
+1 − min(1,
+𝐷𝑖𝑗 −𝑑max
+𝜌𝑖⋅1.2 ), if 𝐷𝑖𝑗 > 𝑑 max
+(12)
+where 𝜌𝑖 denotes the task radius. The parameters 𝑑id = 0.7𝜌𝑖, 
+𝑑min = 0.3𝜌𝑖, and 𝑑max = 0.9𝜌𝑖 represent the ideal distance, lower 
+bound, and upper bound of the eﬀective task zone respectively.
+(iii) The approach reward 𝑟approach encourages UAVs to approach 
+and engage the nearest target UAV:
+𝑟approach = 8.0 ⋅
+(
+1.0 −
+( 𝐷𝑖𝑗
+𝜌𝑖 ⋅ 4.0
+)𝑏)
+(13)
+Thus, the total task reward combines the above three com-
+ponents, and it is presented in the form of:
+𝑅task = 𝑟angle + 𝑟distance + 𝑟approach (14)
+(2) The safety reward 𝑅safety penalizes environmental collision, UAV 
+collision, and boundary penalties. This reward is formulated as:
+𝑅safety =
+⎧
+⎪
+⎪
+⎨
+⎪
+⎪⎩
+−30, 𝑑 < 2 or 𝐷𝑖𝑗 < 2
+−10 ⋅ 𝑑safe −𝑑
+𝑑2
+safe
+, 5 < 𝑑 < 15
+− exp[2(1 − 𝑑border
+20 )], 𝑑 border < 20
+0, otherwise
+(15)
+Aerospace Science and Technology 177 (2026) 112218 
+4 
+
+=== PAGE 5 ===
+X. Dong, B. Li, G. Zhang et al.
+where 𝑑 denotes the distance to the nearest obstacle or UAV (in 
+meters); 𝑑border represents the minimum distance to mission bound-
+aries; and 𝑑safe deﬁnes the safety warning threshold.
+(3) The team cooperation reward encourages numerical advantage and 
+coordinated engagement, formulated as:
+𝑅team = 10.0 ⋅
+5 − 𝑁𝑗
+5 + 1.5 ⋅ 𝑁task (16)
+where 𝑁𝑗 denotes the remaining B-team UAVs, and 𝑁task represents 
+the number of A-team UAVs coordinating on the B-team.
+(4) The terminal reward 𝑅terminal is provided at the conclusion of each 
+episode based on the game outcome, which is expressed in the form 
+of:
+𝑅terminal =
+⎧
+⎪
+⎪
+⎪
+⎪
+⎨
+⎪
+⎪
+⎪
+⎪⎩
+20.0, if 𝑁𝑗 = 0 and 𝑁𝑖 > 0
+10.0, if 𝑁𝑖 > 𝑁 𝑗 and 𝑁𝑗 > 0
+−10.0, if 𝑁𝑖 = 0
+0.3 + 0.7 ⋅
+5−𝑁𝑗
+5 , if 𝑁𝑖 > 𝑁 𝑗
+0, otherwise
+(17)
+where its structure implements a hierarchical objective system: 
+complete mission success, maintaining operational advantage, per-
+formance assessment, and mission failure avoidance.
+By analyzing the characteristics of UAV tasks in game missions, we 
+propose a structured comprehensive reward function:
+𝑅total = 𝜔1 ⋅ 𝑅task + 𝜔2 ⋅ 𝑅safety
++𝜔3 ⋅ 𝑅team + 𝜔4 ⋅ 𝑅terminal
+(18)
+3.2.  LLM-based task analysis and assignment
+3.2.1.  Task analysis
+In traditional MATD3 frameworks [33], agents can only make deci-
+sions based on local observations, lacking the capability to comprehend 
+the overall game situation. To address this issue, we introduces an LLM 
+as a game analyzer to achieve global game awareness capability.
+The game situation assessment function can be represented as:
+(𝑆) = Φ LLM(𝜴𝑡, 𝑴 𝑡) (19)
+where ΦLLM represents the analysis function of the LLM; 𝜴𝑡 denotes the 
+current game state; and 𝑴 𝑡 is the historical game record. This function 
+maps game data to situational assessment results.
+The global game state 𝜴𝑡 contains complete state information for all 
+UAVs, and it is formulated as follows:
+𝜴𝑡 = {𝝎1
+A, … , 𝝎𝑖
+A, 𝝎1
+B, … , 𝝎𝑗
+B} (20)
+where each UAV’s state vector 𝝎 = [𝑝𝑥, 𝑝𝑦, 𝑣𝑥, 𝑣𝑦, 𝜃, 𝐻] includes position, 
+velocity, heading, and health status.
+The historical performance record stores game outcomes to capture 
+task execution patterns and game eﬀects. Each record contains the fol-
+lowing information:
+𝑴 𝑖 = [𝑤𝑖𝑛𝑖, 𝑁𝑖, 𝑁𝑗 , 𝑠𝑡𝑒𝑝] (21)
+where 𝑤𝑖𝑛𝑖 indicates whether the 𝑖th A-team UAV was victorious (1 for 
+victory, 0 for failure); 𝑁𝑖 and 𝑁𝑗 denote the number of the remain-
+ing A-team and B-team UAVs respectively; and 𝑠𝑡𝑒𝑝 represents the total 
+number of time steps in the game episode.
+The LLM task analysis evaluates situational parameters to gener-
+ate the game assessment (𝑆), comprising formation recommendations 
+𝐴form and target priorities 𝑻 priority = [id:1, id:2, … , id:7]. The key param-
+eters are deﬁned as follows:
+𝑟num = 𝑁𝑖
+𝑁𝑗
+(22)
+𝑑A = 1
+𝑁𝑖(𝑁𝑖 − 1)
+𝑁𝑖∑
+𝑖=1
+𝑁𝑖∑
+𝑗≠𝑖
+‖𝑝𝑖 − 𝑝𝑗 ‖ (23)
+𝑑B = 1
+𝑁𝑗 (𝑁𝑗 − 1)
+𝑁𝑗∑
+𝑖=1
+𝑁𝑗∑
+𝑗≠𝑖
+‖𝑝𝑖 − 𝑝𝑗 ‖ (24)
+where 𝑟num represents the numerical ratio between teams; 𝑑A and 𝑑B
+quantify the spatial dispersion of A-team and B-team UAVs respectively.
+Based on these metrics, the system recommends three formation 
+tasks, as illustrated in Fig. 4.
+(1) Concentrated Formation: This formation is deployed when 
+𝑟num < 0.8 or 𝑑B > 2𝑑A, forming triangular patterns to maximize ap-
+proach density.
+(2) Scattered Formation: This formation is deployed when 0.8 ≤
+𝑟num ≤ 1.3, assigning individual operational zones to maximize coverage 
+while minimizing exposure to B-team UAVs.
+(3) Surrounding Formation: This formation is deployed when 
+𝑟num > 1.3 or 𝑑B < 0.5𝑑A, enabling encirclement maneuvers against con-
+centrated B-team UAVs.
+3.2.2.  Task assignment
+Based on the game analysis (𝑆𝑡), the LLM uses a mapping func-
+tion  ∶ (𝑆𝑡) × 𝑴 𝑡 → {0, 1, 2}𝑛 to assign each UAV to one of three task 
+types, as shown in Fig. 5. Each task type corresponds to speciﬁc game 
+behaviors.
+(1) Active Tracking (𝜏 = 0): The UAV is responsible for actively ap-
+proaching UAVs with the nearest one. This involves maneuvering to gain 
+positional advantage, especially when the target is within the favorable 
+engagement zone (where |𝜑𝑖𝑗 | < 𝜋 ∕4 and |𝑞𝑖𝑗 | > 3𝜋∕4). The ideal Track-
+ing distance is maintained at approximately 𝑑id = 0.7𝜌𝑖.
+(2) Area Defense (𝜏 = 1): The UAV is responsible for key areas of the 
+game, preventing B-team UAVs from approaching. Through boundary-
+constraint mechanisms (𝑟boundary ) that limit the operational range, these 
+UAVs can actively track B-team UAVs approaching the key zone without 
+pursuing targets outside their assigned area.
+(3) Support Coordination (𝜏 = 2): The UAV is responsible for en-
+hancing overall game eﬀectiveness through team coordination. UAVs 
+assigned to this task maintain formation integrity by preserving optimal 
+team distance (𝑑team ) to strengthen numerical advantage.
+The LLM-enhanced MATD3 framework enables comprehensive anal-
+ysis of complex game situations and task assignments. Fig. 6 illustrates 
+the LLM-based assignment process, showing how the module analyzes 
+the game situation from input data and delivers the assignment results 
+in JSON format.
+3.3.  Hierarchical task decomposition mechanism
+To bridge the gap between discrete task labels and continuous pol-
+icy learning, this subsection proposes a hierarchical task decomposi-
+tion mechanism that augments task embeddings with state-dependent 
+sub-goal information. This mechanism serves as an intermediate layer 
+between the LLM task planner and the Actor-Critic network, trans-
+forming abstract task labels 𝜏 ∈ {0, 1, 2} into task completion features. 
+For each task type, as illustrated in Fig. 5, we deﬁne a sub-goal set 
+𝜏 = {𝑔𝜏
+1 , 𝑔𝜏
+2 , 𝑔𝜏
+3 }, where each sub-goal function 𝑔𝜏
+𝑘 ∶  → [0, 1] evaluates 
+the completion degree of a speciﬁc sub-objective.
+(1) Active Tracking Task (𝜏 = 0) Decomposition:
+⎧
+⎪
+⎪
+⎨
+⎪
+⎪⎩
+𝑔0
+1 (𝑠) =
+𝑁𝑗
+max
+𝑗=1
+[
+0.6 ⋅ max
+(
+0, 1 −
+𝐷𝑖𝑗
+1.5𝜌𝑖
+)
++ 0.4 ⋅
+𝐻𝑗
+𝐻
+]
+𝑔0
+2 (𝑠) = exp
+(
+−
+(𝐷𝑖𝑗∗ − 0.7𝜌𝑖)2
+0.1𝜌2
+𝑖
+)
+⋅ max
+(
+0, 1 −
+|𝜑𝑖𝑗∗ |
+𝜋∕4
+) (25)
+Aerospace Science and Technology 177 (2026) 112218 
+5 
+
+=== PAGE 6 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 4. LLM-enhanced MATD3 algorithm for UAV formation allocation.
+Fig. 5. UAV Task Labels.
+⎧
+⎪
+⎪
+⎨
+⎪
+⎪⎩
+𝑔0
+3 (𝑠) =
+(
+1 −
+𝐷𝑖𝑗∗
+𝜌𝑖
+)(
+1 −
+|𝜑𝑖𝑗∗ |
+𝜋∕4
+)
+, if 𝐷𝑖𝑗∗ ≤ 𝜌𝑖 and |𝜑𝑖𝑗∗ | < 𝜋
+4
+𝑔0
+3 (𝑠) = 0 , otherwise
+(26)
+where 𝑗∗ denotes the target index selected by 𝑔0
+1 . Speciﬁcally, 𝑔0
+1 (𝑠)
+represents target selection based on distance and health status; 𝑔0
+2 (𝑠)
+evaluates position optimization towards ideal distance 0.7𝜌𝑖 and angle 
+|𝜑𝑖𝑗∗ | < 𝜋 ∕4; 𝑔0
+3 (𝑠) measures task execution eﬀectiveness, activated only 
+when task conditions are satisﬁed.
+Aerospace Science and Technology 177 (2026) 112218 
+6 
+
+=== PAGE 7 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 6. LLM task assignment process.
+(2) Area Defense Task (𝜏 = 1) Decomposition:
+⎧
+⎪
+⎪
+⎪
+⎪
+⎨
+⎪
+⎪
+⎪
+⎪⎩
+𝑔1
+1 (𝑠) = exp
+(
+−
+𝑑2
+border
+0.2𝜌2
+𝑖
+)
+𝑔1
+2 (𝑠) = max
+(
+0, 1 − 𝑑border
+2𝜌𝑖
+)
+𝑔1
+3 (𝑠) = 1
+𝑁𝑗
+∑𝑁𝑗
+𝑗=1 exp
+(
+−
+𝐷2
+𝑖𝑗
+2𝜌2
+𝑖
+)
+(27)
+where 𝑔1
+1 (𝑠) measures positioning accuracy within the defense zone; 
+𝑔1
+2 (𝑠) evaluates proximity to the assigned defense boundary; 𝑔1
+3 (𝑠) as-
+sesses tracking capability based on distance to B-team UAVs.
+(3) Support Coordination Task (𝜏 = 2) Decomposition:
+⎧
+⎪
+⎪
+⎪
+⎨
+⎪
+⎪
+⎪⎩
+𝑔2
+1 (𝑠) = exp
+(
+− (𝑑team − 𝜌𝑖)2
+0.5𝜌2
+𝑖
+)
+𝑔2
+2 (𝑠) = 𝑁task
+𝑁𝑖
+𝑔2
+3 (𝑠) = 1
+𝑁𝑖 − 1
+∑𝑁𝑖
+𝑘≠𝑖 max
+(
+0, 1 − 𝐷𝑖𝑘
+𝜌𝑖
+)
+(28)
+where 𝑔2
+1 (𝑠) measures formation coherence around ideal distance 𝜌𝑖; 
+𝑔2
+2 (𝑠) evaluates the coordinated task ratio; 𝑔2
+3 (𝑠) assesses mutual support 
+capability among teammates within eﬀective range.
+The hierarchical task decomposition mechanism constructs en-
+hanced embedding vectors based on sub-goal completion scores. The 
+three sub-goal completion scores are ﬁrst combined into a vector 𝒈𝜏 (𝑠) =
+[𝑔𝜏
+1 (𝑠), 𝑔𝜏
+2 (𝑠), 𝑔𝜏
+3 (𝑠)]⊤, and then integrated with the original task embed-
+dings through a linear transformation as follows:
+̃𝒆𝜏 = 𝑾 base𝒆𝜏 + 𝑾 sub𝒈𝜏 (𝑠) + 𝒃task (29)
+where 𝑾 base ∈ ℝ𝑑×𝑑 transforms the original task embedding, 𝑾 sub ∈
+ℝ𝑑×3 projects sub-goal completion scores into the embedding space, and 
+𝒃task ∈ ℝ𝑑 provides task-speciﬁc bias.
+Remark 1. The sub-objective functions (25)–(28) are designed by the 
+game principles and mathematical considerations. For the Active Track-
+ing (𝜏 = 0) task, 𝑔0
+1 uses a 6:4 distance-health weighting to prioritize po-
+sitional advantage; 𝑔0
+2 employs a Gaussian kernel centered at the optimal 
+engagement distance 0.7𝜌𝑖; and 𝑔0
+3 implements threshold activation to 
+prevent false positives. For Area Defense (𝜏 = 1), exponential decay in 𝑔1
+1
+ensures precise zone positioning, while linear guidance in 𝑔1
+2 maintains 
+long-range stability. For Support Coordination (𝜏 = 2), 𝑔2
+1 is designed 
+to improve the safety of the formation, and the Gaussian function-based 
+distances constraints of each UAVs are limited within [0.5𝜌𝑖, 1.5𝜌𝑖]. These 
+functions are systematically derived from UAV physical characteristics, 
+geometric constraints in game scenarios, and multi-agent coordination 
+requirements. 
+3.4.  Task-aware actor-critic network
+In this subsection, we improve the traditional MATD3 RL frame-
+works [33]. Especially, the Actor-Critic networks will be redesigned by 
+introducing task embedding network layer. The proposed task-aware 
+architecture incorporates a task embedding layer that integrates dis-
+crete task information into the policy network, enabling agents to ad-
+just decision-making behaviors based on task types. The task embedding 
+layer transforms discrete task labels into continuous vector representa-
+tions, formalized as:
+𝒆𝜏 = Embedding(𝜏) ∈ ℝ𝑑 (30)
+where Embedding(⋅) is the mapping function parameterized by embed-
+ding matrix 𝑬 ∈ ℝ|𝑇 |×𝑑 , and 𝑑 is the embedding dimension. Note that 𝒆𝜏
+represents the original task embedding, which is subsequently enhanced 
+through the hierarchical task decomposition mechanism to generate ̃𝒆𝜏 .
+The actor network can be represented as a mapping 𝜋𝜃 ∶ 𝑺 → 𝑨, 
+where 𝑺 is the state space and 𝑨 is the action space. This research ex-
+tends the standard actor network by introducing the hierarchical task 
+decomposition mechanism, forming a task-aware actor network as fol-
+lows:
+𝑎 = 𝜋𝜃(𝑠, ̃𝒆𝜏 ) = tanh(MLP( 𝑠, 𝜆𝜏 ⋅ ̃𝒆𝜏 )) (31)
+where MLP represents a multi-layer perceptron, and 𝜆𝜏 is a weighting 
+parameter controlling the inﬂuence of task embedding on action gener-
+ation.
+The task-aware critic network learns the state-action-task value func-
+tion 𝑄(𝑠, 𝑎, ̃𝒆𝜏 ), which represents the expected cumulative reward of ex-
+ecuting action 𝑎 under task 𝜏. The formulation is given by:
+𝑄(𝑠, 𝑎, ̃𝒆𝜏 ) = 𝔼
+[ ∞∑
+𝑡=0
+𝛾 𝑡𝑟𝑡 ∣ 𝑠 = 𝑠0, 𝑎 = 𝑎0, 𝜏 = 𝜏0
+]
+(32)
+TD3 employs a twin-critic architecture to mitigate Q-value overesti-
+mation and uses target networks to improve training stability. The target 
+Q-value calculation takes into account task label transitions as follows:
+𝑦 = 𝑟 + 𝛾 min
+𝑖=1,2
+𝑄𝜙′
+𝑖
+(𝑠′, 𝜋𝜃′ (𝑠′, ̃𝒆𝜏′ ) + 𝜖, ̃𝒆𝜏′ ) (33)
+where 𝜏′ is the next-state task label, and 𝜖 ∼ clip( (0, 𝜎2), −𝑐, 𝑐) is 
+clipped noise for policy smoothing.
+The critic network is optimized by minimizing the temporal diﬀer-
+ence error. Its loss function and gradient update are deﬁned as follows:
+{
+𝐿(𝜙𝑖) = 𝔼(𝑠,𝑎,𝑟,𝑠′,𝜏)∼
+[(𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 ) − 𝑦)2]
+∇𝜙𝑖 𝐿(𝜙𝑖) = 𝔼(𝑠,𝑎,𝑟,𝑠′,𝜏)∼
+[2(𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 ) − 𝑦) ⋅ ∇𝜙𝑖 𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 )] (34)
+The actor network is optimized using the deterministic pol-
+icy gradient algorithm. The objective function and gradient update
+Aerospace Science and Technology 177 (2026) 112218 
+7 
+
+=== PAGE 8 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 7. Performance comparison of diﬀerent algorithms in UAV game environments.
+Algorithm 1 LLM-MATD3 algorithm.
+1: Initialize  critic networks 𝑄𝜙1 , 𝑄𝜙2 , and actor network 𝜋𝜃 with pa-
+rameters 𝜙1, 𝜙2, 𝜃
+2: Initialize  target networks 𝜙′
+1 ← 𝜙1, 𝜙′
+2 ← 𝜙2, 𝜃′ ← 𝜃
+3: Initialize  embedding matrix 𝐸 ∈ ℝ|𝑇 |×𝑑
+4: Initialize  replay buﬀer 
+5: for each episode do do
+6: Initialize  state 𝑠1 and task labels 𝜏 = {}
+7: for each timestep 𝑡 do do
+8: if 𝑡 mod task_interval = 0 then then
+9:  ← 𝐿𝐿𝑀.assign_tasks(𝑃𝑖, 𝑃𝑗 , 𝑁𝑖, 𝑁𝑗 )
+10: end if
+11: for each agent 𝑖 do do
+12: 𝜏𝑖 ←  .get("agent_" + 𝑖, 0)
+13: Compute  sub-goal vector: 𝐠𝜏𝑖 (𝑠𝑖)
+14: Generate  enhanced embedding: ̃𝒆𝜏𝑖
+15: 𝑎𝑖 ← 𝜋𝜃(𝑠𝑖, ̃𝒆𝜏𝑖 ) + 𝜀
+16: end for
+17: Execute  𝑎, observe 𝑟, 𝑠′
+18: Store  transition tuple (𝑠, 𝑎, 𝑟, 𝑠′, 𝜏) in 
+19: Sample  mini-batch of N transitions
+(𝑠𝑖, 𝑎𝑖, 𝑟𝑖, 𝑠′
+𝑖, 𝜏𝑖) from 
+20: Compute  enhanced embeddings for next states: ̃𝒆𝜏′
+21: ̃ 𝑎′
+𝑖 ← 𝜋𝜃′ (𝑠′
+𝑖, ̃𝒆𝜏′ ) + 𝜀
+22: 𝑦𝑖 ← 𝑟𝑖 + 𝛾 min𝑗=1,2 𝑄𝜙′
+𝑗
+(𝑠′
+𝑖, ̃ 𝑎′
+𝑖, ̃𝒆𝜏′ )
+23: Update  critics 𝜙𝑖 ← 𝐿 =
+𝐸(𝑠,𝑎,𝑟,𝑠′,𝜏)∼[(𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 ) − 𝑦)2]
+24: if 𝑡 mod 𝑑policy = 0 then
+25: Update  𝜃 by the deterministic policy gradient: 
+26: ∇𝜃𝐽 (𝜃) = 𝐸[(∇𝑎𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 ))|𝑎=𝜋𝜃 (𝑠,̃𝒆𝜏 ) ⋅
+∇𝜃𝜋𝜃(𝑠, ̃𝒆𝜏 )]
+27: Update  target networks: 
+28: 𝜃′ ← 𝜏𝑢𝜃 + (1 − 𝜏𝑢)𝜃′
+29: 𝜙′
+𝑖 ← 𝜏𝑢𝜙𝑖 + (1 − 𝜏𝑢)𝜙′
+𝑖, 𝑖 ∈ {1, 2}
+30: end if
+31: 𝑠 ← 𝑠′
+32: end for
+33: Record  game results for LLM
+34: end for
+are deﬁned as:
+{
+𝐽 (𝜃) = 𝔼(𝑠,𝜏)∼
+[𝑄𝜙𝑖 (𝑠, 𝜋𝜃(𝑠, ̃𝒆𝜏 ), ̃𝒆𝜏 )]
+∇𝜃𝐽 (𝜃) = 𝔼(𝑠,𝜏)∼
+[∇𝑎𝑄𝜙𝑖 (𝑠, 𝑎, ̃𝒆𝜏 )|𝑎=𝜋𝜃 (𝑠,̃𝒆𝜏 ) ⋅ ∇𝜃𝜋𝜃(𝑠, ̃𝒆𝜏 )] (35)
+To maintain training stability, TD3 employs soft updates for update 
+the target network parameters:
+{ 𝜃′ ← 𝜏𝑢𝜃 + (1 − 𝜏𝑢)𝜃′
+𝜙′
+𝑖 ← 𝜏𝑢𝜙𝑖 + (1 − 𝜏𝑢)𝜙′
+𝑖
+(36)
+Summing up the above analysis and design, the Algorithm 1 illus-
+trates the core-code of the proposed LLM-MATD3 in this work.
+Remark 2. There are some existing paradigms for the interaction be-
+tween RL and LLM, such as external rewards [39], critical-moment guid-
+ance [40], or regularization terms [41], or cold-start exploration guid-
+ance [34]. Unlike the above results, the proposed LLM-MATD3 mech-
+anism in this work achieves direct modulation of the policy update di-
+rection through semantic embedding. In the proposed framework, the 
+LLM’s discrete task label 𝜏 is transformed into the enhanced task embed-
+ding ̃ 𝑒𝜏 through semantic encoding and state enhancement in (29)–(30), 
+which directly enters the Actor-Critic computational graph. Since ̃ 𝑒𝜏 ap-
+pears simultaneously in both multiplicative factors of the policy gradient 
+(35), a change in the LLM’s task assignment directly redirects ∇𝜃𝐽 (𝜃). 
+4.  Experiments and results
+This section validates the proposed LLM-MATD3 framework through 
+three complementary experiments: baseline comparisons, ablation stud-
+ies on task allocation, and scalability analysis across varied task
+scales.
+4.1.  Experimental settings
+The environment comprises a 1600 × 1600 square-meter operational 
+space with randomly distributed static obstacles, shown in Table 1. 
+Team A and Team B each deploy 5 UAVs, with initial positions on the 
+western and eastern boundaries respectively. Team A employs the pro-
+posed LLM-MATD3 scheme, while Team B adopts an expert knowledge-
+based system [9], which encodes experience to prioritize engaging the 
+nearest detected UAVs. Each episode lasts up to 400 timesteps and ter-
+minates when all UAVs of one team are eliminated or the maximum 
+timestep is reached. Each UAV is initialized with a health value of 
+𝐻0 = 100 and is eliminated when its health reaches zero. The dynamic 
+of UAV interactions, including calculation of health value and collision 
+Aerospace Science and Technology 177 (2026) 112218 
+8 
+
+=== PAGE 9 ===
+X. Dong, B. Li, G. Zhang et al.
+handling, follow the physical model in Section 3. The training process 
+adopts hyperparameters listed in Table 2, with random seeds used to en-
+sure experimental reproducibility. Each training session runs for 35,000 
+episodes using Python 3.8 and PyTorch 1.9.0 as the underlying compu-
+tational framework.
+Regarding to the reasons and principles for key parameter settings, 
+the task radius 𝜌𝑖 = 300.0 m is set to 1.5 times the sensor detection 
+range (𝑙max = 200.0 m), ensuring UAVs can complete the full detection-
+tracking-execution process while serving as the normalization basis for 
+the reward structure in (12). The safety distance threshold 𝑑safe = 15 
+m is derived from kinematic constraints: given 𝑑𝑡 = 0.1s and 𝑣max = 45 
+m/s, and the maximum displacement during a 2–3 step response cycle 
+is approximately 9–13.5 m, thus 15 m can provide suﬃcient  safety mar-
+gin. For the environment modeling rules, eﬀective engagement is deter-
+mined when 𝐷𝑖𝑗 ≤ 𝐿𝑖 with angular advantage (|𝜑𝑖𝑗 | < 𝜋 ∕4, |𝑞𝑖𝑗 | > 3𝜋∕4), 
+inﬂicting Δ𝐻 on the target. Collision and boundary penalties follow the 
+hierarchical structure in (15), where immediate penalties are triggered 
+at 𝑑 < 2 m and graduated warnings are imposed within 5 m < 𝑑 < 15 m. 
+Episodes terminate when all UAVs of either team are eliminated or the 
+maximum of 400 timesteps is reached. Formation recommendations are 
+governed by the numerical ratio 𝑟num and spatial dispersion metrics 𝑑A, 
+𝑑B in (22)–(24).
+Fig. 8. Task assignment and allocation ratio analysis.
+Aerospace Science and Technology 177 (2026) 112218 
+9 
+
+=== PAGE 10 ===
+X. Dong, B. Li, G. Zhang et al.
+Fig. 9. Scalability analysis across diﬀerent game scenarios.
+Table 1 
+UAV system parameters.
+    Component  Parameters  Values  
+  UAV Physical  Max Velocity 𝑣max  45.0 m/s  
+  Characteristics  Mass 𝑚uav  1.0 kg  
+  Game Parameters  Initial Health 𝐻  100.0  
+  Task Radius 𝜌𝑖  300.0 m  
+  Sensors  Number  11  
+  Detection Range 𝑙max  200.0 m  
+  Environment  Field Dimensions 1600 × 1600 m2  
+  Conﬁguration  Obstacle Count  3–5  
+  Obstacle Radius  [30.0, 100.0] m 
+The proposed method is evaluated using three metrics: (1) Win 
+rate: the proportion of episodes in which A-Team eliminates all B-
+Team UAVs; (2) Exchange ratio: the ratio of eliminated B-Team UAVs 
+to lost A-Team UAVs, reﬂecting game eﬃciency;  (3) Cumulative re-
+ward: the total reward accumulated by A-Team over an episode, indi-
+cating overall policy quality. In addition, the LLM component utilizes 
+the DeepSeek-R1 model (14B parameters) as game analyzer, deployed 
+locally via the Ollama framework and ﬁne-tuned using Low-Rank Adap-
+tation (LoRA). Speciﬁcally, the ﬁne-tuning dataset comprises approx-
+imately 3000 input-output samples automatically generated from the 
+simulation environment, covering game scenarios. During the training, 
+Aerospace Science and Technology 177 (2026) 112218 
+10 
+
+=== PAGE 11 ===
+X. Dong, B. Li, G. Zhang et al.
+Table 2 
+Training hyperparameters.
+    Component  Parameters  Values  
+  RL Parameters  Discount Factor 𝛾  0.99  
+  Soft Update Rate 𝜏𝑢  0.005  
+  Batch Size  512  
+  Actor Learning Rate 3 × 10−4  
+  Critic Learning Rate 3 × 10−4  
+  Policy Noise  0.1  
+  Noise Clip Range  0.25  
+  Policy Update Frequency  3  
+  Replay Buﬀer Size 3 × 105  
+  LLM Integration  Task Update Interval  100 steps  
+  Strategy Update Interval  300 steps  
+  LLM Factor 𝜆  0.25  
+  Task Embedding Dimension  32  
+  Training Conﬁg  Training Episodes  35,000  
+  Max Steps/Episode  400  
+  Evaluation Episodes  50  
+  Save Interval  500 episodes 
+4-bit NF4 quantization is employed to mitigate memory constraints. The 
+key LoRA hyperparameters are set as: rank 𝑟 = 16, 𝛼 = 32, and dropout= 
+0.05, using the AdamW optimizer (learning rate 2 × 10−4) for 3 epochs. 
+Furthermore, the LLM task scheduler updates every 100 timesteps for 
+task allocation to reduce computational overhead, while game recom-
+mendations update every 300 timesteps.
+4.2.  Testings and results
+4.2.1.  Overall performance comparison
+Based on the simulation environment and parameter set-
+tings, we ﬁrst trained 5 vs.5 multi-UAV game policy mod-
+els using four algorithms: LLM-MATD3, MATD3 [28], MAD-
+DPG [42], and MAPPO [43]. Fig. 7(a) demonstrates the average 
+reward variation curves during training. The horizontal axis
+represents training episodes (×10, totaling 3500 episodes), and 
+the vertical axis represents average reward. The red, blue, orange, and 
+green curves represent the performance indicators for four algorithms 
+respectively.
+Fig. 7(a) shows the average reward curves during training. Dur-
+ing the initial phase, all four algorithms achieved relatively low re-
+wards, indicating that eﬀective game rules had not yet been established. 
+As training progressed, LLM-MATD3 demonstrated faster convergence 
+rate compared to the other methods. After convergence, LLM-MATD3 
+achieved the highest average reward of approximately 1,600, outper-
+forming MATD3 (∼1,300), MADDPG (∼1,200), and MAPPO (∼900).
+Fig. 7(b) presents win rate comparisons. LLM-MATD3 achieved the 
+highest win rate of 82%, while MATD3, MADDPG, and MAPPO achieved 
+69%, 55%, and 42%, respectively. These results demonstrate that LLM-
+Fig. 10. 5-vs-5 game scenario-1 at diﬀerent time steps. (a) 𝑡 = 0. (b) 𝑡 = 80. (c) 𝑡 = 160. (d) 𝑡 = 240. (e) 𝑡 = 300. (f) 𝑡 = 400.
+Aerospace Science and Technology 177 (2026) 112218 
+11 
+
+=== PAGE 12 ===
+X. Dong, B. Li, G. Zhang et al.
+MATD3 outperforms both traditional reinforcement learning algorithms 
+and rule-based approaches, indicating that LLM-based game analysis ef-
+fectively reduces the exploration space and improves policy quality.
+4.2.2.  Task allocation eﬀectiveness
+This section evaluates the eﬀectiveness of LLM-based task allocation 
+by comparing it with ﬁxed allocation methods and analyzing the im-
+pact of allocation ratios. Fig. 8(a) presents execution success rates across 
+three task types, with each data point representing the average of 100 in-
+dependent simulation runs. LLM allocation outperforms ﬁxed allocation 
+in active tracking (80.5% vs. 63.2%) and cooperative support (46.4% vs. 
+31.6%) tasks. Notably, ﬁxed allocation outperforms LLM allocation in 
+area defense tasks (60.5% vs 48.7%), likely because predeﬁned posi-
+tions reduce coordination uncertainty. It should be noted that the area 
+defense task is fundamentally a position-maintenance task where execu-
+tion depends on local motion control rather than high-level reasoning, 
+and ﬁxed allocation provides more uniform spatial coverage compared 
+to LLM’s dynamic reallocation which may create temporary coverage 
+gaps.
+Fig. 8(b) compares win rates and exchange ratios across six task al-
+location conﬁgurations, where the ratio denotes Active Tracking : Area 
+Defense : Support. Each conﬁguration is evaluated over 100 Monte Carlo 
+simulations. The results reveal a non-monotonic performance proﬁle: 
+the optimal 55:35:10 conﬁguration achieves an 82.0% win rate and 2.59 
+exchange ratio while minimizing variance. Performance degrades when 
+active tracking exceeds 70%, indicating that balanced task allocation is 
+critical for overall eﬀectiveness. Moreover, the box plot distributions in-
+dicate that the 55:35:10 conﬁguration exhibits the smallest box height, 
+reﬂecting superior stability across 100 simulations. Conﬁgurations with 
+extreme ratios, such as 30:40:30 and 70:20:10, display wider boxes and 
+greater variability. The isolated circle points beyond the box plots in 
+Fig. 8(b) represent a few simulation runs with results notably diﬀerent 
+from the majority. The combination of highest mean performance and 
+lowest variance conﬁrms 55:35:10 as the most robust allocation results.
+4.3.  Diﬀerent scale task scenarios
+To evaluate the scalability and adaptability of the LLM-MATD3 
+framework across diﬀerent-scale game environments, we conducted 
+comparative experiments in diﬀerent scale tasks. As shown in Fig. 9(a), 
+in the 3v3 environment, LLM-MATD3 achieved a 59.4% win rate, out-
+performing MATD3 (51.3%), MADDPG (46.5%), and MAPPO (39.8%), 
+though the margin is relatively modest. The exchange ratio data in 
+Fig. 9(b) shows LLM-MATD3 reaching 1.96, exceeding MATD3 (1.57), 
+MADDPG (1.51) and MAPPO(1.45). This indicates that in small-scale 
+environments, agent coordination complexity remains relatively low, 
+allowing traditional reinforcement learning methods to maintain rea-
+sonable eﬀectiveness.
+As the task scale expands to 7v7, decision space complexity in-
+creases signiﬁcantly, and performance diﬀerentiation among algorithms 
+Fig. 11. 5-vs-5 game scenario-2 at diﬀerent time steps. (a) 𝑡 = 0. (b) 𝑡 = 80. (c) 𝑡 = 160. (d) 𝑡 = 240. (e) 𝑡 = 300. (f) 𝑡 = 400.
+Aerospace Science and Technology 177 (2026) 112218 
+12 
+
+=== PAGE 13 ===
+X. Dong, B. Li, G. Zhang et al.
+becomes more pronounced. Fig. 9(a) shows LLM-MATD3 achieves a win 
+rate of 89.8%, outperforming MATD3 (79.4%), MADDPG (67.2%), and 
+MAPPO (51.3%) by 10.4, 22.6, and 38.5 percentage points respectively. 
+In terms of exchange ratio Fig. 9(b), LLM-MATD3 achieves 3.35, outper-
+forming MATD3 (2.94), MADDPG (2.62), and MAPPO (2.23).
+To quantify performance reliability and validate statistical signiﬁ-
+cance, independent experiments were conducted using 5 random seeds 
+based on the ﬁnal 50 evaluation episodes. The proposed LLM-MATD3 
+in this work consistently outperforms all three baselines with statisti-
+cally improvements (𝑝 < . 05 in 3v3; 𝑝 < . 01 in 5v5/7v7/12v12), achiev-
+ing at least approximately 10%, 20%, and 35% higher win rates com-
+pared to MATD3, MADDPG, and MAPPO respectively. Moreover, LLM-
+MATD3 exhibits superior stability with lower standard deviations across 
+all scales. It demonstrates that LLM-MATD3-based task allocation be-
+comes increasingly eﬀective in managing coordination challenges as the 
+increasing number of agents in the game.
+4.4.  Visual analysis
+To validate the practical eﬀectiveness of LLM-MATD3, this section 
+presents a visual analysis of two representative formation strategies in 
+5v5 game scenarios.
+As shown in Fig. 10, The LLM recommends concentrated formation 
+based on situational assessment. During the initial phase (𝑡 = 0 − 80 ), 
+Team A UAVs converge into a tight coordination. In the mid-phase 
+(𝑡 = 160–300), agents executing active tracking (𝜏 = 0) form a semicir-
+cular encirclement, constraining Team B to the central region. By the 
+terminal phase (𝑡 = 400), Team A achieves complete elimination with 
+minimal losses, demonstrating superior concentration and breakthrough 
+capability.
+As shown in Fig. 11, the LLM recommends a scattered formation 
+strategy. Team A UAVs adopt dispersed initial positions to minimize 
+concentrated damage. In the middle phase (𝑡 = 160 − 300 ), they engage 
+from multiple angles, fragmenting Team B’s defensive formation. Al-
+though UAV ID:7 gets damaged (Heath State:76), Team A maintains 
+the advantage through ﬂexible repositioning. The victory with only one 
+damaged UAV demonstrates that scattered formations eﬀectively bal-
+ance multi-directional engagement with survivability.
+In summary, concentrated formations provide superior game den-
+sity, making them suitable for scenarios with clear force advantages 
+or rapid breakthrough requirements. Scattered formations oﬀer better 
+spatial coverage and survivability against uncertain conditions. LLM-
+MATD3 dynamically selects formations based on real-time conditions, 
+demonstrating adaptive decision-making in complex task environments.
+5.  Conclusion
+This work proposes a Large Language Model-enhanced multi-agent 
+deep reinforcement learning scheme(LLM-MATD3) for task decision-
+making. Through systematic simulation experiments, we demonstrate 
+its eﬀectiveness in multi-agent decision-making domains. The hierarchi-
+cal task decomposition mechanism transforms abstract task labels into 
+state-dependent sub-goal scores, eﬀectively integrating LLM guidance 
+with autonomous decision-making. This approach enhances collabora-
+tive capabilities in high-dimensional state spaces. Further analysis re-
+veals that semantic enhancement and task decomposition mechanisms 
+reduce decision space complexity, eﬀectively addressing the curse of 
+dimensionality problem. Additionally, dynamic task allocation enables 
+agents to adjust execution modes based on game dynamics. In the fu-
+ture, we will further explore deep integration of LLM with reinforcement 
+learning under game learning frameworks, hybrid dynamic-static task 
+allocation strategies across diverse task types, multi-modal situational 
+awareness with decision composition, and lightweight deployment so-
+lutions in continuous computing environments.
+CRediT authorship contribution statement
+Xinyu Dong: Writing – original draft, Validation, Methodology, In-
+vestigation; Bo Li: Writing – review & editing, Supervision, Method-
+ology, Investigation, Funding acquisition, Conceptualization; Guangyu 
+Zhang: Writing – review & editing, Supervision, Investigation; Bing 
+Xiao: Writing – review & editing, Supervision, Methodology; Yuanshun 
+Wang: Validation, Investigation.
+Data availability
+Data will be made available on request.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial 
+interests or personal relationships that could have appeared to inﬂuence 
+the work reported in this paper. 
+Acknowledgement
+This work was partly supported by National Natural Science Foun-
+dation of China (62473249), Natural Science Foundation of Shanghai 
+(23ZR1426600), and State Key Laboratory of Robotics and Intelligent 
+Systems (2025-O23). 
+References
+[1] C. Zhang, G. Zhang, Q. Dong, Multi-variable ﬁnite-time observer-based adaptive-
+gain sliding mode control for ﬁxed-wing UAV, IET Control Theory Appl. 15 (2) 
+(2021) 223–247.
+[2] B. Li, H. Liu, C.K. Ahn, W. Gong, Optimized intelligent tracking control for a quadro-
+tor unmanned aerial vehicle with actuator failures, Aerosp. Sci. Technol. 144 (2024) 
+108803.
+[3] S.-G. Kim, E. Lee, I.-P. Hong, J.-G. Yook, Review of intentional electromagnetic in-
+terference on UAV sensor modules and experimental study, Sensors 22 (6) (2022) 
+2384.
+[4] F. Hu, T. Ma, X. Su, Adaptive fuzzy sliding-mode ﬁxed-time control for quadrotor 
+unmanned aerial vehicles with prescribed performance, IEEE Trans. Fuzzy Syst. 32 
+(7) (2024) 4109–4120.
+[5] J. Wu, N. Zhang, D. Li, J. Bi, G. Han, A context-aware feature fusion method for 
+multi-UAV cooperative air combat, IEEE Trans. Intell. Transp. Syst. 26 (5) (2025) 
+7197–7210.
+[6] H. Liu, B. Li, C.K. Ahn, Asymptotically stable-learning-based formation control for 
+multiquadrotor UAVs, IEEE Internet Things J. 12 (13) (2025) 24985–24995.
+[7] Z. Zhen, Y. Chen, L. Wen, B. Han, An intelligent cooperative mission planning 
+scheme of UAV swarm in uncertain dynamic environment, Aerosp. Sci. Technol. 
+100 (2020) 105826.
+[8] J. Tang, X. Chen, X. Zhu, F. Zhu, Dynamic reallocation model of multiple unmanned 
+aerial vehicle tasks in emergent adjustment scenarios, IEEE Trans. Aerosp. Electron. 
+Syst. 59 (2) (2023) 1139–1155.
+[9] H. Piao, Y. Han, H. Chen, X. Peng, S. Fan, Y. Sun, C. Liang, Z. Liu, Z. Sun, D. Zhou, 
+Complex relationship graph abstraction for autonomous air combat collaboration: 
+a learning and expert knowledge hybrid approach, Expert Syst. Appl. 215 (2023) 
+119285.
+[10] Y. Cao, Y.-X. Kou, Z.-W. Li, A. Xu, Autonomous maneuver decision of UCAV air 
+combat based on double deep q network algorithm and stochastic game theory, Int. 
+J. Aerosp. Eng. 2023 (1) (2023) 3657814.
+[11] Y. Li, W. Chen, S. Liu, G. Yang, F. He, Multi-UAV cooperative air combat target 
+assignment method based on VNS-IBPSO in complex dynamic environment, Int. J. 
+Aerosp. Eng. 2024 (1) (2024) 9980746.
+[12] J.S. McGrew, J.P. How, B. Williams, N. Roy, Air-combat strategy using approximate 
+dynamic programming, J. Guidance Control Dyn. 33 (5) (2010) 1641–1654.
+[13] Z. Yang, D. Zhou, H. Piao, K. Zhang, W. Kong, Q. Pan, Evasive maneuver strategy 
+for UCAV in beyond-visual-range air combat based on hierarchical multi-objective 
+evolutionary algorithm, IEEE Access 8 (2020) 46605–46623.
+[14] A. Xu, H. Li, Y. Hong, G. Liu, Autonomous decision-making for air gaming based on 
+position weight-based particle Swarm optimization algorithm, Aerospace 11 (12) 
+(2024) 1030.
+[15] L. Wang, S. Zheng, S. Tai, H. Liu, T. Yue, UAV air combat autonomous trajectory 
+planning method based on robust adversarial reinforcement learning, Aerosp. Sci. 
+Technol. 153 (2024) 109402.
+[16] X. Wang, Y. Wang, X. Su, L. Wang, C. Lu, H. Peng, J. Liu, Deep reinforcement 
+learning-based air combat maneuver decision-making: literature review, implemen-
+tation tutorial and future direction, Artif. Intell. Rev. 57 (1) (2024) 1.
+[17] S. Zhang, L. Zhang, F. Xu, S. Cheng, W. Su, S. Wang, Dynamic deployment method 
+based on double deep Q-network in UAV-assisted MEC systems, J. Cloud Comput. 
+12 (1) (2023) 130.
+Aerospace Science and Technology 177 (2026) 112218 
+13 
+
+=== PAGE 14 ===
+X. Dong, B. Li, G. Zhang et al.
+[18] L. Jia, C. Cai, X. Wang, Z. Ding, J. Xu, K. Wu, J. Liu, Multi-intent autonomous 
+decision-making for air combat with deep reinforcement learning, Appl. Intell. 53 
+(23) (2023) 29076–29093.
+[19] H. Zhang, Y. Wei, H. Zhou, C. Huang, Maneuver decision-making for autonomous 
+air combat based on FRE-PPO, Appl. Sci. 12 (20) (2022) 10230.
+[20] M.H. Lee, J. Moon, Deep reinforcement learning-based model-free path planning 
+and collision avoidance for UAVs: a soft actor-critic with hindsight experience replay 
+approach, ICT Express 9 (3) (2023) 403–408.
+[21] H. Liu, B. Li, C.K. Ahn, Fixed-time reinforcement learning framework for contain-
+ment coordination of networked aerial vehicles in inspection tasks, IEEE Trans. Veh. 
+Technol. (2026), https://doi.org/10.1109/TVT.2026.3663248.
+[22] W. Hu, Y. Wang, Q. Chen, P. Wang, E. Wu, Z. Guo, Z. Hou, TD3 agent-based nonlin-
+ear dynamic inverse control for ﬁxed-wing UAV attitudes, IEEE Trans. Intell. Transp. 
+Syst. 27 (2) (2026) 2607–2618.
+[23] W. Du, S. Ding, A survey on multi-agent deep reinforcement learning: from the per-
+spective of challenges and applications, Artif. Intell. Rev. 54 (5) (2021) 3215–3238.
+[24] W. Guo, G. Liu, Z. Zhou, L. Wang, J. Wang, Enhancing the robustness of QMIX 
+against state-adversarial attacks, Neurocomputing 572 (2024) 127191.
+[25] H. Wang, X. Xie, L. Zhou, Transform networks for cooperative multi-agent deep 
+reinforcement learning, Appl. Intell. 53 (8) (2023) 9261–9269.
+[26] Z. Sun, H. Piao, Z. Yang, Y. Zhao, G. Zhan, D. Zhou, G. Meng, H. Chen, X. Chen, B. 
+Qu, et al., Multi-agent hierarchical policy gradient for air combat tactics emergence 
+via self-play, Eng. Appl. Artif. Intell. 98 (2021) 104112.
+[27] K. Wan, D. Wu, B. Li, X. Gao, Z. Hu, D. Chen, ME-MADDPG: an eﬃcient  learning-
+based motion planning method for multiple agents in complex environments, Int. J. 
+Intell. Syst. 37 (3) (2022) 2393–2427.
+[28] Y. Zhou, X. Kong, K.-P. Lin, L. Liu, Novel task decomposed multi-agent twin de-
+layed deep deterministic policy gradient algorithm for multi-UAV autonomous path 
+planning, Knowl. Based Syst. 287 (2024) 111462.
+[29] Y. Cao, H. Zhao, Y. Cheng, T. Shu, Y. Chen, G. Liu, G. Liang, J. Zhao, J. Yan, Y. Li, 
+Survey on large language model-enhanced reinforcement learning: concept, taxon-
+omy, and methods, IEEE Trans. Neural Netw. Learn. Syst. 36 (6) (2025) 9737–9757.
+[30] L. Li, R. Tan, J. Fang, J. Xue, C. Lv, LLM-augmented hierarchical reinforcement 
+learning for human-like decision-making of autonomous driving, Expert Syst. Appl. 
+294 (2025) 128736.
+[31] G. Zhu, R. Zhou, W. Ji, S. Zhao, LAMARL: LLM-aided multi-agent reinforcement 
+learning for cooperative policy generation, IEEE Rob. Autom. Lett. 10 (7) (2025) 
+7476–7483.
+[32] H.-S. Liu, S. Kuroki, T. Kozuno, W.-F. Sun, C.-Y. Lee, Language-guided pattern forma-
+tion for swarm robotics with multi-agent reinforcement learning, in: 2024 IEEE/RSJ 
+International Conference on Intelligent Robots and Systems (IROS), IEEE, 2024, pp. 
+8998–9005.
+[33] F. Zhang, J. Li, Z. Li, A TD3-based multi-agent deep reinforcement learning 
+method in mixed cooperation-competition environment, Neurocomputing 411 
+(2020) 206–215.
+[34] Z. Li, R. Zhang, Z. Wang, Z. Xie, Y. Song, LLM-guided decision-making toolkit for 
+multi-agent reinforcement learning, Neurocomputing 638 (2025) 130105.
+[35] J. Han, Y. Zhu, J. Yang, A deep reinforcement learning method for collision avoid-
+ance with dense speed-constrained multi-UAV, IEEE Rob. Autom. Lett. 10 (3) (2025) 
+2152–2159.
+[36] G. Zhu, R. Zhou, W. Ji, S. Zhao, Lamarl: LLM-aided multi-agent reinforcement 
+learning for cooperative policy generation, IEEE Rob. Autom. Lett. 10 (7) (2025) 
+7476–7483.
+[37] H.-S. Liu, S. Kuroki, T. Kozuno, W.-F. Sun, C.-Y. Lee, Language-guided pattern for-
+mation for swarm robotics with multi-agent reinforcement learning. In 2024 IEEE, 
+in: RSJ International Conference on Intelligent Robots and Systems (IROS), 2024, 
+pp. 8998–9005.
+[38] J. Wen, Z. Li, M. Xi, J. He, A LLM-assisted AUV 3D path planning scheme under 
+ocean current interference via reinforcement learning, IEEE Internet Things J. 12 
+(19) (2025) 39185–39196.
+[39] D. Xu, E. Qiao, T. Gu, H. Fu, C. Sun, H. Guo, Y. Liu, LEAD: LLM-enhanced deep 
+reinforcement learning for stable decision-making in critical autonomous driving 
+scenarios, Neurocomputing (2025) 131619.
+[40] C. Xu, Y. Chu, Q. Gao, Z. Wu, J. Wang, Y. Yue, W. Dominik, X. Zhu, Autonomous 
+unmanned surface vehicle docking using large language model guide reinforcement 
+learning, Ocean Eng. 323 (2025) 120608.
+[41] H. Pang, Z. Wang, G. Li, Large language model guided deep reinforcement learning 
+for safe autonomous vehicle decision making, Transp. Res. Part C Emerg. Technol. 
+184 (2026) 105511.
+[42] R. Lowe, Y.I. Wu, A. Tamar, J. Harb, O. Pieter Abbeel, I. Mordatch, Multi-agent actor-
+critic for mixed cooperative-competitive environments, Adv. Neural Inf. Process. 
+Syst. 30 (2017).
+[43] C. Yu, A. Velu, E. Vinitsky, J. Gao, Y. Wang, A. Bayen, Y. Wu, The surprising eﬀec-
+tiveness of ppo in cooperative multi-agent games, Adv. Neural Inf. Process. Syst. 35 
+(2022) 24611–24624.
+Aerospace Science and Technology 177 (2026) 112218 
+14 

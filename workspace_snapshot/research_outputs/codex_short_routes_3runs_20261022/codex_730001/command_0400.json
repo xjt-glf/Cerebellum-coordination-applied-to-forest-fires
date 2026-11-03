@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 400, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "explore", "target": [20, 70]}, {"task": "explore", "target": [90, 25]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "火情稳定后补西北和东南大片未知区域，两个群组保持中继。"}

@@ -1,0 +1,72 @@
+{
+  "purpose": "local_source_and_evidence_snapshot_for_h200_training_plan",
+  "metadata_read_without_loading_torch": {
+    "obs_dim": 355,
+    "n_actions": 9,
+    "global_dim": 8,
+    "hidden": 384,
+    "n_layers": 2
+  },
+  "skills_rows": 590,
+  "reward_decomp_rows": 42,
+  "h200_training_performed_locally": false,
+  "expected_server_smoke_test_required": true,
+  "files": {
+    "lowlevel/models.py": {
+      "sha256": "83bcd09f056aca0cf897212d53d799f69b423d73278b40b7f738cc23ff3a9ca9",
+      "bytes": 5040
+    },
+    "lowlevel/mappo.py": {
+      "sha256": "ad28ade98d42116af54f4a283added67deb72b004674af9cf5b10a2459de0a87",
+      "bytes": 9478
+    },
+    "lowlevel/train_lowlevel.py": {
+      "sha256": "1b0d7a36e18beaf527cc1807a09258c2beb1620a9554ecbfc6dcad76cf6ffc6b",
+      "bytes": 11865
+    },
+    "lowlevel/env_wrapper.py": {
+      "sha256": "3759cd7ccc73baa2f214c099a895c4b652f9995495a83b5cbb53bb0c36bcf85b",
+      "bytes": 12789
+    },
+    "lowlevel/obs_builder.py": {
+      "sha256": "945af30cca7c1a73d2abecd76254f5d732e96b840b50242c53e082765c197b67",
+      "bytes": 19166
+    },
+    "lowlevel/task_spec.py": {
+      "sha256": "8ecfa055da23d78fd9084bd9b00b5a8ea1364238c6ef3a9f50fc7231552ce8d1",
+      "bytes": 9852
+    },
+    "lowlevel/reward.py": {
+      "sha256": "ab13f34d320033511576e9ab92963b90005bef1c225bb2266ea1b15789f37242",
+      "bytes": 18794
+    },
+    "lowlevel/vec_env.py": {
+      "sha256": "a11ab04b175a66958e78e27323b9dc6ed3347eb528fa1dedc549986b0a6136cd",
+      "bytes": 6514
+    },
+    "experiments/lowlevel_diagnostics/diag_skills.py": {
+      "sha256": "ef12e896e5a4e6f28be33d450e18bece41277c40a8c0261e5e4c3cde331a186d",
+      "bytes": 17514
+    },
+    "experiments/lowlevel_diagnostics/reward_decomp.py": {
+      "sha256": "31e7e1e4fe467523f2fcfe006acde78f37f8281e03338590c60db01546c9f210",
+      "bytes": 6094
+    },
+    "experiments/critic_advice/harness.py": {
+      "sha256": "0c5ccd7bb70f8e20bae109b7da95de3650f1b072ef4624f30097d85260271980",
+      "bytes": 9982
+    },
+    "research_outputs/lowlevel_diagnostics/skills.jsonl": {
+      "sha256": "48cf6f1ee7223960b0a11317234f27e29cfbd630ff35583903d60874f73895d8",
+      "bytes": 131347
+    },
+    "research_outputs/lowlevel_diagnostics/reward_decomp.json": {
+      "sha256": "8c677f728b1496ec955a86ea5a9d1a1c970159a73c762baace7bc57b7694ddb8",
+      "bytes": 20669
+    },
+    "research_outputs/lowlevel_diagnostic_report.md": {
+      "sha256": "f2781734eca3d49efd81d3fc8de7d96d5eea707e153ab718c1eced0e547a10f8",
+      "bytes": 14248
+    }
+  }
+}

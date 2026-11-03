@@ -1,0 +1,23 @@
+{
+  "expected_tick": 340,
+  "source": "codex_joint",
+  "reason": "覆盖恢复到90%。U1满电接9号补南路缺口；U2补给；U0/U3继续中部和后部护送。人员持续撤离，没有停在完成扑救点。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 6
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    }
+  ],
+  "orders": []
+}

@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 580, "plan": {"uavs": [{"task": "relay", "target": [90, 28], "handover": false}, {"task": "explore", "target": [95, 97]}, {"task": "charge"}, {"task": "explore", "target": [5, 65]}]}, "reason": "替补中继改用已验证的中心坐标以覆盖人群两端，旧中继立即补给；其余两架补最上方边界与西侧剩余条带，跑满600步。"}

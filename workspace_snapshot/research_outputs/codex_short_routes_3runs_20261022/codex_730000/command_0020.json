@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 20, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[45, 22], [53, 22], [57, 26]]}, {"task": "explore", "target": [85, 37]}, {"task": "explore", "target": [30, 55]}]}, "reason": "中央火区补南侧弧线，其余保持直线接近和通信。"}

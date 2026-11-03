@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 440, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "charge", "target": [50, 90]}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 1}]}, "reason": "北侧低电机去真实北站补给，为中央中继下一次补给接班；南中与南侧人员链路保持，中央机再等一个周期。"}

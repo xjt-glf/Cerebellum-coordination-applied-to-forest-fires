@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 520, "plan": {"uavs": [{"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 6}, {"task": "relay", "rescuer_id": 1}]}, "reason": "各组链路现已全部恢复，四架分别对应四个分散人员组；已知区域短程补图完成后改回中继，避免自动换点再造成失联。"}

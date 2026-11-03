@@ -1,0 +1,78 @@
+{
+  "launched_at": "2026-10-13 15:41:01",
+  "wall_hours": 8.0,
+  "trials": [
+    {
+      "id": "P1_s1101",
+      "gpu": 0,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1101,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P1_s1102",
+      "gpu": 1,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1102,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P2_s1201",
+      "gpu": 2,
+      "reward": "P2",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1201,
+      "actor_lr": 0.0002
+    },
+    {
+      "id": "P2_s1202",
+      "gpu": 3,
+      "reward": "P2",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1202,
+      "actor_lr": 0.0002
+    },
+    {
+      "id": "P3_s1301",
+      "gpu": 4,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_then_bc",
+      "seed": 1301,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "P3_s1302",
+      "gpu": 5,
+      "reward": "P1",
+      "roles": "randomized",
+      "init": "actor_then_bc",
+      "seed": 1302,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "A_roles_s1401",
+      "gpu": 6,
+      "reward": "original",
+      "roles": "randomized",
+      "init": "actor_only",
+      "seed": 1401,
+      "actor_lr": 0.0001
+    },
+    {
+      "id": "A_reward_s1501",
+      "gpu": 7,
+      "reward": "P1",
+      "roles": "legacy_fixed",
+      "init": "actor_only",
+      "seed": 1501,
+      "actor_lr": 0.0001
+    }
+  ]
+}

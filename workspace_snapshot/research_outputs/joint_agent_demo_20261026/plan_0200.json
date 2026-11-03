@@ -1,0 +1,67 @@
+{
+  "expected_tick": 200,
+  "source": "codex_joint",
+  "reason": "中南区也已合围，3—7号完成原任务后转赴最后东南火区，3、4号北侧接近，5—7号南侧接近；8号解除已清理西侧限制继续追火线。U0护送增援队，U1/U3支援东队两端，U2腾出继续搜索北部未知区。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 4
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "explore",
+      "target": [
+        50,
+        65
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        3,
+        4
+      ],
+      "task": "contain",
+      "target": [
+        86,
+        29
+      ],
+      "approach_sector": "north",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        5,
+        6,
+        7
+      ],
+      "task": "contain",
+      "target": [
+        86,
+        29
+      ],
+      "approach_sector": "south",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        8
+      ],
+      "task": "contain",
+      "target": [
+        86,
+        29
+      ],
+      "approach_sector": "any",
+      "valid_for_ticks": 1200
+    }
+  ]
+}

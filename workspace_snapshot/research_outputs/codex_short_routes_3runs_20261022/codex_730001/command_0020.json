@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 20, "plan": {"uavs": [{"task": "explore", "target": [82, 80]}, {"task": "relay", "rescuer_id": 5}, {"task": "explore", "route": [[39, 40], [33, 44], [26, 40]]}, {"task": "explore", "route": [[10, 19], [10, 12], [16, 9]]}]}, "reason": "两处已发现火区补充侧面观测，东部继续直飞。"}

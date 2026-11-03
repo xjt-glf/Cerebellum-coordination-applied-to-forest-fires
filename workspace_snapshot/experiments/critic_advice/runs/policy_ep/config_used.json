@@ -1,0 +1,24 @@
+{
+  "cfg": {
+    "grid": 100,
+    "uavs": 3,
+    "fires": 4,
+    "rescuers": 18,
+    "steps": 600,
+    "spread_steps": 40,
+    "spread_gain": 1.0,
+    "replan_every": 20,
+    "explore_until": 0.7,
+    "charge_at": 260.0,
+    "max_chargers": 2,
+    "actor": "/workspace/xiangjutao/hrl_dqn_improve/deliverable/model/actor_best.pt"
+  },
+  "seeds": [
+    34000,
+    34059
+  ],
+  "policies": [
+    "P0_base",
+    "P1_relay2"
+  ]
+}

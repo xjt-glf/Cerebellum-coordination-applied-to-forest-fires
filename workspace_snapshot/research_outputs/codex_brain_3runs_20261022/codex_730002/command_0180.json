@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 180, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "relay", "rescuer_id": 9}, {"task": "charge"}, {"task": "relay", "rescuer_id": 3}]}, "reason": "北侧低电机开始补给，新北侧中继继续接近接班；南侧仍有活火，保持四名灭火人员的链路，中央短时保持。"}

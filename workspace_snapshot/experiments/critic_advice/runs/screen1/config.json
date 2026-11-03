@@ -1,0 +1,46 @@
+{
+  "config": {
+    "grid": 100,
+    "uavs": 4,
+    "fires": 3,
+    "rescuers": 10,
+    "steps": 600,
+    "spread_steps": 40,
+    "spread_gain": 1.0,
+    "replan_every": 20,
+    "explore_until": 0.7,
+    "charge_at": 260.0,
+    "max_chargers": 2,
+    "actor": "/workspace/xiangjutao/hrl_dqn_improve/deliverable/model/actor_best.pt"
+  },
+  "seeds": [
+    30000,
+    30001,
+    30002,
+    30003,
+    30004,
+    30005,
+    30006,
+    30007,
+    30008,
+    30009
+  ],
+  "windows": [
+    20,
+    60
+  ],
+  "max_edits": 8,
+  "actor_sha256": "e70e3f6169704b7b4027974049d3505a9113e2d6cfd38ceef93e46b460271168",
+  "sources": {
+    "harness.py": "0c5ccd7bb70f8e20",
+    "edits.py": "5684fc794c5014c8",
+    "collect_pairs.py": "860a01a2cca38f4a",
+    "lowlevel/env_wrapper.py": "3759cd7ccc73baa2",
+    "lowlevel/obs_builder.py": "945af30cca7c1a73",
+    "lowlevel/task_spec.py": "8ecfa055da23d78f",
+    "lowlevel/mission_demo.py": "4f16edd988112678",
+    "webapp/brains.py": "9cd23b1a1b2b5942",
+    "Env/低层环境.py": "8f064584cdb8ce82"
+  },
+  "cmd": "experiments/critic_advice/collect_pairs.py --run screen1 --seeds 10 --seed0 30000 --workers 10"
+}

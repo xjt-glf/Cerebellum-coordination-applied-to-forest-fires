@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 240, "plan": {"uavs": [{"task": "explore", "route": [[70, 19], [64, 21], [59, 16]]}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 7}, {"task": "relay", "rescuer_id": 5}]}, "reason": "剩余南火补侧面，其余三机分别回接失联组和中央组。"}

@@ -1,0 +1,21 @@
+{
+  "seeds": [
+    730000,
+    730001,
+    730002
+  ],
+  "steps": 600,
+  "actor_frozen": true,
+  "brain": "current Codex agent;90 explicit plans",
+  "high_level_interval": 20,
+  "route_budget": "sum Chebyshev segment lengths including current position <=20",
+  "routes": "2..4 points, spacing >=4; noncollinear; explore only",
+  "single_targets": "straight flight, may take multiple intervals",
+  "switch_every_step": true,
+  "reach_radius": 2.5,
+  "near_stall": "within4 after4 nonprogress checks, logged",
+  "route_preemption": "charge highest priority; expires at next20step boundary",
+  "patrol_disabled": true,
+  "external_api_calls": 0,
+  "ablation": "additional saved-command replays with converter off; not independent adaptive agent trials"
+}

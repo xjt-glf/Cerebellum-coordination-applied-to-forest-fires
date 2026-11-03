@@ -1,0 +1,1366 @@
+{
+  "status": "waiting_personnel",
+  "snapshot": {
+    "t": 100,
+    "communication": "existing_geometric_link; no rate/queue model",
+    "people": [
+      {
+        "id": 1,
+        "x": 28.5,
+        "y": 39.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          34,
+          44
+        ],
+        "waypoints": [
+          [
+            30.0,
+            47.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-80-31"
+      },
+      {
+        "id": 2,
+        "x": 30.0,
+        "y": 39.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          34,
+          44
+        ],
+        "waypoints": [
+          [
+            30.0,
+            47.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-80-32"
+      },
+      {
+        "id": 3,
+        "x": 34.83,
+        "y": 41.83,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "blocked",
+        "target": null,
+        "waypoints": [
+          [
+            29.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-40-23"
+      },
+      {
+        "id": 4,
+        "x": 34.83,
+        "y": 41.83,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "blocked",
+        "target": null,
+        "waypoints": [
+          [
+            29.0,
+            46.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-40-24"
+      },
+      {
+        "id": 5,
+        "x": 40.0,
+        "y": 38.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          45,
+          33
+        ],
+        "waypoints": [
+          [
+            50.0,
+            28.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-20-15"
+      },
+      {
+        "id": 6,
+        "x": 40.35,
+        "y": 37.65,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          45,
+          33
+        ],
+        "waypoints": [
+          [
+            50.0,
+            28.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-20-16"
+      },
+      {
+        "id": 7,
+        "x": 39.0,
+        "y": 39.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          45,
+          33
+        ],
+        "waypoints": [
+          [
+            50.0,
+            28.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-20-17"
+      },
+      {
+        "id": 8,
+        "x": 49.5,
+        "y": 55.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          35
+        ],
+        "waypoints": [
+          [
+            85.0,
+            30.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-60-28"
+      },
+      {
+        "id": 9,
+        "x": 51.0,
+        "y": 55.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          26
+        ],
+        "waypoints": [
+          [
+            85.0,
+            30.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-60-29"
+      },
+      {
+        "id": 10,
+        "x": 50.0,
+        "y": 55.0,
+        "c": true,
+        "aoi": 0,
+        "task": "contain",
+        "state": "active",
+        "target": [
+          81,
+          38
+        ],
+        "waypoints": [
+          [
+            85.0,
+            30.0
+          ]
+        ],
+        "source": "codex_joint",
+        "pending": null,
+        "order_id": "p-60-30"
+      }
+    ],
+    "known_fire_clusters": [
+      {
+        "center": [
+          85.46788990825688,
+          30.6697247706422
+        ],
+        "size": 109,
+        "contained": false,
+        "approach": [
+          [
+            81,
+            24
+          ],
+          [
+            81,
+            25
+          ],
+          [
+            81,
+            26
+          ],
+          [
+            81,
+            27
+          ],
+          [
+            81,
+            28
+          ],
+          [
+            81,
+            29
+          ],
+          [
+            81,
+            30
+          ],
+          [
+            81,
+            31
+          ],
+          [
+            81,
+            32
+          ],
+          [
+            81,
+            33
+          ],
+          [
+            81,
+            34
+          ],
+          [
+            81,
+            35
+          ],
+          [
+            81,
+            36
+          ],
+          [
+            81,
+            37
+          ],
+          [
+            81,
+            38
+          ],
+          [
+            82,
+            24
+          ],
+          [
+            82,
+            38
+          ],
+          [
+            83,
+            38
+          ],
+          [
+            84,
+            38
+          ],
+          [
+            85,
+            38
+          ],
+          [
+            86,
+            38
+          ],
+          [
+            87,
+            38
+          ],
+          [
+            88,
+            38
+          ],
+          [
+            89,
+            25
+          ]
+        ]
+      },
+      {
+        "center": [
+          49.5,
+          29.22
+        ],
+        "size": 100,
+        "contained": false,
+        "approach": [
+          [
+            45,
+            26
+          ],
+          [
+            45,
+            27
+          ],
+          [
+            45,
+            28
+          ],
+          [
+            45,
+            29
+          ],
+          [
+            45,
+            30
+          ],
+          [
+            45,
+            31
+          ],
+          [
+            45,
+            32
+          ],
+          [
+            45,
+            33
+          ],
+          [
+            45,
+            34
+          ],
+          [
+            45,
+            35
+          ],
+          [
+            45,
+            36
+          ],
+          [
+            46,
+            36
+          ],
+          [
+            47,
+            36
+          ],
+          [
+            48,
+            36
+          ],
+          [
+            49,
+            36
+          ],
+          [
+            50,
+            36
+          ],
+          [
+            51,
+            36
+          ],
+          [
+            53,
+            23
+          ],
+          [
+            53,
+            24
+          ],
+          [
+            54,
+            24
+          ],
+          [
+            54,
+            25
+          ],
+          [
+            54,
+            26
+          ],
+          [
+            54,
+            27
+          ],
+          [
+            54,
+            28
+          ]
+        ]
+      },
+      {
+        "center": [
+          30.21311475409836,
+          47.59016393442623
+        ],
+        "size": 61,
+        "contained": false,
+        "approach": [
+          [
+            34,
+            44
+          ],
+          [
+            34,
+            45
+          ],
+          [
+            34,
+            46
+          ],
+          [
+            34,
+            47
+          ],
+          [
+            34,
+            48
+          ],
+          [
+            34,
+            49
+          ],
+          [
+            34,
+            50
+          ],
+          [
+            34,
+            51
+          ],
+          [
+            34,
+            52
+          ],
+          [
+            34,
+            53
+          ]
+        ]
+      }
+    ],
+    "events": [
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-5",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-6",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-7",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-8",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-9",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-0-10",
+        "reason": "全部10人沿西部安全走廊分三队向中部推进，不在基地待命。U0探测西中部，U1探测中南部，U2探测东南部；U3靠近人员建立传图链路。发现火区后立即将推进任务改为分区扑救。"
+      },
+      {
+        "t": 0,
+        "person_id": 1,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-1",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 2,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-2",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-3",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-4",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 5,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-5",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 6,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-6",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 7,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-7",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-8",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-9",
+        "source": "codex_joint"
+      },
+      {
+        "t": 0,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-0-10",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 1,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-11",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 2,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-12",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 3,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-13",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 4,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-14",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 5,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-20-15",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 6,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-20-16",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 7,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-20-17",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-18",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-19",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-20-20",
+        "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。"
+      },
+      {
+        "t": 20,
+        "person_id": 1,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-11",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 2,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-12",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 3,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-13",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 4,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-14",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 5,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-20-15",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 6,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-20-16",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 7,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-20-17",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-18",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-19",
+        "source": "codex_joint"
+      },
+      {
+        "t": 20,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-20-20",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 1,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-40-21",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 2,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-40-22",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 3,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-40-23",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 4,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-40-24",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 8,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-40-25",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 9,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-40-26",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 10,
+        "event": "issued",
+        "task": "move",
+        "source": "codex_joint",
+        "order_id": "p-40-27",
+        "reason": "西中部火区已确认。1—4号分别从西北和西南包抄[29,46]，5—7号保持中南火区扑救，8—10号接到东南前进搜索任务而不是停留。U0补全西火区边界，U1护送5—7号交付火情，U2去[84,29]搜索，U3护送北路人员。"
+      },
+      {
+        "t": 40,
+        "person_id": 1,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-40-21",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 2,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-40-22",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 3,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-40-23",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 4,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-40-24",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 8,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-40-25",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 9,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-40-26",
+        "source": "codex_joint"
+      },
+      {
+        "t": 40,
+        "person_id": 10,
+        "event": "activated",
+        "task": "move",
+        "order_id": "p-40-27",
+        "source": "codex_joint"
+      },
+      {
+        "t": 60,
+        "person_id": 8,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-60-28",
+        "reason": "第三片火区[85,30]已发现，8—10号立即领受东南火区扑救任务，分别从西、南、北接近。至此10人全部获得明确扑救分工：1—4西区、5—7中南区、8—10东南区。U1/U3分别随中队及东队中继，U0/U2补全两端边界。"
+      },
+      {
+        "t": 60,
+        "person_id": 9,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-60-29",
+        "reason": "第三片火区[85,30]已发现，8—10号立即领受东南火区扑救任务，分别从西、南、北接近。至此10人全部获得明确扑救分工：1—4西区、5—7中南区、8—10东南区。U1/U3分别随中队及东队中继，U0/U2补全两端边界。"
+      },
+      {
+        "t": 60,
+        "person_id": 10,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-60-30",
+        "reason": "第三片火区[85,30]已发现，8—10号立即领受东南火区扑救任务，分别从西、南、北接近。至此10人全部获得明确扑救分工：1—4西区、5—7中南区、8—10东南区。U1/U3分别随中队及东队中继，U0/U2补全两端边界。"
+      },
+      {
+        "t": 60,
+        "person_id": 8,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-60-28",
+        "source": "codex_joint"
+      },
+      {
+        "t": 60,
+        "person_id": 9,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-60-29",
+        "source": "codex_joint"
+      },
+      {
+        "t": 60,
+        "person_id": 10,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-60-30",
+        "source": "codex_joint"
+      },
+      {
+        "t": 80,
+        "person_id": 1,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-80-31",
+        "reason": "1、2号西侧已无可用作业点，解除方向限制，让其转到当前最近有效火线继续作业，不在已清理边界停住。其他队继续原火区。U0从南侧刷新西火线，U1/U3随队，U2刷新中南火区以免人员追逐陈旧边界。"
+      },
+      {
+        "t": 80,
+        "person_id": 2,
+        "event": "issued",
+        "task": "contain",
+        "source": "codex_joint",
+        "order_id": "p-80-32",
+        "reason": "1、2号西侧已无可用作业点，解除方向限制，让其转到当前最近有效火线继续作业，不在已清理边界停住。其他队继续原火区。U0从南侧刷新西火线，U1/U3随队，U2刷新中南火区以免人员追逐陈旧边界。"
+      },
+      {
+        "t": 80,
+        "person_id": 1,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-80-31",
+        "source": "codex_joint"
+      },
+      {
+        "t": 80,
+        "person_id": 2,
+        "event": "activated",
+        "task": "contain",
+        "order_id": "p-80-32",
+        "source": "codex_joint"
+      }
+    ],
+    "situation": {
+      "t": 100,
+      "H": 100,
+      "W": 100,
+      "charging_stations": [
+        [
+          10.0,
+          10.0
+        ],
+        [
+          10.0,
+          90.0
+        ],
+        [
+          90.0,
+          90.0
+        ],
+        [
+          90.0,
+          10.0
+        ],
+        [
+          10.0,
+          50.0
+        ],
+        [
+          50.0,
+          10.0
+        ],
+        [
+          50.0,
+          90.0
+        ],
+        [
+          90.0,
+          50.0
+        ]
+      ],
+      "base_pos": [
+        0.0,
+        50.0
+      ],
+      "explored": 0.333,
+      "discovery": 0.863,
+      "burned": 0.0357,
+      "coverage": 1.0,
+      "rescuer_known": 0.863,
+      "max_aoi": 4,
+      "clusters": [
+        {
+          "centroid": [
+            85.5,
+            30.7
+          ],
+          "size": 109
+        },
+        {
+          "centroid": [
+            49.5,
+            29.2
+          ],
+          "size": 100
+        },
+        {
+          "centroid": [
+            30.2,
+            47.6
+          ],
+          "size": 61
+        }
+      ],
+      "rescuers": [
+        {
+          "id": 1,
+          "pos": [
+            28.5,
+            39.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 2,
+          "pos": [
+            30.0,
+            39.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 3,
+          "pos": [
+            34.8,
+            41.8
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 4,
+          "pos": [
+            34.8,
+            41.8
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 5,
+          "pos": [
+            40.0,
+            38.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 6,
+          "pos": [
+            40.4,
+            37.6
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 7,
+          "pos": [
+            39.0,
+            39.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 8,
+          "pos": [
+            49.5,
+            55.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 9,
+          "pos": [
+            51.0,
+            55.0
+          ],
+          "covered": true,
+          "aoi": 0
+        },
+        {
+          "id": 10,
+          "pos": [
+            50.0,
+            55.0
+          ],
+          "covered": true,
+          "aoi": 0
+        }
+      ],
+      "uavs": [
+        {
+          "id": 0,
+          "pos": [
+            35,
+            45
+          ],
+          "e": 350,
+          "margin": 286
+        },
+        {
+          "id": 1,
+          "pos": [
+            34,
+            43
+          ],
+          "e": 350,
+          "margin": 288
+        },
+        {
+          "id": 2,
+          "pos": [
+            68,
+            33
+          ],
+          "e": 350,
+          "margin": 280
+        },
+        {
+          "id": 3,
+          "pos": [
+            41,
+            48
+          ],
+          "e": 358,
+          "margin": 280
+        }
+      ]
+    },
+    "current_uav_orders": [
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          30.0,
+          42.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "comm_relay",
+        "mode": "explore",
+        "target": null,
+        "ring_radius": null,
+        "rescuer_id": 6,
+        "proactive_handover": true
+      },
+      {
+        "task": "fire_sensing",
+        "mode": "explore",
+        "target": [
+          52.0,
+          31.0
+        ],
+        "ring_radius": null,
+        "rescuer_id": null,
+        "proactive_handover": true
+      },
+      {
+        "task": "comm_relay",
+        "mode": "explore",
+        "target": null,
+        "ring_radius": null,
+        "rescuer_id": 9,
+        "proactive_handover": true
+      }
+    ],
+    "unknown_tiles": [
+      [
+        0,
+        0,
+        217
+      ],
+      [
+        0,
+        20,
+        344
+      ],
+      [
+        0,
+        40,
+        153
+      ],
+      [
+        0,
+        60,
+        351
+      ],
+      [
+        0,
+        80,
+        400
+      ],
+      [
+        20,
+        0,
+        346
+      ],
+      [
+        20,
+        20,
+        103
+      ],
+      [
+        20,
+        40,
+        30
+      ],
+      [
+        20,
+        60,
+        136
+      ],
+      [
+        20,
+        80,
+        345
+      ],
+      [
+        40,
+        0,
+        400
+      ],
+      [
+        40,
+        20,
+        119
+      ],
+      [
+        40,
+        40,
+        289
+      ],
+      [
+        40,
+        60,
+        379
+      ],
+      [
+        40,
+        80,
+        185
+      ],
+      [
+        60,
+        0,
+        400
+      ],
+      [
+        60,
+        20,
+        175
+      ],
+      [
+        60,
+        40,
+        116
+      ],
+      [
+        60,
+        60,
+        237
+      ],
+      [
+        60,
+        80,
+        400
+      ],
+      [
+        80,
+        0,
+        400
+      ],
+      [
+        80,
+        20,
+        196
+      ],
+      [
+        80,
+        40,
+        394
+      ],
+      [
+        80,
+        60,
+        268
+      ],
+      [
+        80,
+        80,
+        287
+      ]
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 60, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [72, 62]}, {"task": "explore", "target": [28, 87]}, {"task": "explore", "target": [85, 37]}]}, "reason": "发现率已高，三机直线扩展覆盖并为下一次刷新换位。"}

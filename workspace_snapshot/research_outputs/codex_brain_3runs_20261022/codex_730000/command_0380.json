@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 380, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [30, 30]}, {"task": "explore", "target": [90, 30]}, {"task": "explore", "target": [3, 25]}]}, "reason": "南西满电机开始东向长距离补图并为后续中继补给接班做准备；另外两架补中央西部及最西边遗漏区域。"}

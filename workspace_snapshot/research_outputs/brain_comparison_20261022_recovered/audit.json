@@ -1,0 +1,94 @@
+{
+  "status": "passed",
+  "episodes": 20,
+  "paired_seeds": 10,
+  "total_environment_steps": 12000,
+  "total_planning_decisions": 600,
+  "initial_fingerprints_match": true,
+  "credential_scan_files": 1082,
+  "credential_found": false,
+  "sources": {
+    "heuristic_730000": {
+      "heuristic": 30
+    },
+    "llm_730000": {
+      "llm": 30
+    },
+    "heuristic_730001": {
+      "heuristic": 30
+    },
+    "llm_730001": {
+      "llm": 30
+    },
+    "heuristic_730002": {
+      "heuristic": 30
+    },
+    "llm_730002": {
+      "llm": 30
+    },
+    "heuristic_730003": {
+      "heuristic": 30
+    },
+    "llm_730003": {
+      "llm": 30
+    },
+    "heuristic_730004": {
+      "heuristic": 30
+    },
+    "llm_730004": {
+      "llm": 30
+    },
+    "heuristic_730005": {
+      "heuristic": 30
+    },
+    "llm_730005": {
+      "llm": 30
+    },
+    "heuristic_730006": {
+      "heuristic": 30
+    },
+    "llm_730006": {
+      "llm": 30
+    },
+    "heuristic_730007": {
+      "heuristic": 30
+    },
+    "llm_730007": {
+      "llm": 30
+    },
+    "heuristic_730008": {
+      "heuristic": 30
+    },
+    "llm_730008": {
+      "llm": 30
+    },
+    "heuristic_730009": {
+      "heuristic": 30
+    },
+    "llm_730009": {
+      "llm": 30
+    }
+  },
+  "checks": [
+    "heuristic_730000: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730000: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730001: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730001: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730002: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730002: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730003: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730003: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730004: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730004: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730005: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730005: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730006: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730006: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730007: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730007: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730008: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730008: 600 steps, 30 decisions, valid actions and plan sizes",
+    "heuristic_730009: 600 steps, 30 decisions, valid actions and plan sizes",
+    "llm_730009: 600 steps, 30 decisions, valid actions and plan sizes"
+  ]
+}

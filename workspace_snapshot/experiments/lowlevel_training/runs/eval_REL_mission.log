@@ -1,0 +1,23 @@
+/usr/local/lib/python3.12/dist-packages/matplotlib/projections/__init__.py:63: UserWarning: Unable to import Axes3D. This may be due to multiple versions of Matplotlib being installed (e.g. as a system package and as a pip package). As a result, the 3D projection is not available.
+  warnings.warn("Unable to import Axes3D. This may be due to multiple versions of "
+[eval] actor=experiments/lowlevel_training/runs/REL_s1303/actor_snap1.pt sha256=236a6e925b7c6b28... split=quick workers=8
+{
+ "explored": 0.5146999999999999,
+ "burned_cells": 566.1,
+ "extinguished_cells": 197.95,
+ "contained": 1.95,
+ "discovery": 0.4833574994016293,
+ "rknown": 0.4833574994016293,
+ "depleted": 0.05,
+ "mean_aoi": 4.127857142857143,
+ "normal.n": 10,
+ "normal.burned": 541.0,
+ "normal.ext": 197.4,
+ "normal.depleted": 0.1,
+ "scarce.n": 10,
+ "scarce.burned": 591.2,
+ "scarce.ext": 198.5,
+ "scarce.depleted": 0.0,
+ "_actor": "experiments/lowlevel_training/runs/REL_s1303/actor_snap1.pt",
+ "_sha256": "236a6e925b7c6b286883388649d8166bf012f0c6e1c0c04457095d0dd9aeacb1"
+}

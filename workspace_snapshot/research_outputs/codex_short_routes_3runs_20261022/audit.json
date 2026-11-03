@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "seed": 730000,
+      "steps": 600,
+      "agent_plans": 30,
+      "initial_state_matches_old": true,
+      "actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+      "replay_exact": true,
+      "api_calls": 0
+    },
+    {
+      "seed": 730001,
+      "steps": 600,
+      "agent_plans": 30,
+      "initial_state_matches_old": true,
+      "actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+      "replay_exact": true,
+      "api_calls": 0
+    },
+    {
+      "seed": 730002,
+      "steps": 600,
+      "agent_plans": 30,
+      "initial_state_matches_old": true,
+      "actor_sha256": "dfa5cdd0f4b673567c04220af9d82ee55f16920d55398a02471a0d535d59982e",
+      "replay_exact": true,
+      "api_calls": 0
+    }
+  ],
+  "online_trials": 3,
+  "replay_checks": 3,
+  "fixed_command_ablations": 3,
+  "new_api_calls": 0,
+  "valid_routes": 58
+}

@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 460, "plan": {"uavs": [{"task": "explore", "target": [81, 89]}, {"task": "explore", "target": [10, 55]}, {"task": "explore", "target": [30, 10]}, {"task": "explore", "target": [65, 57]}]}, "reason": "两中继显式移入群组中心，探索机沿西侧和南侧未知带直飞。"}

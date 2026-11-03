@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "decisions": 30,
+  "physical_steps": 600,
+  "reward_components_exact": true,
+  "separate_actor_and_critic_timing": true,
+  "lowlevel_deterministic": true,
+  "seed": 979910
+}

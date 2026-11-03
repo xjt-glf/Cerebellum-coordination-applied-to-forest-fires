@@ -1,0 +1,86 @@
+[
+  {
+    "n": 3,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.006021466106176376,
+      "p95": 0.00660034129396081,
+      "p99": 0.007133599719963967
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  },
+  {
+    "n": 4,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.006945978384464979,
+      "p95": 0.007587161962874234,
+      "p99": 0.007838490419089794
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  },
+  {
+    "n": 5,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.007771508535370231,
+      "p95": 0.008341684588231146,
+      "p99": 0.008651467505842446
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  },
+  {
+    "n": 6,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.008600502042099833,
+      "p95": 0.00921230239327997,
+      "p99": 0.00956609146669507
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  },
+  {
+    "n": 7,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.009784998837858438,
+      "p95": 0.018561221077106893,
+      "p99": 0.0191810168325901
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  },
+  {
+    "n": 8,
+    "local_repeated_equals_central": true,
+    "input_order_invariance": true,
+    "latency_ms": {
+      "p50": 0.010283954907208681,
+      "p95": 0.01093213795684278,
+      "p99": 0.0111516157630831
+    },
+    "device": "CPU",
+    "threads": 1,
+    "warmup": 100,
+    "repeats": 500
+  }
+]

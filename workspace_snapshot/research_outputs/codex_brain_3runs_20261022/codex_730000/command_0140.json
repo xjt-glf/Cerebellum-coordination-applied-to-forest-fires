@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 140, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "relay", "rescuer_id": 10}, {"task": "explore", "target": [90, 75]}, {"task": "charge"}]}, "reason": "人员南北跨度增大，两架分别覆盖南侧和北侧；UAV2继续东北扩图，UAV3完成近站补给后再接替感知。"}

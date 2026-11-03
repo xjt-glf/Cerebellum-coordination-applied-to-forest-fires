@@ -1,0 +1,55 @@
+key,label,group,unit,direction,definition,core
+affected,最终累计过火格数,任务,格,low,t600时 burning_state>0，含燃烧/烧尽/扑灭,True
+new_affected,新增过火格数,任务,格,low,最终累计过火减t0初始过火，同种子初始相同,True
+burnout,最终烧尽格数,任务,格,low,t600时 burning_state==2；不等于所有过火,True
+extinguished,最终已扑灭格数,任务,格,high,t600时 burning_state==3；需与受灾面积联合判断,True
+burning_final,最终仍燃烧格数,任务,格,low,t600时0<burning_state<2，含已合围余火,True
+active_final,最终未合围燃烧格数,任务,格,low,真值活火连通区中仍有健康可燃邻居的格数,True
+active_auc,未合围燃烧暴露积分,任务,格·步,low,sum(t1..600)真实未合围燃烧格数，不含已合围余火,True
+burning_auc,全部燃烧暴露积分,任务,格·步,low,sum(t1..600)全部真实燃烧格数，含已合围余火,True
+affected_auc,累计受灾面积积分,任务,格·步,low,sum(t1..600)累计过火格数，越早受灾越大,True
+controlled_final,终局无未合围燃烧格,任务,success,high,t600真值未合围燃烧为0；烧尽也可能满足，非独立成功定义,True
+contain_time,稳定无未合围火耗时（600步截断）,任务,步,low,最后一次真值未合围燃烧>0之后的首步；未完成记600并另报命中,True
+peak_burning,燃烧格数峰值,任务,格,low,max(t1..600)真实燃烧格数,True
+late_new_affected,最后200步新增过火,任务,格,low,t600累计过火减t400累计过火,True
+explore_final,最终探索率,信息,rate,high,t600全队已知格占10000格比例,True
+explore_mean,全程平均探索率,信息,rate,high,600步探索率均值，衡量探索形成的时效,True
+team_recall,火情发现率（燃烧格·步加权）,信息,rate,high,sum团队地图正确标燃烧TP / sum真实燃烧格，分母不人为补1,True
+person_recall,人员火情认知率（燃烧格·步加权）,信息,rate,high,sum人员共享地图正确标燃烧TP / sum真实燃烧格,True
+active_team_recall,未合围火发现率（加权）,信息,rate,high,sum团队TP与真值未合围火交集 / sum真值未合围燃烧格,True
+active_person_recall,未合围火人员认知率（加权）,信息,rate,high,sum人员TP与真值未合围火交集 / sum真值未合围燃烧格,True
+team_precision,团队燃烧标记精确率（加权）,信息,rate,high,sum团队TP / sum团队TP+FP；FP含过时燃烧标记,True
+person_precision,人员燃烧标记精确率（加权）,信息,rate,high,sum人员TP / sum人员TP+FP；不等于整张地图准确率,True
+final_person_recall,最终人员火情认知率,信息,rate,high,原指标t600，真实燃烧为0时按环境定义返回1,True
+knowledge_gap,发现与人员认知差（加权）,信息,rate,descriptive,加权团队召回减加权人员召回；不是纯链路因果损失,True
+uav_coverage,平均无人机通信覆盖率,通信,rate,high,按环境coverage_rate，仅计UAV贡献，不含基站,True
+comm_coverage,平均通信可用率（含基站）,通信,rate,high,环境comm_coverage_rate，基站或任意UAV均可,True
+aoi_mean,人员×时间平均AoI,通信,步,low,600×10个person_aoi均值，字段按通信阶段记录,True
+aoi_p95,人员×时间AoI P95,通信,步,low,每局6000个人员时间样本的95分位，再跨局取均值,True
+aoi_p99,人员×时间AoI P99,通信,步,low,每局6000个人员时间样本的99分位，再跨局取均值,True
+aoi_over20,AoI>20的人员时间占比,通信,rate,low,count(person_aoi>20)/6000,True
+worst_person_aoi,最差人员的平均AoI,通信,步,low,先每人600步平均，再取该局10人最大值,True
+blackout_max,最长连续通信中断,通信,步,low,每人AoI>0的连续段最大长度；含基站口径,True
+long_blackouts,长度≥20步的中断段数,通信,次,low,每人AoI>0连续段中长度≥20的段数，终局段右删失,True
+blocked_rate,碰撞阻挡的无人机时间占比,执行,rate,low,环境u.blocked为真次数/2400，非真实相撞事故数,True
+oob_rate,越界动作尝试占比,执行,rate,low,环境u.oob为真次数/2400，环境拒绝动作,True
+path_length,四机实际总航程,执行,格,descriptive,逐步实际位移欧氏长度之和，斜步sqrt(2)，不评价越少越好,True
+move_rate,实际移动的无人机时间占比,执行,rate,descriptive,非零实际位移/2400，停留可能是有意中继/补给,True
+hover_action_rate,悬停动作占比,执行,rate,descriptive,action==8次数/2400，与被阻挡不动区别开,True
+reverse_rate,相邻移动立即折返率,执行,rate,descriptive,连续两步均移动且后一位移恰为前一步反向/连续移动对数,True
+explore_stall,有效探索窗口无进展占比,执行,rate,low,20步内固定显式explore目标、初始距>5且全段未改派，末距未减少超过1格的窗口占比；非通用服从率,True
+instruction_changes,实际逐机指令变更数,执行,次,descriptive,相邻步实际order字典变化总数，包含公共协议变化,True
+protocol_rewrite,规划被目标管理改写比例,执行,rate,descriptive,每次规划规范化requested与applied任意机不同的次数/30，合法自动更新也计入,True
+safety_charge_changes,安全协议强制改充电次数,执行,次,low,每步目标管理后/原上一指令非charge，但公共充电保护后变charge的逐机次数,True
+min_energy,全程最低剩余电量,能源,电量单位,descriptive,全部2400个步后电量的最小值，非耗能效率,True
+min_margin,最低理想返航余量,能源,电量单位,descriptive,电量减最近真实站点无阻挡8邻域最少步数×2.5，负值有风险，非安全保证,True
+unsafe_margin_rate,理想返航余量<0占比,能源,rate,low,负返航余量的无人机时间/2400，不含碰撞绕行额外耗能,True
+depleted_ever,曾在步后耗尽的无人机数,能源,架,low,4架中任意步后energy<=0的数量,True
+zero_energy_rate,步后零电量时间占比,能源,rate,low,energy<=0的无人机时间/2400,True
+stranded_steps,站外零电量无人机步数,能源,机·步,low,energy<=0且不在任何真实补给坪的次数,True
+pad_entry_visits,进入补给坪次数,能源,次,descriptive,每机at_pad从假到真计1，进出抖动会重复计入，不是有效补给会话,True
+at_pad_rate,处于补给坪时间占比,能源,rate,descriptive,4机×600步里落在真实补给坪的比例，含满电停留,True
+role_explore,探索指令时间占比,分配,rate,descriptive,"实际task=fire_sensing,mode=explore的无人机时间/2400，含用于位置保持的航点",True
+role_patrol,巡逻指令时间占比,分配,rate,descriptive,"实际task=fire_sensing,mode=patrol的无人机时间/2400",True
+role_relay,中继指令时间占比,分配,rate,descriptive,实际task=comm_relay的无人机时间/2400,True
+role_charge,补给指令时间占比,分配,rate,descriptive,实际task=recharge的无人机时间/2400；途经充电不一定是该任务,True

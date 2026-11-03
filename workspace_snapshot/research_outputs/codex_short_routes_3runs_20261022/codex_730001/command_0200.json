@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 200, "plan": {"uavs": [{"task": "relay", "rescuer_id": 3}, {"task": "relay", "rescuer_id": 10}, {"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "两名中央人员AoI偏高，西中继转向第十人，主中继靠近第三人。"}

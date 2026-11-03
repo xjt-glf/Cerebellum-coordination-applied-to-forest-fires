@@ -7,6 +7,4 @@ __pycache__/
 .env
 .env.*
 !.env.example
-research_outputs/
-runs/
-*.log
+node_modules/

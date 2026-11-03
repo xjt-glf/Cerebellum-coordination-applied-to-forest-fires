@@ -1,0 +1,1 @@
+{"seed": 730001, "t": 340, "plan": {"uavs": [{"task": "relay", "rescuer_id": 4}, {"task": "explore", "target": [67, 59]}, {"task": "relay", "rescuer_id": 3}, {"task": "explore", "target": [12, 5]}]}, "reason": "东北仍有小片未合围火，调整中继到东侧人员3附近以观测该火线；西南感知机补南缘，中央机沿人员行进中间位置前移。"}

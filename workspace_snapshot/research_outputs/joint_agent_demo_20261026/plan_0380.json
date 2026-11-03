@@ -1,0 +1,23 @@
+{
+  "expected_tick": 380,
+  "source": "codex_joint",
+  "reason": "先头3、4号接近安全集结点，U0转到3号补足前段覆盖；U2继续追后队8号，U1随9号。U3完成补给。全部人员继续撤离，无需重置路线。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 3
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 8
+    },
+    {
+      "task": "charge"
+    }
+  ],
+  "orders": []
+}

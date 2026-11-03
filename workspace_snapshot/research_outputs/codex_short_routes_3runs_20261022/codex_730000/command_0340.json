@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 340, "plan": {"uavs": [{"task": "relay", "rescuer_id": 8}, {"task": "charge", "target": [50, 90]}, {"task": "explore", "route": [[94, 57], [93, 64], [87, 68]]}, {"task": "relay", "rescuer_id": 7}]}, "reason": "北部探索机就近补能，东侧用短折线扩展未扫描带。"}

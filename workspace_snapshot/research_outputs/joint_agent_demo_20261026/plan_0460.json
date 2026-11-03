@@ -1,0 +1,30 @@
+{
+  "expected_tick": 460,
+  "source": "codex_joint",
+  "reason": "7人已安全返回，8—10号继续撤离且通信均连通。U1/U2完成末队护送；U0补扫西南[30,10]，U3补扫东部[90,65]。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        30,
+        10
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 10
+    },
+    {
+      "task": "explore",
+      "target": [
+        90,
+        65
+      ]
+    }
+  ],
+  "orders": []
+}

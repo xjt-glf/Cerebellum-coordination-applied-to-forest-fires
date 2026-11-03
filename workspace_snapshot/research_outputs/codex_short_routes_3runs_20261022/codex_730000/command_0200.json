@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 200, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "relay", "rescuer_id": 8}, {"task": "explore", "route": [[78, 32], [84, 35], [88, 30]]}, {"task": "charge", "target": [90, 50]}]}, "reason": "东火短弧刷新同时穿过人员邻域，充电机继续到站。"}

@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 460, "plan": {"uavs": [{"task": "relay", "rescuer_id": 1}, {"task": "explore", "route": [[8, 20], [14, 17], [20, 20]]}, {"task": "explore", "route": [[30, 96], [23, 96], [17, 92]]}, {"task": "relay", "rescuer_id": 6}]}, "reason": "西南和西北未知边缘各扫一条20步内折线，中继稳定。"}

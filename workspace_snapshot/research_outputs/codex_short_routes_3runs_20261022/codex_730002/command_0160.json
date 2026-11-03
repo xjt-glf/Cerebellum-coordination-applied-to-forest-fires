@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 160, "plan": {"uavs": [{"task": "charge", "target": [50, 10]}, {"task": "relay", "rescuer_id": 8}, {"task": "relay", "rescuer_id": 9}, {"task": "relay", "rescuer_id": 5}]}, "reason": "南组机先充电，满电南机接替中央中继，北组恢复链路。"}

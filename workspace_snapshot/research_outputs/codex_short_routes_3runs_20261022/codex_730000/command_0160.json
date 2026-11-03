@@ -1,0 +1,1 @@
+{"seed": 730000, "t": 160, "plan": {"uavs": [{"task": "relay", "rescuer_id": 2}, {"task": "charge", "target": [50, 10]}, {"task": "explore", "target": [86, 37]}, {"task": "relay", "rescuer_id": 9}]}, "reason": "近南站的中央机先补能，东机刷新并接近东组以便后续交班。"}

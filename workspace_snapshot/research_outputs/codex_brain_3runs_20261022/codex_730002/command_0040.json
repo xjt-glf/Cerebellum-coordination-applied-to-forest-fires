@@ -1,0 +1,1 @@
+{"seed": 730002, "t": 40, "plan": {"uavs": [{"task": "relay", "rescuer_id": 5}, {"task": "explore", "target": [63, 56]}, {"task": "explore", "target": [31, 75]}, {"task": "explore", "target": [69, 15]}]}, "reason": "各感知机沿各自火场换侧，补齐仍未知的边界；中继当前覆盖全部人员，无需增加重复中继。"}

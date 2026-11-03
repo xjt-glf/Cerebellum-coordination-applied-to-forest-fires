@@ -1,0 +1,75 @@
+{
+  "expected_tick": 20,
+  "source": "codex_joint",
+  "reason": "发现中南部火区[50,28]，5—7号转为该区扑救。1—4号继续向西中部接近并搜索，8—10号从北侧推进。U0继续西中部感知，U1回到[31,39]向人员交付火情，U3追随中队，U2继续东南搜索。",
+  "uavs": [
+    {
+      "task": "explore",
+      "target": [
+        30,
+        50
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        31,
+        39
+      ]
+    },
+    {
+      "task": "explore",
+      "target": [
+        82,
+        30
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 5
+    }
+  ],
+  "orders": [
+    {
+      "person_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "task": "move",
+      "target": [
+        29,
+        44
+      ],
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        5,
+        6,
+        7
+      ],
+      "task": "contain",
+      "target": [
+        50,
+        28
+      ],
+      "approach_sector": "west",
+      "valid_for_ticks": 1200
+    },
+    {
+      "person_ids": [
+        8,
+        9,
+        10
+      ],
+      "task": "move",
+      "target": [
+        32,
+        57
+      ],
+      "valid_for_ticks": 1200
+    }
+  ]
+}

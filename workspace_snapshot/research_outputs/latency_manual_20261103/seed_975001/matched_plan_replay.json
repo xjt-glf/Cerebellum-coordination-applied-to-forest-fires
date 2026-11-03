@@ -1,0 +1,52 @@
+{
+  "description": "Recorded A plans applied to both arms, not an on-policy B planner; action schedule is fixed even when B state diverges.",
+  "same_seed": 975001,
+  "delay_steps": 5,
+  "verified_A_replay": true,
+  "results": {
+    "A": {
+      "t": 600,
+      "explored": 0.863,
+      "burned_cells": 396,
+      "burning_cells": 2,
+      "extinguished_cells": 236,
+      "contained": 5,
+      "active_clusters": 0,
+      "discovery": 1.0,
+      "rknown": 1.0,
+      "coverage": 1.0,
+      "mean_aoi": 0.0,
+      "max_aoi": 0,
+      "depleted": 0,
+      "min_energy": 350.0,
+      "n_true_burning": 2.0,
+      "n_delivered": 0,
+      "cov_mean": 0.6963333333333332,
+      "aoi_mean": 12.596333333333336,
+      "steps_run": 600,
+      "charge_rewrites": 18
+    },
+    "B": {
+      "t": 600,
+      "explored": 0.8357,
+      "burned_cells": 395,
+      "burning_cells": 1,
+      "extinguished_cells": 234,
+      "contained": 4,
+      "active_clusters": 1,
+      "discovery": 1.0,
+      "rknown": 1.0,
+      "coverage": 0.5,
+      "mean_aoi": 208.9,
+      "max_aoi": 495,
+      "depleted": 0,
+      "min_energy": 310.0,
+      "n_true_burning": 1.0,
+      "n_delivered": 0,
+      "cov_mean": 0.453,
+      "aoi_mean": 78.37633333333333,
+      "steps_run": 600,
+      "charge_rewrites": 18
+    }
+  }
+}

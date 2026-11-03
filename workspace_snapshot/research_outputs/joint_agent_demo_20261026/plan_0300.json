@@ -1,0 +1,26 @@
+{
+  "expected_tick": 300,
+  "source": "codex_joint",
+  "reason": "人员全员沿撤离任务继续前进。U1电量252且已由周边中继接力，先补给；U3改跟1号覆盖撤离中队，U0继续护送南路9号；U2搜索西北[25,85]。",
+  "uavs": [
+    {
+      "task": "relay",
+      "rescuer_id": 9
+    },
+    {
+      "task": "charge"
+    },
+    {
+      "task": "explore",
+      "target": [
+        25,
+        85
+      ]
+    },
+    {
+      "task": "relay",
+      "rescuer_id": 1
+    }
+  ],
+  "orders": []
+}

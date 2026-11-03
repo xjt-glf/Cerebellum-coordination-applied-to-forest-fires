@@ -1,0 +1,251 @@
+{
+  "scope": "3 seeds, 120 steps repeated twice, deterministic actor; 40-step frozen-plan explore target probes at t=60; not a full skill acceptance test",
+  "repeatability": [
+    {
+      "seed": 20000,
+      "shape": [
+        120,
+        22
+      ],
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "seed": 20001,
+      "shape": [
+        120,
+        22
+      ],
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    },
+    {
+      "seed": 20002,
+      "shape": [
+        120,
+        22
+      ],
+      "exact_equal": true,
+      "max_abs_difference": 0.0
+    }
+  ],
+  "target_response": [
+    {
+      "seed": 20000,
+      "target_a": {
+        "goal": [
+          85.0,
+          85.0
+        ],
+        "start": [
+          36.0,
+          7.0
+        ],
+        "final": [
+          76.0,
+          41.0
+        ],
+        "distance_initial": 92.11405973031478,
+        "distance_final": 44.91102314577124,
+        "progress": 47.20303658454354
+      },
+      "target_b": {
+        "goal": [
+          15.0,
+          15.0
+        ],
+        "start": [
+          36.0,
+          7.0
+        ],
+        "final": [
+          76.0,
+          41.0
+        ],
+        "distance_initial": 22.47220505424423,
+        "distance_final": 66.30987860040162,
+        "progress": -43.83767354615739
+      },
+      "uav0_action_differences": 0,
+      "team_action_differences": 0,
+      "uav0_trajectory_exact_equal": true,
+      "first_action_probability_l1_difference": 0.07187359035015106
+    },
+    {
+      "seed": 20001,
+      "target_a": {
+        "goal": [
+          85.0,
+          85.0
+        ],
+        "start": [
+          28.0,
+          68.0
+        ],
+        "final": [
+          16.0,
+          60.0
+        ],
+        "distance_initial": 59.481089431852205,
+        "distance_final": 73.38937252763509,
+        "progress": -13.908283095782885
+      },
+      "target_b": {
+        "goal": [
+          15.0,
+          15.0
+        ],
+        "start": [
+          28.0,
+          68.0
+        ],
+        "final": [
+          36.0,
+          58.0
+        ],
+        "distance_initial": 54.57105459856901,
+        "distance_final": 47.853944456021594,
+        "progress": 6.717110142547419
+      },
+      "uav0_action_differences": 26,
+      "team_action_differences": 52,
+      "uav0_trajectory_exact_equal": false,
+      "first_action_probability_l1_difference": 1.6613681316375732
+    },
+    {
+      "seed": 20002,
+      "target_a": {
+        "goal": [
+          85.0,
+          85.0
+        ],
+        "start": [
+          17.0,
+          52.0
+        ],
+        "final": [
+          47.0,
+          55.0
+        ],
+        "distance_initial": 75.58438992278762,
+        "distance_final": 48.41487374764082,
+        "progress": 27.169516175146804
+      },
+      "target_b": {
+        "goal": [
+          15.0,
+          15.0
+        ],
+        "start": [
+          17.0,
+          52.0
+        ],
+        "final": [
+          41.0,
+          50.0
+        ],
+        "distance_initial": 37.05401462729781,
+        "distance_final": 43.60045871318328,
+        "progress": -6.546444085885469
+      },
+      "uav0_action_differences": 25,
+      "team_action_differences": 44,
+      "uav0_trajectory_exact_equal": false,
+      "first_action_probability_l1_difference": 1.2016524076461792
+    }
+  ],
+  "elapsed_seconds": 16.96,
+  "actor_path": "deliverable/model/actor_best.pt",
+  "actor_sha256": "e70e3f6169704b7b4027974049d3505a9113e2d6cfd38ceef93e46b460271168",
+  "settings": {
+    "num_uavs": 4,
+    "num_rescuers": 10,
+    "n_fire_seeds": 3,
+    "n_fire_seeds_range": null,
+    "grid_size": [
+      100,
+      100
+    ],
+    "max_steps": 600,
+    "spread_steps": 40,
+    "spread_gain": 1.0,
+    "replan_every": 20,
+    "charge_at": 260,
+    "explore_until": 0.7,
+    "max_chargers": 2,
+    "probe_uav_id": 0,
+    "probe_snapshot_t": 60,
+    "probe_horizon": 40,
+    "probe_replanning": false,
+    "action_sampling": "argmax",
+    "waypoint_assist": false
+  },
+  "target_context_checks": [
+    {
+      "seed": 20000,
+      "energy_at_snapshot": 450.0,
+      "goals": [
+        {
+          "goal": [
+            85,
+            85
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 0.8024691358024691
+        },
+        {
+          "goal": [
+            15,
+            15
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 20001,
+      "energy_at_snapshot": 547.5,
+      "goals": [
+        {
+          "goal": [
+            85,
+            85
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 1.0
+        },
+        {
+          "goal": [
+            15,
+            15
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 1.0
+        }
+      ]
+    },
+    {
+      "seed": 20002,
+      "energy_at_snapshot": 575.0,
+      "goals": [
+        {
+          "goal": [
+            85,
+            85
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 1.0
+        },
+        {
+          "goal": [
+            15,
+            15
+          ],
+          "known_map_value_at_goal": -1.0,
+          "unknown_fraction_9x9": 1.0
+        }
+      ]
+    }
+  ]
+}
